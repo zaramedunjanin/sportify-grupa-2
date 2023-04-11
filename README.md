@@ -1,3 +1,3 @@
 # sportify-grupa-2
 
-Opis projekta
+<h1>Opis projekta</h1>
