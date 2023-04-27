@@ -1,3 +1,3 @@
-# sportify-grupa-2
+# Sportify - Grupa 2
 
 
