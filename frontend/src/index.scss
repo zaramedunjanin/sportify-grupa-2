@@ -1,0 +1,23 @@
+//colors
+$orange: #FFC700;
+$green: #50C878;
+
+//fonts
+$main-font:'Montserrat',sans-serif;
+
+.background-orange{
+  background-color: $orange;
+}
+
+.background-green{
+  background-color: $green;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: local('Montserrat'), url('./assets/fonts/Montserrat-VariableFont_wght.ttf') format('truetype');
+}
+*{
+  font-family: $main-font;
+  font-size: 20px;
+}
