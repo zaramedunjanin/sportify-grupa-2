@@ -1,10 +1,18 @@
 .header-container{
   position: relative;
   text-align: center;
-  padding: 4rem;
+  padding: 1rem 2rem 4rem 2rem;
+}
+.header-title{
+  font-weight: normal;
+  margin-bottom: 2rem;
+}
+.header-c{
+  margin-bottom: 4rem;
+  margin-top:3rem;
 }
 
-.custom-shape-divider-bottom-1682524239 {
+.svg-divider {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -13,14 +21,14 @@
   line-height: 0;
 }
 
-.custom-shape-divider-bottom-1682524239 svg {
+.svg-divider svg {
   position: relative;
   display: block;
   width: calc(100% + 1.3px);
   height: 248px;
 }
-
-.custom-shape-divider-bottom-1682524239 .shape-fill {
+.svg-divider .shape-fill {
   fill: #FFFFFF;
 }
+
 
