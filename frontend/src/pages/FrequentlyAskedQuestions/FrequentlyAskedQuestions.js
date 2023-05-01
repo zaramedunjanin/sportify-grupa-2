@@ -1,16 +1,34 @@
 import Navbar from "../../components/Navbar/Navbar";
 import questions from "./allQuestions";
+import "./FrequentlyAskedQuestions.css";
 
 const FrequentlyAskedQuestions = () => {
-
-
   return (
     <>
       <Navbar />
       <>
         <div>
           <div class="container my-5">
-            <div class="position-relative p-5 text-center bg-body">
+            <div class="position-relative text-center bg-body">
+              <div className="d-flex justify-content-end" >
+                <nav class="navbar navbar-expand-lg bg-body-tertiary mb-3">
+                  <div class="container-fluid text-center">
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                      <ul class="navbar-nav fw-medium me-2">
+                        <li class="nav-item nav-link-size">
+                          <a class="nav-link active" aria-current="page" href="/">About us</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link active nav-link-size" href="/">Become a partner</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link active nav-link-size text-orange" href="/">FAQ</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </nav>
+              </div>
               <div >
                 <h1 class="fw-semibold">Frequently Asked Questions</h1>
                 <div class="accordion accordion-flush mt-5" id="accordionFlushExample">
