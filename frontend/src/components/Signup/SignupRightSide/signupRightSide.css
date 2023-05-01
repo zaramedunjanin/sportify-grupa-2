@@ -1,0 +1,19 @@
+.height {
+  height: 100vh;
+}
+
+h3 {
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  padding-top: 250px;
+}
+
+p {
+  color: white;
+  text-align: center;
+}
+
+.centerButton {
+  margin-left: 43%;
+}
