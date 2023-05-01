@@ -1,45 +1,23 @@
 //colors
-$orange: #ffc700;
-$green: #50c878;
-$white: #ffffff;
-$black: #000000;
-$gray: #343434;
+$orange: #FFC700;
+$green: #50C878;
 
 //fonts
-$main-font: "Montserrat", sans-serif;
+$main-font:'Montserrat',sans-serif;
 
-// background
-.background-orange {
+.background-orange{
   background-color: $orange;
 }
 
-.background-green {
+.background-green{
   background-color: $green;
 }
 
-.background-gray {
-  background-color: $gray;
-}
-
-.background-white {
-  background-color: $white;
-}
-
-// text color
-.text-black {
-  color: $black;
-}
-
-.text-white {
-  color: $white;
-}
-
 @font-face {
-  font-family: "Montserrat";
-  src: local("Montserrat"),
-    url("./assets/fonts/Montserrat-VariableFont_wght.ttf") format("truetype");
+  font-family: 'Montserrat';
+  src: local('Montserrat'), url('./assets/fonts/Montserrat-VariableFont_wght.ttf') format('truetype');
 }
-* {
+*{
   font-family: $main-font;
   font-size: 20px;
 }
