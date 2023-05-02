@@ -1,0 +1,34 @@
+.header-container{
+  position: relative;
+  text-align: center;
+  padding: 1rem 2rem 4rem 2rem;
+}
+.header-title{
+  font-weight: normal;
+  margin-bottom: 2rem;
+}
+.header-c{
+  margin-bottom: 4rem;
+  margin-top:3rem;
+}
+
+.svg-divider {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.svg-divider svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 248px;
+}
+.svg-divider .shape-fill {
+  fill: #FFFFFF;
+}
+
+
