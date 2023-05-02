@@ -4,7 +4,7 @@ import LoginForm from "../Login Form/LoginForm"
 import Container from "react-bootstrap/Container";
 import "./LoginContent.scss"
 import Button from "../../../atoms/Buttons/MainButton"
-import Navbar from "../../../organisms/Navbar-login/Navbar-login";
+import Navbar from "../Navbar-login/Navbar-login";
 
 const LoginContent = () => {
     return (
