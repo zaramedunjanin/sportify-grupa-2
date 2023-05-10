@@ -1,9 +1,9 @@
 import { Fragment } from "react";
 import Container from "react-bootstrap/esm/Container"
-import Button from "../Buttons/MainButton";
+import Button from "../../atoms/Buttons/MainButton";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import mainLogo from './../../assets/images/Increase.png';
+import mainLogo from '../../../assets/images/Increase.png';
 import "./Footer.css"
 
 const Footer = () => {
