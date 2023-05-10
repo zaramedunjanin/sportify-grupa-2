@@ -20,7 +20,7 @@ const Navbar = () => {
         </NavbarBS.Brand>
         <NavbarBS.Toggle aria-controls="navbarScroll" />
         <NavbarBS.Collapse id="navbarScroll" className="justify-content-end">
-          <Button text={"Sign in"} />
+          <Button text={"Log in"} onClick={() => navigate("/login")} />
           <Button text={"Sign up"} onClick={() => navigate("/signup")} />
         </NavbarBS.Collapse>
       </Container>
