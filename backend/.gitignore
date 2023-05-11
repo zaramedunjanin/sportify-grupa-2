@@ -1,0 +1,30 @@
+# Ignore virtual environment
+venv/
+
+# Ignore local development settings
+*/local_settings.py
+
+# Ignore compiled Python files
+__pycache__/
+*.pyc
+
+# Ignore media files
+media/
+
+# Ignore database files
+*.sqlite3
+
+# Ignore log files
+*.log
+
+# Ignore macOS file system metadata
+.DS_Store
+
+# Ignore temporary files
+*.swp
+*.swo
+
+# Ignore the static files folder (if it's located in the project root)
+/static/
+
+# Ignore any other files or folders you want to exclude from version control
