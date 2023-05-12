@@ -12,6 +12,8 @@ import ProfileDropdown from "../../molecules/Dropdown/ProfileDropdown/ProfileDro
 import Logo from "./Logo";
 import {useNavigate} from "react-router-dom";
 
+//The Navbar for the main page is default,
+// for the search page it is needed to pass the value "search" to the prop "variant"
 const Navbar = ({
                     variant = "default",
                     ...props

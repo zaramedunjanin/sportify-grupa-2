@@ -12,6 +12,8 @@ import Logo from "../Logo";
 import adminLinks from "./adminNavbarLinks";
 import userLinks from "./userNavbarLinks";
 
+//The Navbar for users profiles is default,
+// for the admin panel it is needed to pass the value "admin" to the prop "variant"
 const ProfileNavbar = ({
                            variant = "default",
                            ...props
