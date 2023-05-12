@@ -9,7 +9,7 @@ import Footer from "../../organisms/Footer/Footer";
 const Home = () => {
   return (
     <>
-      <Navbar/>
+      <Navbar />
       <Header />
       <Categories />
       <About />
