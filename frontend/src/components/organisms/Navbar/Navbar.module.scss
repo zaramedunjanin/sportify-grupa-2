@@ -1,0 +1,40 @@
+#navbar {
+  padding: 0 2rem 0 2rem;
+}
+
+.navButtons {
+  display: flex;
+}
+
+.adminLinks {
+  display: inline-block;
+  margin: 1rem;
+  color: white;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.navSearch {
+  width: 100%;
+}
+
+.adminLinks:hover, .adminLinks:active:focus {
+  color: #ffc700;
+}
+
+@media only screen and (max-width: 991px) {
+  .adminLinks {
+    display: block;
+  }
+  .navButtons {
+    padding: 1rem;
+    display: block;
+    text-align: center;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  #navbar {
+    padding: 0 1rem 0 1rem;
+  }
+}
