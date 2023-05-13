@@ -2,29 +2,25 @@ from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from django.http import JsonResponse
 from .serializers import SignupSerializer
-from django.contrib.auth.models import User
 
 # Create your views here.
-# returns all users
 
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
-def user_list(request):
+def getUser(request):
     user = request.user
     data = [{'user': user.username}]
     # users = User.objects.all()
     # data = [{'username': user.username, 'email': user.email} for user in users]
     return Response(data)
 
-# basic signup
-
 
 @api_view(['POST'])
 def signup(request):
     serializer = SignupSerializer(data=request.data)
+
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)

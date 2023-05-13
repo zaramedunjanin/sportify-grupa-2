@@ -21,6 +21,7 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 
+# login takes username and password as input
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/', include('authapp.urls')),
