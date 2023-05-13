@@ -1,8 +1,12 @@
-.search-form{
+.search {
+  display: inline-block;
+}
+
+.search-form {
   justify-content: center;
 }
 
-.input-container{
+.input-container {
   display: flex;
   background-color: white;
   border-radius: 100px;
@@ -11,17 +15,24 @@
   width: 40%;
 }
 
-.search-input{
+.search-input {
   border: none;
   background-color: transparent;
   width: 100%;
 }
 
-.search-img{
+.search-input:Active {
+  border: none;
+  background-color: transparent;
+  width: 100%;
+}
+
+
+.search-img {
   width: 50px;
 }
 
-.search-button{
+.search-button {
   border: none;
   background-color: transparent;
 }
