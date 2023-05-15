@@ -5,7 +5,9 @@ django-cors-headers==4.0.0
 django-timestampable==1.1.1
 django-utils==0.0.2
 djangorestframework==3.14.0
+djangorestframework-simplejwt==5.2.2
 fields==5.0.0
+PyJWT==2.7.0
 pytz==2023.3
 sqlparse==0.4.4
 tzdata==2023.3
