@@ -38,14 +38,19 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    #third-party
     'rest_framework',
     'corsheaders',
-    'authapp',
-    'venueapp',
-    'reservationapp',
+    'timestamps',
+
+    #own
+    'user',
+    'reservation',
+    'venue',
 ]
 
-AUTH_USER_MODEL = "authapp.User"
+AUTH_USER_MODEL = "user.User"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
