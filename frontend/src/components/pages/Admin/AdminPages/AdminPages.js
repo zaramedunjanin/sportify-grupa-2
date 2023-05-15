@@ -1,9 +1,10 @@
 import React from "react";
 
 import {Outlet} from "react-router-dom";
-import AdminTable from "../AdminComponents/AdminTable";
+import AdminTable from "../AdminComponents/AdminTable/AdminTable";
+import AdminHeader from "../AdminComponents/AdminHeader/AdminHeader";
 
-const AdminUsers = () => {
+const AdminPages = ({text}) => {
     const headers =
         ["ID"]
 
@@ -13,10 +14,11 @@ const AdminUsers = () => {
     ]
     return (
         <>
+            <AdminHeader></AdminHeader>
             <AdminTable headers = {headers} data = {data}/>
             <Outlet />
         </>
     );
 };
 
-export default AdminUsers;
+export default AdminPages;

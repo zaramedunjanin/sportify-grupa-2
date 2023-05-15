@@ -1,5 +1,5 @@
 import { Form } from "react-bootstrap"
-import Button from "../../../atoms/Buttons/MainButton"
+import Button from "../../../atoms/Buttons/MainButton/MainButton"
 import React from "react";
 import "./LoginForm.scss"
 
