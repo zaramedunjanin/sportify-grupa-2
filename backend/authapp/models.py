@@ -12,7 +12,7 @@ class User(AbstractUser):
 
     ROLE_CHOICES = (
         (ADMIN, 'Admin'),
-        (USER, 'USer'),
+        (USER, 'User'),
         (COMPANY, 'Company'),
     )
     first_name = models.CharField(max_length=50)
@@ -24,7 +24,7 @@ class User(AbstractUser):
     password = models.CharField(max_length=50)
     gender = models.CharField(max_length=50)
     city = models.CharField(max_length=50)
-    role = models.PositiveSmallIntegerField(choices=ROLE_CHOICES, blank=True, null=True)
+    role = models.PositiveSmallIntegerField(choices=ROLE_CHOICES, blank=True, null=True, default="User")
     blocked = models.BooleanField(default=False)
     verified = models.BooleanField(null=True)
     sport_id = models.ManyToManyField(Sport)
