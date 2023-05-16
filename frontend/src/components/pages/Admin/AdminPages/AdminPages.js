@@ -14,7 +14,7 @@ const AdminPages = ({text}) => {
     ]
     return (
         <>
-            <AdminHeader></AdminHeader>
+            <AdminHeader/>
             <AdminTable headers = {headers} data = {data}/>
             <Outlet />
         </>
