@@ -11,9 +11,9 @@ pip freeze
 into the Terminal, copy and paste the text into the requirements.txt file.
 ##### Database
 1. Open pgAdmin
-2. Create Server if you don't have one already created
+2. Create a Server if you don't have one already created
    - Host name/address: localhost
-   - everything else optional
+   - everything else is optional
 3. Right click on Login/Group Role and create a new one
    - General -> Name: sportify
    - Definition -> Password: sportify
