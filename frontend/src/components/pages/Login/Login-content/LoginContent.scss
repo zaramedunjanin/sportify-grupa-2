@@ -6,8 +6,17 @@
     align-items: center;
     flex-direction: column;
     text-align: center;
-    height: 81vh;
+    height: 70vh;
+    padding-bottom: 60px;
 }
+
+.login-h{
+    font-weight: bold;
+}
+
+
+
+
 .right-side{
     display: flex;
     justify-content: center;
@@ -22,9 +31,7 @@
     margin-bottom: 30px;
 }
 
-.left-side p{
-    font-size: 16px;
-}
+
 .left-side h2{
     font-size: 30px;
 }
@@ -36,3 +43,4 @@
     padding: 0 !important;
     overflow-x: hidden !important;
 }
+

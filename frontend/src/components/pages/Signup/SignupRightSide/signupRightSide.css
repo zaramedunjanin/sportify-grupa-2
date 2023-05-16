@@ -2,12 +2,13 @@
     height: 100vh;
 }
 
-h3 {
+.h3_center {
     color: white;
     text-align: center;
     font-weight: bold;
-    padding-top: 250px;
+    padding-top: 110px;
 }
+
 
 p {
     color: white;
