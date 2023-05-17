@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 const SignupRightSide = () => {
   const navigate = useNavigate();
   return (
-    <Container fluid className="background-green height">
+    <Container className="background-green height">
       <Row>
         <Col xs={6}>
           <Logo />
