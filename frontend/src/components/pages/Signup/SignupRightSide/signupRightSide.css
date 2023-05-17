@@ -1,20 +1,26 @@
 .height {
-    height: 100vh;
+  height: 100vh;
 }
 
 .h3_center {
-    color: white;
-    text-align: center;
-    font-weight: bold;
-    padding-top: 110px;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  padding-top: 30%;
 }
 
-
-p {
-    color: white;
-    text-align: center;
+.p_center {
+  color: white;
+  text-align: center;
 }
 
 .centerButton {
-    margin-left: 43%;
+  margin-left: 43%;
+}
+
+.text_in_the_center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
