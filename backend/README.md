@@ -1,5 +1,9 @@
 ## Starting Django backend
 
+To create a vitural environment, run this command in Django: <br> 
+```
+python -m venv venv
+```
 To install all neccessary packages, run this command in Django: <br> 
 ```
 pip install -r requirements.txt
