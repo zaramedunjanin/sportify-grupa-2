@@ -1,4 +1,4 @@
-## Starting Django backend
+## Starting Django
 
 To create a virtual environment, run this command in Django: <br> 
 ```
