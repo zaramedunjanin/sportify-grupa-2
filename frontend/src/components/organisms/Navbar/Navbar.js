@@ -44,7 +44,7 @@ const Navbar = ({
     const navigate = useNavigate();
 
     return (
-        <NavbarBS className={backgroundColor} expand="lg">
+        <NavbarBS className={backgroundColor} expand="xxl">
             <Container fluid id={styles.navbar}>
                 <Logo/>
                 <NavbarBS.Toggle aria-controls="navbarScroll"/>

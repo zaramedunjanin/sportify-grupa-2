@@ -38,15 +38,20 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    #third-party
     'rest_framework',
+    'rest_framework_simplejwt',
     'corsheaders',
     'timestamps',
-    'authapp',
-    'venueapp',
-    'reservationapp',
+
+    #own
+    'user',
+    'reservation',
+    'venue',
 ]
 
-AUTH_USER_MODEL = "authapp.User"
+AUTH_USER_MODEL = "user.User"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -86,22 +91,14 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'sportifydb',
+        'USER': 'sportify',
+        'PASSWORD': 'sportify',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
-
-if not DEBUG:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'mydatabase',
-            'USER': 'mydatabaseuser',
-            'PASSWORD': 'mypassword',
-            'HOST': 'mydatabasehost',
-            'PORT': '5432',
-        }
-    }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

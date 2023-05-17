@@ -4,6 +4,7 @@
 
 .navButtons {
   display: flex;
+  justify-content: center;
 }
 
 .adminLinks {
@@ -11,7 +12,6 @@
   margin: 1rem;
   color: white;
   text-decoration: none;
-  font-size: 20px;
 }
 
 .navSearch {
