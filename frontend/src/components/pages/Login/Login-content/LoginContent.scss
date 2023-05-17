@@ -6,8 +6,14 @@
     align-items: center;
     flex-direction: column;
     text-align: center;
-    height: 81vh;
+    height: 78vh;
+    padding-bottom: 10%;
 }
+
+.login-h{
+    font-weight: bold;
+}
+
 .right-side{
     display: flex;
     justify-content: center;
@@ -22,17 +28,15 @@
     margin-bottom: 30px;
 }
 
-.left-side p{
-    font-size: 16px;
-}
 .left-side h2{
     font-size: 30px;
 }
 
-.container{
+.container_1 {
     height: 100% !important;
     max-width: 100% !important;
     margin: 0 !important;
     padding: 0 !important;
     overflow-x: hidden !important;
 }
+

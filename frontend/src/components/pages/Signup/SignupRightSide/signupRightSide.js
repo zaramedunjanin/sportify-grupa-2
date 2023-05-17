@@ -19,9 +19,11 @@ const SignupRightSide = () => {
         </Col>
       </Row>
       <Row className="p-0">
-        <Col>
-          <h3>Already have an account?</h3>
-          <p>Log in and catch up with the latest events.</p>
+        <Col className="text_in_the_center">
+          <h3 className="h3_center">Already have an account?</h3>
+          <p className="p_center">
+            Log in and catch up with the latest events.
+          </p>
           <div className="centerContainer">
             <MainButton text={"Log In"} onClick={() => navigate("/login")} />
           </div>
