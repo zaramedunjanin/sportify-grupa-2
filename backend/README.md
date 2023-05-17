@@ -1,6 +1,6 @@
 ## Starting Django backend
 
-To create a vitural environment, run this command in Django: <br> 
+To create a virtual environment, run this command in Django: <br> 
 ```
 python -m venv venv
 ```
