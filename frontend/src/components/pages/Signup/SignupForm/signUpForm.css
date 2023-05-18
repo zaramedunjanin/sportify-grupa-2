@@ -48,3 +48,13 @@ select {
   justify-content: center;
   align-items: center;
 }
+
+.input.is-invalid {
+  border-bottom: 1px solid red;
+}
+
+.text-danger.small {
+  font-size: 12px;
+  margin-top: 2px;
+  color: red;
+}
