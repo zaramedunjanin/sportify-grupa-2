@@ -19,9 +19,11 @@ const App = () => {
                 <Route path="signup" element={<Signup/>}/>
 
                 <Route path="admin" element={<Admin/>} >
-                    <Route path="users" element={<AdminPages text ={"users"}/>}/>
-                    <Route path="venues" element={<AdminPages text ={"venues"}/>}/>
-
+                    <Route path="tables">
+                        <Route path="users" element={<AdminPages text ={"users"}/>}/>
+                    </Route>
+                    <Route path="verification" element={<AdminPages text ={"companyve"}/>}/>
+                    <Route path="statistics" element={<AdminPages text ={"statistics"}/>}/>
                 </Route>
             </Routes>
         </BrowserRouter>

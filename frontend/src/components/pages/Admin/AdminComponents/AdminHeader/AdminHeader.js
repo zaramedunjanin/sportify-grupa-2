@@ -1,34 +1,24 @@
 import React from "react";
 
 import Container from "react-bootstrap/Container";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
-import Search from "../../../../molecules/Search/Search";
-import styles from "../AdminTable/AdminTable.module.scss";
 
+import Offcanvas from "../../../../atoms/Offcanvas/Offcanvas";
+import Search from "../../../../molecules/Search/Search";
+import styles from "./AdminHeader.module.scss"
+import AdminSearch from "../AdminSearch/AdminSearch";
 const AdminHeader = () => {
-    const headerStyle = {
-        padding: "1rem",
-        marginTop: "2rem",
-        marginBottom: "1rem",
-        backgroundColor: "#688cff"
-    }
+
 
     return (
-        <Container style={headerStyle}>
-            <Row>
-                <Col  xs = "4" className={"text-start"}>
+        <Container fluid>
+            <Container className={styles.headerTitle}>
+                <h4>User Management</h4>
+            </Container>
 
-                <div className={""}>User Management</div>
-                </Col>
+            <Container className={styles.headerSearch}>
+                        <AdminSearch/>
 
-                <Col  xs = "4" className={"text-start"}>
-                    <Search/>
-                </Col>
-                <Col  xs= "4"  className={"text-end"}>
-                        <h4>filter</h4>
-                </Col>
-            </Row>
+            </Container>
         </Container>
     );
 };

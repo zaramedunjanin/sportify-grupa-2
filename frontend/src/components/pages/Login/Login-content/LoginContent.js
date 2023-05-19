@@ -12,12 +12,12 @@ const LoginContent = () => {
   const navigate = useNavigate();
   return (
     <>
-      <Container fluid className={"container"}>
+      <Container fluid className={"container_1"}>
         <Row>
           <Col sm={5}>
             <Navbar />
             <div className="bg-lightgreen left-side">
-              <h2 className="display-">Don't have an account?</h2>
+              <h3 className="login-h">Don't have an account?</h3>
               <p>Join with the peeeeepz</p>
               <Button text={"Sign up"} onClick={() => navigate("/signup")} />
             </div>

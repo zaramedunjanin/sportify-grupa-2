@@ -11,11 +11,17 @@ const SignUpForm = () => {
     <Container className="inputContainer">
       <Row className="inputBackground">
         <Col xs={6} className="pr-2">
-          <input type="text" id="fname" name="fname" placeholder="First Name" />
+          <input
+            type="text"
+            className="input"
+            id="fname"
+            name="fname"
+            placeholder="First Name"
+          />
         </Col>
         <Col xs={6} className="pl-2">
           <input
-            className="closer"
+            className="input"
             type="text"
             id="fname"
             name="fname"
@@ -25,7 +31,7 @@ const SignUpForm = () => {
 
         <Col xs={12} className="mt-3 pt-1">
           <input
-            className="longInput"
+            className="input"
             type="text"
             id="fname"
             name="fname"
@@ -34,7 +40,7 @@ const SignUpForm = () => {
         </Col>
         <Col xs={12} className="mt-3 pt-1">
           <input
-            className="longInput"
+            className="input"
             type="text"
             id="fname"
             name="fname"
@@ -43,7 +49,7 @@ const SignUpForm = () => {
         </Col>
         <Col xs={12} className="mt-3 pt-1">
           <input
-            className="longInput"
+            className="input"
             type="text"
             id="fname"
             name="fname"
@@ -53,7 +59,7 @@ const SignUpForm = () => {
 
         <Col xs={12} className="mt-3 pt-1">
           <input
-            className="longInput"
+            className="input"
             type="email"
             id="fname"
             name="fname"
@@ -63,17 +69,16 @@ const SignUpForm = () => {
 
         <Col xs={12} className="mt-3 pt-1">
           <input
-            className="longInput"
+            className="input"
             type="password"
             id="fname"
             name="fname"
             placeholder="Password"
           />
         </Col>
-
         <Row style={{ paddingRight: "0" }}>
           <Col className="centerContainer mt-4">
-            <MainButton text={"Sign Up"} />
+            <MainButton className="form-button" text={"Sign Up"} />
           </Col>
         </Row>
       </Row>

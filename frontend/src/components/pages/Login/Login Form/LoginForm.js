@@ -6,12 +6,12 @@ import "./LoginForm.scss"
 const LoginForm = () => {
     return (
         <>
-            <Form className="p-4 rounded form-border shadow form">
+            <Form className="p-4 form">
                 <Form.Group controlId="formBasicEmail">
-                    <Form.Control type="email" placeholder="Email" className="input" />
+                    <Form.Control type="email" placeholder="Email" className=" input " />
                 </Form.Group>
                 <Form.Group controlId="formBasicPassword">
-                    <Form.Control type="password" placeholder="Password" className="input" />
+                    <Form.Control type="password" placeholder="Password" className="input " />
                 </Form.Group>
                 <Button text={"Log in"} className="login-button" />
             </Form>
