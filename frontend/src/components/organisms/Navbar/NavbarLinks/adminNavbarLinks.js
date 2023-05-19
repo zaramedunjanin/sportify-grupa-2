@@ -1,10 +1,10 @@
 const adminNavbarLinks = [
     {
-        url: "/admin/tables",
+        url: "/administrator/tables",
         navbarText: "Tables"
     },
     {
-        url: "/admin/verification",
+        url: "/administrator/verification",
         navbarText: "Company Verification"
     },
 

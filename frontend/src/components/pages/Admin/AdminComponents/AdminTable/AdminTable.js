@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import styles from "./AdminTable.module.scss"
 import Table from 'react-bootstrap/Table';
 import Container from "react-bootstrap/Container";
@@ -7,8 +8,19 @@ import Row from "react-bootstrap/Row";
 
 const AdminTable = (props) => {
 
+    let page = props.page;
+    let currentData = {
+        data: []
+    };
+    function getUserList() {
+        axios.get('http://127.0.0.1:8000/administrator/tables/users')
+            .then(res => {
+                this.setState({ data: res.data });
+            })
+    }
+
     return (
-        <Container fluid = {"xxl"} >
+        <Container fluid={"xxl"}>
             <Container>
                 <Table responsive="sm" className={"text-center"}>
                     <thead>
@@ -24,14 +36,23 @@ const AdminTable = (props) => {
 
                     </thead>
                     <tbody className={styles.adminTableRows}>
-                    {props.data.map(data => (
-                        <tr>
-                            <td>{data}</td>
-                            <td><CustomButton text={"Edit"}/></td>
-                            <td><CustomButton text ={"Delete"} variant={"error"}/></td>
+                    {!currentData.data || currentData.data.length === 0 ?
+                        (
+                            <tr>
+                                <td colSpan="6" align="center">
+                                    No table entries currently available.
+                                </td>
+                            </tr>
+                        )
+                        :
+                        currentData.data.map(data => (
+                            <tr>
+                                <td>{data.first_name}</td>
+                                <td><CustomButton text={"Edit"}/></td>
+                                <td><CustomButton text={"Delete"} variant={"error"}/></td>
 
-                        </tr>
-                    ))}
+                            </tr>
+                        ))}
                     </tbody>
 
                 </Table>
