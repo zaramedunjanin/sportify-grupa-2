@@ -29,3 +29,6 @@ class User(AbstractUser, Model):
     blocked = models.BooleanField(default=False)
     verified = models.BooleanField(null=True)
     sport = models.ManyToManyField(Sport)
+
+def __str__(self):
+    return f"{self.first_name} {self.last_name}"
