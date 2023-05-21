@@ -25,7 +25,10 @@ class User(AbstractUser, Model):
     profile_picture = models.CharField(max_length=255)
     gender = models.CharField(max_length=50)
     city = models.CharField(max_length=50)
-    role = models.PositiveSmallIntegerField(choices=ROLE_CHOICES, blank=True, null=True, default="User")
+    role = models.PositiveSmallIntegerField(choices=ROLE_CHOICES, blank=True, null=True, default=USER)
     blocked = models.BooleanField(default=False)
     verified = models.BooleanField(null=True)
     sport = models.ManyToManyField(Sport)
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
