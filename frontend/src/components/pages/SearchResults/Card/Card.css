@@ -1,0 +1,19 @@
+.card {
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.1);
+}
+
+p {
+  padding-left: 0px !important;
+  margin-bottom: 10px !important;
+  font-weight: 500;
+}
+
+.card-title {
+  font-weight: 700;
+  font-size: 24px;
+}
