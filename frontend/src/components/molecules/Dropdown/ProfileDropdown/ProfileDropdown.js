@@ -41,10 +41,10 @@ const ProfileDropdown = ({
         <Dropdown.Item onClick={() => navigate("/userdashboard")} eventKey="1">
           Profile
         </Dropdown.Item>
-        <Dropdown.Item eventKey="2">Log Out</Dropdown.Item>
         <Dropdown.Item eventKey="3" onClick={handleEditClick}>
           Edit
         </Dropdown.Item>
+        <Dropdown.Item eventKey="2">Log Out</Dropdown.Item>
       </DropdownButton>
       {modalOpen && (
         <UserData showModal={modalOpen} handleClose={handleCloseModal} />
