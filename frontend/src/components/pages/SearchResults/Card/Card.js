@@ -10,7 +10,15 @@ import { faVolleyball } from '@fortawesome/free-solid-svg-icons';
 
 import './Card.css'
 
-const Card = () => {
+const Card = ({ venue, ...rest }) => {
+
+  const formatTime = (timeString) => {
+    const [hours, minutes] = timeString.split(':');
+    const parsedTime = `${hours}:${minutes}`;
+
+    return parsedTime;
+  }
+
   return <>
     <div className="card mb-5" style={{ width: "17rem", fontSize: "12px" }}>
       <img src={myImage} className="card-img-top" alt="..." />
@@ -19,7 +27,7 @@ const Card = () => {
           <div className="col">
             <div className="row fw-bolder fs-6">
               <p className='card-title' style={{ marginLeft: "0px !important" }}>
-                Victory Arena
+                {venue.venue_name}
                 <FontAwesomeIcon icon={faFutbol} className='me-1 ms-1' />
                 <FontAwesomeIcon icon={faBasketball} className='me-1' />
                 <FontAwesomeIcon icon={faVolleyball} className='me-1' />
@@ -31,7 +39,7 @@ const Card = () => {
         <div className="row">
           <div className="col">
             <div className="row fw-semibold" style={{ fontSize: "16px" }}>
-              <p> <FontAwesomeIcon icon={faLocationDot} className='me-1' /> Munira Gavrankapetanovica 3 </p>
+              <p> <FontAwesomeIcon icon={faLocationDot} className='me-1' /> {venue.address} </p>
             </div>
             <div className="row fw-semibold" style={{ fontSize: "16px" }}>
               <p> <FontAwesomeIcon icon={faStar} className='me-1' />
@@ -39,11 +47,11 @@ const Card = () => {
             </div>
             <div className="row fw-semibold" style={{ fontSize: "16px" }}>
               <p> <FontAwesomeIcon icon={faClock} className='me-1' />
-                8h - 23h </p>
+                {formatTime(venue.opening_time)}h - {formatTime(venue.closing_time)}h </p>
             </div>
             <div className="row fw-semibold" style={{ fontSize: "16px" }}>
               <p> <FontAwesomeIcon icon={faTag} className='me-1' rotation={90} />
-                40 KM </p>
+                {venue.price_per_hour} KM </p>
             </div>
           </div>
         </div>
