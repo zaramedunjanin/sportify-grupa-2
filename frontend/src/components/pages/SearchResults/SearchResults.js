@@ -7,18 +7,21 @@ import {
 import getAllVenues from '../../../services/Venue/Query';
 import React, { useState } from 'react';
 import Navbar from "../../organisms/Navbar/Navbar";
-
+const initialState = {
+  searchText: '',
+  min_price: 0,
+  max_price: 0,
+  location: '',
+  sport: '',
+  sortBy: ''
+}
 
 const SearchResults = () => {
-
   const handleFilterChange = (searchCriteria) => {
-    console.log(searchCriteria);
+    result.refetch({ options: searchCriteria });
   }
 
-  const result = useQuery({ queryKey: ['venues'], queryFn: getAllVenues })
-  console.log(result.data)
-  if (result.isLoading === true)
-    return <h6>Loading...</h6>
+  const result = useQuery({ queryKey: ['venues', initialState], queryFn: getAllVenues })
 
   return <>
     <Navbar variant="search" />

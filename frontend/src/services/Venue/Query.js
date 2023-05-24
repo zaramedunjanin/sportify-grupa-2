@@ -1,7 +1,8 @@
 import axios from "../HttpService/HttpService";
 
-const getAllVenues = (search) => {
-  return axios.get('venue/all', { params: search }).then((res) => {
+const getAllVenues = (options) => {
+  console.log(options)
+  return axios.get('venue/all', { params: options }).then((res) => {
     return res.data;
   });
 
