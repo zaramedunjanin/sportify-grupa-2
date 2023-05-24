@@ -6,8 +6,8 @@ import FrequentlyAskedQuestions from './components/pages/FrequentlyAskedQuestion
 import Signup from "./components/pages/Signup/SignupPage";
 import LoginPage from "./components/pages/Login/LoginPage";
 import Admin from "./components/pages/Admin/Admin";
-import AdminPages from "./components/pages/Admin/AdminPages/AdminPages";
-
+import TablePage from "./components/pages/Admin/AdminPages/TablePage";
+import RootTablePage from "./components/pages/Admin/AdminPages/RootTablePage";
 const App = () => {
     return (
         <BrowserRouter>
@@ -19,11 +19,15 @@ const App = () => {
                 <Route path="signup" element={<Signup/>}/>
 
                 <Route path="administrator" element={<Admin/>} >
-                    <Route path="tables">
-                        <Route path="users" element={<AdminPages text ={"users"}/>}/>
+                    <Route path="tables" element={<RootTablePage/>} >
+                        <Route path="users" element={<TablePage/>} />
+                        <Route path="venues" element={<TablePage/>} />
+                        <Route path="sports" element={<TablePage/>} />
+                        <Route path="reservations" element={<TablePage/>} />
+
+
                     </Route>
-                    <Route path="verification" element={<AdminPages text ={"companyve"}/>}/>
-                    <Route path="statistics" element={<AdminPages text ={"statistics"}/>}/>
+                    <Route path="verification" element={<TablePage/>}/>
                 </Route>
             </Routes>
         </BrowserRouter>

@@ -1,7 +1,12 @@
 from rest_framework import serializers
-from .models import User
+from .models import User, Sport
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id','first_name', 'last_name','username','company_name', 'email', 'phone_number', 'password']
+        fields = '__all__'
+
+class SportSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Sport
+        fields = '__all__'

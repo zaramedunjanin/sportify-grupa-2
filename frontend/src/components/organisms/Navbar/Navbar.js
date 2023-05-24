@@ -39,7 +39,7 @@ const Navbar = ({
     }
 
 
-    let isAuth = false;
+    let isAuth = true;
 
     const navigate = useNavigate();
 

@@ -8,7 +8,7 @@ class Venue(Model):
     address = models.CharField(max_length=100)
     city = models.BooleanField(default=False)
     type = models.CharField(max_length=50)
-    venue_picture = models.CharField(max_length=255)
+    venue_picture = models.CharField(max_length=255, blank=True)
     description = models.TextField()
     price_per_hour = models.DecimalField(max_digits=6, decimal_places=2)
     opening_time = models.TimeField()
@@ -24,7 +24,7 @@ class Rating(Model):
 
 class Question(Model):
     text = models.TextField()
-    answer = models.TextField()
+    answer = models.TextField(blank=True)
     pinned = models.BooleanField(default=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     venue = models.ForeignKey(Venue, on_delete=models.CASCADE)

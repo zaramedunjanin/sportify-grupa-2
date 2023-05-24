@@ -1,62 +1,95 @@
-import React from "react";
-import axios from "axios";
+import {useEffect, useState} from "react";
 import styles from "./AdminTable.module.scss"
 import Table from 'react-bootstrap/Table';
 import Container from "react-bootstrap/Container";
 import CustomButton from "../../../../atoms/Buttons/CustomButton";
-import Row from "react-bootstrap/Row";
+import DeleteModal from "../../../../organisms/Modal/DeleteModal/DeleteModal";
+import InputModal from "../../../../organisms/Modal/InputModal/InputModal";
+import {getDataList} from "../../../../../services/AdminService/useAdminFetcher";
+import {deleteData} from "../../../../../services/AdminService/useAdminMutator";
 
-const AdminTable = (props) => {
+const AdminTable = ({page, ...props}) => {
+    const [deleteShow, setDeleteShow] = useState(false);
+    const [editShow, setEditShow] = useState(false);
+    let columns = props.databasecolumns;
+    let [ID, setID] = useState(0)
+    const [data, setData] = useState([]);
 
-    let page = props.page;
-    let currentData = {
-        data: []
-    };
-    function getUserList() {
-        axios.get('http://127.0.0.1:8000/administrator/tables/users')
-            .then(res => {
-                this.setState({ data: res.data });
-            })
-    }
+    useEffect(() => {
+        getDataList(setData, page);
+
+    }, [data]);
+
 
     return (
         <Container fluid={"xxl"}>
             <Container>
-                <Table responsive="sm" className={"text-center"}>
+                <Table responsive className={`text-center align-middle ${styles.adminTable}`}>
                     <thead>
-                    {props.headers.map(elements => (
-                        <tr>
+                    <tr>
 
-                            <th>{elements}</th>
-                            <th>Edit</th>
-                            <th>Delete</th>
-                        </tr>
+                        {columns[page].headers.map((elements, index) => (
+                            <th key={`header${index}`}>{elements}</th>
+                        ))}
+                        <th>Edit</th>
+                        <th>Delete</th>
 
-                    ))}
+                    </tr>
 
                     </thead>
                     <tbody className={styles.adminTableRows}>
-                    {!currentData.data || currentData.data.length === 0 ?
+                    {!data || data.length === 0 ?
                         (
                             <tr>
-                                <td colSpan="6" align="center">
+                                <td colSpan={columns[page].headers.length + 2} align="center">
                                     No table entries currently available.
                                 </td>
                             </tr>
                         )
                         :
-                        currentData.data.map(data => (
-                            <tr>
-                                <td>{data.first_name}</td>
-                                <td><CustomButton text={"Edit"}/></td>
-                                <td><CustomButton text={"Delete"} variant={"error"}/></td>
+                        (
+                            data.map((data, index) => (
+                                <tr key={`row${index}`}>
 
-                            </tr>
-                        ))}
+                                    {columns[page].fields.map(fields => (
+                                        (
+                                        (data[fields]) === null  || (data[fields]) === ""?
+                                                <td key={`${fields}${index}`}>Empty</td>
+                                                :
+                                                <td key={`${fields}${index}`}>{data[fields]}</td>
+                                        )
+                                    ))}
+                                    <td><CustomButton key={`edit${index}`}
+                                                      text={"Edit"}
+                                                      onClick={() => setEditShow(true)}/></td>
+                                    <td><CustomButton key={`delete${index}`}
+                                                      text={"Delete"} variant={"error"}
+                                                      onClick={() => {
+                                                          setID(data.id);
+                                                          setDeleteShow(true)
+                                                      }}
+
+                                    /></td>
+
+                                </tr>
+                            ))
+                        )
+
+                    }
                     </tbody>
 
                 </Table>
             </Container>
+            <DeleteModal show={deleteShow}
+                         onHide={() => setDeleteShow(false)}
+                         onDelete={() => {
+                             setDeleteShow(false);
+                             deleteData(ID, page)
+                         }}
+
+            />
+            <InputModal table={page} show={editShow}
+                        onHide={() => setEditShow(false)}/>
         </Container>
 
     );

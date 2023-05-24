@@ -2,17 +2,13 @@ import React from "react";
 
 import Container from "react-bootstrap/Container";
 
-import Offcanvas from "../../../../atoms/Offcanvas/Offcanvas";
-import Search from "../../../../molecules/Search/Search";
 import styles from "./AdminHeader.module.scss"
 import AdminSearch from "../AdminSearch/AdminSearch";
-const AdminHeader = () => {
-
-
+const AdminHeader = ({title}) => {
     return (
         <Container fluid>
             <Container className={styles.headerTitle}>
-                <h4>User Management</h4>
+                <h4>{title}</h4>
             </Container>
 
             <Container className={styles.headerSearch}>
