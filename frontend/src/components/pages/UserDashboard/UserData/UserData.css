@@ -1,0 +1,13 @@
+.edit_input .form-control {
+  height: 40px; /* Adjust the desired height */
+  font-size: 14px; /* Adjust the desired font size */
+}
+
+.modal-dialog {
+  width: 500px; /* Adjust the desired width */
+}
+
+.modal-footer .btn {
+  height: 45px; /* Adjust the desired height */
+  font-size: 14px; /* Adjust the desired font size */
+}
