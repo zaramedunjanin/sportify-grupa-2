@@ -16,7 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from venue import views as venue_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path("venue/<int:venue_id>", venue_views.getVenue, name="venue")
 ]
