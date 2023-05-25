@@ -1,0 +1,30 @@
+.body {
+    background-color: ghostwhite;
+}
+
+.card {
+    background-color: white;
+    border-radius: 50px;
+}
+
+.cover {
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+    max-height: 15rem;
+    border-radius: 50px 50px 0 0;
+}
+
+.title {
+    font-weight: 600;
+    display: inline;
+    margin-right: 2rem;
+}
+
+.rating {
+    align-items: center;
+}
+
+.rating h6 {
+    display: inline;
+}
