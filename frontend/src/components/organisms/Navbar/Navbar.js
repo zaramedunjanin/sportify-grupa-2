@@ -7,39 +7,34 @@ import styles from "./Navbar.module.scss";
 
 import Button from "../../atoms/Buttons/MainButton/MainButton";
 import Search from "../../molecules/Search/Search";
-import ProfileDropdown from "../../molecules/Dropdown/ProfileDropdown/ProfileDropdown"
+import ProfileDropdown from "../../molecules/Dropdown/ProfileDropdown/ProfileDropdown";
 
 import Logo from "./Logo";
-import {Link, useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import adminLinks from "./NavbarLinks/adminNavbarLinks";
 import userLinks from "./NavbarLinks/userNavbarLinks";
 
 //The Navbar for the Main Page is default,
 // for the Search Page it is needed to pass the value "search", for the Admin Panel "admin" and for User Profiles "user" to the prop "variant"
-const Navbar = ({
-                    variant = "default",
-                    ...props
-                }) => {
+const Navbar = ({ variant = "default", ...props }) => {
+  let backgroundColor;
 
-    let backgroundColor;
+  switch (variant) {
+    case "admin":
+      backgroundColor = "background-blue";
+      break;
+    case "search":
+      backgroundColor = "background-green";
+      break;
+    case "user":
+      backgroundColor = "background-green";
+      break;
+    default:
+      backgroundColor = "background-green";
+      break;
+  }
 
-    switch (variant) {
-        case "admin":
-            backgroundColor = "background-blue";
-            break;
-        case "search":
-            backgroundColor = "background-green";
-            break;
-        case "user":
-            backgroundColor = "background-green";
-            break;
-        default:
-            backgroundColor = "background-green";
-            break;
-    }
-
-
-    let isAuth = true;
+    let isAuth = false;
 
     const navigate = useNavigate();
 

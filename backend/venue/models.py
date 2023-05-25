@@ -6,7 +6,7 @@ from user.models import User, Sport
 class Venue(Model):
     venue_name = models.CharField(max_length=100)
     address = models.CharField(max_length=100)
-    city = models.BooleanField(default=False)
+    city = models.CharField(max_length=50)
     type = models.CharField(max_length=50)
     venue_picture = models.CharField(max_length=255, blank=True)
     description = models.TextField()

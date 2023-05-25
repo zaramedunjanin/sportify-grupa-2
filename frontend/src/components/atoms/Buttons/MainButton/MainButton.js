@@ -4,7 +4,7 @@ import "./MainButton.scss";
 
 const MainButton = (props) => {
     return (
-        <button onClick={props.onClick} type={props.type} className="background-orange main-button">
+        <button onClick={props.onClick} type={props.type} disabled={props.disabled} className="background-orange main-button">
             {props.text}
         </button>
     );
