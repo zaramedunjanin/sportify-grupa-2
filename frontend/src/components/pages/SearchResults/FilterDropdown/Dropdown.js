@@ -3,9 +3,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFilter } from "@fortawesome/free-solid-svg-icons";
 import React, { useState } from "react";
 
+const sortOptions = [
+  { name: "Default", sortBy: "", sortType: "" },
+  { name: "Low to high price", sortBy: "price_per_hour", sortType: "asc" },
+  { name: "High to low price", sortBy: "price_per_hour", sortType: "desc" },
+];
+
 const Dropdown = ({ emitCurrentState }) => {
   const initialState = {
-    searchText: null,
     min_price: null,
     max_price: null,
     location: null,
@@ -107,10 +112,9 @@ const Dropdown = ({ emitCurrentState }) => {
             value={searchCriteria.sortBy}
             onChange={handleInputChange}
           >
-            <option defaultValue>All</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+            {sortOptions.map((option, index) => {
+              return <option value={index}>{option.name}</option>;
+            })}
           </select>
         </div>
       </div>
