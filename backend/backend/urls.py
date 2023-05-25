@@ -25,10 +25,9 @@ from rest_framework_simplejwt.views import (
 
 # login takes username and password as input
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('administrator/', include('administrator.urls')),
     path('auth/', include('user.urls')),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path("venue/<int:venue_id>", venue_views.getVenue, name="venue")
-
 ]

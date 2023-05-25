@@ -25,24 +25,24 @@ const Footer = () => {
     <div className="container text-center">
       <footer className="row row-cols-1 row-cols-sm-1 row-cols-md-3 py-5 mt-5 jusstify-content-center">
         <div className="col-sm-12  mb-3">
-          <h6 className="fw-semibold">Informations</h6>
+          <h6 className="fw-semibold">Info</h6>
           <ul className="nav flex-column text-center">
             <li className="nav-item mb-2"><a href="#" className="p-0  text-decoration-none text-reset footer-links">About us</a></li>
             <li className="nav-item mb-2"><a href="#" className="p-0  text-decoration-none text-reset footer-links">Become a partner</a></li>
-            <li className="nav-item mb-2"><a href="#" className="p-0  text-decoration-none text-reset footer-links">FAQ</a></li>
+            <li className="nav-item mb-2"><a href="/faq" className="p-0  text-decoration-none text-reset footer-links">FAQ</a></li>
           </ul>
         </div>
         <div className="col-sm-12  mb-3">
-          <h6 className="fw-semibold">Important links</h6>
+          <h6 className="fw-semibold">Important Links</h6>
           <ul className="nav flex-column text-center">
-            <li className="nav-item mb-2"><a href="#" className="p-0  text-decoration-none text-reset footer-links">Signup</a></li>
+            <li className="nav-item mb-2"><a href="#" className="p-0  text-decoration-none text-reset footer-links">Sign Up</a></li>
             <li className="nav-item mb-2"><a href="#" className="p-0  text-decoration-none text-reset footer-links">Contact us</a></li>
             <li className="nav-item mb-2"><a href="#" className="p-0  text-decoration-none text-reset footer-links">Terms of use</a></li>
             <li className="nav-item mb-2"><a href="#" className="p-0  text-decoration-none text-reset footer-links">Privacy policy</a></li>
           </ul>
         </div>
         <div className="col-sm-12  mb-md-3 mb-sm-0">
-          <h6 className="fw-semibold">Section</h6>
+          <h6 className="fw-semibold">Socials</h6>
           <ul className="nav flex-column text-center">
             <li className="nav-item mb-2"><a href="#" className="p-0  text-decoration-none text-reset footer-links">Facebook</a></li>
             <li className="nav-item mb-2"><a href="#" className="p-0  text-decoration-none text-reset footer-links">Instagram</a></li>

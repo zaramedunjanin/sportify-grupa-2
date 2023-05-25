@@ -5,7 +5,7 @@ import './About.scss'
 import Container from "react-bootstrap/Container";
 const About = () => {
     return(
-    <Container className={"mt-5 mb-1"}>
+    <Container className={"mt-5 mb-1 p-5"}>
         <h3>About Us</h3>
         <p className={"text-start"}>
             Sportify is a modern online platform that connects sports enthusiasts with sports facilities.

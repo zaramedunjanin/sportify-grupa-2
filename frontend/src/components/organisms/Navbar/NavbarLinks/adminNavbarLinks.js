@@ -1,20 +1,13 @@
 const adminNavbarLinks = [
     {
-        url: "/users",
-        navbarText: "Users"
+        url: "/administrator/tables",
+        navbarText: "Tables"
     },
     {
-        url: "/venues",
-        navbarText: "Venues"
+        url: "/administrator/verification",
+        navbarText: "Company Verification"
     },
-    {
-        url: "/sports",
-        navbarText: "Sports"
-    },
-    {
-        url: "/questions",
-        navbarText: "Questions"
-    },
+
 ];
 
 export default adminNavbarLinks;
