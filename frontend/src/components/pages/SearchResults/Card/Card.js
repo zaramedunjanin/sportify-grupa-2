@@ -13,14 +13,14 @@ import './Card.css'
 const Card = ({ venue, ...rest }) => {
 
   const formatTime = (timeString) => {
-    const [hours, minutes] = timeString.split(':');
+   const [hours, minutes] = timeString.split(':');
     const parsedTime = `${hours}:${minutes}`;
 
     return parsedTime;
   }
 
   return <>
-    <div className="card mb-5" style={{ width: "17rem", fontSize: "12px" }}>
+    <div className="card min-width-card mb-5" style={{ width: "17rem", fontSize: "12px" }}>
       <img src={myImage} className="card-img-top" alt="..." />
       <div className="card-body">
         <div className="row">

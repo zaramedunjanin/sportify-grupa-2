@@ -17,7 +17,7 @@ def getVenues(request):
     #sortType = request.GET.get('sortType')
 
     queryset = Venue.objects_with_deleted.filter(venue_name__contains=searchText)
-
+    
     if min_price:
       queryset = queryset.filter(price_per_hour__gte=min_price)
     if max_price:
