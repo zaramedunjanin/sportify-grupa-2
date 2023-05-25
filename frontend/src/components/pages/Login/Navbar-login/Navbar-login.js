@@ -7,9 +7,10 @@ import '../../../organisms/Navbar/Navbar.module.scss';
 
 import Logo from '../../../organisms/Navbar/Logo';
 const NavbarLogin = () => {
+
     return (
-        <NavbarBS className="background-green" id = "navbar" expand="lg" >
-            <Container fluid>
+        <NavbarBS  className="background-green p-0" id = "navbar" expand="lg" >
+            <Container  >
                 <NavbarBS.Brand href="#"><Logo/></NavbarBS.Brand>
             </Container>
         </NavbarBS>

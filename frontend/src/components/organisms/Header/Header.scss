@@ -8,8 +8,9 @@
   margin-bottom: 2rem;
 }
 .header-c{
+  position: relative;
   margin-bottom: 4rem;
-  margin-top:3rem;
+  z-index: 2;
 }
 
 .svg-divider {
@@ -19,6 +20,7 @@
   width: 100%;
   overflow: hidden;
   line-height: 0;
+  z-index: 1;
 }
 
 .svg-divider svg {
