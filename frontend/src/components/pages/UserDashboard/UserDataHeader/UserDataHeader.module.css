@@ -1,0 +1,10 @@
+.headerSearch {
+  display: flex;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background-color: #50c878;
+}
+
+.headerTitle {
+  padding: 1rem;
+}
