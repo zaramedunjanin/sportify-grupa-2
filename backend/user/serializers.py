@@ -6,6 +6,7 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = '__all__'
 
+
 class SportSerializer(serializers.ModelSerializer):
     class Meta:
         model = Sport

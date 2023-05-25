@@ -1,3 +1,4 @@
+from django.db.models import Prefetch
 from django.http import HttpResponse
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
@@ -17,7 +18,7 @@ def getUserList(request):
     if request.method == 'GET':
         data = User.objects.all()
 
-        serializer = UserSerializer(data, context={'request': request}, many=True)
+        serializer = UserSerializer(data,context={'request': request}, many=True)
 
         return Response(serializer.data)
 
