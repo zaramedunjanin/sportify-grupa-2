@@ -7,6 +7,7 @@ import DeleteModal from "../../../../organisms/Modal/DeleteModal/DeleteModal";
 import InputModal from "../../../../organisms/Modal/InputModal/InputModal";
 import {getDataList} from "../../../../../services/AdminService/useAdminFetcher";
 import {deleteData} from "../../../../../services/AdminService/useAdminMutator";
+import useImageUpdate from "../../../../../hooks/useImageUpdate";
 
 const AdminTable = ({page, ...props}) => {
     const [deleteShow, setDeleteShow] = useState(false);
@@ -19,6 +20,11 @@ const AdminTable = ({page, ...props}) => {
         getDataList(setData, page);
 
     }, [data]);
+
+    const {
+        handleImageUpdate,
+        setFile,
+    } = useImageUpdate();
 
 
     return (
@@ -80,6 +86,8 @@ const AdminTable = ({page, ...props}) => {
 
                 </Table>
             </Container>
+            <input type="file" onChange={(e) => setFile(e.target.files[0])} accept="/image/*" />
+            <button onClick={handleImageUpdate}>Upload to Firebase</button>
             <DeleteModal show={deleteShow}
                          onHide={() => setDeleteShow(false)}
                          onDelete={() => {
