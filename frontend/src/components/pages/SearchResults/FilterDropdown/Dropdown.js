@@ -1,8 +1,9 @@
 import "./Dropdown.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFilter } from "@fortawesome/free-solid-svg-icons";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { getDataList } from "../../../../services/AdminService/useAdminFetcher";
+import { CategoryContext } from "./CategoryContext";
 
 const sortOptions = [
   { name: "Default", sortBy: "" },
@@ -12,15 +13,8 @@ const sortOptions = [
   { name: "Alphabetical: Z to A", sortBy: "alphabetical_desc" },
 ];
 
-const Dropdown = ({ emitCurrentState }) => {
-  const initialState = {
-    min_price: null,
-    max_price: null,
-    location: null,
-    sport: null,
-    sortBy: null,
-  };
-  const [searchCriteria, setSearchCriteria] = useState(initialState);
+const Dropdown = () => {
+  const { searchCriteria, setSearchCriteria } = useContext(CategoryContext);
   const [sports, setSports] = useState([]);
 
   useEffect(() => {
@@ -41,7 +35,6 @@ const Dropdown = ({ emitCurrentState }) => {
       value = null;
     }
     setSearchCriteria({ ...searchCriteria, [name]: value });
-    emitCurrentState({ ...searchCriteria, [name]: value });
   };
 
   return (

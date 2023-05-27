@@ -6,28 +6,18 @@ import React, { useState, useEffect, useContext } from "react";
 import Navbar from "../../organisms/Navbar/Navbar";
 import "./SearchResult.css";
 import { SearchContext } from "./../../molecules/Search/SearchContext";
-
-const initialState = {
-  min_price: null,
-  max_price: null,
-  location: null,
-  sport: null,
-  sortBy: null,
-};
+import { CategoryContext } from "./FilterDropdown/CategoryContext";
 
 const SearchResults = () => {
-  const { searchText } = useContext(SearchContext);
-  const handleFilterChange = (searchCriteria) => {
-    setFilters(searchCriteria);
-  };
-  const [filters, setFilters] = useState(initialState);
   const [result, setResult] = useState([]);
+  const { searchCriteria } = useContext(CategoryContext);
+  const { searchText } = useContext(SearchContext);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         // Perform the API call or data fetching here
-        const response = await getAllVenues(filters, searchText);
+        const response = await getAllVenues(searchCriteria, searchText);
         setResult(response);
       } catch (error) {
         console.error("Failed to fetch data:", error);
@@ -35,7 +25,7 @@ const SearchResults = () => {
     };
 
     fetchData();
-  }, [filters, searchText]);
+  }, [searchCriteria, searchText]);
 
   return (
     <>
@@ -44,7 +34,7 @@ const SearchResults = () => {
         <div className="d-flex justify-content-end ">
           <div className="row mt-3 margin-end">
             <div className="col">
-              <Dropdown emitCurrentState={handleFilterChange} />
+              <Dropdown />
             </div>
           </div>
         </div>

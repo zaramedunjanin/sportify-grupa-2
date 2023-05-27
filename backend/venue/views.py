@@ -37,8 +37,8 @@ def getVenues(request):
       queryset = queryset.filter(price_per_hour__gte=min_price)
     if max_price:
       queryset = queryset.filter(price_per_hour__lte=max_price)
-    if location:
-      queryset = queryset.filter(city__=location)
+    # if location:
+    #   queryset = queryset.filter(city__=location)
     if sport:
       queryset = queryset.filter(sport__id__in=sport)
 
