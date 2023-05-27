@@ -6,7 +6,6 @@ import React, { useState, useEffect, useContext } from "react";
 import Navbar from "../../organisms/Navbar/Navbar";
 import "./SearchResult.css";
 import { SearchContext } from "./../../molecules/Search/SearchContext";
-import GeneralLayout from "../../atoms/GeneralLayout/GeneralLayou";
 
 const initialState = {
   min_price: null,

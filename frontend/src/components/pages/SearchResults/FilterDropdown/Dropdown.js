@@ -1,12 +1,15 @@
 import "./Dropdown.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFilter } from "@fortawesome/free-solid-svg-icons";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { getDataList } from "../../../../services/AdminService/useAdminFetcher";
 
 const sortOptions = [
-  { name: "Default", sortBy: "", sortType: "" },
-  { name: "Low to high price", sortBy: "price_per_hour", sortType: "asc" },
-  { name: "High to low price", sortBy: "price_per_hour", sortType: "desc" },
+  { name: "Default", sortBy: "" },
+  { name: "Low to high price", sortBy: "price_asc" },
+  { name: "High to low price", sortBy: "price_desc" },
+  { name: "Alphabetical: A to Z", sortBy: "alphabetical_asc" },
+  { name: "Alphabetical: Z to A", sortBy: "alphabetical_desc" },
 ];
 
 const Dropdown = ({ emitCurrentState }) => {
@@ -18,9 +21,25 @@ const Dropdown = ({ emitCurrentState }) => {
     sortBy: null,
   };
   const [searchCriteria, setSearchCriteria] = useState(initialState);
+  const [sports, setSports] = useState([]);
+
+  useEffect(() => {
+    const getSports = async () => {
+      try {
+        getDataList(setSports, "sports");
+      } catch (error) {
+        console.error("Failed to fetch data:", error);
+      }
+    };
+
+    getSports();
+  }, []);
 
   const handleInputChange = (event) => {
-    const { name, value } = event.target;
+    var { name, value } = event.target;
+    if (value === "") {
+      value = null;
+    }
     setSearchCriteria({ ...searchCriteria, [name]: value });
     emitCurrentState({ ...searchCriteria, [name]: value });
   };
@@ -96,10 +115,11 @@ const Dropdown = ({ emitCurrentState }) => {
             value={searchCriteria.sport}
             onChange={handleInputChange}
           >
-            <option defaultValue>All</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+            <option value="">All</option>
+            {sports &&
+              sports.map((sport, index) => {
+                return <option value={sport.id}> {sport.sport_name} </option>;
+              })}
           </select>
 
           <label htmlFor="exampleFormControlInput1" className="form-label">
@@ -113,7 +133,7 @@ const Dropdown = ({ emitCurrentState }) => {
             onChange={handleInputChange}
           >
             {sortOptions.map((option, index) => {
-              return <option value={index}>{option.name}</option>;
+              return <option value={option.sortBy}>{option.name}</option>;
             })}
           </select>
         </div>

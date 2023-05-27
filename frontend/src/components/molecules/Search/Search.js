@@ -3,10 +3,11 @@ import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import { SearchContext } from "./SearchContext";
 import "./Search.scss";
-
+import { useNavigate } from "react-router-dom";
 import basketball from "../../../assets/images/basketball_search.png";
 
 const Search = () => {
+  const navigate = useNavigate();
   const { searchText, updateSearchText } = useContext(SearchContext);
   const [inputValue, setInputValue] = useState("");
 
@@ -16,9 +17,17 @@ const Search = () => {
 
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
+      let page = window.location.pathname.split("/").at(-1);
+      if (page === "") navigate("search");
       event.preventDefault();
       updateSearchText(inputValue);
     }
+  };
+
+  const handleSearchBtnClick = () => {
+    let page = window.location.pathname.split("/").at(-1);
+    updateSearchText(inputValue);
+    if (page === "") navigate("search");
   };
 
   return (
@@ -32,7 +41,11 @@ const Search = () => {
             onChange={handleChange}
             onKeyPress={handleKeyPress}
           />
-          <button className={"search-button"} type={"submit"}>
+          <button
+            className={"search-button"}
+            type={"button"}
+            onClick={handleSearchBtnClick}
+          >
             <img src={basketball} className="search-img" />
           </button>
         </div>
