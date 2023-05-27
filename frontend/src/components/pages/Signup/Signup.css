@@ -1,17 +1,17 @@
 @media (max-width: 576px) {
-    .flexWrapReverse {
-        display: flex;
-        flex-wrap: wrap-reverse;
-        flex-direction: column;
-        width: 100%;
-    }
+  .flexWrapReverse {
+    display: flex;
+    flex-wrap: wrap-reverse;
+    flex-direction: column;
+    width: 100%;
+  }
 
-    .firstCol {
-        display: flex;
-        width: 100%;
-    }
+  .firstCol {
+    display: flex;
+    width: 100%;
+  }
 
-    .flexWrapReverse > div > div:first-child {
-        order: 2;
-    }
+  .flexWrapReverse > div > div:first-child {
+    order: 2;
+  }
 }
