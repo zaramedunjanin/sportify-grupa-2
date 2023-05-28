@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { CategoryContext } from "../../SearchResults/FilterDropdown/CategoryContext";
+import { CategoryContext } from "../../../../context/CategoryContext";
 import "./Categories.scss";
 import { useNavigate } from "react-router-dom";
 import Card from "./CategoryCard";

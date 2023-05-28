@@ -11,8 +11,8 @@ import RootTablePage from "./components/pages/Admin/AdminPages/RootTablePage";
 import Venue from "./components/pages/Venue/Venue";
 import UserDashboardPage from "./components/pages/UserDashboard/UserDashboardPage";
 import UserData from "./components/pages/UserDashboard/UserData/UserData";
-import { SearchProvider } from "./components/molecules/Search/SearchContext";
-import { CategoryProvider } from "./components/pages/SearchResults/FilterDropdown/CategoryContext";
+import { SearchProvider } from "./context/SearchContext";
+import { CategoryProvider } from "./context/CategoryContext";
 
 const App = () => {
   return (

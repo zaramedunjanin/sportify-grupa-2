@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFilter } from "@fortawesome/free-solid-svg-icons";
 import React, { useEffect, useState, useContext } from "react";
 import { getDataList } from "../../../../services/AdminService/useAdminFetcher";
-import { CategoryContext } from "./CategoryContext";
+import { CategoryContext } from '../../../../context/CategoryContext';
 
 const sortOptions = [
   { name: "Default", sortBy: "" },

@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import myImage from './placeholder.jpg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
@@ -8,31 +9,32 @@ import { faFutbol } from '@fortawesome/free-solid-svg-icons';
 import { faBasketball } from '@fortawesome/free-solid-svg-icons';
 import { faVolleyball } from '@fortawesome/free-solid-svg-icons';
 
-import './Card.css'
+import styles from "./Card.module.scss"
+
 
 const Card = ({ venue, ...rest }) => {
+  const navigate = useNavigate();
 
   const formatTime = (timeString) => {
-   const [hours, minutes] = timeString.split(':');
+    const [hours, minutes] = timeString.split(':');
     const parsedTime = `${hours}:${minutes}`;
 
     return parsedTime;
   }
 
   return <>
-    <div className="card min-width-card mb-5" style={{ width: "17rem", fontSize: "12px" }}>
+    <div className={`${styles.card} ${styles.min_width_card} mb-5`} style={{ width: "17rem", fontSize: "12px" }}>
       <img src={myImage} className="card-img-top" alt="..." />
       <div className="card-body">
         <div className="row">
           <div className="col">
             <div className="row fw-bolder fs-6">
-              <p className='card-title' style={{ marginLeft: "0px !important" }}>
+              <p className={`${styles.card_title}`} style={{ marginLeft: "0px !important" }}>
                 {venue.venue_name}
                 <FontAwesomeIcon icon={faFutbol} className='me-1 ms-1' />
                 <FontAwesomeIcon icon={faBasketball} className='me-1' />
                 <FontAwesomeIcon icon={faVolleyball} className='me-1' />
               </p>
-
             </div>
           </div>
         </div>
@@ -56,7 +58,7 @@ const Card = ({ venue, ...rest }) => {
           </div>
         </div>
         <div className="text-center pt-2">
-          <a href="#" style={{ width: "200px" }} className="btn btn-warning text-center rounded-pill">Book now</a>
+          <button style={{ width: "200px" }} className="btn btn-warning text-center rounded-pill" onClick={() => navigate(`/venue/${venue.id}`)}>Book now</button>
         </div>
 
       </div>

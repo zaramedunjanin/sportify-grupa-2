@@ -1,12 +1,12 @@
 import Card from "./Card/Card";
 import Dropdown from "./FilterDropdown/Dropdown";
-import { redirect, useNavigate, useParams } from "react-router-dom";
 import getAllVenues from "../../../services/Venue/Query";
 import React, { useState, useEffect, useContext } from "react";
 import Navbar from "../../organisms/Navbar/Navbar";
-import "./SearchResult.css";
-import { SearchContext } from "./../../molecules/Search/SearchContext";
-import { CategoryContext } from "./FilterDropdown/CategoryContext";
+import styles from "./SearchResult.module.scss"
+
+import { SearchContext } from "../../../context/SearchContext";
+import { CategoryContext } from "../../../context/CategoryContext";
 
 const SearchResults = () => {
   const [result, setResult] = useState([]);
@@ -31,8 +31,8 @@ const SearchResults = () => {
     <>
       <Navbar variant="search" />
       <div>
-        <div className="d-flex justify-content-end ">
-          <div className="row mt-3 margin-end">
+        <div className={`d-flex justify-content-end`}>
+          <div className={`${styles.margin_end} row mt-3 `}>
             <div className="col">
               <Dropdown />
             </div>
@@ -53,10 +53,6 @@ const SearchResults = () => {
                   </div>
                 );
               })}
-            {/* <div className="col d-flex justify-content-center"><Card /></div>
-          <div className="col d-flex justify-content-center"><Card /></div>
-          <div className="col d-flex justify-content-center"><Card /></div>
-          <div className="col d-flex justify-content-center"><Card /></div> */}
           </div>
         </div>
       </div>

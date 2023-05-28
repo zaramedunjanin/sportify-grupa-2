@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
-import { SearchContext } from "./SearchContext";
+import { SearchContext } from "../../../context/SearchContext";
 import "./Search.scss";
 import { useNavigate } from "react-router-dom";
 import basketball from "../../../assets/images/basketball_search.png";
