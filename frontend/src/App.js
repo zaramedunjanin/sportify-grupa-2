@@ -11,6 +11,8 @@ import RootTablePage from "./components/pages/Admin/AdminPages/RootTablePage";
 import Venue from "./components/pages/Venue/Venue";
 import UserDashboardPage from "./components/pages/UserDashboard/UserDashboardPage";
 import UserData from "./components/pages/UserDashboard/UserData/UserData";
+import CompanyOwnerDashboard from "./components/pages/CompanyOwnerDashboard/CompanyOwnerDashboard";
+import OwnerVenue from "./components/pages/CompanyOwnerDashboard/Venue/OwnerVenue";
 
 const App = () => {
   return (
@@ -36,6 +38,10 @@ const App = () => {
 
         <Route path="/userdashboard" element={<UserDashboardPage />} />
         <Route path="/userdata" element={<UserData />} />
+
+        <Route path="company" element={<CompanyOwnerDashboard />}>
+          <Route path="venues" element={<OwnerVenue />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );

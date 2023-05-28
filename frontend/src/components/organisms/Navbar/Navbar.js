@@ -13,6 +13,7 @@ import Logo from "./Logo";
 import { Link, useNavigate } from "react-router-dom";
 import adminLinks from "./NavbarLinks/adminNavbarLinks";
 import userLinks from "./NavbarLinks/userNavbarLinks";
+import companyNavbarLinks from "./NavbarLinks/companyNavbarLinks";
 
 //The Navbar for the Main Page is default,
 // for the Search Page it is needed to pass the value "search", for the Admin Panel "admin" and for User Profiles "user" to the prop "variant"
@@ -60,6 +61,14 @@ const Navbar = ({ variant = "default", ...props }) => {
                 })
               : variant === "user"
               ? userLinks.map((l, index) => {
+                  return (
+                    <Link to={l.url} className={styles.adminLinks} key={index}>
+                      {l.navbarText}
+                    </Link>
+                  );
+                })
+              : variant === "company"
+              ? companyNavbarLinks.map((l, index) => {
                   return (
                     <Link to={l.url} className={styles.adminLinks} key={index}>
                       {l.navbarText}
