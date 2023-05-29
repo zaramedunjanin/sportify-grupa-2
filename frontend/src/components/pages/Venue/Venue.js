@@ -13,39 +13,41 @@ import slika from "../../../assets/images/pitch.jpg"
 import MainButton from "../../atoms/Buttons/MainButton/MainButton";
 import useEffectTitle from "../../../hooks/useEffectTitle";
 import axios from "axios";
-import {redirect, useNavigate, useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
+import SportCategoryButton from "../../atoms/Buttons/SportCategoryButton/SportCategoryButton";
+
 const Venue = () => {
-    let { id } = useParams();
+    let {id} = useParams();
     const url = `http://127.0.0.1:8000/venue/${id}`
     console.log(id, url);
 
     const [venue, setVenue] = useState({})
+    const [sports, setSports] = useState([])
     const navigate = useNavigate()
 
     async function fetchVenue() {
         const response = await axios.get(`${url}`)
 
-        if (response.data[0] === undefined)  {
+        if (response.data[0] === undefined) {
             console.log("nema")
             navigate(-1)
-        }
-        else {
-            console.log(response.data[0].fields)
-            response.data[0].fields.opening_time = response.data[0].fields.opening_time.substring(0,5);
-            response.data[0].fields.closing_time = response.data[0].fields.closing_time.substring(0,5);
-            setVenue(response.data[0].fields)
+        } else {
+            console.log(response.data)
+            response.data[0].opening_time = response.data[0].opening_time.substring(0, 5);
+            response.data[0].closing_time = response.data[0].closing_time.substring(0, 5);
+            setVenue(response.data[0])
+            setSports(response.data[0].sport)
         }
     }
-
-    useEffectTitle(`${venue.venue_name} | Sportify`)
 
     useEffect(() => {
         fetchVenue()
     }, [])
 
+
     return (
         <>
-            <Navbar />
+            <Navbar/>
             <div className={styles.body}>
                 <Container>
                     <Row>
@@ -61,14 +63,26 @@ const Venue = () => {
                                     />
                                 </Col>
                             </Row>
-                            <Row>
-                                {/* Sports */}
-                            </Row>
+
+                            {sports.map(
+                                (sport) => {
+                                    return (
+                                        <SportCategoryButton sport_name={sport}/>
+                                    )
+                                }
+                            )}
+
+
                             <Row>
                                 <h5><span className="material-symbols-outlined ms-2">grade</span> 4.6</h5>
-                                <h5><span className="material-symbols-outlined ms-2">location_on</span> {venue.address}</h5>
-                                <h5><span className="material-symbols-outlined ms-2">schedule</span> {venue.opening_time} - {venue.closing_time}</h5>
-                                <h5><span className="material-symbols-outlined ms-2">payments</span> {venue.price_per_hour} KM/h</h5>
+                                <h5><span className="material-symbols-outlined ms-2">location_on</span> {venue.address}
+                                </h5>
+                                <h5><span
+                                    className="material-symbols-outlined ms-2">schedule</span> {venue.opening_time} - {venue.closing_time}
+                                </h5>
+                                <h5><span
+                                    className="material-symbols-outlined ms-2">payments</span> {venue.price_per_hour} KM/h
+                                </h5>
                             </Row>
                             <Row className={"mt-1"}>
                                 <h4>Description</h4>
@@ -86,7 +100,7 @@ const Venue = () => {
                     </Row>
                 </Container>
             </div>
-            <Footer />
+            <Footer/>
         </>
     );
 };
