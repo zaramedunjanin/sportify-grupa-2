@@ -5,11 +5,9 @@ import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { faClock } from "@fortawesome/free-solid-svg-icons";
 import { faTag } from "@fortawesome/free-solid-svg-icons";
-import { faFutbol } from "@fortawesome/free-solid-svg-icons";
-import { faBasketball } from "@fortawesome/free-solid-svg-icons";
-import { faVolleyball } from "@fortawesome/free-solid-svg-icons";
 
 import styles from "./Card.module.scss";
+import SportIcon from "../SportIcon/SportIcon";
 
 const Card = ({ venue, ...rest }) => {
   const navigate = useNavigate();
@@ -36,9 +34,9 @@ const Card = ({ venue, ...rest }) => {
                   style={{ marginLeft: "0px !important" }}
                 >
                   {venue.venue_name}
-                  <FontAwesomeIcon icon={faFutbol} className="me-1 ms-1" />
-                  <FontAwesomeIcon icon={faBasketball} className="me-1" />
-                  <FontAwesomeIcon icon={faVolleyball} className="me-1" />
+                  {venue.sport.map((sp) => {
+                    return <SportIcon sport_name={sp}></SportIcon>;
+                  })}
                 </p>
               </div>
             </div>

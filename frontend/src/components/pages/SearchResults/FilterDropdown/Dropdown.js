@@ -30,31 +30,26 @@ const Dropdown = () => {
   }, []);
 
   const validatePriceInput = (name, value) => {
-    console.log(name, value)
+    console.log(name, value);
     if (value && value < 0) {
-      console.log("false")
+      console.log("false");
       return false;
     }
   };
 
   const handleInputChange = (event) => {
-    return false;
-    event.preventDefault()
-    console.log(searchCriteria)
     var { name, value } = event.target;
+
     if (value === "") {
       value = null;
     }
 
-    if (
-      (name === "max_price" || name === "min_price") &&
-      !validatePriceInput(name, value)
-    ) {
-      setSearchCriteria({ ...searchCriteria });
+    if (value && (name === "max_price" || name === "min_price")) {
+      const positiveInput = value.replace(/[^0-9]/g, "");
+      setSearchCriteria({ ...searchCriteria, [name]: positiveInput });
       return;
     }
-console.log("set search criteria")
-   // setSearchCriteria({ ...searchCriteria, [name]: value });
+    setSearchCriteria({ ...searchCriteria, [name]: value });
   };
 
   return (
