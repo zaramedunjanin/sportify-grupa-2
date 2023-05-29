@@ -8,6 +8,7 @@ import { faTag } from "@fortawesome/free-solid-svg-icons";
 
 import styles from "./Card.module.scss";
 import SportIcon from "../SportIcon/SportIcon";
+import MainButton from "../../../atoms/Buttons/MainButton/MainButton";
 
 const Card = ({ venue, ...rest }) => {
   const navigate = useNavigate();
@@ -79,13 +80,10 @@ const Card = ({ venue, ...rest }) => {
             </div>
           </div>
           <div className="text-center pt-2">
-            <button
-              style={{ width: "200px" }}
-              className="btn btn-warning text-center rounded-pill"
+            <MainButton
               onClick={() => navigate(`/venue/${venue.id}`)}
-            >
-              Book now
-            </button>
+              text={"Schedule"}
+            ></MainButton>
           </div>
         </div>
       </div>
