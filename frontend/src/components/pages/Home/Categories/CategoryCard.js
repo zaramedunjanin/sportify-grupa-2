@@ -14,3 +14,5 @@ const CategoryCard = (props) => {
     </a>
   )
 }
+
+export default CategoryCard;
