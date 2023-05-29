@@ -7,6 +7,7 @@ import styles from "./SearchResult.module.scss"
 
 import { SearchContext } from "../../../context/SearchContext";
 import { CategoryContext } from "../../../context/CategoryContext";
+import Footer from "../../organisms/Footer/Footer";
 
 const SearchResults = () => {
   const [result, setResult] = useState([]);
@@ -30,12 +31,10 @@ const SearchResults = () => {
   return (
     <>
       <Navbar variant="search" />
-      <div>
+      <div className={`${styles.bakc}`}>
         <div className={`d-flex justify-content-end`}>
-          <div className={`${styles.margin_end} row mt-3`}>
-            <div className="col">
+          <div  className={`container mt-3`}>
               <Dropdown />
-            </div>
           </div>
         </div>
 
@@ -56,6 +55,7 @@ const SearchResults = () => {
           </div>
         </div>
       </div>
+      <Footer/>
     </>
   );
 };

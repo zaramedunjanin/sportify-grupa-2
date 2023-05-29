@@ -54,7 +54,7 @@ const Dropdown = () => {
 
   return (
     <>
-      <div className="dropdown">
+      <div className="dropdown text-end">
         <button
           className="btn btn-light btn-lg"
           type="button"
