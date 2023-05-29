@@ -20,7 +20,6 @@ const Card = ({ venue, ...rest }) => {
 
     return parsedTime;
   };
-  console.log(styles.card);
   return (
     <>
       <div

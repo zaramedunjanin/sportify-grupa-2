@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFilter } from "@fortawesome/free-solid-svg-icons";
 import React, { useEffect, useState, useContext } from "react";
 import { getDataList } from "../../../../services/AdminService/useAdminFetcher";
-import { CategoryContext } from '../../../../context/CategoryContext';
+import { CategoryContext } from "../../../../context/CategoryContext";
 
 const sortOptions = [
   { name: "Default", sortBy: "" },
@@ -29,12 +29,32 @@ const Dropdown = () => {
     getSports();
   }, []);
 
+  const validatePriceInput = (name, value) => {
+    console.log(name, value)
+    if (value && value < 0) {
+      console.log("false")
+      return false;
+    }
+  };
+
   const handleInputChange = (event) => {
+    return false;
+    event.preventDefault()
+    console.log(searchCriteria)
     var { name, value } = event.target;
     if (value === "") {
       value = null;
     }
-    setSearchCriteria({ ...searchCriteria, [name]: value });
+
+    if (
+      (name === "max_price" || name === "min_price") &&
+      !validatePriceInput(name, value)
+    ) {
+      setSearchCriteria({ ...searchCriteria });
+      return;
+    }
+console.log("set search criteria")
+   // setSearchCriteria({ ...searchCriteria, [name]: value });
   };
 
   return (
@@ -60,7 +80,8 @@ const Dropdown = () => {
           <div className="row g-3">
             <div className="col">
               <input
-                type="text"
+                type="number"
+                min={0}
                 className=" input"
                 placeholder="min"
                 aria-label="min"
@@ -71,7 +92,8 @@ const Dropdown = () => {
             </div>
             <div className="col">
               <input
-                type="text"
+                type="number"
+                min={0}
                 className=" input"
                 placeholder="max"
                 aria-label="max"
