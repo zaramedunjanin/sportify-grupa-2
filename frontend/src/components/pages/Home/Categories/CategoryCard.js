@@ -3,6 +3,7 @@ import React from "react";
 import "./CategoryCard.scss";
 
 import Row from "react-bootstrap/Row";
+import Categories from "./Categories";
 
 const CategoryCard = (props) => {
   return (
@@ -14,3 +15,5 @@ const CategoryCard = (props) => {
     </a>
   )
 }
+
+export default CategoryCard;
