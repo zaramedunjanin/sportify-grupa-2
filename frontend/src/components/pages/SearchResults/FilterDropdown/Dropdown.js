@@ -29,17 +29,9 @@ const Dropdown = () => {
     getSports();
   }, []);
 
-  const validatePriceInput = (name, value) => {
-    console.log(name, value);
-    if (value && value < 0) {
-      console.log("false");
-      return false;
-    }
-  };
-
   const handleInputChange = (event) => {
     var { name, value } = event.target;
-
+    
     if (value === "") {
       value = null;
     }

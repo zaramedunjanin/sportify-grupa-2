@@ -8,7 +8,7 @@ import basketball from "../../../assets/images/basketball_search.png";
 
 const Search = () => {
   const navigate = useNavigate();
-  const { searchText, updateSearchText } = useContext(SearchContext);
+  const { updateSearchText } = useContext(SearchContext);
   const [inputValue, setInputValue] = useState("");
 
   const handleChange = (event) => {
