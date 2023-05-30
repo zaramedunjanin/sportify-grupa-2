@@ -1,17 +1,11 @@
-import json
-from itertools import chain
-
-#from django.core import serializers
-from django.db.models import Prefetch
-from django.forms import model_to_dict
-from django.http import HttpResponse, JsonResponse
-from django.shortcuts import render, get_object_or_404
+from django.db.models import Avg
 from rest_framework.decorators import api_view
 from rest_framework import serializers
 from rest_framework.response import Response
 
 from user.models import Sport
-from .models import Venue
+from .models import Venue, Rating
+
 
 class VenueSerializer(serializers.ModelSerializer):
     sport = serializers.SlugRelatedField(many=True, read_only=True, slug_field='sport_name')
@@ -37,4 +31,8 @@ def getVenue(request, venue_id):
     serializer = VenueSerializer(venue, context={'request': request}, many=True)
     return Response(serializer.data)
 
-# Create your views here.
+@api_view(['GET'])
+def getRating(request, venue_id):
+    average_rating = Rating.objects.filter(venue=venue_id).aggregate(avg_rating=Avg('rating'))
+    data = average_rating['avg_rating']
+    return Response(data)

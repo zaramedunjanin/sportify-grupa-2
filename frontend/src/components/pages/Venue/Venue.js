@@ -19,25 +19,28 @@ import SportCategoryButton from "../../atoms/Buttons/SportCategoryButton/SportCa
 const Venue = () => {
     let {id} = useParams();
     const url = `http://127.0.0.1:8000/venue/${id}`
-    console.log(id, url);
 
     const [venue, setVenue] = useState({})
     const [sports, setSports] = useState([])
+    const [rating, setRating] = useState("")
+
     const navigate = useNavigate()
 
     async function fetchVenue() {
         const response = await axios.get(`${url}`)
 
         if (response.data[0] === undefined) {
-            console.log("nema")
             navigate(-1)
         } else {
-            console.log(response.data)
             response.data[0].opening_time = response.data[0].opening_time.substring(0, 5);
             response.data[0].closing_time = response.data[0].closing_time.substring(0, 5);
             setVenue(response.data[0])
             setSports(response.data[0].sport)
         }
+
+        const r = await axios.get(`${url}/getrating`)
+        if (r.data === 0.0 || typeof (r.data) !== "number") setRating("--")
+        else setRating(`${r.data}`)
     }
 
     useEffect(() => {
@@ -74,7 +77,7 @@ const Venue = () => {
 
 
                             <Row>
-                                <h5><span className="material-symbols-outlined ms-2">grade</span> 4.6</h5>
+                                <h5><span className="material-symbols-outlined ms-2">grade</span> {rating}</h5>
                                 <h5><span className="material-symbols-outlined ms-2">location_on</span> {venue.address}
                                 </h5>
                                 <h5><span
