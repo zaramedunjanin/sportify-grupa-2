@@ -29,8 +29,29 @@ p {
 
 .card-options {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: -20px;
+  right: -10px;
   z-index: 999;
   cursor: pointer;
+  background-color: none;
+}
+
+.card-options :hover {
+  background-color: none !important;
+}
+
+.edit {
+  background-color: none;
+}
+
+.delete {
+  background-color: none;
+}
+
+.delete:hover {
+  background-color: aquamarine !important;
+}
+
+.edit:hover {
+  background-color: rgb(199, 36, 36) !important;
 }

@@ -33,29 +33,24 @@ const Card = ({ venue, ...rest }) => {
                 <FontAwesomeIcon icon={faEllipsis} className="me-1 ms-1" />
               </div> */}
 
-              <div class="dropdown">
+              <div className="dropdown">
                 <button
-                  class="btn btn-secondary dropdown-toggle card-options"
+                  className="btn btn-light btn-lg card-options"
                   type="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
                   <FontAwesomeIcon icon={faEllipsis} className="me-1 ms-1" />
                 </button>
-                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start shadow p-2">
-                  <li>
-                    <a class="dropdown-item" href="#">
-                      Action
+                <ul className="dropdown-menu dropdown-menu-end dropdown-menu-lg-end shadow p-2">
+                  <li className="edit">
+                    <a className="dropdown-item" href="#">
+                      Edit
                     </a>
                   </li>
-                  <li>
-                    <a class="dropdown-item" href="#">
-                      Another action
-                    </a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="#">
-                      Something else here
+                  <li className="delete">
+                    <a className="dropdown-item" href="#">
+                      Delete
                     </a>
                   </li>
                 </ul>
