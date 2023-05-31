@@ -33,7 +33,7 @@ p {
   right: -10px;
   z-index: 999;
   cursor: pointer;
-  background-color: none;
+  background-color: transparent !important;
 }
 
 .card-options :hover {

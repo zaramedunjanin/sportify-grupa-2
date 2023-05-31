@@ -35,7 +35,7 @@ const Card = ({ venue, ...rest }) => {
 
               <div className="dropdown">
                 <button
-                  className="btn btn-light btn-lg card-options"
+                  className="btn btn-light btn-lg card-options "
                   type="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
@@ -104,6 +104,7 @@ const Card = ({ venue, ...rest }) => {
                   {venue.price_per_hour} KM{" "}
                 </p>
               </div>
+
             </div>
           </div>
         </div>
