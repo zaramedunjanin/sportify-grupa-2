@@ -1,5 +1,7 @@
 import React, { useContext } from "react";
 import { CategoryContext } from "../../../../context/CategoryContext";
+import { useTranslation } from "react-i18next";
+
 import "./Categories.scss";
 import { useNavigate } from "react-router-dom";
 import Card from "./CategoryCard";
@@ -17,45 +19,50 @@ const Categories = () => {
     navigate("search");
   };
 
+  const { t } = useTranslation();
   return (
     <Container>
       <Row className={"mt-4 mb-1"}>
-        <h2>Popular Sports</h2>
+        <h2>{t("sport")}</h2>
       </Row>
       <Row className={"text-center"}>
         <Col xs={6} md={4} lg={2}>
           <Card
             icon={"sports_soccer"}
-            text={"Football"}
+            text={t("football")}
             onClick={handleClick}
           />
         </Col>
         <Col xs={6} md={4} lg={2}>
-          <Card icon={"sports_tennis"} text={"Tennis"} onClick={handleClick} />
+          <Card
+            icon={"sports_tennis"}
+            text={t("tennis")}
+            onClick={handleClick}
+          />
         </Col>
         <Col xs={6} md={4} lg={2}>
           <Card
             icon={"sports_volleyball"}
-            text={"Volleyball"}
+            text={t("volleyball")}
             onClick={handleClick}
           />
         </Col>
         <Col xs={6} md={4} lg={2}>
           <Card
             icon={"sports_basketball"}
-            text={"Basketball"}
+            text={t("basketball")}
             onClick={handleClick}
           />
         </Col>
         <Col xs={6} md={4} lg={2}>
           <Card
             icon={"ice_skating"}
-            text={"Ice Skating"}
+            text={t("ice_skating")}
             onClick={handleClick}
           />
         </Col>
         <Col xs={6} md={4} lg={2}>
-          <Card icon={"pool"} text={"Swimming"} onClick={handleClick} />
+          <Card icon={"pool"} text={t("swimming")} onClick={handleClick} />
         </Col>
       </Row>
     </Container>
