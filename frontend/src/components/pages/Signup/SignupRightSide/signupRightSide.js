@@ -35,10 +35,13 @@ const SignupRightSide = () => {
         <Col className="translate-button" xs={6}>
           <div className="dropdown">
             <button
-              className="btn dropdown-toggle p-3"
+              className="btn dropdown-toggle p-2"
               type="button"
               data-bs-toggle="dropdown"
               aria-expanded="false"
+              style={{
+                color: "white",
+              }}
             >
               <span class="material-symbols-outlined">translate</span>
             </button>

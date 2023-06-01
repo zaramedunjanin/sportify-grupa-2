@@ -36,6 +36,9 @@
     "email": "Email",
     "password": "Lozinka",
     "heading_right": "Već imate račun?",
-    "paragraf_right": "Prijavite se i pratite najnovija događanja."
+    "paragraf_right": "Prijavite se i pratite najnovija događanja.",
+    "heading_left": "Nemate račun?",
+    "paragraf_left": "Pridružite se peeeeepz.",
+    "welcome": "Dobrodošli nazad!"
 
 }
