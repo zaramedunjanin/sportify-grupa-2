@@ -27,5 +27,15 @@
     "ice_skating": "Klizanje",
     "swimming": "Plivanje",
     "name": "Engleski",
-    "name_1": "Bosnski"
+    "name_1": "Bosnski",
+    "fname": "Ime",
+    "lname": "Prezime",
+    "city": "Grad",
+    "pnumber": "Broj telefona",
+    "username": "Korisničko ime",
+    "email": "Email",
+    "password": "Lozinka",
+    "heading_right": "Već imate račun?",
+    "paragraf_right": "Prijavite se i pratite najnovija događanja."
+
 }

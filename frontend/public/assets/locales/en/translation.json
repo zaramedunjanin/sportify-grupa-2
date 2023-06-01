@@ -27,5 +27,14 @@
     "ice_skating": "Ice Skating",
     "swimming": "Swimming",
     "name": "English",
-    "name_1": "Bosnian"
+    "name_1": "Bosnian",
+    "fname": "First name",
+    "lname": "Last name",
+    "city": "City",
+    "pnumber": "Phone number",
+    "username": "Username",
+    "email": "Email",
+    "password": "Password",
+    "heading_right": "Already have an account?",
+    "paragraf_right": "Log in and catch up with the latest events."
   }
