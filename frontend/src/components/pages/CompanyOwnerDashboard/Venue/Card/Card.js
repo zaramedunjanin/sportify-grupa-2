@@ -10,14 +10,17 @@ import { faVolleyball } from "@fortawesome/free-solid-svg-icons";
 import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
 
 import "./Card.css";
+import { useState } from "react";
 
-const Card = ({ venue, ...rest }) => {
+const Card = ({ venue, setDeleteId, setEditId, ...rest }) => {
   const formatTime = (timeString) => {
     const [hours, minutes] = timeString.split(":");
     const parsedTime = `${hours}:${minutes}`;
 
     return parsedTime;
   };
+
+  console.log(venue);
 
   return (
     <>
@@ -29,10 +32,6 @@ const Card = ({ venue, ...rest }) => {
         <div className="card-body">
           <div className="row">
             <div className="col">
-              {/* <div className="card-options">
-                <FontAwesomeIcon icon={faEllipsis} className="me-1 ms-1" />
-              </div> */}
-
               <div className="dropdown">
                 <button
                   className="btn btn-light btn-lg card-options "
@@ -44,12 +43,24 @@ const Card = ({ venue, ...rest }) => {
                 </button>
                 <ul className="dropdown-menu dropdown-menu-end dropdown-menu-lg-end shadow p-2">
                   <li className="edit">
-                    <a className="dropdown-item" href="#">
+                    <a
+                      className="dropdown-item"
+                      href="#"
+                      data-bs-toggle="modal"
+                      data-bs-target="#venuemodal"
+                      onClick={() => setEditId(venue.id)}
+                    >
                       Edit
                     </a>
                   </li>
                   <li className="delete">
-                    <a className="dropdown-item" href="#">
+                    <a
+                      className="dropdown-item"
+                      href="#"
+                      data-bs-toggle="modal"
+                      data-bs-target="#exampleModal"
+                      onClick={() => setDeleteId(venue.id)}
+                    >
                       Delete
                     </a>
                   </li>
@@ -104,7 +115,6 @@ const Card = ({ venue, ...rest }) => {
                   {venue.price_per_hour} KM{" "}
                 </p>
               </div>
-
             </div>
           </div>
         </div>

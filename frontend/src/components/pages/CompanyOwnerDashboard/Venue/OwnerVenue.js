@@ -1,11 +1,13 @@
 import Card from "./Card/Card";
 import MainButton from "../../../atoms/Buttons/MainButton/MainButton";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import DeleteModal from "./Modal/DeleteModal";
+import VenueModal from "./Modal/VenueModal";
+import { useState } from "react";
 
 const OwnerVenue = () => {
   const result = [
     {
+      id: 0,
       venue_name: "venue 1",
       address: "address 1",
       opening_time: "08:00",
@@ -13,28 +15,32 @@ const OwnerVenue = () => {
       price_per_hour: "25",
     },
     {
-      venue_name: "venue 1",
+      id: 1,
+      venue_name: "venue 2",
       address: "address 1",
       opening_time: "08:00",
       closing_time: "21:00",
       price_per_hour: "25",
     },
     {
-      venue_name: "venue 1",
+      id: 2,
+      venue_name: "venue 3",
       address: "address 1",
       opening_time: "08:00",
       closing_time: "21:00",
       price_per_hour: "25",
     },
     {
-      venue_name: "venue 1",
+      id: 3,
+      venue_name: "venue 4",
       address: "address 1",
       opening_time: "08:00",
       closing_time: "21:00",
       price_per_hour: "25",
     },
     {
-      venue_name: "venue 1",
+      id: 4,
+      venue_name: "venue 5",
       address: "address 1",
       opening_time: "08:00",
       closing_time: "21:00",
@@ -42,36 +48,19 @@ const OwnerVenue = () => {
     },
   ];
 
+  const [deleteId, setDeleteId] = useState(0);
+  const [editId, setEditId] = useState(0);
+
   return (
     <>
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-  Launch demo modal
-</button>
-
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
       <div className="container mt-4 d-flex justify-content-end">
         <MainButton
           type="submit"
           text="Add"
           style={{ width: "100px" }}
+          data-bs-toggle="modal"
+          data-bs-target="#venuemodal"
+          onClick={() => setEditId(null)}
         ></MainButton>
       </div>
       <div className="container mt-4 d-flex justify-content-center">
@@ -81,12 +70,18 @@ const OwnerVenue = () => {
             result.map((venue) => {
               return (
                 <div className="col d-flex justify-content-center">
-                  <Card venue={venue} />
+                  <Card
+                    venue={venue}
+                    setDeleteId={setDeleteId}
+                    setEditId={setEditId}
+                  />
                 </div>
               );
             })}
         </div>
       </div>
+      <DeleteModal modalText="Delete venue?" venue={result[deleteId]} />
+      <VenueModal venue={result[editId]} />
     </>
   );
 };
