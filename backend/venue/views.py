@@ -8,6 +8,7 @@ from rest_framework.decorators import api_view, permission_classes
 from .serializers import VenueSerializer
 from .models import Venue
 from django.db.models import Prefetch
+from rest_framework import status
 
 from .models import Venue
 @api_view(['GET'])
@@ -54,3 +55,53 @@ def getVenues(request):
     
     serializer = VenueSerializer(queryset, many=True)
     return Response(serializer.data)
+
+# returns list of venues owned by a company
+@api_view(['GET'])
+def getCompanyVenues(request):
+    company_id = request.GET.get('company_id', None)
+
+    if company_id == None:
+      return Response(status=status.HTTP_404_NOT_FOUND)
+    print(company_id)
+    queryset = Venue.objects_with_deleted.prefetch_related('sport').filter(company=company_id)
+    serializer = VenueSerializer(queryset, many=True)
+    return Response(serializer.data)
+
+# adds new venue
+# TODO: dont forget to get company id from token and save it database
+@api_view(['POST'])
+def add_venue(request):
+    if request.method == 'POST':
+        serializer = VenueSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+# edits venue
+@api_view(['PUT'])
+def update_venue(request, pk):
+    try:
+        venue = Venue.objects.get(pk=pk)
+    except Venue.DoesNotExist:
+        return Response({'message': 'Venue does not exist.'}, status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'PUT':
+        serializer = VenueSerializer(venue, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+# deletes venue
+@api_view(['DELETE'])
+def delete_venue(request, pk):
+    try:
+        venue = Venue.objects.get(pk=pk)
+    except Venue.DoesNotExist:
+        return Response({'message': 'Venue does not exist.'}, status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'DELETE':
+        venue.delete()
+        return Response({'message': 'Venue deleted successfully.'}, status=status.HTTP_204_NO_CONTENT)
