@@ -2,11 +2,15 @@ import React from "react";
 import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/esm/Col";
+import { useTranslation } from "react-i18next";
+import i18next from "i18next";
 
 import "../SignupForm/signUpForm.css";
 import MainButton from "../../../atoms/Buttons/MainButton/MainButton";
 import useSignUp from "../../../../hooks/useSignUp";
 const SignUpForm = () => {
+  const { t } = useTranslation();
+
   const {
     handleSubmit,
     isDisabled,
@@ -46,8 +50,8 @@ const SignUpForm = () => {
         <Col xs={6} className="pr-2">
           <input
             type="text"
-            className={`input ${firstNameError ? "is-invalid" : ""}`}
-            placeholder="First Name"
+            className={`input_1 ${firstNameError ? "is-invalid" : ""}`}
+            placeholder={t("fname")}
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
           />
@@ -58,8 +62,8 @@ const SignUpForm = () => {
         <Col xs={6} className="pl-2">
           <input
             type="text"
-            className={`input ${lastNameError ? "is-invalid" : ""}`}
-            placeholder="Last Name"
+            className={`input_1 ${lastNameError ? "is-invalid" : ""}`}
+            placeholder={t("lname")}
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
           />
@@ -71,8 +75,8 @@ const SignUpForm = () => {
         <Col xs={12} className="mt-3 pt-1">
           <input
             type="text"
-            className={`input ${cityError ? "is-invalid" : ""}`}
-            placeholder="City"
+            className={`input_1 ${cityError ? "is-invalid" : ""}`}
+            placeholder={t("city")}
             value={city}
             onChange={(e) => setCity(e.target.value)}
           />
@@ -81,8 +85,8 @@ const SignUpForm = () => {
         <Col xs={12} className="mt-3 pt-1">
           <input
             type="text"
-            className={`input ${phoneNumberError ? "is-invalid" : ""}`}
-            placeholder="Phone Number"
+            className={`input_1 ${phoneNumberError ? "is-invalid" : ""}`}
+            placeholder={t("pnumber")}
             value={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
           />
@@ -93,8 +97,8 @@ const SignUpForm = () => {
         <Col xs={12} className="mt-3 pt-1">
           <input
             type="text"
-            className={`input ${usernameError ? "is-invalid" : ""}`}
-            placeholder="Username"
+            className={`input_1 ${usernameError ? "is-invalid" : ""}`}
+            placeholder={t("username")}
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
@@ -106,8 +110,8 @@ const SignUpForm = () => {
         <Col xs={12} className="mt-3 pt-1">
           <input
             type="email"
-            className={`input ${emailError ? "is-invalid" : ""}`}
-            placeholder="Email"
+            className={`input_1 ${emailError ? "is-invalid" : ""}`}
+            placeholder={t("email")}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -117,8 +121,8 @@ const SignUpForm = () => {
         <Col xs={12} className="mt-3 pt-1">
           <input
             type="password"
-            className={`input ${passwordError ? "is-invalid" : ""}`}
-            placeholder="Password"
+            className={`input_1 ${passwordError ? "is-invalid" : ""}`}
+            placeholder={t("password")}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
@@ -131,7 +135,7 @@ const SignUpForm = () => {
           <Col className="centerContainer mt-4">
             <MainButton
               className="form-button"
-              text={"Sign Up"}
+              text={t("sign_up")}
               onClick={handleSubmit}
               disabled={isDisabled}
             />

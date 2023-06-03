@@ -3,13 +3,15 @@ import React from "react";
 import Container from "react-bootstrap/Container";
 
 import "./Header.scss";
-
+import { useTranslation } from "react-i18next";
 import Search from "../../molecules/Search/Search";
+
 const Header = () => {
+  const { t } = useTranslation();
   return (
     <Container fluid className={"header-container background-green"}>
       <Container className={"header-c"}>
-        <h2 className={"header-title"}>Search, Rent, Play!</h2>
+        <h2 className={"header-title"}>{t("header_title")}</h2>
         <Search />
       </Container>
       <div className="svg-divider">

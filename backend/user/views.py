@@ -12,10 +12,10 @@ from .serializers import SignupSerializer
 
 # Create your views here.
 @api_view(['GET'])
-@permission_classes([IsAuthenticated])
+
 def getUser(request):
     user = request.user
-    data = [{'user': user.username}]
+    data = [{'user': "Ena"}]
     # users = User.objects.all()
     # data = [{'username': user.username, 'email': user.email} for user in users]
     return Response(data)

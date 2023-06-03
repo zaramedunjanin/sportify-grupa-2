@@ -3,8 +3,11 @@ import { Form } from "react-bootstrap";
 import Button from "../../../atoms/Buttons/MainButton/MainButton";
 import "./LoginForm.scss";
 import useLoginForm from "../../../../hooks/useLogin";
+import { useTranslation } from "react-i18next";
+import i18next from "i18next";
 
 const LoginForm = () => {
+  const { t } = useTranslation();
   const {
     email,
     setEmail,
@@ -22,7 +25,7 @@ const LoginForm = () => {
         <Form.Group controlId="formBasicEmail">
           <Form.Control
             type="email"
-            placeholder="Email"
+            placeholder={t("email")}
             className={`input ${emailError ? "is-invalid" : ""}`}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -32,7 +35,7 @@ const LoginForm = () => {
         <Form.Group controlId="formBasicPassword">
           <Form.Control
             type="password"
-            placeholder="Password"
+            placeholder={t("password")}
             className={`input ${passwordError ? "is-invalid" : ""}`}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -43,7 +46,7 @@ const LoginForm = () => {
         </Form.Group>
         <Button
           type="submit"
-          text="Log in"
+          text={t("log_in")}
           className="login-button"
           disabled={isDisabled}
         />
