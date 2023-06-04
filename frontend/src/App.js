@@ -15,6 +15,7 @@ import CompanyOwnerDashboard from "./components/pages/CompanyOwnerDashboard/Comp
 import OwnerVenue from "./components/pages/CompanyOwnerDashboard/Venue/OwnerVenue";
 import { SearchProvider } from "./context/SearchContext";
 import { CategoryProvider } from "./context/CategoryContext";
+import Booking from "./components/pages/CompanyOwnerDashboard/Booking/Booking";
 
 const App = () => {
   return (
@@ -42,9 +43,10 @@ const App = () => {
             <Route path="/userdashboard" element={<UserDashboardPage />} />
             <Route path="/userdata" element={<UserData />} />
 
-        <Route path="company" element={<CompanyOwnerDashboard />}>
-          <Route path="venues" element={<OwnerVenue />} />
-        </Route>
+            <Route path="company" element={<CompanyOwnerDashboard />}>
+              <Route path="venues" element={<OwnerVenue />} />
+              <Route path="bookings" element={<Booking />} />
+            </Route>
             <Route path="/search" element={<SearchResults />} />
           </Routes>
         </CategoryProvider>

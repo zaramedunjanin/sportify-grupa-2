@@ -20,8 +20,6 @@ const Card = ({ venue, setDeleteId, setEditId, ...rest }) => {
     return parsedTime;
   };
 
-  console.log(venue);
-
   return (
     <>
       <div

@@ -4,13 +4,38 @@ import useImageUpdate from "../../../../../hooks/useImageUpdate";
 const initialData = {
   venue_name: "",
   address: "",
+  city: "",
+  type: "",
+  image: "",
+  description: "",
   opening_time: "",
   closing_time: "",
   price_per_hour: "",
+  sport: "",
 };
 
 const VenueModal = ({ venue, action, ...props }) => {
-  const [currentValues, setCurrentValues] = useState(initialData);
+  const [currentValues, setCurrentValues] = useState(venue ? venue: initialData );
+
+  const saveVenue = () => {
+    if (action === "add") {
+      addVenue();
+    } else if (action === "edit") {
+      updateVenue();
+    }
+  };
+
+  const addVenue = () => {
+    console.log("add");
+  };
+  const updateVenue = () => {
+    console.log("edit");
+  };
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setCurrentValues({...currentValues, [name]:value})
+  };
 
   return (
     <div
@@ -43,16 +68,22 @@ const VenueModal = ({ venue, action, ...props }) => {
                   type="text"
                   class="form-control"
                   id="exampleInputEmail1"
+                  name="venue_name"
+                  value={currentValues.venue_name}
+                  onChange={handleChange}
                 />
               </div>
               <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">
-                  Adress
+                  Address
                 </label>
                 <input
                   type="text"
                   class="form-control"
                   id="exampleInputPassword1"
+                  name="address"
+                  value={currentValues.address}
+                  onChange={handleChange}
                 />
               </div>
 
@@ -64,6 +95,9 @@ const VenueModal = ({ venue, action, ...props }) => {
                   type="text"
                   class="form-control"
                   id="exampleInputPassword1"
+                  name="city"
+                  value={currentValues.city}
+                  onChange={handleChange}
                 />
               </div>
 
@@ -75,6 +109,9 @@ const VenueModal = ({ venue, action, ...props }) => {
                   type="text"
                   class="form-control"
                   id="exampleInputPassword1"
+                  name="type"
+                  value={currentValues.type}
+                  onChange={handleChange}
                 />
               </div>
 
@@ -93,6 +130,9 @@ const VenueModal = ({ venue, action, ...props }) => {
                   type="text"
                   class="form-control"
                   id="exampleInputPassword1"
+                  name="description"
+                  value={currentValues.description}
+                  onChange={handleChange}
                 />
               </div>
 
@@ -104,6 +144,9 @@ const VenueModal = ({ venue, action, ...props }) => {
                   type="text"
                   class="form-control"
                   id="exampleInputPassword1"
+                  name="price_per_hour"
+                  value={currentValues.price_per_hour}
+                  onChange={handleChange}
                 />
               </div>
 
@@ -115,6 +158,9 @@ const VenueModal = ({ venue, action, ...props }) => {
                   type="text"
                   class="form-control"
                   id="exampleInputPassword1"
+                  name="opening_time"
+                  value={currentValues.opening_time}
+                  onChange={handleChange}
                 />
               </div>
 
@@ -126,6 +172,9 @@ const VenueModal = ({ venue, action, ...props }) => {
                   type="text"
                   class="form-control"
                   id="exampleInputPassword1"
+                  name="closing_time"
+                  value={currentValues.closing_time}
+                  onChange={handleChange}
                 />
               </div>
 
@@ -149,7 +198,7 @@ const VenueModal = ({ venue, action, ...props }) => {
             >
               Close
             </button>
-            <button type="button" class="btn btn-primary">
+            <button type="button" class="btn btn-primary" onClick={saveVenue}>
               Save
             </button>
           </div>
