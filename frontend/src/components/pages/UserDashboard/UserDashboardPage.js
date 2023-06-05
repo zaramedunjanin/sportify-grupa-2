@@ -8,7 +8,7 @@ const UserDashboardPage = () => {
   return (
     <>
       {" "}
-      <Navbar variant={"user"}/>
+      <Navbar variant={"user"} />
       <UserDashboard />
       <TablePage />
     </>

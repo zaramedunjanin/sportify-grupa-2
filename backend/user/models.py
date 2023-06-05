@@ -7,11 +7,6 @@ from timestamps.models import models, Model
 class Sport(Model):
     sport_name = models.CharField(max_length=50, unique=True)
 
-
-def __str__(self):
-    return f"{self.sport_name}"
-
-
 class User(AbstractUser, Model):
     ADMIN = 1
     USER = 2
@@ -22,6 +17,9 @@ class User(AbstractUser, Model):
         (USER, 'User'),
         (COMPANY, 'Company'),
     )
+    is_active = None
+    is_staff = None
+    is_superuser = None
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     username = models.CharField(max_length=50, unique=True)
@@ -30,7 +28,7 @@ class User(AbstractUser, Model):
     phone_number = models.CharField(max_length=50, unique=True)
     password = models.CharField(max_length=50)
     profile_picture = models.CharField(max_length=255, blank=True)
-    gender = models.CharField(max_length=50, blank=True)
+    gender = models.CharField(max_length=50, blank=True, default = "Other")
     city = models.CharField(max_length=50)
     role = models.PositiveSmallIntegerField(choices=ROLE_CHOICES, null=True, default=2)
     blocked = models.BooleanField(default=False, blank=True)
@@ -39,8 +37,5 @@ class User(AbstractUser, Model):
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
-
-def __str__(self):
-    return f"{self.first_name} {self.last_name}"
 
 

@@ -1,16 +1,13 @@
-from rest_framework import serializers
 from .models import User, Sport
-from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
-from .models import User
 from rest_framework import serializers
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 
 class UserSerializer(serializers.ModelSerializer):
+    sport = serializers.SlugRelatedField(many=True, read_only=True, slug_field='sport_name')
     class Meta:
         model = User
         fields = '__all__'
-
 
 class SportSerializer(serializers.ModelSerializer):
     class Meta:

@@ -1,15 +1,17 @@
-.header-container{
+.header-container {
   position: relative;
   text-align: center;
   padding: 1rem 2rem 4rem 2rem;
 }
-.header-title{
+.header-title {
   font-weight: normal;
   margin-bottom: 2rem;
 }
-.header-c{
+.header-c {
   position: relative;
   margin-bottom: 4rem;
+  margin-top: 4rem;
+
   z-index: 2;
 }
 
@@ -30,7 +32,5 @@
   height: 248px;
 }
 .svg-divider .shape-fill {
-  fill: #FFFFFF;
+  fill: #ffffff;
 }
-
-

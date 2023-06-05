@@ -4,50 +4,55 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import status
 from django.http import JsonResponse
-
-from reservation.models import Reservation
-from reservation.serializers import ReservationSerializer
-from user.models import User, Sport
+from django.db.models import Count, F, Value
+from reservation.models import *
+from reservation.serializers import *
+from user.models import *
 from user.serializers import *
-from venue.models import Venue
-from venue.serializers import VenueSerializer
+from venue.models import *
+from venue.serializers import *
 
-
-@api_view(['GET', 'POST'])
+@api_view(['GET'])
 def getUserList(request):
-    if request.method == 'GET':
-        data = User.objects.all()
-
-        serializer = UserSerializer(data,context={'request': request}, many=True)
-
-        return Response(serializer.data)
-
-    elif request.method == 'POST':
-        serializer = UserSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(status=status.HTTP_201_CREATED)
-
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    users = User.objects.prefetch_related('sport').filter(deleted_at__isnull = True)
+    serializer = UserSerializer(users, context={'request': request}, many=True)
+    return Response(serializer.data)
 
 
-@api_view(['PUT', 'DELETE'])
-def userDetails(request, pk):
+@api_view(['POST'])
+def postUser(request):
+    serializer = UserSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(status=status.HTTP_201_CREATED)
+
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['DELETE'])
+def deleteUser(request, id):
     try:
-        user = User.objects.get(pk=pk)
+        user = User.objects.get(id=id)
     except User.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
-    if request.method == 'PUT':
-        serializer = UserSerializer(user, data=request.data, context={'request': request})
-        if serializer.is_valid():
-            serializer.save()
-            return Response(status=status.HTTP_204_NO_CONTENT)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    user.delete()
+    return Response(status=status.HTTP_204_NO_CONTENT)
 
-    elif request.method == 'DELETE':
-        user.delete()
+
+@api_view(['PUT'])
+def putUser(request, id):
+    try:
+        user = User.objects.get(id=id)
+    except User.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    serializer = UserSerializer(user, partial=True, data=request.data, context={'request': request})
+    if serializer.is_valid():
+        serializer.save()
         return Response(status=status.HTTP_204_NO_CONTENT)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 @api_view(['GET', 'POST'])
 def getSportList(request):
@@ -58,32 +63,40 @@ def getSportList(request):
 
         return Response(serializer.data)
 
-    elif request.method == 'POST':
-        serializer = SportSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+@api_view(['POST'])
+def postSport(request):
+    serializer = SportSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(status=status.HTTP_201_CREATED)
+
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-@api_view(['PUT', 'DELETE'])
-def sportDetails(request, id):
+@api_view(['PUT'])
+def putSport(request, id):
     try:
         sport = Sport.objects.get(id=id)
     except Sport.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
-    if request.method == 'PUT':
-        serializer = SportSerializer(sport, data=request.data, context={'request': request})
-        if serializer.is_valid():
-            serializer.save()
-            return Response(status=status.HTTP_204_NO_CONTENT)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    elif request.method == 'DELETE':
-        sport.delete()
+    serializer = SportSerializer(sport, partial=True, data=request.data, context={'request': request})
+    if serializer.is_valid():
+        serializer.save()
         return Response(status=status.HTTP_204_NO_CONTENT)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['DELETE'])
+def deleteSport(request, id):
+    try:
+        sport = Sport.objects.get(id=id)
+    except Sport.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    sport.delete()
+    return Response(status=status.HTTP_204_NO_CONTENT)
+
 
 @api_view(['GET', 'POST'])
 def getVenueList(request):
@@ -94,35 +107,43 @@ def getVenueList(request):
 
         return Response(serializer.data)
 
-    elif request.method == 'POST':
-        serializer = VenueSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(status=status.HTTP_201_CREATED)
-
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-@api_view(['PUT', 'DELETE'])
-def venueDetails(request, pk):
+@api_view(['DELETE'])
+def deleteVenue(request, id):
     try:
-        venue = Venue.objects.get(pk=pk)
+        venue = Venue.objects.get(id=id)
+    except Venue.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    venue.delete()
+    return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+
+@api_view(['PUT'])
+def putVenue(request, id):
+    try:
+        venue = Venue.objects.get(id=id)
     except Venue.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
-    if request.method == 'PUT':
-        serializer = VenueSerializer(venue, data=request.data, context={'request': request})
-        if serializer.is_valid():
-            serializer.save()
-            return Response(status=status.HTTP_204_NO_CONTENT)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    elif request.method == 'DELETE':
-        venue.delete()
+    serializer = VenueSerializer(venue, partial=True, data=request.data, context={'request': request})
+    if serializer.is_valid():
+        serializer.save()
         return Response(status=status.HTTP_204_NO_CONTENT)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+@api_view(['POST'])
+def postVenue(request):
+    serializer = VenueSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(status=status.HTTP_201_CREATED)
+
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET', 'POST'])
-def getReservationList(request):
+def getReservationsList(request):
     if request.method == 'GET':
         data = Reservation.objects.all()
 
@@ -130,28 +151,205 @@ def getReservationList(request):
 
         return Response(serializer.data)
 
-    elif request.method == 'POST':
-        serializer = ReservationSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-@api_view(['PUT', 'DELETE'])
-def reservationDetails(request, id):
+@api_view(['PUT'])
+def putReservation(request, id):
     try:
         reservation = Reservation.objects.get(id=id)
     except Reservation.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
-    if request.method == 'PUT':
-        serializer = ReservationSerializer(reservation, data=request.data, context={'request': request})
-        if serializer.is_valid():
-            serializer.save()
-            return Response(status=status.HTTP_204_NO_CONTENT)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    elif request.method == 'DELETE':
-        reservation.delete()
+    serializer = ReservationSerializer(reservation, partial=True, data=request.data, context={'request': request})
+    if serializer.is_valid():
+        serializer.save()
         return Response(status=status.HTTP_204_NO_CONTENT)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['DELETE'])
+def deleteReservation(request, id):
+    try:
+        reservation = Reservation.objects.get(id=id)
+    except Reservation.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    reservation.delete()
+    return Response(status=status.HTTP_204_NO_CONTENT)
+
+@api_view(['POST'])
+def postReservation(request):
+    serializer = ReservationSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(status=status.HTTP_201_CREATED)
+
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET', 'POST'])
+def getAcceptedInvitesList(request):
+    if request.method == 'GET':
+        data = AcceptedInvites.objects.all()
+
+        serializer = AcceptedInvitesSerializer(data, context={'request': request}, many=True)
+
+        return Response(serializer.data)
+
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['PUT'])
+def putInvite(request, id):
+    try:
+        accepted = AcceptedInvites.objects.get(id=id)
+    except AcceptedInvites.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    serializer = AcceptedInvitesSerializer(accepted, partial=True, data=request.data, context={'request': request})
+    if serializer.is_valid():
+        serializer.save()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['DELETE'])
+def deleteInvite(request, id):
+    try:
+        accepted = AcceptedInvites.objects.get(id=id)
+    except AcceptedInvites.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    accepted.delete()
+    return Response(status=status.HTTP_204_NO_CONTENT)
+@api_view(['POST'])
+def postInvite(request):
+    serializer = AcceptedInvitesSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(status=status.HTTP_201_CREATED)
+
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['GET', 'POST'])
+def getQuestionsList(request):
+    if request.method == 'GET':
+        data = Question.objects.all()
+
+        serializer = QuestionSerializer(data, context={'request': request}, many=True)
+
+        return Response(serializer.data)
+
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['PUT'])
+def putQuestion(request, id):
+    try:
+        question = Question.objects.get(id=id)
+    except Question.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    serializer = QuestionSerializer(question, partial=True, data=request.data, context={'request': request})
+    if serializer.is_valid():
+        serializer.save()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['DELETE'])
+def deleteQuestion(request, id):
+    try:
+        question = Question.objects.get(id=id)
+    except Question.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    question.delete()
+    return Response(status=status.HTTP_204_NO_CONTENT)
+
+@api_view(['POST'])
+def postQuestion(request):
+    serializer = QuestionSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(status=status.HTTP_201_CREATED)
+
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET', 'POST'])
+def getRatingsList(request):
+    if request.method == 'GET':
+        data = Rating.objects.all()
+
+        serializer = RatingSerializer(data, context={'request': request}, many=True)
+
+        return Response(serializer.data)
+
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['PUT'])
+def putRating(request, id):
+    try:
+        rating = Rating.objects.get(id=id)
+    except Rating.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    serializer = RatingSerializer(rating, partial=True, data=request.data, context={'request': request})
+    if serializer.is_valid():
+        serializer.save()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['DELETE'])
+def deleteRating(request, id):
+    try:
+        rating = Rating.objects.get(id=id)
+    except Rating.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    rating.delete()
+    return Response(status=status.HTTP_204_NO_CONTENT)
+
+@api_view(['POST'])
+def postRating(request):
+    serializer = RatingSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(status=status.HTTP_201_CREATED)
+
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET', 'POST'])
+def getCompanyList(request):
+    if request.method == 'GET':
+        data = User.objects.filter(role=2, verified = "").all()
+
+        serializer = UserSerializer(data, context={'request': request}, many=True)
+
+        return Response(serializer.data)
+
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['PUT'])
+def putCompany(request, id):
+    try:
+        user = User.objects.get(id=id)
+    except User.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    serializer = UserSerializer(user, partial=True, data=request.data, context={'request': request})
+    if serializer.is_valid():
+        serializer.save()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['DELETE'])
+def deleteCompany(request, id):
+    try:
+        user = User.objects.get(id=id)
+    except User.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    user.delete()
+    return Response(status=status.HTTP_204_NO_CONTENT)
+

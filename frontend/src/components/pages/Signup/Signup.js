@@ -8,20 +8,20 @@ import SignupRightSide from "./SignupRightSide/signupRightSide";
 import "../Signup/Signup.css";
 
 const Signup = () => {
-    return (
-        <Container fluid>
-            <div className="flexWrapReverse flexWidth">
-                <Row>
-                    <Col xs={12} sm={7} className="p-0 firstCol">
-                        <SignUpForm/>
-                    </Col>
-                    <Col xs={12} sm={5} className="p-0">
-                        <SignupRightSide/>
-                    </Col>
-                </Row>
-            </div>
-        </Container>
-    );
+  return (
+    <Container fluid>
+      <div className="flexWrapReverse flexWidth">
+        <Row>
+          <Col xs={12} sm={7} className="p-0 firstCol">
+            <SignUpForm />
+          </Col>
+          <Col xs={12} sm={5} className="p-0">
+            <SignupRightSide />
+          </Col>
+        </Row>
+      </div>
+    </Container>
+  );
 };
 
 export default Signup;

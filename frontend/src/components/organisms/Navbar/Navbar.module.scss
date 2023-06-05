@@ -12,13 +12,15 @@
   margin: 1rem;
   color: white;
   text-decoration: none;
+  font-weight: bold;
 }
 
 .navSearch {
   width: 100%;
 }
 
-.adminLinks:hover, .adminLinks:active:focus {
+.adminLinks:hover,
+.adminLinks:active:focus {
   color: #ffc700;
 }
 

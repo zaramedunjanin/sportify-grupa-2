@@ -11,7 +11,7 @@ class Reservation(Model):
     start_time = models.TimeField()
     end_time = models.TimeField()
     description = models.CharField(max_length=255)
-    approved = models.BooleanField(blank=True)
+    approved = models.BooleanField(blank=True, null = True)
     auto_invite = models.BooleanField(default=False)
     number_of_invites = models.IntegerField(blank=True)
     venue = models.ForeignKey(Venue, on_delete=models.CASCADE)

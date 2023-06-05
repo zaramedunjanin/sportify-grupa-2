@@ -34,54 +34,53 @@ const Navbar = ({ variant = "default", ...props }) => {
       break;
   }
 
-    let isAuth = false;
+  let isAuth = true;
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    return (
-        <NavbarBS className={`${backgroundColor} p-0`} expand="lg">
-            <Container fluid id={styles.navbar}>
-                <Logo/>
-                <NavbarBS.Toggle aria-controls="navbarScroll"/>
-                {variant === "search" ?
-                    <div className={styles.navSearch}>
-                        <Search/>
-                    </div>
-                    : null
-                }
-                <NavbarBS.Collapse id="navbarScroll" className="justify-content-end">
-                    <Container className={"text-center"}>
+  return (
+    <NavbarBS className={`${backgroundColor} p-0`} expand="lg">
+      <Container fluid id={styles.navbar}>
+        <Logo />
+        <NavbarBS.Toggle aria-controls="navbarScroll" />
+        {variant === "search" ? (
+          <div className={styles.navSearch}>
+            <Search />
+          </div>
+        ) : null}
+        <NavbarBS.Collapse id="navbarScroll" className="justify-content-end">
+          <Container className={"text-center"}>
+            {variant === "admin"
+              ? adminLinks.map((l, index) => {
+                  return (
+                    <Link to={l.url} className={styles.adminLinks} key={index}>
+                      {l.navbarText}
+                    </Link>
+                  );
+                })
+              : variant === "user"
+              ? userLinks.map((l, index) => {
+                  return (
+                    <Link to={l.url} className={styles.adminLinks} key={index}>
+                      {l.navbarText}
+                    </Link>
+                  );
+                })
+              : null}
+          </Container>
 
-                        {variant === "admin" ?
-                            (
-                                adminLinks.map((l, index) => {
-                                    return <Link to={l.url} className={styles.adminLinks}
-                                                 key={index}>{l.navbarText}</Link>
-                                })
-                            )
-                            : (variant === "user" ?
-                                    userLinks.map((l, index) => {
-                                        return <Link to={l.url} className={styles.adminLinks}
-                                                     key={index}>{l.navbarText}</Link>
-                                    })
-                                    :
-                                    null
-                            )
-                        }
-                    </Container>
-
-                    {isAuth === true ?
-                        <ProfileDropdown/>
-                        :
-                        <div className={styles.navButtons}>
-                            <Button text={"Log in"} onClick={() => navigate("/login")}/>
-                            <Button text={"Sign up"} onClick={() => navigate("/signup")}/>
-                        </div>
-                    }
-                </NavbarBS.Collapse>
-            </Container>
-        </NavbarBS>
-    );
+          {isAuth === true ? (
+            <ProfileDropdown />
+          ) : (
+            <div className={styles.navButtons}>
+              <Button text={"Log in"} onClick={() => navigate("/login")} />
+              <Button text={"Sign up"} onClick={() => navigate("/signup")} />
+            </div>
+          )}
+        </NavbarBS.Collapse>
+      </Container>
+    </NavbarBS>
+  );
 };
 
 export default Navbar;
