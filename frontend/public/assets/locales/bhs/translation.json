@@ -46,6 +46,17 @@
     "account": "Račun",
     "close": "Zatvori",
     "save_changes": "Spasi promjene",
-    "title_1": "Historija termina"
+    "title_1": "Historija termina",
+    "events": "Događaji",
+    "venues": "Mjesta",
+    "id": "ID",
+    "name_2": "Ime",
+    "address": "Adresa",
+    "date": "Datum",
+    "price_per_hour": "Cijena po satu",
+    "time": "Vrijeme",
+    "edit": "Uredi",
+    "delete": "Izbriši",
+    "table": "Trenutno nema dostupnih unosa u tabeli."
 
 }
