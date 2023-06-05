@@ -1,7 +1,7 @@
 const userNavbarLinks = [
   {
     url: "/events",
-    navbarText: "Users",
+    navbarText: "Events",
   },
   {
     url: "/venues",

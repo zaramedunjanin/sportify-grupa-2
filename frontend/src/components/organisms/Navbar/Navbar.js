@@ -52,7 +52,7 @@ const Navbar = ({ variant = "default", ...props }) => {
       break;
   }
 
-  let isAuth = false;
+  let isAuth = true;
 
   const navigate = useNavigate();
 
