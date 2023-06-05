@@ -3,7 +3,9 @@ import { Dropdown, DropdownButton } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";
 
-import "./TranslationComponent.css";
+import styles from "./TranslationComponent.module.scss";
+import uk_flag from "../../../assets/images/uk_flag.png";
+import bhs_flag from "../../../assets/images/bhs_flag.png";
 
 const languages = [
   {
@@ -40,7 +42,14 @@ const TranslationComponent = () => {
               className="dropdown-item"
               onClick={() => i18next.changeLanguage(code)}
             >
-              <span className={`mx-2`}></span>
+              <span className={`mx-2 ${styles.flagIcon}`}>
+                {country_code === "en" && (
+                  <img src={uk_flag} alt="UK Flag" className="flag-icon" />
+                )}
+                {country_code === "bhs" && (
+                  <img src={bhs_flag} alt="BHS Flag" className="flag-icon" />
+                )}
+              </span>
               {name}
             </button>
           </li>

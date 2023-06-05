@@ -18,6 +18,9 @@ import { Translation } from "react-i18next";
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";
 
+import uk_flag from "../../../assets/images/uk_flag.png";
+import bhs_flag from "../../../assets/images/bhs_flag.png";
+
 //The Navbar for the Main Page is default,
 // for the Search Page it is needed to pass the value "search", for the Admin Panel "admin" and for User Profiles "user" to the prop "variant"
 const Navbar = ({ variant = "default", ...props }) => {
@@ -52,7 +55,7 @@ const Navbar = ({ variant = "default", ...props }) => {
       break;
   }
 
-  let isAuth = true;
+  let isAuth = false;
 
   const navigate = useNavigate();
 
@@ -103,7 +106,22 @@ const Navbar = ({ variant = "default", ...props }) => {
                     className="dropdown-item"
                     onClick={() => i18next.changeLanguage(code)}
                   >
-                    <span className={`mx-2`}></span>
+                    <span className={`mx-2 ${styles.flagIcon}`}>
+                      {country_code === "en" && (
+                        <img
+                          src={uk_flag}
+                          alt="UK Flag"
+                          className="flag-icon"
+                        />
+                      )}
+                      {country_code === "bhs" && (
+                        <img
+                          src={bhs_flag}
+                          alt="BHS Flag"
+                          className="flag-icon"
+                        />
+                      )}
+                    </span>
                     {name}
                   </button>
                 </li>
