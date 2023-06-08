@@ -4,7 +4,11 @@ import Table from "react-bootstrap/Table";
 import Container from "react-bootstrap/Container";
 import DeleteModal from "../../../../organisms/Modal/DeleteModal/DeleteModal";
 import { getDataList } from "../../../../../services/AdminService/useAdminFetcher";
-import { deleteData,declineCompany,acceptCompany } from "../../../../../services/AdminService/useAdminMutator";
+import {
+  deleteData,
+  declineCompany,
+  acceptCompany,
+} from "../../../../../services/AdminService/useAdminMutator";
 
 import UserEditModal from "../AdminModals/EditModals/UserEditModal";
 import VenueEditModal from "../AdminModals/EditModals/VenueEditModal";
@@ -13,8 +17,6 @@ import ReservationEditModal from "../AdminModals/EditModals/ReservationEditModal
 import QuestionEditModal from "../AdminModals/EditModals/QuestionEditModal";
 import InviteEditModal from "../AdminModals/EditModals/InviteEditModal";
 import RatingEditModal from "../AdminModals/EditModals/RatingEditModal";
-import axios from "axios";
-import {baseURL} from "../../../../../services/AdminService/adminService";
 
 const AdminTable = ({ page, ...props }) => {
   const [deleteShow, setDeleteShow] = useState(false);
@@ -23,13 +25,21 @@ const AdminTable = ({ page, ...props }) => {
   const [declineShow, setDeclineShow] = useState(false);
   const [addShow, setAddShow] = useState(false);
 
-    let modelColumns = props.databasecolumns[page];
+  let modelColumns = props.databasecolumns[page];
   let [row, setRow] = useState([]);
-  const [data, setData] = useState([]);
-
+  const [data, setData] = useState("");
 
   useEffect(() => {
-    getDataList(setData,page);
+    const fetchData = async () => {
+      try {
+        const response = await getDataList(page);
+        setData(response);
+      } catch (error) {
+        console.error("Failed to fetch data:", error);
+      }
+    };
+
+    fetchData();
   }, []);
 
   const handleDelete = () => {
@@ -46,20 +56,17 @@ const AdminTable = ({ page, ...props }) => {
   };
   return (
     <Container>
-        {page !== "verification" &&
-            <button
-                key={`add`}
-                onClick={() => {
-                    setAddShow(true);
-                }}
-                className={"bg-transparent border-0"}
-            >
-        <span className="material-symbols-outlined">
-
-            library_add
-                    </span>
-            </button>
-        }
+      {page !== "verification" && (
+        <button
+          key={`add`}
+          onClick={() => {
+            setAddShow(true);
+          }}
+          className={"bg-transparent border-0"}
+        >
+          <span className="material-symbols-outlined">library_add</span>
+        </button>
+      )}
 
       <Table
         responsive
@@ -95,27 +102,30 @@ const AdminTable = ({ page, ...props }) => {
               <tr key={`row${index}`}>
                 {modelColumns.fields.map((field) => (
                   <td key={`${field}${index}`}>
-                    {d[field] === null || d[field] === ""
-                      ? "Pending"
-                      : d[field] === true
-                      ? (field)
-                      : d[field] === false
-                      ? "Not "+(field)
-                      : field === "role"
-                      ? d[field] === 1
-                        ? "Admin"
-                        : d[field] === 2
-                        ? "User"
-                        : d[field] === 3 && "User"
-                      : typeof d[field] === "object"
-                      ? d[field]
-                      : field.toString().includes('picture')?
-                      <img src ={d[field]} alt={"slika"}/>
-                    :d[field]
-                    }
+                    {d[field] === null || d[field] === "" ? (
+                      "Empty"
+                    ) : d[field] === true ? (
+                      field
+                    ) : d[field] === false ? (
+                      "Not " + field
+                    ) : field === "role" ? (
+                      d[field] === 1 ? (
+                        "Admin"
+                      ) : d[field] === 2 ? (
+                        "User"
+                      ) : (
+                        d[field] === 3 && "User"
+                      )
+                    ) : typeof d[field] === "object" ? (
+                      d[field]
+                    ) : field.toString().includes("picture") ? (
+                      <img className={styles.tableImage} src={d[field]} alt={"slika"} />
+                    ) : (
+                      d[field]
+                    )}
                   </td>
                 ))}
-                {page === "verification" ?
+                {page === "verification" ? (
                   <>
                     <td>
                       <button
@@ -150,7 +160,7 @@ const AdminTable = ({ page, ...props }) => {
                       </button>
                     </td>
                   </>
-                 :
+                ) : (
                   <>
                     <td>
                       <button
@@ -185,7 +195,7 @@ const AdminTable = ({ page, ...props }) => {
                       </button>
                     </td>
                   </>
-                }
+                )}
               </tr>
             ))
           )}
@@ -208,7 +218,7 @@ const AdminTable = ({ page, ...props }) => {
           onClick: handleDecline,
           type: "Decline",
         })}
-          {...(acceptShow === true && {
+        {...(acceptShow === true && {
           show: acceptShow,
           onHide: () => {
             setAcceptShow(false);
@@ -223,9 +233,16 @@ const AdminTable = ({ page, ...props }) => {
           table={page}
           data={row}
           columns={modelColumns}
-          {...(addShow === true && {add: addShow, show:addShow, onHide:() => setAddShow(false)})}
-          {...(editShow === true && {edit: editShow, show:editShow, onHide:() => setEditShow(false)})}
-
+          {...(addShow === true && {
+            add: addShow,
+            show: addShow,
+            onHide: () => setAddShow(false),
+          })}
+          {...(editShow === true && {
+            edit: editShow,
+            show: editShow,
+            onHide: () => setEditShow(false),
+          })}
         />
       )}
       {page === "venues" && (
@@ -234,9 +251,16 @@ const AdminTable = ({ page, ...props }) => {
           table={page}
           data={row}
           columns={modelColumns}
-          {...(addShow === true && {add: addShow, show:addShow, onHide:() => setAddShow(false)})}
-          {...(editShow === true && {edit: editShow, show:editShow, onHide:() => setEditShow(false)})}
-
+          {...(addShow === true && {
+            add: addShow,
+            show: addShow,
+            onHide: () => setAddShow(false),
+          })}
+          {...(editShow === true && {
+            edit: editShow,
+            show: editShow,
+            onHide: () => setEditShow(false),
+          })}
         />
       )}
       {page === "sports" && (
@@ -245,9 +269,16 @@ const AdminTable = ({ page, ...props }) => {
           table={page}
           data={row}
           columns={modelColumns}
-          {...(addShow === true && {add: addShow, show:addShow, onHide:() => setAddShow(false)})}
-          {...(editShow === true && {edit: editShow, show:editShow, onHide:() => setEditShow(false)})}
-
+          {...(addShow === true && {
+            add: addShow,
+            show: addShow,
+            onHide: () => setAddShow(false),
+          })}
+          {...(editShow === true && {
+            edit: editShow,
+            show: editShow,
+            onHide: () => setEditShow(false),
+          })}
         />
       )}
       {page === "reservations" && (
@@ -256,8 +287,16 @@ const AdminTable = ({ page, ...props }) => {
           table={page}
           data={row}
           columns={modelColumns}
-          {...(addShow === true && {add: addShow, show:addShow, onHide:() => setAddShow(false)})}
-          {...(editShow === true && {edit: editShow, show:editShow, onHide:() => setEditShow(false)})}
+          {...(addShow === true && {
+            add: addShow,
+            show: addShow,
+            onHide: () => setAddShow(false),
+          })}
+          {...(editShow === true && {
+            edit: editShow,
+            show: editShow,
+            onHide: () => setEditShow(false),
+          })}
         />
       )}
       {page === "questions" && (
@@ -266,8 +305,16 @@ const AdminTable = ({ page, ...props }) => {
           table={page}
           data={row}
           columns={modelColumns}
-          {...(addShow === true && {add: addShow, show:addShow, onHide:() => setAddShow(false)})}
-          {...(editShow === true && {edit: editShow, show:editShow, onHide:() => setEditShow(false)})}
+          {...(addShow === true && {
+            add: addShow,
+            show: addShow,
+            onHide: () => setAddShow(false),
+          })}
+          {...(editShow === true && {
+            edit: editShow,
+            show: editShow,
+            onHide: () => setEditShow(false),
+          })}
         />
       )}
       {page === "acceptedinvites" && (
@@ -276,9 +323,16 @@ const AdminTable = ({ page, ...props }) => {
           table={page}
           data={row}
           columns={modelColumns}
-          {...(addShow === true && {add: addShow, show:addShow, onHide:() => setAddShow(false)})}
-          {...(editShow === true && {edit: editShow, show:editShow, onHide:() => setEditShow(false)})}
-
+          {...(addShow === true && {
+            add: addShow,
+            show: addShow,
+            onHide: () => setAddShow(false),
+          })}
+          {...(editShow === true && {
+            edit: editShow,
+            show: editShow,
+            onHide: () => setEditShow(false),
+          })}
         />
       )}
       {page === "ratings" && (
@@ -287,9 +341,16 @@ const AdminTable = ({ page, ...props }) => {
           table={page}
           data={row}
           columns={modelColumns}
-          {...(addShow === true && {add: addShow, show:addShow, onHide:() => setAddShow(false)})}
-          {...(editShow === true && {edit: editShow, show:editShow, onHide:() => setEditShow(false)})}
-
+          {...(addShow === true && {
+            add: addShow,
+            show: addShow,
+            onHide: () => setAddShow(false),
+          })}
+          {...(editShow === true && {
+            edit: editShow,
+            show: editShow,
+            onHide: () => setEditShow(false),
+          })}
         />
       )}
     </Container>

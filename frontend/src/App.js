@@ -1,16 +1,18 @@
 import React from "react";
 import Home from "./components/pages/Home/Home";
-
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import FrequentlyAskedQuestions from "./components/pages/FrequentlyAskedQuestions/FrequentlyAskedQuestions";
 import Signup from "./components/pages/Signup/SignupPage";
 import LoginPage from "./components/pages/Login/LoginPage";
+import SearchResults from "./components/pages/SearchResults/SearchResults";
 import Admin from "./components/pages/Admin/Admin";
 import TablePage from "./components/pages/Admin/AdminPages/TablePage";
 import RootTablePage from "./components/pages/Admin/AdminPages/RootTablePage";
 import Venue from "./components/pages/Venue/Venue";
 import UserDashboardPage from "./components/pages/UserDashboard/UserDashboardPage";
 import UserData from "./components/pages/UserDashboard/UserData/UserData";
+import { SearchProvider } from "./context/SearchContext";
+import { CategoryProvider } from "./context/CategoryContext";
 
 const App = () => {
   return (
@@ -31,7 +33,6 @@ const App = () => {
             <Route path="acceptedinvites" element={<TablePage />} />
             <Route path="questions" element={<TablePage />} />
             <Route path="ratings" element={<TablePage />} />
-
           </Route>
           <Route path="verification" element={<TablePage />} />
         </Route>

@@ -29,8 +29,6 @@ const RootTablePage = () => {
         <Link to={"ratings"} className={styles.tableLinks}>
           Ratings
         </Link>
-
-
       </Container>
 
       <Outlet />

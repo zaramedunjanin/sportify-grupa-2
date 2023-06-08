@@ -1,13 +1,11 @@
 import axios from "axios";
 import { baseURL } from "./adminService";
 
-export const getDataList =async (setData, page) => {
-  await axios
+export const getDataList = async (page) => {
+    const response = await axios
     .get(`${baseURL}/tables/${page}/`)
-    .then((res) => {
-        setData(res.data);
-    })
     .catch((e) => {
       console.error(e);
     });
+    return response.data
 };

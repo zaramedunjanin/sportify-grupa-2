@@ -1,5 +1,3 @@
-import { getFields } from "../../../../../services/AdminService/useAdminFetcher";
-
 const databaseColumns = {
   users: {
     title: "User Management",
@@ -101,47 +99,18 @@ const databaseColumns = {
   },
   acceptedinvites: {
     title: "Accepted Invites Management",
-    headers: [
-      "ID",
-      "Reservation ID",
-      "User ID",
-    ],
-    fields: [
-      "id",
-      "reservation_id",
-      "user_id",
-
-    ],
+    headers: ["ID", "Reservation ID", "User ID"],
+    fields: ["id", "reservation_id", "user_id"],
   },
   questions: {
     title: "Question Management",
-    headers: [
-      "ID",
-      "Text",
-      "Answer",
-      "Pinned",
-    ],
-    fields: [
-      "id",
-      "text",
-      "answer",
-      "pinned",
-    ],
+    headers: ["ID", "Text", "Answer", "Pinned"],
+    fields: ["id", "text", "answer", "pinned"],
   },
   ratings: {
     title: "Rating Management",
-    headers: [
-      "ID",
-      "Rating",
-      "User ID",
-      "Venue ID",
-    ],
-    fields: [
-      "id",
-      "rating",
-      "user_id",
-      "venue_id",
-    ],
+    headers: ["ID", "Rating", "User ID", "Venue ID"],
+    fields: ["id", "rating", "user_id", "venue_id"],
   },
   verification: {
     title: "Company Verification",
@@ -169,4 +138,5 @@ const databaseColumns = {
     ],
   },
 };
+
 export default databaseColumns;

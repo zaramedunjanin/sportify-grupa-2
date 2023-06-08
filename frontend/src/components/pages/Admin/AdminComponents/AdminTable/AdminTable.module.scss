@@ -7,16 +7,30 @@
   text-transform: uppercase;
 }
 .iconRed:hover {
-  color: #ED2839  ;
+  color: #ed2839;
 }
 
 .iconBlue:hover {
   color: blue;
 }
 
-.adminTableRows tr td{
+.adminTableRows tr td {
   max-width: 20ch;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+.adminTableRows tr:hover {
+  background-color: #efefef;
+}
+
+.adminTable th {
+  white-space: nowrap;
+}
+
+.tableImage{
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 100%;
 }

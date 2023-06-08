@@ -18,6 +18,7 @@ const CustomButton = ({
       backgroundColor = "red";
       hoverBackgroundColor = "blue";
       break;
+
     case "save":
       backgroundColor = "#28a8ed";
       hoverBackgroundColor = "#2087be";

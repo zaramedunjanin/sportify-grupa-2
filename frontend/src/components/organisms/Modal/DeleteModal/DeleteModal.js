@@ -19,11 +19,7 @@ const DeleteModal = (props) => {
         <p>Are you sure you want to {props.type}?</p>
       </Modal.Body>
       <Modal.Footer>
-        <CustomButton
-            onClick={props.onHide}
-            text={"Close"}
-            variant= "close"
-        />
+        <CustomButton onClick={props.onHide} text={"Close"} variant="close" />
         <CustomButton
           variant="delete"
           onClick={props.onClick}

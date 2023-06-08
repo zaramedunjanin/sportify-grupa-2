@@ -9,8 +9,8 @@ const AdminPages = () => {
   let page = window.location.pathname.split("/").at(-1);
   return (
     <>
-            <AdminHeader title={databaseColumns[page].title} />
-            <AdminTable page={page} databasecolumns={databaseColumns} />
+      <AdminHeader title={databaseColumns[page].title} />
+      <AdminTable page={page} databasecolumns={databaseColumns} />
       <Outlet />
     </>
   );
