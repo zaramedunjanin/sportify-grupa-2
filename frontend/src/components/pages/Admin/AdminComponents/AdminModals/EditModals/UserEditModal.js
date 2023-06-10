@@ -56,9 +56,6 @@ const UserEditModal = ({
         company_name: yup
             .string()
             .max(10),
-        profile_picture: yup
-            .string()
-            .max(10),
         email: yup
             .string()
             .email("Invalid email format")
@@ -74,7 +71,7 @@ const UserEditModal = ({
             .required("City Required")
             .max(10),
     });
-
+    console.log(data["profile_picture"])
   return (
     <Modal
       {...props}
@@ -113,9 +110,9 @@ const UserEditModal = ({
             username: "",
             password: "",
             company_name: "",
-            email: "",
-            phone_number: "",
-            profile_picture: "",
+              profile_picture: "",
+              email: "",
+              phone_number: "",
             gender: "",
             city: "",
             role: 2,
@@ -124,7 +121,8 @@ const UserEditModal = ({
           },
         })}
         onSubmit={(values,actions) => {
-            handleSubmit(values,data.id,add, edit)
+            console.log("fs")
+            handleSubmit(values, data.id, page, add, edit)
             props.onHide()
         }
         }
@@ -132,12 +130,11 @@ const UserEditModal = ({
           {({ values, errors }) => (
         <Form>
           <Modal.Body>
-              {edit === true && <div>ID: {data.id}</div>}
+              {edit === true && <div><FormB.Text>ID:</FormB.Text> {data.id}</div>}
               <Field name={"profile_picture"}  type={"file"} onChange = {handleChange} component={CustomImage} />
-
               <Field name={"first_name"} type={"text"} component={CustomInput} />
-            <Field name={"last_name"} type={"text"} component={CustomInput} />
-            <Field name={"username"} type={"text"} component={CustomInput} />
+              <Field name={"last_name"} type={"text"} component={CustomInput} />
+              <Field name={"username"} type={"text"} component={CustomInput} />
               <Field name={"email"} type={"email"} component={CustomInput} />
               <Field name={"password"} type={"text"} component={CustomInput} />
               <Field name={"city"} type={"text"} component={CustomInput} />

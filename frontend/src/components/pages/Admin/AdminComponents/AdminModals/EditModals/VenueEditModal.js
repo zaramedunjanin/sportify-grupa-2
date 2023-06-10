@@ -71,7 +71,7 @@ const VenueEditModal = ({
           },
         })}
         onSubmit={(values, actions) => {
-          handleSubmit(values,data.id,add, edit)
+          handleSubmit(values, data.id, page, add, edit)
           props.onHide()
         }}
       >

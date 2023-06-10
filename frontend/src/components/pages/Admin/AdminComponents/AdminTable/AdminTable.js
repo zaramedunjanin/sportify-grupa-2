@@ -17,34 +17,37 @@ import ReservationEditModal from "../AdminModals/EditModals/ReservationEditModal
 import QuestionEditModal from "../AdminModals/EditModals/QuestionEditModal";
 import InviteEditModal from "../AdminModals/EditModals/InviteEditModal";
 import RatingEditModal from "../AdminModals/EditModals/RatingEditModal";
+import ProfileDropdown from "../../../../molecules/Dropdown/ProfileDropdown/ProfileDropdown";
 
 const AdminTable = ({ page, ...props }) => {
   const [deleteShow, setDeleteShow] = useState(false);
-  const [editShow, setEditShow] = useState(false);
   const [acceptShow, setAcceptShow] = useState(false);
   const [declineShow, setDeclineShow] = useState(false);
   const [addShow, setAddShow] = useState(false);
+  const [editShow, setEditShow] = useState(false);
 
   let modelColumns = props.databasecolumns[page];
   let [row, setRow] = useState([]);
   const [data, setData] = useState("");
 
+  const fetchData = async () => {
+    try {
+      const response = await getDataList(page);
+      setData(response);
+    } catch (error) {
+      console.error("Failed to fetch data:", error);
+    }
+  };
+
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await getDataList(page);
-        setData(response);
-      } catch (error) {
-        console.error("Failed to fetch data:", error);
-      }
-    };
 
     fetchData();
   }, []);
 
-  const handleDelete = () => {
+  const handleDelete = async () => {
     setDeleteShow(false);
-    deleteData(row.id, page);
+    await deleteData(row.id, page);
+    await fetchData()
   };
   const handleDecline = () => {
     setDeclineShow(false);
@@ -117,9 +120,13 @@ const AdminTable = ({ page, ...props }) => {
                         d[field] === 3 && "User"
                       )
                     ) : typeof d[field] === "object" ? (
-                      d[field]
+                        (d[field].map((element) => {
+                            return(
+                                <ProfileDropdown/>
+                      )
+                          }))
                     ) : field.toString().includes("picture") ? (
-                      <img className={styles.tableImage} src={d[field]} alt={"slika"} />
+                      <img className={styles.tableImage} src={d[field]} alt={"Image"} />
                     ) : (
                       d[field]
                     )}

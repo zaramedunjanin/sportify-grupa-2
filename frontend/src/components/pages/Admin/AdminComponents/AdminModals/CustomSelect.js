@@ -16,7 +16,7 @@ const CustomSelect = ({ field, options, form, ...props }) => {
         aria-label="Default select example"
       >
         {options.map((o) => (
-          <option value={o.value}>{o.label}</option>
+            <option value={o.value}>{o.label}</option>
         ))}
       </select>
     </>
