@@ -1,11 +1,21 @@
 .adminTable th {
   white-space: nowrap;
 }
+.adminTable tbody tr td{
+  overflow-y: visible;
+}
 
 .adminTableHeader th {
-  font-weight: normal;
+  font-weight: bold;
   text-transform: uppercase;
 }
+
+.tableBackground{
+  background-color: white;
+  padding: 2% 4% 4% 4%;
+  border-radius: 30px;
+}
+
 .iconRed:hover {
   color: #ed2839;
 }
@@ -22,10 +32,6 @@
 }
 .adminTableRows tr:hover {
   background-color: #efefef;
-}
-
-.adminTable th {
-  white-space: nowrap;
 }
 
 .tableImage{

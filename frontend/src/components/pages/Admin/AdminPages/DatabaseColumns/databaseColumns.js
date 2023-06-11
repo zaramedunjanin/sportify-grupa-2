@@ -57,8 +57,8 @@ const databaseColumns = {
       "price_per_hour",
       "opening_time",
       "closing_time",
-      "company_id",
-      "sport_id",
+      "company",
+      "sport",
     ],
   },
   sports: {
@@ -70,6 +70,9 @@ const databaseColumns = {
     title: "Reservations Management",
     headers: [
       "ID",
+      "User",
+      "Venue",
+      "Sports",
       "Total Places",
       "Going",
       "Start Time",
@@ -78,12 +81,13 @@ const databaseColumns = {
       "Approved",
       "Auto Invite",
       "Number Of Invites",
-      "Sports",
-      "User",
-      "Venue",
     ],
     fields: [
       "id",
+      "user",
+      "venue",
+      "sport",
+
       "total_places",
       "going",
       "start_time",
@@ -92,15 +96,12 @@ const databaseColumns = {
       "approved",
       "auto_invite",
       "number_of_invites",
-      "sports_id",
-      "user_id",
-      "venue_id",
     ],
   },
   acceptedinvites: {
     title: "Accepted Invites Management",
-    headers: ["ID", "Reservation ID", "User ID"],
-    fields: ["id", "reservation_id", "user_id"],
+    headers: ["ID", "Reservation", "User"],
+    fields: ["id", "reservation", "user"],
   },
   questions: {
     title: "Question Management",
@@ -109,8 +110,8 @@ const databaseColumns = {
   },
   ratings: {
     title: "Rating Management",
-    headers: ["ID", "Rating", "User ID", "Venue ID"],
-    fields: ["id", "rating", "user_id", "venue_id"],
+    headers: ["ID", "Rating", "User", "Venue"],
+    fields: ["id", "rating", "user", "venue"],
   },
   verification: {
     title: "Company Verification",

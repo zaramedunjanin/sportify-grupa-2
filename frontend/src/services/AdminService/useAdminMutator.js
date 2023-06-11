@@ -11,15 +11,14 @@ export const deleteData = async (id, page) => {
     });
 };
 
-export const updateData = (data, page) => {
+export const editData = (data, page) => {
     axios
-        .put(`${baseURL}/tables/${page}/update/${data.id}/`, data)
-
+        .put(`${baseURL}/tables/${page}/edit/${data.id}/`, data)
         .catch((error) => {
             console.log(error.response);
         });
 };
-export const addData = (data, page) => {
+export const addData = async (data, page) => {
     axios
         .post(`${baseURL}/tables/${page}/add/`, data)
         .catch((error) => {
@@ -27,7 +26,7 @@ export const addData = (data, page) => {
         });
 };
 
-export const declineCompany = (data, page) => {
+export const declineCompany = async (data, page) => {
   data.verified = false;
   axios
     .put(`${baseURL}/tables/${page}/update/${data.id}/`, data)
@@ -37,7 +36,7 @@ export const declineCompany = (data, page) => {
     });
 };
 
-export const acceptCompany = (data, page) => {
+export const acceptCompany = async (data, page) => {
   data.verified = true;
   axios
     .put(`${baseURL}/tables/${page}/update/${data.id}/`, data)

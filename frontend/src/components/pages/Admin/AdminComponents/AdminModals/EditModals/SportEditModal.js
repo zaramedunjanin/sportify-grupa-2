@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import CustomButton from "../../../../../atoms/Buttons/CustomButton";
-import axios from "axios";
-import { baseURL } from "../../../../../../services/AdminService/adminService";
 import { Field, Form, Formik } from "formik";
-import CustomSelect from "../CustomSelect";
 import CustomInput from "../CustomInput";
+import * as yup from "yup";
+import {addData, editData} from "../../../../../../services/AdminService/useAdminMutator";
+
 const VenueEditModal = ({
   data,
   columns,
@@ -16,6 +16,14 @@ const VenueEditModal = ({
   edit,
   ...props
 }) => {
+
+  const validationSchema = yup.object().shape({
+    sport_name: yup
+        .string()
+        .required("Required")
+        .max(50),
+  });
+
   return (
     <Modal
       {...props}
@@ -28,8 +36,11 @@ const VenueEditModal = ({
         <Modal.Title id="contained-modal-title-vcenter">Edit</Modal.Title>
       </Modal.Header>
       <Formik
+          validationSchema={validationSchema}
+          validateOnChange={true}
         {...(edit === true && {
           initialValues: {
+            id: data.id,
             sport_name: data.sport_name,
           },
         })}
@@ -38,32 +49,14 @@ const VenueEditModal = ({
             sport_name: "",
           },
         })}
-        onSubmit={async (values, actions) => {
+        onSubmit={ (values, actions) => {
           if (add === true) {
-            console.log(add, edit);
+              addData(values, page)
 
-            await axios
-              .post(`${baseURL}/tables/sports/add/`, values)
-              .then((response) => {
-                {
-                  props.onHide();
-                }
-              })
-              .catch((error) => {
-                console.log(error.response);
-              });
           } else if (edit === true) {
-            await axios
-              .put(`${baseURL}/tables/sports/update/${data.id}/`, values)
-              .then((response) => {
-                {
-                  props.onHide();
-                }
-              })
-              .catch((error) => {
-                console.log(error.response);
-              });
+              editData(values, page)
           }
+          props.onHide()
         }}
       >
         <Form>

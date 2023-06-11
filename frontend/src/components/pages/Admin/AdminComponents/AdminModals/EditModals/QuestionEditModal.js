@@ -6,6 +6,9 @@ import { baseURL } from "../../../../../../services/AdminService/adminService";
 import { Field, Form, Formik } from "formik";
 import CustomSelect from "../CustomSelect";
 import CustomInput from "../CustomInput";
+import * as yup from "yup";
+import useImageUpload from "../../../../../../hooks/useImageUpload";
+import {addData, editData} from "../../../../../../services/AdminService/useAdminMutator";
 const VenueEditModal = ({
   data,
   columns,
@@ -16,6 +19,19 @@ const VenueEditModal = ({
   edit,
   ...props
 }) => {
+
+  const validationSchema = yup.object().shape({
+    user: yup
+        .number()
+        .required("Required"),
+    venue: yup
+        .number()
+        .required("Required"),
+    text:yup
+        .string()
+        .required("Required")
+  });
+
   return (
     <Modal
       {...props}
@@ -28,41 +44,42 @@ const VenueEditModal = ({
         <Modal.Title id="contained-modal-title-vcenter">Edit</Modal.Title>
       </Modal.Header>
       <Formik
-        initialValues={{
-          text: data.text,
-          answer: data.answer,
-          pinned: data.pinned,
-        }}
+          validationSchema={validationSchema}
+          validateOnChange={true}
+          {...(edit === true && {
+            initialValues: {
+              id: data.id,
+              user: data.user,
+              venue: data.venue,
+              text: data.text,
+              answer: data.answer,
+              pinned: data.pinned,
+            },
+          })}
+          {...(add === true && {
+            initialValues: {
+              user: "",
+              venue: "",
+              text: "",
+              answer: "",
+              pinned: false,
+            },
+          })}
         onSubmit={async (values, actions) => {
           if (add === true) {
-            await axios
-              .post(`${baseURL}/tables/questions/add/`, values)
-              .then((response) => {
-                {
-                  props.onHide();
-                }
-              })
-              .catch((error) => {
-                console.log(error.response);
-              });
+            addData(values, page)
+
+          } else if (edit === true) {
+            editData(values, page)
           }
-          if (edit === true) {
-            await axios
-              .put(`${baseURL}/tables/questions/update/${data.id}/`, values)
-              .then((response) => {
-                {
-                  props.onHide();
-                }
-              })
-              .catch((error) => {
-                console.log(error.response);
-              });
-          }
+          props.onHide()
         }}
       >
         <Form>
           <Modal.Body>
             {edit === true && <div>ID: {data.id}</div>}
+            <Field name={"venue"} type={"number"} component={CustomInput} />
+            <Field name={"user"} type={"number"} component={CustomInput} />
 
             <Field name={"text"} type={"text"} component={CustomInput} />
             <Field name={"answer"} type={"text"} component={CustomInput} />
@@ -70,8 +87,8 @@ const VenueEditModal = ({
               name={"pinned"}
               component={CustomSelect}
               options={[
-                { value: true, label: "Pinned" },
                 { value: false, label: "Not Pinned" },
+                { value: true, label: "Pinned" },
               ]}
             />
           </Modal.Body>

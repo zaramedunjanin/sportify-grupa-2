@@ -6,6 +6,9 @@ import { baseURL } from "../../../../../../services/AdminService/adminService";
 import { Field, Form, Formik } from "formik";
 import CustomSelect from "../CustomSelect";
 import CustomInput from "../CustomInput";
+import * as yup from "yup";
+import useImageUpload from "../../../../../../hooks/useImageUpload";
+import {addData, editData} from "../../../../../../services/AdminService/useAdminMutator";
 const VenueEditModal = ({
   data,
   columns,
@@ -16,6 +19,62 @@ const VenueEditModal = ({
   edit,
   ...props
 }) => {
+  const timeValidation = (time) => {
+    var regexp = /^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/i
+    const valid = regexp.test(time);
+    return valid ? {
+      isValid: true,
+    } : {
+      isValid: false,
+      errorMessage: 'Invalid time format',
+    }
+  }
+
+  const validationSchema = yup.object().shape({
+      user: yup
+          .number()
+          .required("Required"),
+      sport: yup
+          .number()
+          .required("Required"),
+      venue: yup
+          .number()
+          .required("Required"),
+    total_places: yup
+        .number()
+        .required("Required"),
+    start_time: yup
+        .string()
+        .required("Required")
+        .max(10).test('validator-custom-name', function (value) {
+          const validation = timeValidation(value);
+          if (!validation.isValid) {
+            return this.createError({
+              path: this.path,
+              message: validation.errorMessage,
+            });
+          }
+          else {
+            return true;
+          }
+        }),
+    end_time: yup
+        .string()
+        .required("Required")
+        .max(10).test('validator-custom-name', function (value) {
+          const validation = timeValidation(value);
+          if (!validation.isValid) {
+            return this.createError({
+              path: this.path,
+              message: validation.errorMessage,
+            });
+          }
+          else {
+            return true;
+          }
+        }),
+  });
+
   return (
     <Modal
       {...props}
@@ -28,9 +87,15 @@ const VenueEditModal = ({
         <Modal.Title id="contained-modal-title-vcenter">Edit</Modal.Title>
       </Modal.Header>
       <Formik
+          validationSchema={validationSchema}
+          validateOnChange={true}
         {...(edit === true && {
           initialValues: {
-            total_places: data.total_places,
+            id: data.id,
+              user: data.user_id,
+              sport: data.sport_id,
+              venue: data.venue_id,
+              total_places: data.total_places,
             going: data.going,
             start_time: data.start_time,
             end_time: data.end_time,
@@ -42,7 +107,10 @@ const VenueEditModal = ({
         })}
         {...(add === true && {
           initialValues: {
-            total_places: 0,
+              user: "",
+              sport: "",
+              venue: "",
+              total_places: 0,
             going: 0,
             start_time: "",
             end_time: "",
@@ -55,34 +123,20 @@ const VenueEditModal = ({
         initialValues={{}}
         onSubmit={async (values, actions) => {
           if (add === true) {
-            await axios
-              .post(`${baseURL}/tables/reservations/add/`, values)
-              .then((response) => {
-                {
-                  props.onHide();
-                }
-              })
-              .catch((error) => {
-                console.log(error.response);
-              });
+            addData(values, page)
+
+          } else if (edit === true) {
+            editData(values, page)
           }
-          if (edit === true) {
-            await axios
-              .put(`${baseURL}/tables/reservations/update/${data.id}/`, values)
-              .then((response) => {
-                {
-                  props.onHide();
-                }
-              })
-              .catch((error) => {
-                console.log(error.response);
-              });
-          }
+          props.onHide()
         }}
       >
         <Form>
           <Modal.Body>
             {edit === true && <div>ID: {data.id}</div>}
+              <Field name={"user"} type={"number"} component={CustomInput} />
+              <Field name={"sport"} type={"number"} component={CustomInput} />
+              <Field name={"venue"} type={"number"} component={CustomInput} />
 
             <Field
               name={"total_places"}
@@ -90,15 +144,15 @@ const VenueEditModal = ({
               component={CustomInput}
             />
             <Field name={"going"} type={"number"} component={CustomInput} />
-            <Field name={"start_time"} type={"time"} component={CustomInput} />
-            <Field name={"end_time"} type={"time"} component={CustomInput} />
+            <Field name={"start_time"} type={"text"} component={CustomInput} />
+            <Field name={"end_time"} type={"text"} component={CustomInput} />
             <Field name={"description"} type={"text"} component={CustomInput} />
             <Field
               name={"auto_invite"}
               component={CustomSelect}
               options={[
-                { value: true, label: "On" },
                 { value: false, label: "Off" },
+                  { value: true, label: "On" },
               ]}
             />
             <Field

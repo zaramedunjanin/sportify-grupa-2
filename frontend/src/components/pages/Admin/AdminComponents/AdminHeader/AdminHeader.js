@@ -11,9 +11,7 @@ const AdminHeader = ({ title }) => {
         <h4>{title}</h4>
       </Container>
 
-      <Container className={styles.headerSearch}>
-        <AdminSearch />
-      </Container>
+
     </>
   );
 };

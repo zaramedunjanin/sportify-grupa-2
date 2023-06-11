@@ -39,39 +39,37 @@ const UserEditModal = ({
     const validationSchema = yup.object().shape({
         first_name: yup
             .string()
-            .required("First Name Required")
-            .max(10),
+            .required("Required")
+            .max(50),
         last_name:yup
             .string()
-            .required("Last Name Required")
-            .max(10),
+            .required("Required")
+            .max(50),
         username: yup
             .string()
-            .required("Username Required")
-            .max(10),
+            .required("Required")
+            .max(50),
         password: yup
             .string()
-            .required("Password Required")
-            .max(10),
+            .required("Required")
+            .max(50),
         company_name: yup
             .string()
-            .max(10),
+            .max(100),
         email: yup
             .string()
             .email("Invalid email format")
-            .required("E-mail Required"),
+            .required("Required")
+            .max(50),
         phone_number: yup
             .string()
-            .max(10),
-        gender: yup
-            .string()
-            .max(10),
+            .max(50),
         city: yup
             .string()
-            .required("City Required")
-            .max(10),
+            .required("Required")
+            .max(50),
     });
-    console.log(data["profile_picture"])
+
   return (
     <Modal
       {...props}
@@ -88,6 +86,7 @@ const UserEditModal = ({
           validateOnChange={true}
         {...(edit === true && {
           initialValues: {
+            id:data.id,
             first_name: data.first_name,
             last_name: data.last_name,
             username: data.username,
@@ -121,8 +120,7 @@ const UserEditModal = ({
           },
         })}
         onSubmit={(values,actions) => {
-            console.log("fs")
-            handleSubmit(values, data.id, page, add, edit)
+            handleSubmit(values, page, add, edit)
             props.onHide()
         }
         }

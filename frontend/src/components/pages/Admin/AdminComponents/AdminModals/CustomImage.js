@@ -9,8 +9,6 @@ const CustomImage = (props) => {
     let replace = props.field.name.replace("_", " ");
     let name = replace.charAt(0).toUpperCase() + replace.slice(1);
 
-    console.log(props.field.values)
-
     return (
         <>
             <Form.Text>{name}</Form.Text>

@@ -3,7 +3,7 @@ import {getDownloadURL, ref, uploadBytesResumable} from "firebase/storage";
 import storage from "../config/firebaseConfig";
 import axios from "axios";
 import {baseURL} from "../services/AdminService/adminService";
-import {addData, updateData} from "../services/AdminService/useAdminMutator";
+import {addData, editData} from "../services/AdminService/useAdminMutator";
 
 const useImageUpload = () => {
 
@@ -14,10 +14,9 @@ const useImageUpload = () => {
         setFile(event.target.files[0]);
     }
 
-    const handleSubmit = (values, id , page, add =false, edit = false) => {
-        console.log("Ovdje")
+    const handleSubmit = (values, page, add =false, edit = false) => {
         if(file !== "") {
-
+            console.log("Nije prazan")
             const storageRef = ref(storage, `/files/${file.name}`);
             // progress can be paused and resumed. It also exposes progress updates.
             // Receives the storage reference and the file to upload.
@@ -45,7 +44,7 @@ const useImageUpload = () => {
                             addData(values, page)
                         }
                         if (edit === true) {
-                            updateData(values, page)
+                            editData(values, page)
                         }
                     });
                 }
@@ -53,10 +52,10 @@ const useImageUpload = () => {
         }
         else{
             if (edit === true) {
-                updateData(values, page)
+                editData(values, page)
             }
             if(add === true){
-                    addData(values, page)
+                addData(values, page)
             }
 
         }

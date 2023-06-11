@@ -18,6 +18,7 @@ import QuestionEditModal from "../AdminModals/EditModals/QuestionEditModal";
 import InviteEditModal from "../AdminModals/EditModals/InviteEditModal";
 import RatingEditModal from "../AdminModals/EditModals/RatingEditModal";
 import ProfileDropdown from "../../../../molecules/Dropdown/ProfileDropdown/ProfileDropdown";
+import {Dropdown, DropdownButton} from "react-bootstrap";
 
 const AdminTable = ({ page, ...props }) => {
   const [deleteShow, setDeleteShow] = useState(false);
@@ -40,37 +41,41 @@ const AdminTable = ({ page, ...props }) => {
   };
 
   useEffect(() => {
-
     fetchData();
-  }, []);
+  }, [page]);
 
   const handleDelete = async () => {
     setDeleteShow(false);
     await deleteData(row.id, page);
     await fetchData()
   };
-  const handleDecline = () => {
+  const handleDecline = async () => {
     setDeclineShow(false);
-    declineCompany(row, page);
+    await declineCompany(row, page);
+    await fetchData()
   };
-  const handleAccept = () => {
+  const handleAccept = async () => {
     setAcceptShow(false);
-    acceptCompany(row, page);
-  };
-  return (
-    <Container>
-      {page !== "verification" && (
-        <button
-          key={`add`}
-          onClick={() => {
-            setAddShow(true);
-          }}
-          className={"bg-transparent border-0"}
-        >
-          <span className="material-symbols-outlined">library_add</span>
-        </button>
-      )}
+    await acceptCompany(row, page);
+    await fetchData()
 
+  };
+
+  return (
+    <Container className={styles.tableBackground}>
+      {page !== "verification" && (
+          <Container className={"text-end"}>
+            <button
+              key={`add`}
+              onClick={() => {
+                setAddShow(true);
+              }}
+              className={"bg-transparent border-0"}
+            >
+              <span className="material-symbols-outlined">library_add</span>
+            </button>
+          </Container>
+      )}
       <Table
         responsive
         className={`text-center align-middle ${styles.adminTable}`}
@@ -120,11 +125,17 @@ const AdminTable = ({ page, ...props }) => {
                         d[field] === 3 && "User"
                       )
                     ) : typeof d[field] === "object" ? (
-                        (d[field].map((element) => {
+                        <DropdownButton
+                            variant="bg-none"
+                            title = {"View All"}
+                            className={styles.adminDropdown}
+                        >
+                          {d[field].map((element, index)=>{
                             return(
-                                <ProfileDropdown/>
-                      )
-                          }))
+                                <Dropdown.Item eventKey={index}>{element}</Dropdown.Item>
+                            )
+                          })}
+                        </DropdownButton>
                     ) : field.toString().includes("picture") ? (
                       <img className={styles.tableImage} src={d[field]} alt={"Image"} />
                     ) : (

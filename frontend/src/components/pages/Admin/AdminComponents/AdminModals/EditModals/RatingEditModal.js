@@ -6,6 +6,9 @@ import { baseURL } from "../../../../../../services/AdminService/adminService";
 import { Field, Form, Formik } from "formik";
 import CustomSelect from "../CustomSelect";
 import CustomInput from "../CustomInput";
+import * as yup from "yup";
+import useImageUpload from "../../../../../../hooks/useImageUpload";
+import {addData, editData} from "../../../../../../services/AdminService/useAdminMutator";
 const VenueEditModal = ({
   data,
   columns,
@@ -16,6 +19,20 @@ const VenueEditModal = ({
   edit,
   ...props
 }) => {
+
+  const validationSchema = yup.object().shape({
+    rating: yup
+        .number()
+        .required("Required")
+        .max(10),
+    user:yup
+        .number()
+        .required("Required"),
+    venue:yup
+        .number()
+        .required("Required")
+  });
+
   return (
     <Modal
       {...props}
@@ -28,45 +45,40 @@ const VenueEditModal = ({
         <Modal.Title id="contained-modal-title-vcenter">Edit</Modal.Title>
       </Modal.Header>
       <Formik
-        initialValues={{
-          rating: data.rating,
-          user_id: data.user_id,
-          venue_id: data.venue_id,
-        }}
+          validationSchema={validationSchema}
+          validateOnChange={true}
+          {...(edit === true && {
+            initialValues: {
+              id: data.id,
+              rating: data.rating,
+              user: data.user,
+              venue: data.venue,
+            },
+          })}
+          {...(add === true && {
+            initialValues: {
+              rating: 0,
+              user: "",
+              venue: "",
+            },
+          })}
         onSubmit={async (values, actions) => {
           if (add === true) {
-            await axios
-              .post(`${baseURL}/tables/ratings/add/`, values)
-              .then((response) => {
-                {
-                  props.onHide();
-                }
-              })
-              .catch((error) => {
-                console.log(error.response);
-              });
+            addData(values, page)
+
+          } else if (edit === true) {
+            editData(values, page)
           }
-          if (edit === true) {
-            await axios
-              .put(`${baseURL}/tables/ratings/update/${data.id}/`, values)
-              .then((response) => {
-                {
-                  props.onHide();
-                }
-              })
-              .catch((error) => {
-                console.log(error.response);
-              });
-          }
+          props.onHide()
         }}
       >
         <Form>
           <Modal.Body>
             {edit === true && <div>ID: {data.id}</div>}
 
-            <Field name={"rating"} type={"text"} component={CustomInput} />
-            <Field name={"user_id"} type={"text"} component={CustomInput} />
-            <Field name={"venue_id"} type={"text"} component={CustomInput} />
+            <Field name={"rating"} type={"number"} component={CustomInput} />
+            <Field name={"user"} type={"number"} component={CustomInput} />
+            <Field name={"venue"} type={"number"} component={CustomInput} />
           </Modal.Body>
           <Modal.Footer>
             <CustomButton

@@ -14,7 +14,7 @@ from venue.serializers import *
 
 @api_view(['GET'])
 def getUserList(request):
-    users = User.objects.prefetch_related('sport').filter(deleted_at__isnull = True)
+    users = User.objects.prefetch_related('sport').filter(deleted_at__isnull = True).order_by('id')
     serializer = UserSerializer(users, context={'request': request}, many=True)
     return Response(serializer.data)
 
@@ -57,7 +57,7 @@ def putUser(request, id):
 @api_view(['GET', 'POST'])
 def getSportList(request):
     if request.method == 'GET':
-        data = Sport.objects.all()
+        data = Sport.objects.all().order_by('id')
 
         serializer = SportSerializer(data, context={'request': request}, many=True)
 
@@ -101,7 +101,7 @@ def deleteSport(request, id):
 @api_view(['GET', 'POST'])
 def getVenueList(request):
     if request.method == 'GET':
-        data = Venue.objects.all()
+        data = Venue.objects.all().order_by('id')
 
         serializer = VenueSerializer(data, context={'request': request}, many=True)
 
@@ -145,7 +145,7 @@ def postVenue(request):
 @api_view(['GET', 'POST'])
 def getReservationsList(request):
     if request.method == 'GET':
-        data = Reservation.objects.all()
+        data = Reservation.objects.all().order_by('id')
 
         serializer = ReservationSerializer(data, context={'request': request}, many=True)
 
@@ -189,7 +189,7 @@ def postReservation(request):
 @api_view(['GET', 'POST'])
 def getAcceptedInvitesList(request):
     if request.method == 'GET':
-        data = AcceptedInvites.objects.all()
+        data = AcceptedInvites.objects.all().order_by('id')
 
         serializer = AcceptedInvitesSerializer(data, context={'request': request}, many=True)
 
@@ -233,7 +233,7 @@ def postInvite(request):
 @api_view(['GET', 'POST'])
 def getQuestionsList(request):
     if request.method == 'GET':
-        data = Question.objects.all()
+        data = Question.objects.all().order_by('id')
 
         serializer = QuestionSerializer(data, context={'request': request}, many=True)
 
@@ -277,7 +277,7 @@ def postQuestion(request):
 @api_view(['GET', 'POST'])
 def getRatingsList(request):
     if request.method == 'GET':
-        data = Rating.objects.all()
+        data = Rating.objects.all().order_by('id')
 
         serializer = RatingSerializer(data, context={'request': request}, many=True)
 
@@ -321,7 +321,7 @@ def postRating(request):
 @api_view(['GET', 'POST'])
 def getCompanyList(request):
     if request.method == 'GET':
-        data = User.objects.filter(role=2, verified = "").all()
+        data = User.objects.filter(role=2, verified = "").all().order_by('id')
 
         serializer = UserSerializer(data, context={'request': request}, many=True)
 
