@@ -28,6 +28,7 @@ class SignupSerializer(serializers.ModelSerializer):
     password = serializers.CharField(
         min_length=6, max_length=25, write_only=True, required=True)
 
+
     class Meta:
         model = User
         fields = ('username', 'email', 'password',

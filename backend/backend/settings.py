@@ -198,7 +198,6 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
 # sendgrid email settings
 SENDGRID_API_KEY = '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'
 EMAIL_HOST = 'smtp.sendgrid.net'

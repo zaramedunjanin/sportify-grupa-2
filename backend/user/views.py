@@ -24,7 +24,7 @@ def getUser(request):
 @api_view(['POST'])
 def signup(request):
     serializer = SignupSerializer(data=request.data)
-
+    print(serializer.is_valid())
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)

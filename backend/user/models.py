@@ -1,7 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from timestamps.models import models, Model
 
-
 # Create your models here.
 
 class Sport(Model):
@@ -17,16 +16,13 @@ class User(AbstractUser, Model):
         (USER, 'User'),
         (COMPANY, 'Company'),
     )
-    is_active = None
-    is_staff = None
-    is_superuser = None
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     username = models.CharField(max_length=50, unique=True)
-    company_name = models.CharField(max_length=100, unique=True, blank=True)
+    company_name = models.CharField(max_length=100, null = True, unique = True, blank=True)
     email = models.EmailField(max_length=50, null=True, unique=True)
     phone_number = models.CharField(max_length=50, unique=True)
-    password = models.CharField(max_length=50)
+    password = models.CharField(max_length=255)
     profile_picture = models.CharField(max_length=255, blank=True)
     gender = models.CharField(max_length=50, blank=True, default = "Other")
     city = models.CharField(max_length=50)

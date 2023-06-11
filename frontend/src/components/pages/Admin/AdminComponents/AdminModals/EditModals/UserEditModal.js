@@ -52,10 +52,7 @@ const UserEditModal = ({
         password: yup
             .string()
             .required("Required")
-            .max(50),
-        company_name: yup
-            .string()
-            .max(100),
+            .max(255),
         email: yup
             .string()
             .email("Invalid email format")
@@ -134,7 +131,7 @@ const UserEditModal = ({
               <Field name={"last_name"} type={"text"} component={CustomInput} />
               <Field name={"username"} type={"text"} component={CustomInput} />
               <Field name={"email"} type={"email"} component={CustomInput} />
-              <Field name={"password"} type={"text"} component={CustomInput} />
+              <Field name={"password"} type={"password"} component={CustomInput} />
               <Field name={"city"} type={"text"} component={CustomInput} />
 
               <Field name={"phone_number"} type={"text"} component={CustomInput}/>
