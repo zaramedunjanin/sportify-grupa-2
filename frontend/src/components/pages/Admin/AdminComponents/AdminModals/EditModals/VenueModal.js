@@ -11,7 +11,7 @@ import storage from "../../../../../../config/firebaseConfig";
 import useImageUpload from "../../../../../../hooks/useImageUpload";
 import CustomImage from "../CustomImage";
 import * as yup from "yup";
-const VenueEditModal = ({
+const VenueModal = ({
   data,
   columns,
   page,
@@ -197,4 +197,4 @@ const VenueEditModal = ({
     </Modal>
   );
 };
-export default VenueEditModal;
+export default VenueModal;

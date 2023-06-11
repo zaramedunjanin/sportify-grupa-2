@@ -3,15 +3,18 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
+import { useTranslation } from "react-i18next";
+import i18next from "i18next";
 
 import "./UserData.css";
 
 const UserData = ({ showModal, handleClose }) => {
+  const { t } = useTranslation();
   return (
     <>
       <Modal show={showModal} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Account</Modal.Title>
+          <Modal.Title>{t("account")}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
@@ -19,25 +22,25 @@ const UserData = ({ showModal, handleClose }) => {
               className="mb-3 edit_input"
               controlId="exampleForm.ControlInput1"
             >
-              <Form.Control type="text" placeholder="First name" autoFocus />
+              <Form.Control type="text" placeholder={t("fname")} autoFocus />
             </Form.Group>
             <Form.Group
               className="mb-3 edit_input"
               controlId="exampleForm.ControlInput1"
             >
-              <Form.Control type="text" placeholder="Last name" autoFocus />
+              <Form.Control type="text" placeholder={t("lname")} autoFocus />
             </Form.Group>
             <Form.Group
               className="mb-3 edit_input"
               controlId="exampleForm.ControlInput1"
             >
-              <Form.Control type="text" placeholder="City" autoFocus />
+              <Form.Control type="text" placeholder={t("city")} autoFocus />
             </Form.Group>
             <Form.Group
               className="mb-3 edit_input"
               controlId="exampleForm.ControlInput1"
             >
-              <Form.Control type="text" placeholder="Phone number" autoFocus />
+              <Form.Control type="text" placeholder={t("pnumber")} autoFocus />
             </Form.Group>
             <Form.Group
               className="mb-3 edit_input"
@@ -45,7 +48,7 @@ const UserData = ({ showModal, handleClose }) => {
             >
               <Form.Control
                 type="text"
-                placeholder="Username"
+                placeholder={t("username")}
                 autoFocus
                 disabled
               />
@@ -56,7 +59,7 @@ const UserData = ({ showModal, handleClose }) => {
             >
               <Form.Control
                 type="email"
-                placeholder="Email"
+                placeholder={t("email")}
                 autoFocus
                 disabled
               />
@@ -65,16 +68,20 @@ const UserData = ({ showModal, handleClose }) => {
               className="mb-3 edit_input"
               controlId="exampleForm.ControlInput1"
             >
-              <Form.Control type="password" placeholder="Password" autoFocus />
+              <Form.Control
+                type="password"
+                placeholder={t("password")}
+                autoFocus
+              />
             </Form.Group>
           </Form>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
-            Close
+            {t("close")}
           </Button>
           <Button variant="success" onClick={handleClose}>
-            Save Changes
+            {t("save_changes")}{" "}
           </Button>
         </Modal.Footer>
       </Modal>

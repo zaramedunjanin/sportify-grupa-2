@@ -20,7 +20,7 @@ const Dropdown = () => {
   useEffect(() => {
     const getSports = async () => {
       try {
-        getDataList(setSports, "sports");
+        await getDataList(setSports, "sports");
       } catch (error) {
         console.error("Failed to fetch data:", error);
       }

@@ -17,7 +17,7 @@ import storage from "../../../../../../config/firebaseConfig";
 import {ref, uploadBytesResumable, getDownloadURL} from "firebase/storage";
 import useImageUpload from "../../../../../../hooks/useImageUpload";
 
-const UserEditModal = ({
+const UserModal = ({
   data,
   columns,
   page,
@@ -196,4 +196,4 @@ const UserEditModal = ({
     </Modal>
   );
 };
-export default UserEditModal;
+export default UserModal;

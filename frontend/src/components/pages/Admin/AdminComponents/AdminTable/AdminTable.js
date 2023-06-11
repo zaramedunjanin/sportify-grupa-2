@@ -10,13 +10,13 @@ import {
   acceptCompany,
 } from "../../../../../services/AdminService/useAdminMutator";
 
-import UserEditModal from "../AdminModals/EditModals/UserEditModal";
-import VenueEditModal from "../AdminModals/EditModals/VenueEditModal";
-import SportEditModal from "../AdminModals/EditModals/SportEditModal";
-import ReservationEditModal from "../AdminModals/EditModals/ReservationEditModal";
+import UserModal from "../AdminModals/EditModals/UserModal";
+import VenueModal from "../AdminModals/EditModals/VenueModal";
+import SportEditModal from "../AdminModals/EditModals/SportModal";
+import ReservationEditModal from "../AdminModals/EditModals/ReservationModal";
 import QuestionEditModal from "../AdminModals/EditModals/QuestionEditModal";
-import InviteEditModal from "../AdminModals/EditModals/InviteEditModal";
-import RatingEditModal from "../AdminModals/EditModals/RatingEditModal";
+import InviteEditModal from "../AdminModals/EditModals/InviteModal";
+import RatingEditModal from "../AdminModals/EditModals/RatingModal";
 import ProfileDropdown from "../../../../molecules/Dropdown/ProfileDropdown/ProfileDropdown";
 import {Dropdown, DropdownButton} from "react-bootstrap";
 
@@ -246,7 +246,7 @@ const AdminTable = ({ page, ...props }) => {
         })}
       />
       {page === "users" && (
-        <UserEditModal
+        <UserModal
           page={page}
           table={page}
           data={row}
@@ -264,7 +264,7 @@ const AdminTable = ({ page, ...props }) => {
         />
       )}
       {page === "venues" && (
-        <VenueEditModal
+        <VenueModal
           page={page}
           table={page}
           data={row}
