@@ -12,7 +12,7 @@ def __str__(self):
     return f"{self.sport_name}"
 
 
-class User(AbstractUser, Model):
+class User(AbstractUser, models.Model):
     ADMIN = 1
     USER = 2
     COMPANY = 3
@@ -25,7 +25,7 @@ class User(AbstractUser, Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     username = models.CharField(max_length=50, unique=True)
-    company_name = models.CharField(max_length=100, unique=True, blank=True)
+    company_name = models.CharField(max_length=100, blank=True)
     email = models.EmailField(max_length=50, null=True, unique=True)
     phone_number = models.CharField(max_length=50, unique=True)
     password = models.CharField(max_length=50)

@@ -4,10 +4,11 @@ import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/esm/Col";
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";
-
+import { signup } from "../../../../services/UserService"
 import "../SignupForm/signUpForm.css";
 import MainButton from "../../../atoms/Buttons/MainButton/MainButton";
 import useSignUp from "../../../../hooks/useSignUp";
+import { useNavigate } from 'react-router-dom';
 const SignUpForm = () => {
   const { t } = useTranslation();
 
