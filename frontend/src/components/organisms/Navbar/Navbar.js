@@ -13,15 +13,19 @@ import ProfileDropdown from "../../molecules/Dropdown/ProfileDropdown/ProfileDro
 import Logo from "./Logo";
 import { Link, useNavigate } from "react-router-dom";
 import adminLinks from "./NavbarLinks/adminNavbarLinks";
-import userLinks from "./NavbarLinks/userNavbarLinks";
+import userLinks, { getUserNavbarLinks } from "./NavbarLinks/userNavbarLinks";
 import { Translation } from "react-i18next";
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";
+
+import uk_flag from "../../../assets/images/uk_flag.png";
+import bhs_flag from "../../../assets/images/bhs_flag.png";
 
 //The Navbar for the Main Page is default,
 // for the Search Page it is needed to pass the value "search", for the Admin Panel "admin" and for User Profiles "user" to the prop "variant"
 const Navbar = ({ variant = "default", ...props }) => {
   const { t } = useTranslation();
+  const userNavbarLinks = getUserNavbarLinks(t);
   const languages = [
     {
       code: "en",
@@ -52,7 +56,7 @@ const Navbar = ({ variant = "default", ...props }) => {
       break;
   }
 
-  let isAuth = false;
+  let isAuth = true;
 
   const navigate = useNavigate();
 
@@ -77,10 +81,10 @@ const Navbar = ({ variant = "default", ...props }) => {
                   );
                 })
               : variant === "user"
-              ? userLinks.map((l, index) => {
+              ? userNavbarLinks.map(({ url, navbarText }, index) => {
                   return (
-                    <Link to={l.url} className={styles.adminLinks} key={index}>
-                      {l.navbarText}
+                    <Link to={url} className={styles.adminLinks} key={index}>
+                      {navbarText}
                     </Link>
                   );
                 })
@@ -103,7 +107,22 @@ const Navbar = ({ variant = "default", ...props }) => {
                     className="dropdown-item"
                     onClick={() => i18next.changeLanguage(code)}
                   >
-                    <span className={`mx-2`}></span>
+                    <span className={`mx-2 ${styles.flagIcon}`}>
+                      {country_code === "en" && (
+                        <img
+                          src={uk_flag}
+                          alt="UK Flag"
+                          className="flag-icon"
+                        />
+                      )}
+                      {country_code === "bhs" && (
+                        <img
+                          src={bhs_flag}
+                          alt="BHS Flag"
+                          className="flag-icon"
+                        />
+                      )}
+                    </span>
                     {name}
                   </button>
                 </li>

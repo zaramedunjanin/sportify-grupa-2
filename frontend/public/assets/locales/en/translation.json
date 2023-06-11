@@ -39,5 +39,24 @@
     "paragraf_right": "Log in and catch up with the latest events.",
     "heading_left": "Don't have an account?",
     "paragraf_left": "Join with the peeeeepz.",
-    "welcome": "Welcome back!"
+    "welcome": "Welcome back!",
+    "profile": "Profile",
+    "edit": "Edit",
+    "log_out": "Log Out",
+    "account": "Account",
+    "close": "Close",
+    "save_changes": "Save changes",
+    "title_1": "History of the facilities",
+    "events": "Events",
+    "venues": "Venues",
+    "id": "ID",
+    "name_2": "Name",
+    "address": "Address",
+    "date": "Date",
+    "price_per_hour": "Price per hour",
+    "time": "Time",
+    "edit": "Edit",
+    "delete": "Delete",
+    "table": "No table entries currently available."
+
   }
