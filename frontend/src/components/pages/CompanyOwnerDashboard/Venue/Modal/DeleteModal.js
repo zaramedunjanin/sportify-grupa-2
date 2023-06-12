@@ -1,5 +1,5 @@
 const DeleteModal = ({ modalText, venue, ...props }) => {
-  console.log(venue);
+  
   return (
     <div
       class="modal fade"

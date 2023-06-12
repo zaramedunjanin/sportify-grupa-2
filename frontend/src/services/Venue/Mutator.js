@@ -34,4 +34,4 @@ const deleteVenue = async (venue) => {
   };
 
 
-export default getAllVenues;
+export default updateVenue;

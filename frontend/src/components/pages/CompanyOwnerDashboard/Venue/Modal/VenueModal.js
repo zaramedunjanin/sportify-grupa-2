@@ -1,5 +1,6 @@
 import { useState } from "react";
 import useImageUpdate from "../../../../../hooks/useImageUpdate";
+import updateVenue from "../../../../../services/Venue/Mutator";
 
 const initialData = {
   venue_name: "",
@@ -15,26 +16,39 @@ const initialData = {
 };
 
 const VenueModal = ({ venue, action, ...props }) => {
-  const [currentValues, setCurrentValues] = useState(venue ? venue: initialData );
+  const [currentValues, setCurrentValues] = useState(
+    action === "edit" ? venue : initialData
+  );
 
   const saveVenue = () => {
+    console.log(action);
+    console.log(currentValues);
     if (action === "add") {
       addVenue();
     } else if (action === "edit") {
-      updateVenue();
+      editVenue();
     }
   };
 
   const addVenue = () => {
     console.log("add");
   };
-  const updateVenue = () => {
-    console.log("edit");
+
+  const editVenue = async () => {
+    try {
+      // Perform the API call or data fetching here
+      const response = await updateVenue(currentValues);
+      console.log(response);
+    } catch (error) {
+      console.error("Failed to fetch data:", error);
+    }
   };
+
+  console.log("modal", currentValues)
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setCurrentValues({...currentValues, [name]:value})
+    setCurrentValues({ ...currentValues, [name]: value });
   };
 
   return (

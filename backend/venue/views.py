@@ -81,8 +81,9 @@ def add_venue(request):
 
 # edits venue
 @api_view(['PUT'])
-def update_venue(request, pk):
+def update_venue(request):
     try:
+        pk = request.GET.get('id', None)
         venue = Venue.objects.get(pk=pk)
     except Venue.DoesNotExist:
         return Response({'message': 'Venue does not exist.'}, status=status.HTTP_404_NOT_FOUND)

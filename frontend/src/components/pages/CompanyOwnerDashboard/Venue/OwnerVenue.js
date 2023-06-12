@@ -51,6 +51,12 @@ const OwnerVenue = () => {
   const [deleteId, setDeleteId] = useState(0);
   const [editId, setEditId] = useState(0);
 
+  const getSelectedVenue = (venue_id) => {
+    let wantedVenue = result.find((v) => v.id === venue_id);
+    console.log("wanted",wantedVenue);
+    return wantedVenue;
+  };
+
   return (
     <>
       <div className="container mt-4 d-flex justify-content-end">
@@ -80,8 +86,11 @@ const OwnerVenue = () => {
             })}
         </div>
       </div>
-      <DeleteModal modalText="Delete venue?" venue={result[deleteId]} />
-      <VenueModal venue={ editId ? result[editId] : -1 } action="edit" />
+      <DeleteModal
+        modalText="Delete venue?"
+        venue={() => getSelectedVenue(editId)}
+      />
+      <VenueModal venue={() => getSelectedVenue(editId)} action={"edit"} editId={editId} />
     </>
   );
 };
