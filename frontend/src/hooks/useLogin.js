@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "axios";
 
 const useLoginForm = () => {
   const [email, setEmail] = useState("");
@@ -29,6 +30,21 @@ const useLoginForm = () => {
     if (password.trim() === "") {
       setPasswordError("Password is required");
       isDisabled = true;
+    }
+
+    if (!isDisabled) {
+      axios
+          .post("http://127.0.0.1:8000/api/token/", {
+            email: email,
+            password: password,
+          })
+          .then((response) => {
+            localStorage.setItem('token', response.data.access);
+            window.location.href = '/';
+          })
+          .catch((error) => {
+            console.log('Login error:', error);
+          });
     }
   };
 

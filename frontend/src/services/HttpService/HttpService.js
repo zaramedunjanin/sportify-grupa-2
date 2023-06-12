@@ -10,9 +10,9 @@ const token = localStorage.getItem("token");
 
 const instance = axios.create({
   baseURL: baseURL,
-  // headers: {
-  //   'Authorization': `Bearer ${token}`
-  // }
+  headers: {
+    'Authorization': `Bearer ${token}`
+  }
 });
 
 if (token)

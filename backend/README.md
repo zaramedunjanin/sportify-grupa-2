@@ -8,9 +8,9 @@ To install all neccessary packages, run this command in Django: <br>
 ```
 pip install -r requirements.txt
 ```
-If you have installed new packages enter:
+If you have installed new packages enter:pip freeze
+
 ```
-pip freeze 
 ```
 into the Terminal, copy and paste the text into the requirements.txt file.
 ##### Database
