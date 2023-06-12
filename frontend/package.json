@@ -16,6 +16,7 @@
     "bootstrap": "^5.2.3",
     "firebase": "^9.22.1",
     "flag-icons": "^6.7.0",
+    "formik": "^2.4.1",
     "i18next": "^22.5.0",
     "i18next-browser-languagedetector": "^7.0.2",
     "i18next-http-backend": "^2.2.1",
@@ -30,7 +31,8 @@
     "react-router-dom": "^6.12.1",
     "react-scripts": "5.0.1",
     "sass": "^1.62.1",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "yup": "^1.2.0"
   },
   "scripts": {
     "start": "react-scripts start",

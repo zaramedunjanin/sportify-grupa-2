@@ -17,8 +17,17 @@ const RootTablePage = () => {
         <Link to={"venues"} className={styles.tableLinks}>
           Venues
         </Link>
+        <Link to={"acceptedinvites"} className={styles.tableLinks}>
+          Accepted Invites
+        </Link>
         <Link to={"reservations"} className={styles.tableLinks}>
           Reservations
+        </Link>
+        <Link to={"questions"} className={styles.tableLinks}>
+          Questions
+        </Link>
+        <Link to={"ratings"} className={styles.tableLinks}>
+          Ratings
         </Link>
       </Container>
 

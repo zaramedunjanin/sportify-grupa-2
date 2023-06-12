@@ -18,6 +18,19 @@ const CustomButton = ({
       backgroundColor = "red";
       hoverBackgroundColor = "blue";
       break;
+
+    case "save":
+      backgroundColor = "#28a8ed";
+      hoverBackgroundColor = "#2087be";
+      break;
+    case "delete":
+      backgroundColor = "#ED2839";
+      hoverBackgroundColor = "#cb2231";
+      break;
+    case "close":
+      backgroundColor = "#9b9b9b";
+      hoverBackgroundColor = "#7e7e7e";
+      break;
     default:
       backgroundColor = "gray";
       hoverBackgroundColor = "darkgray";

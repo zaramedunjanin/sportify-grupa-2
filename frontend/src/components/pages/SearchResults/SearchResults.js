@@ -3,7 +3,7 @@ import Dropdown from "./FilterDropdown/Dropdown";
 import getAllVenues from "../../../services/Venue/Query";
 import React, { useState, useEffect, useContext } from "react";
 import Navbar from "../../organisms/Navbar/Navbar";
-import styles from "./SearchResult.module.scss"
+import styles from "./SearchResult.module.scss";
 
 import { SearchContext } from "../../../context/SearchContext";
 import { CategoryContext } from "../../../context/CategoryContext";
@@ -16,25 +16,25 @@ const SearchResults = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        // Perform the API call or data fetching here
-        const response = await getAllVenues(searchCriteria, searchText);
-        setResult(response);
-      } catch (error) {
-        console.error("Failed to fetch data:", error);
-      }
-    };
+    try {
+      // Perform the API call or data fetching here
+      const response = await getAllVenues(searchCriteria, searchText);
+      setResult(response);
+    } catch (error) {
+      console.error("Failed to fetch data:", error);
+    }
+  };
 
-    fetchData();
-  }, [searchCriteria, searchText]);
+  fetchData();
+}, [searchCriteria, searchText]);
 
   return (
     <>
       <Navbar variant="search" />
       <div className={`${styles.bakc}`}>
         <div className={`d-flex justify-content-end`}>
-          <div  className={`container mt-3`}>
-              <Dropdown />
+          <div className={`container mt-3`}>
+            <Dropdown />
           </div>
         </div>
 
@@ -55,7 +55,7 @@ const SearchResults = () => {
           </div>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 };
