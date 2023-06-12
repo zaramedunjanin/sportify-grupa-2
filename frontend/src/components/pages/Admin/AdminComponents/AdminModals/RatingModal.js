@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import Modal from "react-bootstrap/Modal";
-import CustomButton from "../../../../../atoms/Buttons/CustomButton";
+import CustomButton from "../../../../atoms/Buttons/CustomButton";
 import axios from "axios";
-import { baseURL } from "../../../../../../services/AdminService/adminService";
+import { baseURL } from "../../../../../services/AdminService/adminService";
 import { Field, Form, Formik } from "formik";
-import CustomSelect from "../CustomSelect";
-import CustomInput from "../CustomInput";
+import CustomSelect from "./CustomFormComponents/CustomSelect";
+import CustomInput from "./CustomFormComponents/CustomInput";
 import * as yup from "yup";
-import useImageUpload from "../../../../../../hooks/useImageUpload";
-import {addData, editData} from "../../../../../../services/AdminService/useAdminMutator";
+import useAdminDataUpload from "../../../../../hooks/useAdminDataUpload";
+import {
+  addData,
+  editData,
+} from "../../../../../services/AdminService/useAdminMutator";
 const VenueEditModal = ({
   data,
   columns,
@@ -19,18 +22,10 @@ const VenueEditModal = ({
   edit,
   ...props
 }) => {
-
   const validationSchema = yup.object().shape({
-    rating: yup
-        .number()
-        .required("Required")
-        .max(10),
-    user:yup
-        .number()
-        .required("Required"),
-    venue:yup
-        .number()
-        .required("Required")
+    rating: yup.number().required("Required").max(10),
+    user: yup.number().required("Required"),
+    venue: yup.number().required("Required"),
   });
 
   return (
@@ -45,31 +40,30 @@ const VenueEditModal = ({
         <Modal.Title id="contained-modal-title-vcenter">Edit</Modal.Title>
       </Modal.Header>
       <Formik
-          validationSchema={validationSchema}
-          validateOnChange={true}
-          {...(edit === true && {
-            initialValues: {
-              id: data.id,
-              rating: data.rating,
-              user: data.user,
-              venue: data.venue,
-            },
-          })}
-          {...(add === true && {
-            initialValues: {
-              rating: 0,
-              user: "",
-              venue: "",
-            },
-          })}
+        validationSchema={validationSchema}
+        validateOnChange={true}
+        {...(edit === true && {
+          initialValues: {
+            id: data.id,
+            rating: data.rating,
+            user: data.user,
+            venue: data.venue,
+          },
+        })}
+        {...(add === true && {
+          initialValues: {
+            rating: 0,
+            user: "",
+            venue: "",
+          },
+        })}
         onSubmit={async (values, actions) => {
           if (add === true) {
-            addData(values, page)
-
+            addData(values, page);
           } else if (edit === true) {
-            editData(values, page)
+            editData(values, page);
           }
-          props.onHide()
+          props.onHide();
         }}
       >
         <Form>

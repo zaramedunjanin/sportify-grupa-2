@@ -10,15 +10,15 @@ import {
   acceptCompany,
 } from "../../../../../services/AdminService/useAdminMutator";
 
-import UserModal from "../AdminModals/EditModals/UserModal";
-import VenueModal from "../AdminModals/EditModals/VenueModal";
-import SportEditModal from "../AdminModals/EditModals/SportModal";
-import ReservationEditModal from "../AdminModals/EditModals/ReservationModal";
-import QuestionEditModal from "../AdminModals/EditModals/QuestionEditModal";
-import InviteEditModal from "../AdminModals/EditModals/InviteModal";
-import RatingEditModal from "../AdminModals/EditModals/RatingModal";
+import UserModal from "../AdminModals/UserModal";
+import VenueModal from "../AdminModals/VenueModal";
+import SportEditModal from "../AdminModals/SportModal";
+import ReservationEditModal from "../AdminModals/ReservationModal";
+import QuestionEditModal from "../AdminModals/QuestionModal";
+import InviteEditModal from "../AdminModals/InviteModal";
+import RatingEditModal from "../AdminModals/RatingModal";
 import ProfileDropdown from "../../../../molecules/Dropdown/ProfileDropdown/ProfileDropdown";
-import {Dropdown, DropdownButton} from "react-bootstrap";
+import { Dropdown, DropdownButton } from "react-bootstrap";
 
 const AdminTable = ({ page, ...props }) => {
   const [deleteShow, setDeleteShow] = useState(false);
@@ -47,34 +47,33 @@ const AdminTable = ({ page, ...props }) => {
   const handleDelete = async () => {
     setDeleteShow(false);
     await deleteData(row.id, page);
-    await fetchData()
+    await fetchData();
   };
   const handleDecline = async () => {
     setDeclineShow(false);
     await declineCompany(row, page);
-    await fetchData()
+    await fetchData();
   };
   const handleAccept = async () => {
     setAcceptShow(false);
     await acceptCompany(row, page);
-    await fetchData()
-
+    await fetchData();
   };
 
   return (
     <Container className={styles.tableBackground}>
       {page !== "verification" && (
-          <Container className={"text-end"}>
-            <button
-              key={`add`}
-              onClick={() => {
-                setAddShow(true);
-              }}
-              className={"bg-transparent border-0"}
-            >
-              <span className="material-symbols-outlined">library_add</span>
-            </button>
-          </Container>
+        <Container className={"text-end"}>
+          <button
+            key={`add`}
+            onClick={() => {
+              setAddShow(true);
+            }}
+            className={"bg-transparent border-0"}
+          >
+            <span className="material-symbols-outlined">library_add</span>
+          </button>
+        </Container>
       )}
       <Table
         responsive
@@ -125,19 +124,25 @@ const AdminTable = ({ page, ...props }) => {
                         d[field] === 3 && "User"
                       )
                     ) : typeof d[field] === "object" ? (
-                        <DropdownButton
-                            variant="bg-none"
-                            title = {"View All"}
-                            className={styles.adminDropdown}
-                        >
-                          {d[field].map((element, index)=>{
-                            return(
-                                <Dropdown.Item eventKey={index}>{element}</Dropdown.Item>
-                            )
-                          })}
-                        </DropdownButton>
+                      <DropdownButton
+                        variant="bg-none"
+                        title={"View All"}
+                        className={styles.adminDropdown}
+                      >
+                        {d[field].map((element, index) => {
+                          return (
+                            <Dropdown.Item eventKey={index}>
+                              {element}
+                            </Dropdown.Item>
+                          );
+                        })}
+                      </DropdownButton>
                     ) : field.toString().includes("picture") ? (
-                      <img className={styles.tableImage} src={d[field]} alt={"Image"} />
+                      <img
+                        className={styles.tableImage}
+                        src={d[field]}
+                        alt={"Image"}
+                      />
                     ) : (
                       d[field]
                     )}
@@ -250,7 +255,6 @@ const AdminTable = ({ page, ...props }) => {
           page={page}
           table={page}
           data={row}
-          columns={modelColumns}
           {...(addShow === true && {
             add: addShow,
             show: addShow,
@@ -268,7 +272,6 @@ const AdminTable = ({ page, ...props }) => {
           page={page}
           table={page}
           data={row}
-          columns={modelColumns}
           {...(addShow === true && {
             add: addShow,
             show: addShow,
@@ -286,7 +289,6 @@ const AdminTable = ({ page, ...props }) => {
           page={page}
           table={page}
           data={row}
-          columns={modelColumns}
           {...(addShow === true && {
             add: addShow,
             show: addShow,
@@ -304,7 +306,6 @@ const AdminTable = ({ page, ...props }) => {
           page={page}
           table={page}
           data={row}
-          columns={modelColumns}
           {...(addShow === true && {
             add: addShow,
             show: addShow,
@@ -322,7 +323,6 @@ const AdminTable = ({ page, ...props }) => {
           page={page}
           table={page}
           data={row}
-          columns={modelColumns}
           {...(addShow === true && {
             add: addShow,
             show: addShow,
@@ -340,7 +340,6 @@ const AdminTable = ({ page, ...props }) => {
           page={page}
           table={page}
           data={row}
-          columns={modelColumns}
           {...(addShow === true && {
             add: addShow,
             show: addShow,
@@ -358,7 +357,6 @@ const AdminTable = ({ page, ...props }) => {
           page={page}
           table={page}
           data={row}
-          columns={modelColumns}
           {...(addShow === true && {
             add: addShow,
             show: addShow,

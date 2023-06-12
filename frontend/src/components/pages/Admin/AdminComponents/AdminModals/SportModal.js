@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import Modal from "react-bootstrap/Modal";
-import CustomButton from "../../../../../atoms/Buttons/CustomButton";
+import CustomButton from "../../../../atoms/Buttons/CustomButton";
 import { Field, Form, Formik } from "formik";
-import CustomInput from "../CustomInput";
+import CustomInput from "./CustomFormComponents/CustomInput";
 import * as yup from "yup";
-import {addData, editData} from "../../../../../../services/AdminService/useAdminMutator";
+import {
+  addData,
+  editData,
+} from "../../../../../services/AdminService/useAdminMutator";
 
 const VenueEditModal = ({
   data,
@@ -16,12 +19,8 @@ const VenueEditModal = ({
   edit,
   ...props
 }) => {
-
   const validationSchema = yup.object().shape({
-    sport_name: yup
-        .string()
-        .required("Required")
-        .max(50),
+    sport_name: yup.string().required("Required").max(50),
   });
 
   return (
@@ -36,8 +35,8 @@ const VenueEditModal = ({
         <Modal.Title id="contained-modal-title-vcenter">Edit</Modal.Title>
       </Modal.Header>
       <Formik
-          validationSchema={validationSchema}
-          validateOnChange={true}
+        validationSchema={validationSchema}
+        validateOnChange={true}
         {...(edit === true && {
           initialValues: {
             id: data.id,
@@ -49,14 +48,13 @@ const VenueEditModal = ({
             sport_name: "",
           },
         })}
-        onSubmit={ (values, actions) => {
+        onSubmit={(values, actions) => {
           if (add === true) {
-              addData(values, page)
-
+            addData(values, page);
           } else if (edit === true) {
-              editData(values, page)
+            editData(values, page);
           }
-          props.onHide()
+          props.onHide();
         }}
       >
         <Form>

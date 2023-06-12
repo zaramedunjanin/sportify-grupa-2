@@ -5,7 +5,7 @@ import axios from "axios";
 import {baseURL} from "../services/AdminService/adminService";
 import {addData, editData} from "../services/AdminService/useAdminMutator";
 
-const useImageUpload = () => {
+const useAdminDataUpload = () => {
 
     const [file, setFile] = useState("");
     const [percent, setPercent] = useState(0);
@@ -69,4 +69,4 @@ const useImageUpload = () => {
         handleSubmit
     }
 }
-export default useImageUpload;
+export default useAdminDataUpload;
