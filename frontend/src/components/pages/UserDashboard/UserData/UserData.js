@@ -22,13 +22,21 @@ const UserData = ({ showModal, handleClose }) => {
               className="mb-3 edit_input"
               controlId="exampleForm.ControlInput1"
             >
-              <Form.Control type="text" placeholder={t("fname")} autoFocus />
+              <Form.Control
+                type="text"
+                placeholder={t("first_name")}
+                autoFocus
+              />
             </Form.Group>
             <Form.Group
               className="mb-3 edit_input"
               controlId="exampleForm.ControlInput1"
             >
-              <Form.Control type="text" placeholder={t("lname")} autoFocus />
+              <Form.Control
+                type="text"
+                placeholder={t("last_name")}
+                autoFocus
+              />
             </Form.Group>
             <Form.Group
               className="mb-3 edit_input"
@@ -40,7 +48,11 @@ const UserData = ({ showModal, handleClose }) => {
               className="mb-3 edit_input"
               controlId="exampleForm.ControlInput1"
             >
-              <Form.Control type="text" placeholder={t("pnumber")} autoFocus />
+              <Form.Control
+                type="text"
+                placeholder={t("phone_number")}
+                autoFocus
+              />
             </Form.Group>
             <Form.Group
               className="mb-3 edit_input"

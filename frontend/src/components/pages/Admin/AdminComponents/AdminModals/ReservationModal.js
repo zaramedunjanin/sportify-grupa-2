@@ -8,6 +8,8 @@ import CustomSelect from "./CustomFormComponents/CustomSelect";
 import CustomInput from "./CustomFormComponents/CustomInput";
 import * as yup from "yup";
 import useAdminDataUpload from "../../../../../hooks/useAdminDataUpload";
+import { useTranslation } from "react-i18next";
+import i18next from "i18next";
 import {
   addData,
   editData,
@@ -22,6 +24,7 @@ const VenueEditModal = ({
   edit,
   ...props
 }) => {
+  const { t } = useTranslation();
   const timeValidation = (time) => {
     var regexp = /^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/i;
     const valid = regexp.test(time);
@@ -81,7 +84,9 @@ const VenueEditModal = ({
       backdrop={"static"}
     >
       <Modal.Header>
-        <Modal.Title id="contained-modal-title-vcenter">Edit</Modal.Title>
+        <Modal.Title id="contained-modal-title-vcenter">
+          {t("edit")}
+        </Modal.Title>
       </Modal.Header>
       <Formik
         validationSchema={validationSchema}
@@ -130,44 +135,82 @@ const VenueEditModal = ({
         <Form>
           <Modal.Body>
             {edit === true && <div>ID: {data.id}</div>}
-            <Field name={"user"} type={"number"} component={CustomInput} />
-            <Field name={"sport"} type={"number"} component={CustomInput} />
-            <Field name={"venue"} type={"number"} component={CustomInput} />
+            <Field
+              name={"user"}
+              type={"number"}
+              label={t("user")}
+              component={CustomInput}
+            />
+            <Field
+              name={"sport"}
+              type={"number"}
+              label={t("sport")}
+              component={CustomInput}
+            />
+            <Field
+              name={"venue"}
+              type={"number"}
+              label={t("venue")}
+              component={CustomInput}
+            />
 
             <Field
               name={"total_places"}
               type={"number"}
+              label={t("total_places")}
               component={CustomInput}
             />
-            <Field name={"going"} type={"number"} component={CustomInput} />
-            <Field name={"start_time"} type={"text"} component={CustomInput} />
-            <Field name={"end_time"} type={"text"} component={CustomInput} />
-            <Field name={"description"} type={"text"} component={CustomInput} />
+            <Field
+              name={"going"}
+              type={"number"}
+              label={t("going")}
+              component={CustomInput}
+            />
+            <Field
+              name={"start_time"}
+              type={"text"}
+              label={t("start_time")}
+              component={CustomInput}
+            />
+            <Field
+              name={"end_time"}
+              type={"text"}
+              label={t("end_time")}
+              component={CustomInput}
+            />
+            <Field
+              name={"description"}
+              type={"text"}
+              label={t("description")}
+              component={CustomInput}
+            />
             <Field
               name={"auto_invite"}
+              label={t("auto_invite")}
               component={CustomSelect}
               options={[
-                { value: false, label: "Off" },
-                { value: true, label: "On" },
+                { value: false, label: t("off") },
+                { value: true, label: t("on") },
               ]}
             />
             <Field
               name={"number_of_invites"}
               type={"number"}
+              label={t("number_of_invites")}
               component={CustomInput}
             />
           </Modal.Body>
           <Modal.Footer>
             <CustomButton
-              text={"Close"}
+              text={t("close")}
               variant={"close"}
               type={"button"}
               onClick={props.onHide}
             >
-              Close
+              {t("close")}
             </CustomButton>
             <CustomButton
-              text={"Save"}
+              text={t("save_changes")}
               variant={"save"}
               type={"submit"}
             ></CustomButton>

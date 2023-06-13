@@ -4,11 +4,11 @@ import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/esm/Col";
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";
-import { signup } from "../../../../services/UserService"
+import { signup } from "../../../../services/UserService";
 import "../SignupForm/signUpForm.css";
 import MainButton from "../../../atoms/Buttons/MainButton/MainButton";
 import useSignUp from "../../../../hooks/useSignUp";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 const SignUpForm = () => {
   const { t } = useTranslation();
 
@@ -52,7 +52,7 @@ const SignUpForm = () => {
           <input
             type="text"
             className={`input_1 ${firstNameError ? "is-invalid" : ""}`}
-            placeholder={t("fname")}
+            placeholder={t("first_name")}
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
           />
@@ -64,7 +64,7 @@ const SignUpForm = () => {
           <input
             type="text"
             className={`input_1 ${lastNameError ? "is-invalid" : ""}`}
-            placeholder={t("lname")}
+            placeholder={t("last_name")}
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
           />
@@ -87,7 +87,7 @@ const SignUpForm = () => {
           <input
             type="text"
             className={`input_1 ${phoneNumberError ? "is-invalid" : ""}`}
-            placeholder={t("pnumber")}
+            placeholder={t("phone_number")}
             value={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
           />

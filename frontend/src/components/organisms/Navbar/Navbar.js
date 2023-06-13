@@ -12,7 +12,9 @@ import ProfileDropdown from "../../molecules/Dropdown/ProfileDropdown/ProfileDro
 
 import Logo from "./Logo";
 import { Link, useNavigate } from "react-router-dom";
-import adminLinks from "./NavbarLinks/adminNavbarLinks";
+import adminLinks, {
+  getAdminNavbarLinks,
+} from "./NavbarLinks/adminNavbarLinks";
 import userLinks, { getUserNavbarLinks } from "./NavbarLinks/userNavbarLinks";
 import { Translation } from "react-i18next";
 import { useTranslation } from "react-i18next";
@@ -26,6 +28,7 @@ import bhs_flag from "../../../assets/images/bhs_flag.png";
 const Navbar = ({ variant = "default", ...props }) => {
   const { t } = useTranslation();
   const userNavbarLinks = getUserNavbarLinks(t);
+  const userAdminNavbarLinks = getAdminNavbarLinks(t);
   const languages = [
     {
       code: "en",
@@ -73,7 +76,7 @@ const Navbar = ({ variant = "default", ...props }) => {
         <NavbarBS.Collapse id="navbarScroll" className="justify-content-end">
           <Container className={"text-center"}>
             {variant === "admin"
-              ? adminLinks.map((l, index) => {
+              ? userAdminNavbarLinks.map((l, index) => {
                   return (
                     <Link to={l.url} className={styles.adminLinks} key={index}>
                       {l.navbarText}

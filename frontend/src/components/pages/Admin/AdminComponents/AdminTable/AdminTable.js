@@ -20,7 +20,11 @@ import RatingEditModal from "../AdminModals/RatingModal";
 import ProfileDropdown from "../../../../molecules/Dropdown/ProfileDropdown/ProfileDropdown";
 import { Dropdown, DropdownButton } from "react-bootstrap";
 
+import { useTranslation } from "react-i18next";
+import i18next from "i18next";
+
 const AdminTable = ({ page, ...props }) => {
+  const { t } = useTranslation();
   const [deleteShow, setDeleteShow] = useState(false);
   const [acceptShow, setAcceptShow] = useState(false);
   const [declineShow, setDeclineShow] = useState(false);
@@ -86,13 +90,13 @@ const AdminTable = ({ page, ...props }) => {
             ))}
             {page === "verification" ? (
               <>
-                <th>Accept</th>
-                <th>Decline</th>
+                <th>{t("accept")}</th>
+                <th>{t("decline")}</th>
               </>
             ) : (
               <>
-                <th>Edit</th>
-                <th>Delete</th>
+                <th>{t("edit")}</th>
+                <th>{t("delete")}</th>
               </>
             )}
           </tr>
@@ -101,7 +105,7 @@ const AdminTable = ({ page, ...props }) => {
           {!data || data.length === 0 ? (
             <tr>
               <td colSpan={modelColumns.headers.length + 2} align="center">
-                No table entries currently available.
+                {t("table")}
               </td>
             </tr>
           ) : (

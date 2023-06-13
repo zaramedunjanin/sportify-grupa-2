@@ -4,6 +4,8 @@ import CustomButton from "../../../../atoms/Buttons/CustomButton";
 import { Field, Form, Formik } from "formik";
 import CustomInput from "./CustomFormComponents/CustomInput";
 import * as yup from "yup";
+import { useTranslation } from "react-i18next";
+import i18next from "i18next";
 import {
   addData,
   editData,
@@ -19,6 +21,7 @@ const VenueEditModal = ({
   edit,
   ...props
 }) => {
+  const { t } = useTranslation();
   const validationSchema = yup.object().shape({
     sport_name: yup.string().required("Required").max(50),
   });
@@ -32,7 +35,9 @@ const VenueEditModal = ({
       backdrop={"static"}
     >
       <Modal.Header>
-        <Modal.Title id="contained-modal-title-vcenter">Edit</Modal.Title>
+        <Modal.Title id="contained-modal-title-vcenter">
+          {t("edit")}
+        </Modal.Title>
       </Modal.Header>
       <Formik
         validationSchema={validationSchema}
@@ -61,19 +66,24 @@ const VenueEditModal = ({
           <Modal.Body>
             {edit === true && <div>ID: {data.id}</div>}
 
-            <Field name={"sport_name"} type={"text"} component={CustomInput} />
+            <Field
+              name={"sport_name"}
+              type={"text"}
+              label={t("sport_name")}
+              component={CustomInput}
+            />
           </Modal.Body>
           <Modal.Footer>
             <CustomButton
-              text={"Close"}
+              text={t("close")}
               variant={"close"}
               type={"button"}
               onClick={props.onHide}
             >
-              Close
+              {t("close")}
             </CustomButton>
             <CustomButton
-              text={"Save"}
+              text={t("save_changes")}
               variant={"save"}
               type={"submit"}
             ></CustomButton>

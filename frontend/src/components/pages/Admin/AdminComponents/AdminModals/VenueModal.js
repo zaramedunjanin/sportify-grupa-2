@@ -11,6 +11,9 @@ import storage from "../../../../../config/firebaseConfig";
 import useAdminDataUpload from "../../../../../hooks/useAdminDataUpload";
 import CustomImage from "./CustomFormComponents/CustomImage";
 import * as yup from "yup";
+import { useTranslation } from "react-i18next";
+import i18next from "i18next";
+
 const VenueModal = ({
   data,
   columns,
@@ -21,6 +24,7 @@ const VenueModal = ({
   edit,
   ...props
 }) => {
+  const { t } = useTranslation();
   const { file, percent, setFile, setPercent, handleChange, handleSubmit } =
     useAdminDataUpload();
 
@@ -84,7 +88,9 @@ const VenueModal = ({
       backdrop={"static"}
     >
       <Modal.Header>
-        <Modal.Title id="contained-modal-title-vcenter">Edit</Modal.Title>
+        <Modal.Title id="contained-modal-title-vcenter">
+          {t("edit")}
+        </Modal.Title>
       </Modal.Header>
       <Formik
         validationSchema={validationSchema}
@@ -127,48 +133,78 @@ const VenueModal = ({
           <Modal.Body>
             {edit === true && <div>ID: {data.id}</div>}
             <Field
-              name={"venue_picture"}
+              name="venue_picture"
+              label={t("venue_picture")}
               type={"file"}
               onChange={handleChange}
               component={CustomImage}
             />
-            <Field name={"venue_name"} type={"text"} component={CustomInput} />
-            <Field name={"address"} type={"text"} component={CustomInput} />
-            <Field name={"city"} type={"text"} component={CustomInput} />
-            <Field name={"type"} type={"text"} component={CustomInput} />
-            <Field name={"description"} type={"text"} component={CustomInput} />
             <Field
-              name={"price_per_hour"}
-              type={"number"}
-              component={CustomInput}
-            />
-            <Field
-              name={"opening_time"}
+              name="venue_name"
               type={"text"}
+              label={t("venue_name")}
               component={CustomInput}
             />
             <Field
-              name={"closing_time"}
+              name="address"
               type={"text"}
+              label={t("address")}
               component={CustomInput}
             />
             <Field
-              name={"company_id"}
+              name="city"
+              type={"text"}
+              label={t("city")}
+              component={CustomInput}
+            />
+            <Field
+              name="type"
+              type={"text"}
+              label={t("type")}
+              component={CustomInput}
+            />
+            <Field
+              name="description"
+              type={"text"}
+              label={t("description")}
+              component={CustomInput}
+            />
+            <Field
+              name="price_per_hour"
               type={"number"}
+              label={t("price_per_hour")}
+              component={CustomInput}
+            />
+            <Field
+              name="opening_time"
+              type={"text"}
+              label={t("opening_time")}
+              component={CustomInput}
+            />
+            <Field
+              name="closing_time"
+              type={"text"}
+              label={t("closing_time")}
+              component={CustomInput}
+            />
+            <Field
+              name="company_id"
+              type={"number"}
+              label={t("company_id")}
               component={CustomInput}
             />
           </Modal.Body>
           <Modal.Footer>
             <CustomButton
-              text={"Close"}
+              text={t("close")}
               variant={"close"}
               type={"button"}
               onClick={props.onHide}
             >
-              Close
+              {t("close")}
             </CustomButton>
             <CustomButton
-              text={"Save"}
+              text={t("save_changes")}
               variant={"save"}
               type={"submit"}
             ></CustomButton>
