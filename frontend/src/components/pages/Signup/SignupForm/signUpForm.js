@@ -9,6 +9,7 @@ import "../SignupForm/signUpForm.css";
 import MainButton from "../../../atoms/Buttons/MainButton/MainButton";
 import useSignUp from "../../../../hooks/useSignUp";
 import { useNavigate } from "react-router-dom";
+
 const SignUpForm = () => {
   const { t } = useTranslation();
 
@@ -43,6 +44,8 @@ const SignUpForm = () => {
     email,
     setEmail,
     emailError,
+
+    signupError,
   } = useSignUp();
 
   return (
@@ -117,6 +120,7 @@ const SignUpForm = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
           {emailError && <div className="text-danger small">{emailError}</div>}
+          {signupError && ( <div className="text-danger small">{signupError}</div>)}
         </Col>
 
         <Col xs={12} className="mt-3 pt-1">

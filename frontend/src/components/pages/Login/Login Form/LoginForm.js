@@ -15,6 +15,7 @@ const LoginForm = () => {
     setPassword,
     emailError,
     passwordError,
+    loginError,
     handleSubmit,
     isDisabled,
   } = useLoginForm();
@@ -43,6 +44,8 @@ const LoginForm = () => {
           {passwordError && (
             <Form.Text className="text-danger">{passwordError}</Form.Text>
           )}
+
+          {loginError && <div className="text-danger">{loginError}</div>}
         </Form.Group>
         <Button
           type="submit"

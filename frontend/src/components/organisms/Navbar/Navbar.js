@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 
 import Container from "react-bootstrap/Container";
 import NavbarBS from "react-bootstrap/Navbar";
@@ -22,6 +22,8 @@ import i18next from "i18next";
 
 import uk_flag from "../../../assets/images/uk_flag.png";
 import bhs_flag from "../../../assets/images/bhs_flag.png";
+
+import { AuthContext } from "../../../context/AuthContext";
 
 //The Navbar for the Main Page is default,
 // for the Search Page it is needed to pass the value "search", for the Admin Panel "admin" and for User Profiles "user" to the prop "variant"
@@ -59,7 +61,9 @@ const Navbar = ({ variant = "default", ...props }) => {
       break;
   }
 
-  let isAuth = true;
+  const { isAuthenticated } = useContext(AuthContext);
+
+  // let isAuth = isAuthenticated;
 
   const navigate = useNavigate();
 
@@ -132,7 +136,7 @@ const Navbar = ({ variant = "default", ...props }) => {
               ))}
             </ul>
           </div>
-          {isAuth === true ? (
+          {isAuthenticated === true ? (
             <ProfileDropdown />
           ) : (
             <div className={styles.navButtons}>
