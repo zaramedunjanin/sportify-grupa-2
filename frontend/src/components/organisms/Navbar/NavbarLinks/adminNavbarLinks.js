@@ -1,12 +1,10 @@
-const adminNavbarLinks = [
+export const getAdminNavbarLinks = (t) => [
   {
     url: "/administrator/tables",
-    navbarText: "Tables",
+    navbarText: t("tables"),
   },
   {
     url: "/administrator/verification",
-    navbarText: "Company Verification",
+    navbarText: t("company_verification"),
   },
 ];
-
-export default adminNavbarLinks;

@@ -1,7 +1,7 @@
 import React from "react";
 import { Form } from "react-bootstrap";
 import { ErrorMessage, useField } from "formik";
-const CustomInput = ({ options, form, ...props }) => {
+const CustomInput = ({ options, form, label, ...props }) => {
   const [field, meta] = useField(props.field.name);
   let replace = props.field.name.replace("_", " ");
   let name = replace.charAt(0).toUpperCase() + replace.slice(1);
@@ -15,7 +15,7 @@ const CustomInput = ({ options, form, ...props }) => {
   return (
     <>
       <Form.Text>
-        {name}{" "}
+        {label}{" "}
         {meta.touched && meta.error && (
           <div style={styleError}>{meta.error}</div>
         )}

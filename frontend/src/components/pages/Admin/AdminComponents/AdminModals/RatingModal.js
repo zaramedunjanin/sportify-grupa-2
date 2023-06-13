@@ -8,6 +8,8 @@ import CustomSelect from "./CustomFormComponents/CustomSelect";
 import CustomInput from "./CustomFormComponents/CustomInput";
 import * as yup from "yup";
 import useAdminDataUpload from "../../../../../hooks/useAdminDataUpload";
+import { useTranslation } from "react-i18next";
+import i18next from "i18next";
 import {
   addData,
   editData,
@@ -22,6 +24,7 @@ const VenueEditModal = ({
   edit,
   ...props
 }) => {
+  const { t } = useTranslation();
   const validationSchema = yup.object().shape({
     rating: yup.number().required("Required").max(10),
     user: yup.number().required("Required"),
@@ -37,7 +40,9 @@ const VenueEditModal = ({
       backdrop={"static"}
     >
       <Modal.Header>
-        <Modal.Title id="contained-modal-title-vcenter">Edit</Modal.Title>
+        <Modal.Title id="contained-modal-title-vcenter">
+          {t("edit")}
+        </Modal.Title>
       </Modal.Header>
       <Formik
         validationSchema={validationSchema}
@@ -70,21 +75,36 @@ const VenueEditModal = ({
           <Modal.Body>
             {edit === true && <div>ID: {data.id}</div>}
 
-            <Field name={"rating"} type={"number"} component={CustomInput} />
-            <Field name={"user"} type={"number"} component={CustomInput} />
-            <Field name={"venue"} type={"number"} component={CustomInput} />
+            <Field
+              name={"rating"}
+              type={"number"}
+              label={t("rating")}
+              component={CustomInput}
+            />
+            <Field
+              name={"user"}
+              type={"number"}
+              label={t("user")}
+              component={CustomInput}
+            />
+            <Field
+              name={"venue"}
+              type={"number"}
+              label={t("venue")}
+              component={CustomInput}
+            />
           </Modal.Body>
           <Modal.Footer>
             <CustomButton
-              text={"Close"}
+              text={t("close")}
               variant={"close"}
               type={"button"}
               onClick={props.onHide}
             >
-              Close
+              {t("close")}
             </CustomButton>
             <CustomButton
-              text={"Save"}
+              text={t("save_changes")}
               variant={"save"}
               type={"submit"}
             ></CustomButton>

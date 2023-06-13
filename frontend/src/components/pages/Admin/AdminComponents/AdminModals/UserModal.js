@@ -16,6 +16,8 @@ import CustomImage from "./CustomFormComponents/CustomImage";
 import storage from "../../../../../config/firebaseConfig";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import useAdminDataUpload from "../../../../../hooks/useAdminDataUpload";
+import { useTranslation } from "react-i18next";
+import i18next from "i18next";
 
 const UserModal = ({
   data,
@@ -27,6 +29,7 @@ const UserModal = ({
   edit,
   ...props
 }) => {
+  const { t } = useTranslation();
   const { file, percent, setFile, setPercent, handleChange, handleSubmit } =
     useAdminDataUpload();
 
@@ -55,7 +58,7 @@ const UserModal = ({
       <Modal.Header>
         <Modal.Title id="contained-modal-title-vcenter">
           {edit === true && "Edit"}
-          {add === true && "Add"}
+          {add === true && t("add")}
         </Modal.Title>
       </Modal.Header>
       <Formik
@@ -97,7 +100,7 @@ const UserModal = ({
           },
         })}
         onSubmit={(values, actions) => {
-          handleSubmit(values, page, edit);
+          handleSubmit(values, page, add, edit);
           props.onHide();
         }}
       >
@@ -111,6 +114,7 @@ const UserModal = ({
               )}
               <Field
                 name={"profile_picture"}
+                label={t("profile_picture")}
                 type={"file"}
                 onChange={handleChange}
                 component={CustomImage}
@@ -118,77 +122,105 @@ const UserModal = ({
               <Field
                 name={"first_name"}
                 type={"text"}
+                label={t("first_name")}
                 component={CustomInput}
               />
-              <Field name={"last_name"} type={"text"} component={CustomInput} />
-              <Field name={"username"} type={"text"} component={CustomInput} />
-              <Field name={"email"} type={"email"} component={CustomInput} />
+              <Field
+                name={"last_name"}
+                type={"text"}
+                label={t("last_name")}
+                component={CustomInput}
+              />
+              <Field
+                name={"username"}
+                type={"text"}
+                label={t("username")}
+                component={CustomInput}
+              />
+              <Field
+                name={"email"}
+                type={"email"}
+                label={t("email")}
+                component={CustomInput}
+              />
               <Field
                 name={"password"}
                 type={"password"}
+                label={t("password")}
                 component={CustomInput}
               />
-              <Field name={"city"} type={"text"} component={CustomInput} />
+              <Field
+                name={"city"}
+                type={"text"}
+                label={t("city")}
+                component={CustomInput}
+              />
 
               <Field
                 name={"phone_number"}
                 type={"text"}
+                label={t("phone_number")}
                 component={CustomInput}
               />
               <Field
                 name={"company_name"}
                 type={"text"}
+                label={t("company_name")}
                 component={CustomInput}
               />
 
               <Field
                 name={"gender"}
+                label={t("gender")}
                 component={CustomSelect}
                 options={[
-                  { value: "Other", label: "Other" },
-                  { value: "Female", label: "Female" },
-                  { value: "Male", label: "Male" },
+                  { value: "Other", label: t("other") },
+                  { value: "Female", label: t("female") },
+                  { value: "Male", label: t("male") },
                 ]}
               />
 
               <Field
                 name={"role"}
+                label={t("role")}
                 component={CustomSelect}
                 options={[
-                  { value: 2, label: "User" },
-                  { value: 3, label: "Company" },
-                  { value: 1, label: "Admin" },
+                  { value: 2, label: t("user") },
+                  { value: 3, label: t("company") },
+                  { value: 1, label: t("admin") },
                 ]}
               />
               <Field
                 name={"blocked"}
+                label={t("blocked")}
                 component={CustomSelect}
                 options={[
-                  { value: false, label: "Not Blocked" },
-                  { value: true, label: "Blocked" },
+                  { value: false, label: t("not_blocked") },
+                  { value: true, label: t("blocked") },
                 ]}
               />
               <Field
                 name={"verified"}
+                label={t("verified")}
                 component={CustomSelect}
                 options={[
-                  { value: "", label: "Pending" },
-                  { value: true, label: "Verified" },
-                  { value: false, label: "Not Verified" },
+                  { value: "", label: t("pendding") },
+                  { value: true, label: t("verified") },
+                  { value: false, label: t("not_verified") },
                 ]}
               />
             </Modal.Body>
             <Modal.Footer>
               <CustomButton
-                text={"Close"}
+                text={t("close")}
                 variant={"close"}
                 type={"button"}
                 onClick={props.onHide}
               >
-                Close
+                {t("close")}
               </CustomButton>
               <CustomButton
-                text={"Save"}
+                text={t("save_changes")}
                 variant={"save"}
                 type={"submit"}
               ></CustomButton>
