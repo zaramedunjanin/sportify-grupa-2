@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import axios from "axios";
+import { AuthContext } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const useLoginForm = () => {
   const [email, setEmail] = useState("");
@@ -7,6 +9,9 @@ const useLoginForm = () => {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   let isDisabled = false;
+  const navigate = useNavigate();
+
+  const { setIsAuthenticated } = useContext(AuthContext);
 
   const isValidEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -34,17 +39,18 @@ const useLoginForm = () => {
 
     if (!isDisabled) {
       axios
-          .post("http://127.0.0.1:8000/api/token/", {
-            email: email,
-            password: password,
-          })
-          .then((response) => {
-            localStorage.setItem('token', response.data.access);
-            window.location.href = '/';
-          })
-          .catch((error) => {
-            console.log('Login error:', error);
-          });
+        .post("http://127.0.0.1:8000/api/token/", {
+          email: email,
+          password: password,
+        })
+        .then((response) => {
+          setIsAuthenticated(true);
+          localStorage.setItem("token", response.data.access);
+          navigate("/")
+        })
+        .catch((error) => {
+          console.log("Login error:", error);
+        });
     }
   };
 
