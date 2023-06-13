@@ -58,7 +58,7 @@ const Navbar = ({ variant = "default", ...props }) => {
       break;
   }
 
-  const { isAuthenticated } = useContext(AuthContext);
+  const { isAuthenticated, user } = useContext(AuthContext);
 
   // let isAuth = isAuthenticated;
 
