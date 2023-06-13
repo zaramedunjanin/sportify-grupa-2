@@ -8,6 +8,8 @@ const useLoginForm = () => {
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [ loginError, setLoginError ] = useState("");
+
   let isDisabled = false;
   const navigate = useNavigate();
 
@@ -49,7 +51,11 @@ const useLoginForm = () => {
           navigate("/")
         })
         .catch((error) => {
-          console.log("Login error:", error);
+          if (error.response && error.response.data) {
+            setLoginError(error.response.data.detail);
+          } else {
+            setLoginError("An error occurred during login");
+          }
         });
     }
   };
@@ -61,6 +67,7 @@ const useLoginForm = () => {
     setPassword,
     emailError,
     passwordError,
+    loginError,
     handleSubmit,
     isDisabled,
   };
