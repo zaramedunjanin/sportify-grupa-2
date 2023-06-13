@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./ProfileDropdown.scss";
 import { Dropdown, DropdownButton } from "react-bootstrap";
 import profile from "../../../../assets/images/profile.jpg";
@@ -9,6 +9,8 @@ import i18next from "i18next";
 
 import UserData from "../../../pages/UserDashboard/UserData/UserData";
 
+import { AuthContext } from "../../../../context/AuthContext";
+
 const ProfileDropdown = ({
   profilePicture = profile,
   profileLink = "/",
@@ -16,6 +18,7 @@ const ProfileDropdown = ({
 }) => {
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const { logout } = useContext(AuthContext);
 
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -47,7 +50,7 @@ const ProfileDropdown = ({
         <Dropdown.Item eventKey="3" onClick={handleEditClick}>
           {t("edit")}
         </Dropdown.Item>
-        <Dropdown.Item eventKey="2">{t("log_out")}</Dropdown.Item>
+        <Dropdown.Item onClick={() => logout()} eventKey="2">{t("log_out")}</Dropdown.Item>
       </DropdownButton>
       {modalOpen && (
         <UserData showModal={modalOpen} handleClose={handleCloseModal} />

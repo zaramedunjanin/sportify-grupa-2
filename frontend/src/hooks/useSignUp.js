@@ -1,5 +1,7 @@
 import { useState } from "react";
+import {useNavigate} from "react-router-dom";
 import { signup } from "../services/UserService"
+
 
 const useSignUp = () => {
   const [firstName, setFirstName] = useState("");
@@ -16,7 +18,9 @@ const useSignUp = () => {
   const [emailError, setEmailError] = useState("");
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [signupError, setSignupError] = useState("");
   let isDisabled = false;
+  const navigate = useNavigate()
 
   const isValidEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -99,9 +103,10 @@ const useSignUp = () => {
 
       const response = await signup(userData);
       console.log("Signup successful", response);
-      window.location.href = "/login";
+      navigate("/login");
     } catch (error) {
       console.error("Signup error:", error);
+      setSignupError(error.detail || "Email is already taken");
     }
   }
 };
@@ -138,6 +143,8 @@ const useSignUp = () => {
     email,
     setEmail,
     emailError,
+
+    signupError,
   };
 };
 

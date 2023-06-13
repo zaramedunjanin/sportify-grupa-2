@@ -10,3 +10,4 @@ export const signup = async (userData) => {
         throw error.response.data;
     }
 };
+
