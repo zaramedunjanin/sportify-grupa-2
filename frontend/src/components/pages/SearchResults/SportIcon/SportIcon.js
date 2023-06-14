@@ -6,7 +6,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const SportIcon = ({ sport_name }) => {
-  if (!sport_name && typeof value === 'string') return null;
+  if (!sport_name && typeof value === "string") return null;
 
   const sportIcons = {
     football: faFutbol,

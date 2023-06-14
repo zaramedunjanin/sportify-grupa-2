@@ -21,51 +21,51 @@ const Categories = () => {
 
   const { t } = useTranslation();
   return (
-    <Container>
-      <Row className={"mt-4 mb-1"}>
-        <h2>{t("sport")}</h2>
-      </Row>
-      <Row className={"text-center"}>
-        <Col xs={6} md={4} lg={2}>
-          <Card
-            icon={"sports_soccer"}
-            text={t("football")}
-            onClick={handleClick}
-          />
-        </Col>
-        <Col xs={6} md={4} lg={2}>
-          <Card
-            icon={"sports_tennis"}
-            text={t("tennis")}
-            onClick={handleClick}
-          />
-        </Col>
-        <Col xs={6} md={4} lg={2}>
-          <Card
-            icon={"sports_volleyball"}
-            text={t("volleyball")}
-            onClick={handleClick}
-          />
-        </Col>
-        <Col xs={6} md={4} lg={2}>
-          <Card
-            icon={"sports_basketball"}
-            text={t("basketball")}
-            onClick={handleClick}
-          />
-        </Col>
-        <Col xs={6} md={4} lg={2}>
-          <Card
-            icon={"ice_skating"}
-            text={t("ice_skating")}
-            onClick={handleClick}
-          />
-        </Col>
-        <Col xs={6} md={4} lg={2}>
-          <Card icon={"pool"} text={t("swimming")} onClick={handleClick} />
-        </Col>
-      </Row>
-    </Container>
+      <Container>
+        <Row className={"mt-4 mb-1"}>
+          <h2>{t("sport")}</h2>
+        </Row>
+        <Row className={"text-center"}>
+          <Col xs={6} md={4} lg={2}>
+            <Card
+                icon={"sports_soccer"}
+                text={t("football")}
+                onClick={handleClick}
+            />
+          </Col>
+          <Col xs={6} md={4} lg={2}>
+            <Card
+                icon={"sports_tennis"}
+                text={t("tennis")}
+                onClick={handleClick}
+            />
+          </Col>
+          <Col xs={6} md={4} lg={2}>
+            <Card
+                icon={"sports_volleyball"}
+                text={t("volleyball")}
+                onClick={handleClick}
+            />
+          </Col>
+          <Col xs={6} md={4} lg={2}>
+            <Card
+                icon={"sports_basketball"}
+                text={t("basketball")}
+                onClick={handleClick}
+            />
+          </Col>
+          <Col xs={6} md={4} lg={2}>
+            <Card
+                icon={"ice_skating"}
+                text={t("ice_skating")}
+                onClick={handleClick}
+            />
+          </Col>
+          <Col xs={6} md={4} lg={2}>
+            <Card icon={"pool"} text={t("swimming")} onClick={handleClick} />
+          </Col>
+        </Row>
+      </Container>
   );
 };
 

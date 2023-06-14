@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 
 import Container from "react-bootstrap/Container";
 import NavbarBS from "react-bootstrap/Navbar";
@@ -12,7 +12,11 @@ import ProfileDropdown from "../../molecules/Dropdown/ProfileDropdown/ProfileDro
 
 import Logo from "./Logo";
 import { Link, useNavigate } from "react-router-dom";
-import adminLinks from "./NavbarLinks/adminNavbarLinks";
+
+import adminLinks, {
+  getAdminNavbarLinks,
+} from "./NavbarLinks/adminNavbarLinks";
+
 import userLinks, { getUserNavbarLinks } from "./NavbarLinks/userNavbarLinks";
 import { Translation } from "react-i18next";
 import { useTranslation } from "react-i18next";
@@ -21,11 +25,15 @@ import i18next from "i18next";
 import uk_flag from "../../../assets/images/uk_flag.png";
 import bhs_flag from "../../../assets/images/bhs_flag.png";
 
+import { AuthContext } from "../../../context/AuthContext";
+
 //The Navbar for the Main Page is default,
 // for the Search Page it is needed to pass the value "search", for the Admin Panel "admin" and for User Profiles "user" to the prop "variant"
 const Navbar = ({ variant = "default", ...props }) => {
   const { t } = useTranslation();
   const userNavbarLinks = getUserNavbarLinks(t);
+
+  const userAdminNavbarLinks = getAdminNavbarLinks(t);
   const languages = [
     {
       code: "en",
@@ -55,8 +63,9 @@ const Navbar = ({ variant = "default", ...props }) => {
       backgroundColor = "background-green";
       break;
   }
+  const { isAuthenticated, user } = useContext(AuthContext);
 
-  let isAuth = true;
+  // let isAuth = isAuthenticated;
 
   const navigate = useNavigate();
 
@@ -73,7 +82,7 @@ const Navbar = ({ variant = "default", ...props }) => {
         <NavbarBS.Collapse id="navbarScroll" className="justify-content-end">
           <Container className={"text-center"}>
             {variant === "admin"
-              ? adminLinks.map((l, index) => {
+              ? userAdminNavbarLinks.map((l, index) => {
                   return (
                     <Link to={l.url} className={styles.adminLinks} key={index}>
                       {l.navbarText}
@@ -129,7 +138,7 @@ const Navbar = ({ variant = "default", ...props }) => {
               ))}
             </ul>
           </div>
-          {isAuth === true ? (
+          {isAuthenticated === true ? (
             <ProfileDropdown />
           ) : (
             <div className={styles.navButtons}>
