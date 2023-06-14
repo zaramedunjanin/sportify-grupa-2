@@ -9,6 +9,7 @@ import { useTranslation } from "react-i18next";
 import i18next from "i18next";
 
 import { useNavigate } from "react-router-dom";
+import TranslationComponent from "../../TranslationComponent/TranslationComponent";
 
 const LoginContent = () => {
   const navigate = useNavigate();
@@ -32,31 +33,8 @@ const LoginContent = () => {
           <Col sm={5}>
             <div className="dropdown_container">
               <Navbar />
-              <div className="dropdown">
-                <button
-                  className="btn dropdown-toggle tr_button_1 p-3"
-                  type="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                  style={{
-                    color: "white",
-                  }}
-                >
-                  <span class="material-symbols-outlined">translate</span>
-                </button>
-                <ul className="dropdown-menu">
-                  {languages.map(({ code, name, country_code }) => (
-                    <li key={country_code}>
-                      <button
-                        className="dropdown-item"
-                        onClick={() => i18next.changeLanguage(code)}
-                      >
-                        <span className={`mx-2`}></span>
-                        {name}
-                      </button>
-                    </li>
-                  ))}
-                </ul>
+              <div>
+                <TranslationComponent />
               </div>
             </div>
             <div className="bg-lightgreen left-side">

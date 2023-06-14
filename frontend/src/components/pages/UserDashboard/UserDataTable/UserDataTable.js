@@ -2,10 +2,13 @@ import { useEffect, useState } from "react";
 
 import Table from "react-bootstrap/Table";
 import Container from "react-bootstrap/Container";
+import { useTranslation } from "react-i18next";
+import i18next from "i18next";
 
 import styles from "./UserDataTable.css";
 
 const UserDataTable = ({ page, ...props }) => {
+  const { t } = useTranslation();
   const [deleteShow, setDeleteShow] = useState(false);
   const [editShow, setEditShow] = useState(false);
   let columns = props.databasecolumns;
@@ -21,15 +24,15 @@ const UserDataTable = ({ page, ...props }) => {
               {columns[page].headers.map((elements, index) => (
                 <th key={`header${index}`}>{elements}</th>
               ))}
-              <th>Edit</th>
-              <th>Delete</th>
+              <th>{t("edit")}</th>
+              <th>{t("delete")}</th>
             </tr>
           </thead>
           <tbody className={styles.adminTableRows}>
             {!data || data.length === 0 ? (
               <tr>
                 <td colSpan={columns[page].headers.length + 2} align="center">
-                  No table entries currently available.
+                  {t("table")}
                 </td>
               </tr>
             ) : (

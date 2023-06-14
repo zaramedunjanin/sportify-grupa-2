@@ -20,8 +20,6 @@ def getVenue(request, venue_id):
     #json_data = serializers.serialize('json', [venue])
     #return HttpResponse(json_data, content_type="text/json-comment-filtered")
 
-# Create your views here.
-
 @api_view(['GET'])
 def getVenues(request):
     searchText = request.GET.get('searchText', '')

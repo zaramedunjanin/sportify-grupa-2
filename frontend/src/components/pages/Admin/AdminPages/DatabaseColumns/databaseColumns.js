@@ -1,10 +1,9 @@
-import { getFields } from "../../../../../services/AdminService/useAdminFetcher";
-
 const databaseColumns = {
   users: {
     title: "User Management",
     headers: [
       "ID",
+      "Profile Picture",
       "First Name",
       "Last Name",
       "Username",
@@ -18,6 +17,7 @@ const databaseColumns = {
     ],
     fields: [
       "id",
+      "profile_picture",
       "first_name",
       "last_name",
       "username",
@@ -26,7 +26,7 @@ const databaseColumns = {
       "city",
       "blocked",
       "verified",
-      "sport_id",
+      "sport",
       "role",
     ],
   },
@@ -34,6 +34,7 @@ const databaseColumns = {
     title: "Venue Management",
     headers: [
       "ID",
+      "Venue Picture",
       "Name",
       "Address",
       "City",
@@ -47,6 +48,7 @@ const databaseColumns = {
     ],
     fields: [
       "id",
+      "venue_picture",
       "venue_name",
       "address",
       "city",
@@ -55,8 +57,8 @@ const databaseColumns = {
       "price_per_hour",
       "opening_time",
       "closing_time",
-      "company_id",
-      "sport_id",
+      "company",
+      "sport",
     ],
   },
   sports: {
@@ -68,6 +70,9 @@ const databaseColumns = {
     title: "Reservations Management",
     headers: [
       "ID",
+      "User",
+      "Venue",
+      "Sports",
       "Total Places",
       "Going",
       "Start Time",
@@ -76,12 +81,13 @@ const databaseColumns = {
       "Approved",
       "Auto Invite",
       "Number Of Invites",
-      "Sports",
-      "User",
-      "Venue",
     ],
     fields: [
       "id",
+      "user",
+      "venue",
+      "sport",
+
       "total_places",
       "going",
       "start_time",
@@ -90,15 +96,48 @@ const databaseColumns = {
       "approved",
       "auto_invite",
       "number_of_invites",
-      "sports_id",
-      "user_id",
-      "venue_id",
     ],
+  },
+  acceptedinvites: {
+    title: "Accepted Invites Management",
+    headers: ["ID", "Reservation", "User"],
+    fields: ["id", "reservation", "user"],
+  },
+  questions: {
+    title: "Question Management",
+    headers: ["ID", "Text", "Answer", "Pinned"],
+    fields: ["id", "text", "answer", "pinned"],
+  },
+  ratings: {
+    title: "Rating Management",
+    headers: ["ID", "Rating", "User", "Venue"],
+    fields: ["id", "rating", "user", "venue"],
   },
   verification: {
     title: "Company Verification",
-    headers: ["ID", "Sport Name"],
-    fields: ["id", "sport_name"],
+    headers: [
+      "ID",
+      "First Name",
+      "Last Name",
+      "Username",
+      "E-mail",
+      "Phone Number",
+      "City",
+      "Blocked",
+      "Sports",
+    ],
+    fields: [
+      "id",
+      "first_name",
+      "last_name",
+      "username",
+      "email",
+      "phone_number",
+      "city",
+      "blocked",
+      "sport",
+    ],
   },
 };
+
 export default databaseColumns;
