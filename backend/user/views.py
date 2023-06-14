@@ -9,15 +9,13 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from .serializers import SignupSerializer
 
-
 # Create your views here.
 @permission_classes([IsAuthenticated])
 @api_view(['GET'])
 def getUser(request):
     user = request.user
-    data = {'id': user.id, 'username': user.username, 'email': user.email, 'role': user.role, 'first_name': user.first_name, 'last_name': user.last_name }
+    data = {'id': user.id, 'username': user.username, 'email': user.email, 'role': user.role, 'first_name': user.first_name, 'last_name': user.last_name, 'city': user.city,'phone_number': user.phone_number,'gender': user.gender,'profile_picture': user.profile_picture }
     return Response(data)
-
 
 @api_view(['POST'])
 def signup(request):

@@ -12,11 +12,9 @@ import ProfileDropdown from "../../molecules/Dropdown/ProfileDropdown/ProfileDro
 
 import Logo from "./Logo";
 import { Link, useNavigate } from "react-router-dom";
-
 import adminLinks, {
   getAdminNavbarLinks,
 } from "./NavbarLinks/adminNavbarLinks";
-
 import userLinks, { getUserNavbarLinks } from "./NavbarLinks/userNavbarLinks";
 import { Translation } from "react-i18next";
 import { useTranslation } from "react-i18next";
@@ -32,7 +30,6 @@ import { AuthContext } from "../../../context/AuthContext";
 const Navbar = ({ variant = "default", ...props }) => {
   const { t } = useTranslation();
   const userNavbarLinks = getUserNavbarLinks(t);
-
   const userAdminNavbarLinks = getAdminNavbarLinks(t);
   const languages = [
     {

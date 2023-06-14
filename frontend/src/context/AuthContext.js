@@ -21,14 +21,15 @@ export const AuthProvider = ({ children }) => {
     const token = localStorage.getItem("token");
     if (token) {
       instance
-      .get("auth/user")
-          .then((response) => {
-            setIsAuthenticated(true);
-            setUser(response.data);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
+        .get("auth/user")
+        .then((response) => {
+          setIsAuthenticated(true);
+          setUser(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
       setIsAuthenticated(true);
     } else {
       setIsAuthenticated(false);
@@ -44,7 +45,7 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-        value={{ isAuthenticated, logout, setIsAuthenticated, user, setUser }}
+      value={{ isAuthenticated, logout, setIsAuthenticated, user, setUser }}
     >
       {children}
     </AuthContext.Provider>

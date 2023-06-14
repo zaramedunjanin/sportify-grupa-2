@@ -14,41 +14,38 @@ import UserData from "./components/pages/UserDashboard/UserData/UserData";
 import { SearchProvider } from "./context/SearchContext";
 import { CategoryProvider } from "./context/CategoryContext";
 import { AuthProvider } from "./context/AuthContext";
+import ContextWrapper from "./context/ContextWrapper";
 
 const App = () => {
   return (
     <BrowserRouter>
-      <AuthProvider>
-        <SearchProvider>
-          <CategoryProvider>
-            <Routes>
-              <Route index element={<Home />} />
-              <Route path="faq" element={<FrequentlyAskedQuestions />} />
+      <ContextWrapper>
+        <Routes>
+          <Route index element={<Home />} />
+          <Route path="faq" element={<FrequentlyAskedQuestions />} />
 
-              <Route path="login" element={<LoginPage />} />
-              <Route path="signup" element={<Signup />} />
+          <Route path="login" element={<LoginPage />} />
+          <Route path="signup" element={<Signup />} />
 
-              <Route path="administrator" element={<Admin />}>
-                <Route path="tables" element={<RootTablePage />}>
-                  <Route path="users" element={<TablePage />} />
-                  <Route path="venues" element={<TablePage />} />
-                  <Route path="sports" element={<TablePage />} />
-                  <Route path="reservations" element={<TablePage />} />
-                  <Route path="acceptedinvites" element={<TablePage />} />
-                  <Route path="questions" element={<TablePage />} />
-                  <Route path="ratings" element={<TablePage />} />
-                </Route>
-                <Route path="verification" element={<TablePage />} />
-              </Route>
+          <Route path="administrator" element={<Admin />}>
+            <Route path="tables" element={<RootTablePage />}>
+              <Route path="users" element={<TablePage />} />
+              <Route path="venues" element={<TablePage />} />
+              <Route path="sports" element={<TablePage />} />
+              <Route path="reservations" element={<TablePage />} />
+              <Route path="acceptedinvites" element={<TablePage />} />
+              <Route path="questions" element={<TablePage />} />
+              <Route path="ratings" element={<TablePage />} />
+            </Route>
+            <Route path="verification" element={<TablePage />} />
+          </Route>
 
-              <Route path="/venue/:id" element={<Venue />} />
-              <Route path="/userdashboard" element={<UserDashboardPage />} />
-              <Route path="/userdata" element={<UserData />} />
-              <Route path="/search" element={<SearchResults />} />
-            </Routes>
-          </CategoryProvider>
-        </SearchProvider>
-      </AuthProvider>
+          <Route path="/venue/:id" element={<Venue />} />
+          <Route path="/userdashboard" element={<UserDashboardPage />} />
+          <Route path="/userdata" element={<UserData />} />
+          <Route path="/search" element={<SearchResults />} />
+        </Routes>
+      </ContextWrapper>
     </BrowserRouter>
   );
 };

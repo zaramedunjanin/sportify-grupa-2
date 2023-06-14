@@ -20,6 +20,7 @@ const ProfileDropdown = ({
   const { t } = useTranslation();
   const { logout, isAuthenticated, user } = useContext(AuthContext);
 
+
   const [modalOpen, setModalOpen] = useState(false);
 
   const handleEditClick = () => {
@@ -50,10 +51,12 @@ const ProfileDropdown = ({
         <Dropdown.Item eventKey="3" onClick={handleEditClick}>
           {t("edit")}
         </Dropdown.Item>
-        <Dropdown.Item onClick={() => logout()} eventKey="2">{t("log_out")}</Dropdown.Item>
+        <Dropdown.Item onClick={() => logout()} eventKey="2">
+          {t("log_out")}
+        </Dropdown.Item>
       </DropdownButton>
       {modalOpen && (
-        <UserData showModal={modalOpen} handleClose={handleCloseModal} />
+        <UserData show={modalOpen} onHide={handleCloseModal} edit={true} />
       )}
     </div>
   );

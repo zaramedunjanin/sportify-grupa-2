@@ -16,19 +16,21 @@ const instance = axios.create({
 });
 
 instance.interceptors.response.use(
-    (response) => response,
-    (error) => {
-      if (error.response && error.response.status === 401) {
-        localStorage.removeItem("token");
-        window.location.href = "/login";
-      }
-      return Promise.reject(error);
+  (response) => response,
+  (error) => {
+    if (error.response && error.response.status === 401) {
+      console.log("error", error.response);
+      localStorage.removeItem("token");
+      window.location.href = "/login";
     }
+    return Promise.reject(error);
+  }
 );
 
 if (token) {
-    instance.defaults.headers = {
-        Authorization: `Bearer ${token}`,
-    };
+  instance.defaults.headers = {
+    Authorization: `Bearer ${token}`,
+  };
 }
+
 export default instance;
