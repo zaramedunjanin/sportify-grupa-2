@@ -1,6 +1,7 @@
 // AuthContext.js
 import React, { createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import instance from "../services/HttpService/HttpService";
 
 export const AuthContext = createContext();
 
@@ -20,6 +21,15 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
+      instance
+        .get("auth/user")
+        .then((response) => {
+          setIsAuthenticated(true);
+          setUser(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
       setIsAuthenticated(true);
     } else {
       setIsAuthenticated(false);
@@ -35,7 +45,7 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ isAuthenticated, logout, setIsAuthenticated }}
+      value={{ isAuthenticated, logout, setIsAuthenticated, user, setUser }}
     >
       {children}
     </AuthContext.Provider>

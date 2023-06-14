@@ -8,7 +8,7 @@ const useLoginForm = () => {
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
-  const [ loginError, setLoginError ] = useState("");
+  const [loginError, setLoginError] = useState("");
 
   let isDisabled = false;
   const navigate = useNavigate();
@@ -48,7 +48,7 @@ const useLoginForm = () => {
         .then((response) => {
           setIsAuthenticated(true);
           localStorage.setItem("token", response.data.access);
-          navigate("/")
+          navigate("/");
         })
         .catch((error) => {
           if (error.response && error.response.data) {
