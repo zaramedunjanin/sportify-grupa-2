@@ -55,7 +55,7 @@ const ProfileDropdown = ({
         </Dropdown.Item>
       </DropdownButton>
       {modalOpen && (
-        <UserData showModal={modalOpen} handleClose={handleCloseModal} />
+        <UserData show={modalOpen} onHide={handleCloseModal} edit={true} />
       )}
     </div>
   );
