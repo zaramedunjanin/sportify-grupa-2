@@ -4,23 +4,24 @@ import { faFilter } from "@fortawesome/free-solid-svg-icons";
 import React, { useEffect, useState, useContext } from "react";
 import { getDataList } from "../../../../services/AdminService/useAdminFetcher";
 import { CategoryContext } from "../../../../context/CategoryContext";
-
-const sortOptions = [
-  { name: "Default", sortBy: "" },
-  { name: "Low to high price", sortBy: "price_asc" },
-  { name: "High to low price", sortBy: "price_desc" },
-  { name: "Alphabetical: A to Z", sortBy: "alphabetical_asc" },
-  { name: "Alphabetical: Z to A", sortBy: "alphabetical_desc" },
-];
+import { useTranslation } from "react-i18next";
+import i18next from "i18next";
 
 const Dropdown = () => {
   const { searchCriteria, setSearchCriteria } = useContext(CategoryContext);
   const [sports, setSports] = useState([]);
-
+  const { t } = useTranslation();
+  const sortOptions = [
+    { name: t("default"), sortBy: "" },
+    { name: t("low_to_hight"), sortBy: "price_asc" },
+    { name: t("high_to_low"), sortBy: "price_desc" },
+    { name: t("a_to_z"), sortBy: "alphabetical_asc" },
+    { name: t("z_to_a"), sortBy: "alphabetical_desc" },
+  ];
   useEffect(() => {
     const getSports = async () => {
       try {
-        getDataList(setSports, "sports");
+        await getDataList(setSports, "sports");
       } catch (error) {
         console.error("Failed to fetch data:", error);
       }
@@ -31,7 +32,7 @@ const Dropdown = () => {
 
   const handleInputChange = (event) => {
     var { name, value } = event.target;
-    
+
     if (value === "") {
       value = null;
     }
@@ -62,7 +63,7 @@ const Dropdown = () => {
           style={{ width: "350px" }}
         >
           <label htmlFor="exampleFormControlInput1" className="form-label">
-            Price
+            {t("price")}
           </label>
           <div className="row g-3">
             <div className="col">
@@ -70,7 +71,7 @@ const Dropdown = () => {
                 type="number"
                 min={0}
                 className=" input"
-                placeholder="min"
+                placeholder={t("min")}
                 aria-label="min"
                 name="min_price"
                 value={searchCriteria.min_price}
@@ -82,7 +83,7 @@ const Dropdown = () => {
                 type="number"
                 min={0}
                 className=" input"
-                placeholder="max"
+                placeholder={t("max")}
                 aria-label="max"
                 name="max_price"
                 value={searchCriteria.max_price}
@@ -92,7 +93,7 @@ const Dropdown = () => {
           </div>
 
           <label htmlFor="exampleFormControlInput1" className="form-label">
-            Location
+            {t("location")}
           </label>
           <select
             className="form-select text"
@@ -101,14 +102,14 @@ const Dropdown = () => {
             value={searchCriteria.location}
             onChange={handleInputChange}
           >
-            <option defaultValue>All</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+            <option defaultValue>{t("all")}</option>
+            <option value="1">{t("one")}</option>
+            <option value="2">{t("two")}</option>
+            <option value="3">{t("three")}</option>
           </select>
 
           <label htmlFor="exampleFormControlInput1" className="form-label">
-            Sport
+            {t("sport")}
           </label>
           <select
             className="form-select"
@@ -117,7 +118,7 @@ const Dropdown = () => {
             value={searchCriteria.sport}
             onChange={handleInputChange}
           >
-            <option value="">All</option>
+            <option value="">{t("all")}</option>
             {sports &&
               sports.map((sport, index) => {
                 return <option value={sport.id}> {sport.sport_name} </option>;
@@ -125,7 +126,7 @@ const Dropdown = () => {
           </select>
 
           <label htmlFor="exampleFormControlInput1" className="form-label">
-            Sort by
+            {t("sort_by")}
           </label>
           <select
             className="form-select"

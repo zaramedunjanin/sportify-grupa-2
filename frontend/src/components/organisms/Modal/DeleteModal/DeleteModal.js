@@ -6,24 +6,24 @@ const DeleteModal = (props) => {
   return (
     <Modal
       {...props}
-      size="lg"
+      size="md"
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          Confirm Delete
+          Confirm {props.type}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <p>Are sure you want to delete this?</p>
+        <p>Are you sure you want to {props.type}?</p>
       </Modal.Body>
       <Modal.Footer>
-        <CustomButton onClick={props.onHide} text={"Close"} />
+        <CustomButton onClick={props.onHide} text={"Close"} variant="close" />
         <CustomButton
-          variant="success"
-          onClick={props.onDelete}
-          text={"Delete"}
+          variant="delete"
+          onClick={props.onClick}
+          text={props.type}
         />
       </Modal.Footer>
     </Modal>

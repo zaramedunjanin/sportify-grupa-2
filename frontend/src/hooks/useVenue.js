@@ -1,12 +1,11 @@
 import { useState } from "react";
 
-
 const useVenue = () => {
-  const text1 = "test"
+  const text1 = "test";
 
   return {
-    text1
-  }
-}
+    text1,
+  };
+};
 
 export default useVenue;

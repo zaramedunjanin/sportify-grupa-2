@@ -1,7 +1,5 @@
 from rest_framework import serializers
-from .models import Reservation
-
-
+from .models import Reservation, AcceptedInvites
 
 class ReservationSerializer(serializers.ModelSerializer):
     class Meta:
@@ -10,5 +8,5 @@ class ReservationSerializer(serializers.ModelSerializer):
 
 class AcceptedInvitesSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Reservation
+        model = AcceptedInvites
         fields = '__all__'

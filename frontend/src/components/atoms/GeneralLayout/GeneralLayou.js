@@ -11,6 +11,7 @@ const GeneralLayout = ({ children }) => {
     <Container>
       <Row className="background">
         <Col xs={12}></Col>
+        <img className="image" alt="logo" />
       </Row>
       <Row className="content">
         <Col xs={12}>{children}</Col>
