@@ -64,8 +64,6 @@ const Navbar = ({ variant = "default", ...props }) => {
 
   const { isAuthenticated, user } = useContext(AuthContext);
 
-  // let isAuth = isAuthenticated;
-
   const navigate = useNavigate();
 
   return (
@@ -93,6 +91,14 @@ const Navbar = ({ variant = "default", ...props }) => {
                   return (
                     <Link to={url} className={styles.adminLinks} key={index}>
                       {navbarText}
+                    </Link>
+                  );
+                })
+              : variant === "company"
+              ? companyNavbarLinks.map((l, index) => {
+                  return (
+                    <Link to={l.url} className={styles.adminLinks} key={index}>
+                      {l.navbarText}
                     </Link>
                   );
                 })

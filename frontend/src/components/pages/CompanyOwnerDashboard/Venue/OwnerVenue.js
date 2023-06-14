@@ -1,8 +1,8 @@
 import Card from "./Card/Card";
 import MainButton from "../../../atoms/Buttons/MainButton/MainButton";
-import DeleteModal from "./Modal/DeleteModal";
 import VenueModal from "./Modal/VenueModal";
 import { useState } from "react";
+import DeleteModal from "../../../organisms/Modal/DeleteModal/DeleteModal";
 
 const OwnerVenue = () => {
   const result = [
@@ -50,11 +50,34 @@ const OwnerVenue = () => {
 
   const [deleteId, setDeleteId] = useState(0);
   const [editId, setEditId] = useState(0);
+  let [row, setRow] = useState([]);
+
+  const [deleteShow, setDeleteShow] = useState(false);
+  const [acceptShow, setAcceptShow] = useState(false);
+  const [declineShow, setDeclineShow] = useState(false);
+  const [addShow, setAddShow] = useState(false);
+  const [editShow, setEditShow] = useState(false);
 
   const getSelectedVenue = (venue_id) => {
     let wantedVenue = result.find((v) => v.id === venue_id);
-    console.log("wanted",wantedVenue);
+    console.log("wanted", wantedVenue);
     return wantedVenue;
+  };
+
+  const handleDelete = async () => {
+    setDeleteShow(false);
+    // await deleteData(row.id, page);
+    // await fetchData();
+  };
+  const handleDecline = async () => {
+    setDeclineShow(false);
+    // await declineCompany(row, page);
+    // await fetchData();
+  };
+  const handleAccept = async () => {
+    setAcceptShow(false);
+    // await acceptCompany(row, page);
+    // await fetchData();
   };
 
   return (
@@ -66,7 +89,10 @@ const OwnerVenue = () => {
           style={{ width: "100px" }}
           data-bs-toggle="modal"
           data-bs-target="#venuemodal"
-          onClick={() => setEditId(-1)}
+          onClick={() => {
+            setEditShow(true);
+            //setRow(d);
+          }}
         ></MainButton>
       </div>
       <div className="container mt-4 d-flex justify-content-center">
@@ -78,19 +104,72 @@ const OwnerVenue = () => {
                 <div className="col d-flex justify-content-center">
                   <Card
                     venue={venue}
-                    setDeleteId={setDeleteId}
-                    setEditId={setEditId}
+                    setDeleteId={() => {
+                      setRow(venue);
+                      setDeleteShow(true);
+                    }}
+                    setEditId={() => {
+                      setEditShow(true);
+                      setRow(venue);
+                    }}
                   />
                 </div>
               );
             })}
         </div>
       </div>
+
       <DeleteModal
+        {...(deleteShow === true && {
+          show: deleteShow,
+          onHide: () => {
+            setDeleteShow(false);
+          },
+          onClick: handleDelete,
+          type: "Delete",
+        })}
+        {...(declineShow === true && {
+          show: declineShow,
+          onHide: () => {
+            setDeclineShow(false);
+          },
+          onClick: handleDecline,
+          type: "Decline",
+        })}
+        {...(acceptShow === true && {
+          show: acceptShow,
+          onHide: () => {
+            setAcceptShow(false);
+          },
+          onClick: handleAccept,
+          type: "Accept",
+        })}
+      />
+
+      {/* <DeleteModal
         modalText="Delete venue?"
         venue={() => getSelectedVenue(editId)}
+      /> */}
+      <VenueModal
+        venue={() => getSelectedVenue(editId)}
+        action={"edit"}
+        editId={editId}
       />
-      <VenueModal venue={() => getSelectedVenue(editId)} action={"edit"} editId={editId} />
+      <VenueModal
+        // page={"page"}
+        // table={"page"}
+        data={row}
+        {...(addShow === true && {
+          add: addShow,
+          show: addShow,
+          onHide: () => setAddShow(false),
+        })}
+        {...(editShow === true && {
+          edit: editShow,
+          show: editShow,
+          onHide: () => setEditShow(false),
+        })}
+      />
     </>
   );
 };
