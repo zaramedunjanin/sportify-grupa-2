@@ -5,15 +5,15 @@ const useUserDatabase = () => {
   const { t } = useTranslation();
   return {
     userdashboard: {
-      title: "My Reservations",
+      title: t("my_reservations"),
       headers: [
         t("venue"),
-        "Sport",
-        "Total Places",
-        "Going",
-        "Description",
-        "Start Time",
-        "End Time",
+        t("sport"),
+        t("total_places"),
+        t("going"),
+        t("description"),
+        t("start_time"),
+        t("end_time"),
       ],
       fields: [
         "venue",

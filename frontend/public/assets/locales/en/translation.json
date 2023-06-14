@@ -46,7 +46,7 @@
   "account": "Account",
   "close": "Close",
   "save_changes": "Save changes",
-  "title_1": "History of the facilities",
+  "my_reservations": "My reservations",
   "events": "Events",
   "venues": "Venues",
   "id": "ID",
@@ -135,4 +135,5 @@
   "high_to_low": "High to low price",
   "a_to_z": "Alphabetical: A to Z",
   "z_to_a": "Alphabetical: Z to A"
+  
   }
