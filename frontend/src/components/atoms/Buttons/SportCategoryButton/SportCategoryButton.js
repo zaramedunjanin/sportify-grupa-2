@@ -1,5 +1,5 @@
 import React from "react";
-import getSportIcon from "../../../../utils/utils";
+import {getSportIcon} from "../../../../utils/utils";
 
 import styles from "./SportCategoryButton.module.css"
 

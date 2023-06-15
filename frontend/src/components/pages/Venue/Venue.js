@@ -15,6 +15,7 @@ import useEffectTitle from "../../../hooks/useEffectTitle";
 import axios from "axios";
 import {useNavigate, useParams} from "react-router-dom";
 import SportCategoryButton from "../../atoms/Buttons/SportCategoryButton/SportCategoryButton";
+import ScheduleNowModal from "./ScheduleNowModal";
 
 const Venue = () => {
     let {id} = useParams();
@@ -25,6 +26,11 @@ const Venue = () => {
     const [rating, setRating] = useState("")
 
     const navigate = useNavigate()
+
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     async function fetchVenue() {
         const response = await axios.get(`${url}`)
@@ -63,6 +69,7 @@ const Venue = () => {
                                 <Col className={"text-center"}>
                                     <MainButton
                                         text={"Schedule Now"}
+                                        onClick={handleShow}
                                     />
                                 </Col>
                             </Row>
@@ -96,14 +103,17 @@ const Venue = () => {
                         </Col>
                     </Row>
                     <Row>
-                        {/* Free time slots */}
-                    </Row>
-                    <Row>
                         {/* faq */}
                     </Row>
                 </Container>
             </div>
             <Footer/>
+            <ScheduleNowModal
+                show={show}
+                handleClose={handleClose}
+                sports = {sports}
+                url = {url}
+            />
         </>
     );
 };
