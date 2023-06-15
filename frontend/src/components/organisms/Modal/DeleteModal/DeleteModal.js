@@ -22,7 +22,7 @@ const DeleteModal = (props) => {
         <CustomButton onClick={props.onHide} text={"Close"} variant="close" />
         <CustomButton
           variant="delete"
-          onClick={props.onClick}
+          onClick={props.onSubmit}
           text={props.type}
         />
       </Modal.Footer>
