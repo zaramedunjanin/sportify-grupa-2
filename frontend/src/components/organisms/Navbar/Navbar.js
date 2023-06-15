@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 
 import Container from "react-bootstrap/Container";
 import NavbarBS from "react-bootstrap/Navbar";
+import { Dropdown, DropdownButton } from "react-bootstrap";
 
 import styles from "./Navbar.module.scss";
 
@@ -11,12 +12,38 @@ import ProfileDropdown from "../../molecules/Dropdown/ProfileDropdown/ProfileDro
 
 import Logo from "./Logo";
 import { Link, useNavigate } from "react-router-dom";
-import adminLinks from "./NavbarLinks/adminNavbarLinks";
-import userLinks from "./NavbarLinks/userNavbarLinks";
+import adminLinks, {
+  getAdminNavbarLinks,
+} from "./NavbarLinks/adminNavbarLinks";
+import userLinks, { getUserNavbarLinks } from "./NavbarLinks/userNavbarLinks";
+import { Translation } from "react-i18next";
+import { useTranslation } from "react-i18next";
+import i18next from "i18next";
+
+import uk_flag from "../../../assets/images/uk_flag.png";
+import bhs_flag from "../../../assets/images/bhs_flag.png";
+
+import { AuthContext } from "../../../context/AuthContext";
 
 //The Navbar for the Main Page is default,
 // for the Search Page it is needed to pass the value "search", for the Admin Panel "admin" and for User Profiles "user" to the prop "variant"
 const Navbar = ({ variant = "default", ...props }) => {
+  const { t } = useTranslation();
+  const userNavbarLinks = getUserNavbarLinks(t);
+  const userAdminNavbarLinks = getAdminNavbarLinks(t);
+  const languages = [
+    {
+      code: "en",
+      name: t("name"),
+      country_code: "en",
+    },
+    {
+      code: "bhs",
+      name: t("name_1"),
+      country_code: "bhs",
+    },
+  ];
+
   let backgroundColor;
 
   switch (variant) {
@@ -34,12 +61,14 @@ const Navbar = ({ variant = "default", ...props }) => {
       break;
   }
 
-  let isAuth = true;
+  const { isAuthenticated, user } = useContext(AuthContext);
+
+  // let isAuth = isAuthenticated;
 
   const navigate = useNavigate();
 
   return (
-    <NavbarBS className={backgroundColor} expand="lg">
+    <NavbarBS className={`${backgroundColor} p-0`} expand="lg">
       <Container fluid id={styles.navbar}>
         <Logo />
         <NavbarBS.Toggle aria-controls="navbarScroll" />
@@ -51,7 +80,7 @@ const Navbar = ({ variant = "default", ...props }) => {
         <NavbarBS.Collapse id="navbarScroll" className="justify-content-end">
           <Container className={"text-center"}>
             {variant === "admin"
-              ? adminLinks.map((l, index) => {
+              ? userAdminNavbarLinks.map((l, index) => {
                   return (
                     <Link to={l.url} className={styles.adminLinks} key={index}>
                       {l.navbarText}
@@ -59,22 +88,60 @@ const Navbar = ({ variant = "default", ...props }) => {
                   );
                 })
               : variant === "user"
-              ? userLinks.map((l, index) => {
+              ? userNavbarLinks.map(({ url, navbarText }, index) => {
                   return (
-                    <Link to={l.url} className={styles.adminLinks} key={index}>
-                      {l.navbarText}
+                    <Link to={url} className={styles.adminLinks} key={index}>
+                      {navbarText}
                     </Link>
                   );
                 })
               : null}
           </Container>
 
-          {isAuth === true ? (
+          <div className="dropdown">
+            <button
+              className="btn dropdown-toggle p-3"
+              type="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <span class="material-symbols-outlined">translate</span>
+            </button>
+            <ul className="dropdown-menu">
+              {languages.map(({ code, name, country_code }) => (
+                <li key={country_code}>
+                  <button
+                    className="dropdown-item"
+                    onClick={() => i18next.changeLanguage(code)}
+                  >
+                    <span className={`mx-2 ${styles.flagIcon}`}>
+                      {country_code === "en" && (
+                        <img
+                          src={uk_flag}
+                          alt="UK Flag"
+                          className="flag-icon"
+                        />
+                      )}
+                      {country_code === "bhs" && (
+                        <img
+                          src={bhs_flag}
+                          alt="BHS Flag"
+                          className="flag-icon"
+                        />
+                      )}
+                    </span>
+                    {name}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+          {isAuthenticated === true ? (
             <ProfileDropdown />
           ) : (
             <div className={styles.navButtons}>
-              <Button text={"Log in"} onClick={() => navigate("/login")} />
-              <Button text={"Sign up"} onClick={() => navigate("/signup")} />
+              <Button text={t("log_in")} onClick={() => navigate("/login")} />
+              <Button text={t("sign_up")} onClick={() => navigate("/signup")} />
             </div>
           )}
         </NavbarBS.Collapse>

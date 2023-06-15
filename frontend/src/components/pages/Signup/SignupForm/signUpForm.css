@@ -33,14 +33,14 @@ select {
   align-items: center;
 }
 
-.input {
+.input_1 {
   border: none;
-  font-size: 14px;
   border-bottom: 1px solid black;
   display: inline;
   width: 100%;
   margin-top: 4px;
   margin-bottom: 8px;
+  font-size: 14px;
 }
 
 .inputContainer {
@@ -57,4 +57,9 @@ select {
   font-size: 12px;
   margin-top: 2px;
   color: red;
+}
+
+.dropdown_toggle_1 {
+  margin-left: 200px;
+  margin-top: 50px;
 }

@@ -21,12 +21,12 @@
   width: 100%;
 }
 
-.search-input:Active {
+.search-input:focus {
   border: none;
+  outline: none;
   background-color: transparent;
   width: 100%;
 }
-
 
 .search-img {
   width: 50px;
@@ -35,4 +35,15 @@
 .search-button {
   border: none;
   background-color: transparent;
+}
+
+@media only screen and (max-width: 600px) {
+  .input-container {
+    display: flex;
+    background-color: white;
+    border-radius: 100px;
+    padding: 0.2rem 0.2rem 0.2rem 0.8rem;
+    border: none;
+    width: 60%;
+  }
 }

@@ -1,8 +1,18 @@
-from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
-from .models import User
+from .models import User, Sport
 from rest_framework import serializers
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
+
+class UserSerializer(serializers.ModelSerializer):
+    sport = serializers.SlugRelatedField(many=True, read_only=True, slug_field='sport_name')
+    class Meta:
+        model = User
+        fields = '__all__'
+
+class SportSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Sport
+        fields = '__all__'
 
 class SignupSerializer(serializers.ModelSerializer):
     first_name = serializers.CharField(
@@ -17,6 +27,7 @@ class SignupSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(max_length=50, required=True)
     password = serializers.CharField(
         min_length=6, max_length=25, write_only=True, required=True)
+
 
     class Meta:
         model = User
@@ -44,6 +55,8 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         # Add custom claims
         token['username'] = user.username
         token['email'] = user.email
-        token['role'] = 1  # here we will put user, company or admin
+        token['role'] = user.role
+        token['first_name'] = user.first_name
+        token['last_name'] = user.last_name
 
         return token

@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from timestamps.models import models, Model
+
 # Create your models here.
 
 class Sport(Model):
@@ -18,17 +19,19 @@ class User(AbstractUser, Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     username = models.CharField(max_length=50, unique=True)
-    company_name = models.CharField(max_length=100, unique=True)
-    email = models.EmailField(max_length=50, null=True, blank=True, unique=True)
+    company_name = models.CharField(max_length=100, null = True, unique = True, blank=True)
+    email = models.EmailField(max_length=50, null=True, unique=True)
     phone_number = models.CharField(max_length=50, unique=True)
-    password = models.CharField(max_length=50)
-    profile_picture = models.CharField(max_length=255)
-    gender = models.CharField(max_length=50)
+    password = models.CharField(max_length=255)
+    profile_picture = models.CharField(max_length=255, blank=True)
+    gender = models.CharField(max_length=50, blank=True, default = "Other")
     city = models.CharField(max_length=50)
-    role = models.PositiveSmallIntegerField(choices=ROLE_CHOICES, blank=True, null=True, default=USER)
-    blocked = models.BooleanField(default=False)
-    verified = models.BooleanField(null=True)
-    sport = models.ManyToManyField(Sport)
+    role = models.PositiveSmallIntegerField(choices=ROLE_CHOICES, null=True, default=2)
+    blocked = models.BooleanField(default=False, blank=True)
+    verified = models.BooleanField(null=True, blank=True)
+    sport = models.ManyToManyField(Sport, blank=True)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
+
+

@@ -1,12 +1,10 @@
-const userNavbarLinks = [
-    {
-        url: "/events",
-        navbarText: "Users"
-    },
-    {
-        url: "/venues",
-        navbarText: "Venues"
-    }
+export const getUserNavbarLinks = (t) => [
+  {
+    url: "/events",
+    navbarText: t("events"),
+  },
+  {
+    url: "/venues",
+    navbarText: t("venues"),
+  },
 ];
-
-export default userNavbarLinks;

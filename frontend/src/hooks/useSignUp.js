@@ -1,128 +1,151 @@
-import {useState} from "react";
-
-const useSignUp = () =>{
-    const [firstName, setFirstName] = useState("");
-    const [firstNameError, setFirstNameError] = useState('');
-    const [lastName, setLastName] = useState("");
-    const [lastNameError, setLastNameError] = useState('');
-    const [city, setCity] = useState("");
-    const [cityError, setCityError] = useState('');
-    const [phoneNumber, setPhoneNumber] = useState("");
-    const [phoneNumberError, setPhoneNumberError] = useState('');
-    const [username, setUsername] = useState("");
-    const [usernameError, setUserNameError] = useState('');
-    const [email, setEmail] = useState("");
-    const [emailError, setEmailError] = useState('');
-    const [password, setPassword] = useState("");
-    const [passwordError, setPasswordError] = useState('');
-    let isDisabled = false;
-
-    const isValidEmail = (email) => {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
-    };
-
-    const isValidPhoneNumber = (phoneNumber) => {
-        const phoneRegex = /^\d+$/;
-        return phoneRegex.test(phoneNumber);
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
-        setFirstNameError("")
-        setLastNameError("")
-        setCityError("")
-        setPhoneNumberError("")
-        setUserNameError("")
-        setEmailError("")
-        setPasswordError("")
+import { useState } from "react";
+import {useNavigate} from "react-router-dom";
+import { signup } from "../services/UserService"
 
 
-        if (firstName.trim() === "") {
-            setFirstNameError("First Name is required");
-            isDisabled = true;
-        }
+const useSignUp = () => {
+  const [firstName, setFirstName] = useState("");
+  const [firstNameError, setFirstNameError] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [lastNameError, setLastNameError] = useState("");
+  const [city, setCity] = useState("");
+  const [cityError, setCityError] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [phoneNumberError, setPhoneNumberError] = useState("");
+  const [username, setUsername] = useState("");
+  const [usernameError, setUserNameError] = useState("");
+  const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [signupError, setSignupError] = useState("");
+  let isDisabled = false;
+  const navigate = useNavigate()
 
-        if (lastName.trim() === "") {
-            setLastNameError("Last Name is required");
-            isDisabled = true;
+  const isValidEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
 
-        }
+  const isValidPhoneNumber = (phoneNumber) => {
+    const phoneRegex = /^\d+$/;
+    return phoneRegex.test(phoneNumber);
+  };
 
-        if (city.trim() === "") {
-            setCityError("City is required");
-            isDisabled = true;
+  const handleSubmit = async (e) => {
+  e.preventDefault();
 
-        }
+  setFirstNameError("");
+  setLastNameError("");
+  setCityError("");
+  setPhoneNumberError("");
+  setUserNameError("");
+  setEmailError("");
+  setPasswordError("");
 
-        if (phoneNumber.trim() === "") {
-            setPhoneNumberError("Phone Number is required");
-            isDisabled = true;
-        } else if (!isValidPhoneNumber(phoneNumber)) {
-            setPhoneNumberError("Invalid phone number format");
-            isDisabled = true;
-        }
+  let isFormValid = true;
 
-        if (username.trim() === "") {
-            setUserNameError("Username is required");
-            isDisabled = true;
+  if (firstName.trim() === "") {
+    setFirstNameError("First Name is required");
+    isFormValid = false;
+  }
 
-        }
+  if (lastName.trim() === "") {
+    setLastNameError("Last Name is required");
+    isFormValid = false;
+  }
 
-        if (email.trim() === "") {
-            setEmailError("E-mail is required");
-            isDisabled = true;
+  if (city.trim() === "") {
+    setCityError("City is required");
+    isFormValid = false;
+  }
 
-        } else if (!isValidEmail(email)) {
-            setEmailError("Invalid email format");
-            isDisabled = true;
+  if (phoneNumber.trim() === "") {
+    setPhoneNumberError("Phone Number is required");
+    isFormValid = false;
+  } else if (!isValidPhoneNumber(phoneNumber)) {
+    setPhoneNumberError("Invalid phone number format");
+    isFormValid = false;
+  }
 
-        }
+  if (username.trim() === "") {
+    setUserNameError("Username is required");
+    isFormValid = false;
+  }
 
-        if (password.trim() === "") {
-            setPasswordError("Password is required");
-            isDisabled=true
-        } else if (password.length < 6) {
-            setPasswordError("Password should be at least 6 characters long");
-            isDisabled=true
-        }
+  if (email.trim() === "") {
+    setEmailError("E-mail is required");
+    isFormValid = false;
+  } else if (!isValidEmail(email)) {
+    setEmailError("Invalid email format");
+    isFormValid = false;
+  }
+
+  if (password.trim() === "") {
+    setPasswordError("Password is required");
+    isFormValid = false;
+  } else if (password.length < 6) {
+    setPasswordError("Password should be at least 6 characters long");
+    isFormValid = false;
+  }
+
+  if (isFormValid) {
+    try {
+      const userData = {
+        first_name: firstName,
+        last_name: lastName,
+        city: city,
+        phone_number: phoneNumber,
+        username: username,
+        password: password,
+        email: email
+      };
+
+      const response = await signup(userData);
+      console.log("Signup successful", response);
+      navigate("/login");
+    } catch (error) {
+      console.error("Signup error:", error);
+      setSignupError(error.detail || "Email is already taken");
+    }
+  }
+};
 
 
-    };
+  return {
+    handleSubmit,
+    isDisabled,
 
-    return{
-        handleSubmit,
-        isDisabled,
+    firstName,
+    setFirstName,
+    firstNameError,
 
-        firstName,
-        setFirstName,
-        firstNameError,
+    lastName,
+    setLastName,
+    lastNameError,
 
-        lastName,
-        setLastName,
-        lastNameError,
+    city,
+    setCity,
+    cityError,
 
-        city,
-        setCity,
-        cityError,
+    phoneNumber,
+    setPhoneNumber,
+    phoneNumberError,
 
-        phoneNumber,
-        setPhoneNumber,
-        phoneNumberError,
+    username,
+    setUsername,
+    usernameError,
 
-        username,
-        setUsername,
-        usernameError,
+    password,
+    setPassword,
+    passwordError,
 
-        password,
-        setPassword,
-        passwordError,
+    email,
+    setEmail,
+    emailError,
 
-        email,
-        setEmail,
-        emailError
-    };
-}
+    signupError,
+  };
+};
 
 export default useSignUp;

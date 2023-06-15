@@ -4,6 +4,7 @@
 
 .navButtons {
   display: flex;
+  justify-content: center;
 }
 
 .adminLinks {
@@ -11,14 +12,15 @@
   margin: 1rem;
   color: white;
   text-decoration: none;
-  font-size: 20px;
+  font-weight: bold;
 }
 
 .navSearch {
   width: 100%;
 }
 
-.adminLinks:hover, .adminLinks:active:focus {
+.adminLinks:hover,
+.adminLinks:active:focus {
   color: #ffc700;
 }
 
@@ -37,4 +39,14 @@
   #navbar {
     padding: 0 1rem 0 1rem;
   }
+}
+
+.space {
+  justify-content: space-around;
+  margin-right: 5%;
+}
+
+.flagIcon img {
+  width: 20px;
+  height: 20px; 
 }

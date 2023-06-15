@@ -6,13 +6,13 @@ from user.models import User, Sport
 class Venue(Model):
     venue_name = models.CharField(max_length=100)
     address = models.CharField(max_length=100)
-    city = models.BooleanField(default=False)
-    type = models.CharField(max_length=50)
-    venue_picture = models.CharField(max_length=255)
+    city = models.CharField(max_length=50)
+    type = models.CharField(max_length=50, blank = True)
+    venue_picture = models.CharField(max_length=255, blank=True, null = True)
     description = models.TextField()
     price_per_hour = models.DecimalField(max_digits=6, decimal_places=2)
-    opening_time = models.TimeField()
-    closing_time = models.TimeField()
+    opening_time = models.CharField(max_length = 5)
+    closing_time = models.CharField(max_length = 5)
     company = models.ForeignKey(User, on_delete=models.CASCADE)
     sport = models.ManyToManyField(Sport)
 
@@ -24,7 +24,7 @@ class Rating(Model):
 
 class Question(Model):
     text = models.TextField()
-    answer = models.TextField()
+    answer = models.TextField(blank=True)
     pinned = models.BooleanField(default=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     venue = models.ForeignKey(Venue, on_delete=models.CASCADE)

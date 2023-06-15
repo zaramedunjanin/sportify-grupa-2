@@ -4,36 +4,17 @@ import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/esm/Col";
 
-import logo from "../../assets/sportify.png";
-
 import "./GeneralLayout.css";
 
-const GeneralLayout = () => {
+const GeneralLayout = ({ children }) => {
   return (
     <Container>
       <Row className="background">
         <Col xs={12}></Col>
-        <img className="image" src={logo} alt="logo" />
+        <img className="image" alt="logo" />
       </Row>
       <Row className="content">
-        <Col xs={12}>
-          <p className="paragraf"> SADRŽAJ </p>
-          <p className="paragraf"> SADRŽAJ </p>
-          <p className="paragraf"> SADRŽAJ </p>
-          <p className="paragraf"> SADRŽAJ </p>
-          <p className="paragraf"> SADRŽAJ </p>
-          <p className="paragraf"> SADRŽAJ </p>
-          <p className="paragraf"> SADRŽAJ </p>
-          <p className="paragraf"> SADRŽAJ </p>
-          <p className="paragraf"> SADRŽAJ </p>
-          <p className="paragraf"> SADRŽAJ </p>
-          <p className="paragraf"> SADRŽAJ </p>
-          <p className="paragraf"> SADRŽAJ </p>
-          <p className="paragraf"> SADRŽAJ </p>
-          <p className="paragraf"> SADRŽAJ </p>
-          <p className="paragraf"> SADRŽAJ </p>
-          <p className="paragraf"> SADRŽAJ </p>
-        </Col>
+        <Col xs={12}>{children}</Col>
       </Row>
     </Container>
   );

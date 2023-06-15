@@ -1,15 +1,15 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 
 import Navbar from "../../organisms/Navbar/Navbar";
 import Footer from "../../organisms/Footer/Footer";
 
-import styles from "./Venue.module.css"
+import styles from "./Venue.module.css";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import {Image} from "react-bootstrap";
+import { Image } from "react-bootstrap";
 
-import slika from "../../../assets/images/pitch.jpg"
+import slika from "../../../assets/images/pitch.jpg";
 import MainButton from "../../atoms/Buttons/MainButton/MainButton";
 import useEffectTitle from "../../../hooks/useEffectTitle";
 import axios from "axios";
@@ -49,9 +49,36 @@ const Venue = () => {
         else setRating(`${r.data}`)
     }
 
-    useEffect(() => {
-        fetchVenue()
-    }, [])
+import { redirect, useNavigate, useParams } from "react-router-dom";
+const Venue = () => {
+  let { id } = useParams();
+  const url = `http://127.0.0.1:8000/venue/${id}`;
+  console.log(id, url);
+
+  const [venue, setVenue] = useState({});
+  const navigate = useNavigate();
+
+  async function fetchVenue() {
+    const response = await axios.get(`${url}`);
+
+    if (response.data[0] === undefined) {
+      console.log("nema");
+      navigate(-1);
+    } else {
+      console.log(response.data[0].fields);
+      response.data[0].fields.opening_time =
+        response.data[0].fields.opening_time.substring(0, 5);
+      response.data[0].fields.closing_time =
+        response.data[0].fields.closing_time.substring(0, 5);
+      setVenue(response.data[0].fields);
+    }
+  }
+
+  useEffectTitle(`${venue.venue_name} | Sportify`);
+
+  useEffect(() => {
+    fetchVenue();
+  }, []);
 
 
     return (

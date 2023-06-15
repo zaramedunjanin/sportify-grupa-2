@@ -11,14 +11,14 @@ class Reservation(Model):
     start_time = models.DateTimeField()
     end_time = models.DateTimeField()
     description = models.CharField(max_length=255)
-    approved = models.BooleanField(default=False)
+    approved = models.BooleanField(blank=True, null = True)
     auto_invite = models.BooleanField(default=False)
-    number_of_invites = models.IntegerField()
+    number_of_invites = models.IntegerField(blank=True, default = 0)
     venue = models.ForeignKey(Venue, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     sport = models.ForeignKey(Sport, on_delete=models.CASCADE)
 
 
 class AcceptedInvites(Model):
-    reservation_id = models.ForeignKey(Reservation, on_delete=models.CASCADE)
+    reservation = models.ForeignKey(Reservation, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)

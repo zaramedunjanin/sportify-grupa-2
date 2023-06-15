@@ -47,7 +47,7 @@ $font-size: 20px;
 @font-face {
   font-family: "Montserrat";
   src: local("Montserrat"),
-  url("./assets/fonts/Montserrat-VariableFont_wght.ttf") format("truetype");
+    url("./assets/fonts/Montserrat-VariableFont_wght.ttf") format("truetype");
 }
 
 * {
@@ -55,5 +55,8 @@ $font-size: 20px;
   font-size: $font-size;
 }
 
-
-
+@media only screen and (max-width: 600px) {
+  * {
+    font-size: 16px;
+  }
+}
