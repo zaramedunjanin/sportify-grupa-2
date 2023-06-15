@@ -8,8 +8,8 @@ from venue.models import Venue
 class Reservation(Model):
     total_places = models.IntegerField()
     going = models.IntegerField()
-    start_time = models.CharField(max_length = 5)
-    end_time = models.CharField(max_length = 5)
+    start_time = models.DateTimeField()
+    end_time = models.DateTimeField()
     description = models.CharField(max_length=255)
     approved = models.BooleanField(blank=True, null = True)
     auto_invite = models.BooleanField(default=False)
