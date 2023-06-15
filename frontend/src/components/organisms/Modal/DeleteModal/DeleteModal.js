@@ -10,7 +10,7 @@ const DeleteModal = (props) => {
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <Modal.Header closeButton>
+      <Modal.Header>
         <Modal.Title id="contained-modal-title-vcenter">
           Confirm {props.type}
         </Modal.Title>
@@ -22,7 +22,7 @@ const DeleteModal = (props) => {
         <CustomButton onClick={props.onHide} text={"Close"} variant="close" />
         <CustomButton
           variant="delete"
-          onClick={props.onClick}
+          onClick={props.onSubmit}
           text={props.type}
         />
       </Modal.Footer>

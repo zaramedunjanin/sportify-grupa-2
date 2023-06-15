@@ -1,16 +1,14 @@
-import React, { useContext, useState } from "react";
-
-import axios from "axios";
+import React, {useContext, useEffect, useState} from "react";
 import { Field, Form, Formik } from "formik";
 import * as yup from "yup";
 
 import Modal from "react-bootstrap/Modal";
 import CustomButton from "../../../atoms/Buttons/CustomButton";
-import FormB from "react-bootstrap/Form";
 
 import CustomSelect from "../../Admin/AdminComponents/AdminModals/CustomFormComponents/CustomSelect";
 import CustomInput from "../../Admin/AdminComponents/AdminModals/CustomFormComponents/CustomInput";
 import CustomImage from "../../Admin/AdminComponents/AdminModals/CustomFormComponents/CustomImage";
+import CustomCheckBox from "../../Admin/AdminComponents/AdminModals/CustomFormComponents/CustomCheckBox";
 import { AuthContext } from "../../../../context/AuthContext";
 import useAdminDataUpload from "../../../../hooks/useAdminDataUpload";
 import { useTranslation } from "react-i18next";
@@ -21,6 +19,7 @@ const UserModal = ({ columns, page, table, row, add, edit, ...props }) => {
   const data = user;
   const { file, percent, setFile, setPercent, handleChange, handleSubmit } =
     useAdminDataUpload();
+
 
   const validationSchema = yup.object().shape({
     first_name: yup.string().required("Required").max(50),
@@ -39,8 +38,7 @@ const UserModal = ({ columns, page, table, row, add, edit, ...props }) => {
     >
       <Modal.Header>
         <Modal.Title id="contained-modal-title-vcenter">
-          {edit === true && t("edit")}
-          {add === true && t("add")}
+            {t("edit")}
         </Modal.Title>
       </Modal.Header>
       <Formik
@@ -55,9 +53,11 @@ const UserModal = ({ columns, page, table, row, add, edit, ...props }) => {
             phone_number: data.phone_number,
             gender: data.gender,
             city: data.city,
+            sport: data.sport,
+
           }}
-        onSubmit={(values, actions) => {
-          handleSubmit(values, (page = "users"), add = false, edit = true);
+        onSubmit={async (values, actions)  => {
+         await handleSubmit(values, (page = "users"), add = false, edit = true);
           props.onHide();
         }}
       >
@@ -95,7 +95,12 @@ const UserModal = ({ columns, page, table, row, add, edit, ...props }) => {
                 label={t("phone_number")}
                 component={CustomInput}
               />
-
+                <Field
+                    name={"phone_number"}
+                    type={"text"}
+                    label={t("phone_number")}
+                    component={CustomInput}
+                />
               <Field
                 name={"gender"}
                 label={t("gender")}
@@ -106,6 +111,7 @@ const UserModal = ({ columns, page, table, row, add, edit, ...props }) => {
                   { value: "Male", label: t("male") },
                 ]}
               />
+
             </Modal.Body>
             <Modal.Footer>
               <CustomButton

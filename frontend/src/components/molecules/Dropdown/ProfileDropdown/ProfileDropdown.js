@@ -20,7 +20,6 @@ const ProfileDropdown = ({
   const { t } = useTranslation();
   const { logout, isAuthenticated, user } = useContext(AuthContext);
 
-
   const [modalOpen, setModalOpen] = useState(false);
 
   const handleEditClick = () => {

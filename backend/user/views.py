@@ -1,3 +1,4 @@
+import json
 from django.core import serializers
 from django.http import HttpResponse, Http404, JsonResponse
 from django.shortcuts import render
@@ -14,7 +15,15 @@ from .serializers import SignupSerializer
 @api_view(['GET'])
 def getUser(request):
     user = request.user
-    data = {'id': user.id, 'username': user.username, 'email': user.email, 'role': user.role, 'first_name': user.first_name, 'last_name': user.last_name, 'city': user.city,'phone_number': user.phone_number,'gender': user.gender,'profile_picture': user.profile_picture }
+    sports = user.sport.all()
+    sport = ""
+    sport_id = ""
+    for s in sports:
+        sport += s.sport_name+', '
+        sport_id += str(s.id) + ', '
+    sport = sport[:len(sport)-2]
+    sport_id = sport_id[:len(sport_id) - 2]
+    data = {'id': user.id, 'username': user.username, 'email': user.email, 'role': user.role, 'first_name': user.first_name, 'last_name': user.last_name, 'city': user.city,'phone_number': user.phone_number,'gender': user.gender,'profile_picture': user.profile_picture, 'sport': sport, 'sport_id': sport_id}
     return Response(data)
 
 @api_view(['POST'])
