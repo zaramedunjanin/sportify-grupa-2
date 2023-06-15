@@ -30,11 +30,11 @@ def getSportByName(sport_name):
     sport = Sport.objects.get(sport_name=sport_name)
     return sport
 
-class VenueSerializer(serializers.ModelSerializer):
-    sport = serializers.SlugRelatedField(many=True, read_only=True, slug_field='sport_name')
-    class Meta:
-        model = Venue
-        fields = ('venue_name', 'address', 'description', 'opening_time', 'closing_time','price_per_hour', 'description', 'sport')
+#class VenueSerializer(serializers.ModelSerializer):
+ #   sport = serializers.SlugRelatedField(many=True, read_only=True, slug_field='sport_name')
+  #  class Meta:
+   #     model = Venue
+    #    fields = ('venue_name', 'address', 'description', 'opening_time', 'closing_time','price_per_hour', 'description', 'sport')
 @api_view(['GET'])
 def getVenue(request, venue_id):
     # venues = Venue.objects.filter(pk=venue_id)
