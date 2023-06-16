@@ -22,10 +22,10 @@ const Footer = () => {
             <img src={mainLogo} alt="sadsd" width="100px" height="100px" />
           </Col>
           <Col xs={12} lg={7} className="mt-auto mb-lg-auto mb-sm-3">
-            <div className="text-white">{t("venue")}</div>
+            <div className="text-white">{t("venues_1")}</div>
           </Col>
           <Col xs={12} lg={3} className="mt-auto mb-lg-auto mb-sm-0">
-            <Button text={t("text")}></Button>
+            <Button text={t("texts_1")}></Button>
           </Col>
         </Row>
       </Container>
