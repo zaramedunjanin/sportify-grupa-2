@@ -87,8 +87,7 @@ const OwnerVenue = () => {
           type="submit"
           text="Add"
           style={{ width: "100px" }}
-          data-bs-toggle="modal"
-          data-bs-target="#venuemodal"
+          
           onClick={() => {
             setEditShow(true);
             //setRow(d);

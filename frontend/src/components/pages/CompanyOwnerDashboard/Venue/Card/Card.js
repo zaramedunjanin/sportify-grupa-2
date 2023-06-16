@@ -43,9 +43,6 @@ const Card = ({ venue, setDeleteId, setEditId, ...rest }) => {
                   <li className="edit">
                     <a
                       className="dropdown-item"
-                      href="#"
-                      data-bs-toggle="modal"
-                      data-bs-target="#venuemodal"
                       onClick={() => setEditId(venue.id)}
                     >
                       Edit
@@ -54,9 +51,6 @@ const Card = ({ venue, setDeleteId, setEditId, ...rest }) => {
                   <li className="delete">
                     <a
                       className="dropdown-item"
-                      href="#"
-                      data-bs-toggle="modal"
-                      data-bs-target="#exampleModal"
                       onClick={() => setDeleteId(venue.id)}
                     >
                       Delete
