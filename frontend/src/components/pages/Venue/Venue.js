@@ -8,14 +8,13 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Image } from "react-bootstrap";
-
-import slika from "../../../assets/images/pitch.jpg";
 import MainButton from "../../atoms/Buttons/MainButton/MainButton";
 import useEffectTitle from "../../../hooks/useEffectTitle";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import SportCategoryButton from "../../atoms/Buttons/SportCategoryButton/SportCategoryButton";
 import ScheduleNowModal from "./ScheduleNowModal";
+import QnAList from "./QnAList";
 
 const Venue = () => {
     let { id } = useParams();
@@ -24,6 +23,7 @@ const Venue = () => {
     const [venue, setVenue] = useState({});
     const [sports, setSports] = useState([]);
     const [rating, setRating] = useState("");
+    const [questionList, setQuestionList] = useState([])
 
     const navigate = useNavigate();
 
@@ -53,6 +53,9 @@ const Venue = () => {
         const r = await axios.get(`${url}/getrating`);
         if (r.data === 0.0 || typeof r.data !== "number") setRating("--");
         else setRating(`${r.data}`);
+
+        const q = await axios.get(`${url}/getquestions`);
+        setQuestionList(q.data)
     }
 
     useEffect(() => {
@@ -66,7 +69,7 @@ const Venue = () => {
                 <Container>
                     <Row>
                         <Col className={`${styles.card} my-2`}>
-                            <Image className={styles.cover} fluid src={slika} />
+                            {venue.venue_picture !== '' && <Image className={styles.cover} fluid src={venue.venue_picture}/>}
                             <Row className={"justify-content-between align-items-center"}>
                                 <Col xs={7} className={"align-items-center my-1"}>
                                     <h2 className={`${styles.title} ms-2`}>{venue.venue_name}</h2>
@@ -110,7 +113,9 @@ const Venue = () => {
                             </Row>
                         </Col>
                     </Row>
-                    <Row>{/* faq */}</Row>
+                    <Row className={"my-2"}>
+                        {questionList.length !== 0 && <QnAList questionList={questionList}/>}
+                    </Row>
                 </Container>
             </div>
             <Footer />
