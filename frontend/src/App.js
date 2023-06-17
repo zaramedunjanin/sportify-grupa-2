@@ -16,6 +16,7 @@ import { SearchProvider } from "./context/SearchContext";
 import { CategoryProvider } from "./context/CategoryContext";
 import { AuthProvider } from "./context/AuthContext";
 import ContextWrapper from "./context/ContextWrapper";
+import TermsOfUse from "./components/pages/TermsOfUse/TermsOfUse";
 
 const App = () => {
   return (
@@ -28,6 +29,7 @@ const App = () => {
           <Route path="login" element={<LoginPage />} />
           <Route path="signup" element={<Signup />} />
           <Route path="about" element={<About />} />
+          <Route path="termsofuse" element={<TermsOfUse />} />
           <Route path="administrator" element={<Admin />}>
             <Route path="tables" element={<RootTablePage />}>
               <Route path="users" element={<TablePage />} />

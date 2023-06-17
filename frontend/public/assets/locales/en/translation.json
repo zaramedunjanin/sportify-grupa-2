@@ -135,5 +135,10 @@
   "high_to_low": "High to low price",
   "a_to_z": "Alphabetical: A to Z",
   "z_to_a": "Alphabetical: Z to A",
-  "about_text": "Sportify is a modern online platform that connects sports enthusiasts with sports facilities. Whether you're looking to rent a field, pitch, court, ring, or rink, Sportify makes it easy to find and book the perfect venue for your sports event. With user accounts, you can manage your bookings, invite others to your events, and get answers to your questions about the facilities. Facility owners can also create accounts, register their venues, and provide helpful information to potential customers."
-  }
+  "about_text": "Sportify is a modern online platform that connects sports enthusiasts with sports facilities. Whether you're looking to rent a field, pitch, court, ring, or rink, Sportify makes it easy to find and book the perfect venue for your sports event. With user accounts, you can manage your bookings, invite others to your events, and get answers to your questions about the facilities. Facility owners can also create accounts, register their venues, and provide helpful information to potential customers.",
+  "terms_of_use": "Terms Of Use",
+  "terms_of_use_text": "a) Acceptance of Terms: By accessing and/or using the Site, you acknowledge and agree to comply with these Terms. Your use of the Site signifies your acceptance of these Terms, as if you had agreed to them in writing. If you do not agree to these Terms, you must refrain from using the Site.",
+  "terms_of_use_text_1": "b) Amendment of Terms: Sportify reserves the right to modify the Terms periodically. Any amendments will become effective immediately upon Sportify posting the updated Terms, unless a delayed effective date is explicitly provided. Your continued access to or use of the Site after the posting of the revised Terms indicates your consent to be bound by the amended Terms.",
+  "terms_of_use_text_2": "These Terms of Use are a contract between you and Sportify Bosnia and govern your access to and use of any Sportify website, mobile application or content, or products and/or services made available through Sportify. Please read these Terms carefully before accessing and using the Site."
+  
+}
