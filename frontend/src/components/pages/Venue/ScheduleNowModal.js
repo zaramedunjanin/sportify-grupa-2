@@ -9,9 +9,12 @@ import SportCategoryButton from "../../atoms/Buttons/SportCategoryButton/SportCa
 import axios from "axios";
 import {AuthContext} from "../../../context/AuthContext";
 
+import styles from "./Venue.module.css";
+
 const currentDateTime = getCurrentDateTime()
 
 const ScheduleNowModal = (props) => {
+
     const { isAuthenticated, user } = useContext(AuthContext);
     const username = user.username
 
@@ -22,8 +25,12 @@ const ScheduleNowModal = (props) => {
     const [going, setGoing] = useState('');
     const [desc, setDesc] = useState('');
 
+    const [successMessage, setSuccessMessage] = useState("");
+
     const sports = props.sports;
     const url = props.url;
+
+    const resetSuccess = () => setSuccessMessage("");
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -43,7 +50,10 @@ const ScheduleNowModal = (props) => {
                     sport, start_date, end_date, total_places, going, desc, username
                 }
             );
-            console.log(response.data);
+            console.log(response.status);
+
+            if (response.status === 200) setSuccessMessage('Venue scheduled successfully');
+
             setSport(''); setDate(''); setDuration(''); setTotal_places('');
             setGoing(''); setDesc('');
         }
@@ -61,7 +71,18 @@ const ScheduleNowModal = (props) => {
             <Modal.Header closeButton>
                 <Modal.Title>Schedule An Appointment</Modal.Title>
             </Modal.Header>
+
             <Modal.Body>
+                {successMessage ? (
+                    <div className={"text-center"}>
+                        <h1 className={styles.success}><span className="material-symbols-outlined">check_circle</span></h1>
+                        <h4>{successMessage}</h4>
+                        <MainButton
+                            text={"Schedule another"}
+                            onClick={resetSuccess}
+                        />
+                    </div>
+                ) : ( <>
                 <Form>
                     <Form.Group className="mb-3" controlId="reservationSports">
                         <Form.Label>Choose a Sport</Form.Label>
@@ -152,6 +173,7 @@ const ScheduleNowModal = (props) => {
                         />
                     </Form.Group>
                 </Form>
+                </> )}
             </Modal.Body>
             <Modal.Footer>
                 <MainButton

@@ -28,3 +28,7 @@
 .rating h6 {
   display: inline;
 }
+
+.success {
+  color: green;
+}
