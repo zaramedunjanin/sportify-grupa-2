@@ -29,10 +29,10 @@ const App = () => {
           <Route path="faq" element={<FrequentlyAskedQuestions />} />
           <Route path="login" element={<LoginPage />} />
           <Route path="signup" element={<Signup />} />
-          <Route path="about" element={<About />} />
           <Route path="bap" element={<BecomeAPartnerPage />} />
           <Route path="termsofuse" element={<TermsOfUse />} />
           <Route path="privacypolicy" element={<PrivacyPolicy />} />
+          <Route path="about" element={<About />} />
           <Route path="administrator" element={<Admin />}>
             <Route path="tables" element={<RootTablePage />}>
               <Route path="users" element={<TablePage />} />
