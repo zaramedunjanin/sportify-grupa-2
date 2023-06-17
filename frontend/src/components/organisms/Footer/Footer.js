@@ -37,7 +37,7 @@ const Footer = () => {
             <ul className="nav flex-column text-center">
               <li className="nav-item mb-2">
                 <a
-                  href="#"
+                  href="/about"
                   className="p-0  text-decoration-none text-reset footer-links"
                 >
                   {t("about")}
