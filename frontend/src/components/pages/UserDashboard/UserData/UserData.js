@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Field, Form, Formik } from "formik";
 import * as yup from "yup";
 
@@ -15,11 +15,10 @@ import { useTranslation } from "react-i18next";
 
 const UserModal = ({ columns, page, table, row, add, edit, ...props }) => {
   const { t } = useTranslation();
-  const { logout, isAuthenticated, user } = useContext(AuthContext);
+  const { user, fetchUserProfile } = useContext(AuthContext);
   const data = user;
   const { file, percent, setFile, setPercent, handleChange, handleSubmit } =
     useAdminDataUpload();
-
 
   const validationSchema = yup.object().shape({
     first_name: yup.string().required("Required").max(50),
@@ -27,6 +26,14 @@ const UserModal = ({ columns, page, table, row, add, edit, ...props }) => {
     phone_number: yup.string().max(50),
     city: yup.string().required("Required").max(50),
   });
+
+  const updateInfo = async (values) => {
+    await handleSubmit(values, (page = "users"), (add = false), (edit = true));
+    setTimeout(() => {
+      fetchUserProfile();
+    }, 1500);
+    props.onHide();
+  };
 
   return (
     <Modal
@@ -38,27 +45,24 @@ const UserModal = ({ columns, page, table, row, add, edit, ...props }) => {
     >
       <Modal.Header>
         <Modal.Title id="contained-modal-title-vcenter">
-            {t("edit")}
+          {t("edit")}
         </Modal.Title>
       </Modal.Header>
       <Formik
         validationSchema={validationSchema}
         validateOnChange={true}
-
-          initialValues = {{
-            id: data.id,
-            first_name: data.first_name,
-            last_name: data.last_name,
-            profile_picture: data.profile_picture,
-            phone_number: data.phone_number,
-            gender: data.gender,
-            city: data.city,
-            sport: data.sport,
-
-          }}
-        onSubmit={async (values, actions)  => {
-         await handleSubmit(values, (page = "users"), add = false, edit = true);
-          props.onHide();
+        initialValues={{
+          id: data.id,
+          first_name: data.first_name,
+          last_name: data.last_name,
+          profile_picture: data.profile_picture,
+          phone_number: data.phone_number,
+          gender: data.gender,
+          city: data.city,
+          sport: data.sport,
+        }}
+        onSubmit={async (values, actions) => {
+          await updateInfo(values);
         }}
       >
         {({ values, errors }) => (
@@ -84,10 +88,10 @@ const UserModal = ({ columns, page, table, row, add, edit, ...props }) => {
                 component={CustomInput}
               />
               <Field
-                  name={"city"}
-                  type={"text"}
-                  label={t("city")}
-                  component={CustomInput}
+                name={"city"}
+                type={"text"}
+                label={t("city")}
+                component={CustomInput}
               />
               <Field
                 name={"phone_number"}
@@ -95,12 +99,12 @@ const UserModal = ({ columns, page, table, row, add, edit, ...props }) => {
                 label={t("phone_number")}
                 component={CustomInput}
               />
-                <Field
-                    name={"phone_number"}
-                    type={"text"}
-                    label={t("phone_number")}
-                    component={CustomInput}
-                />
+              <Field
+                name={"phone_number"}
+                type={"text"}
+                label={t("phone_number")}
+                component={CustomInput}
+              />
               <Field
                 name={"gender"}
                 label={t("gender")}
@@ -111,7 +115,6 @@ const UserModal = ({ columns, page, table, row, add, edit, ...props }) => {
                   { value: "Male", label: t("male") },
                 ]}
               />
-
             </Modal.Body>
             <Modal.Footer>
               <CustomButton

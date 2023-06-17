@@ -17,15 +17,19 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(initialUser); // u slucaju da zelimo cuvati vise podataka o korisniku tokom sesije
   const navigate = useNavigate();
 
-  useEffect(() => {
+  const fetchUserProfile = async () => {
     const token = localStorage.getItem("token");
+    console.log("fetch user");
     if (token) {
       instance
         .get("auth/user")
         .then((response) => {
           setIsAuthenticated(true);
           setUser(response.data);
+          console.log("fetched user");
+          console.log(response.data);
         })
+        .then((response) => {})
         .catch((error) => {
           console.log(error);
         });
@@ -34,6 +38,10 @@ export const AuthProvider = ({ children }) => {
     } else {
       setIsAuthenticated(false);
     }
+  };
+
+  useEffect(() => {
+    fetchUserProfile();
   }, []);
 
   const logout = () => {
@@ -45,7 +53,14 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ isAuthenticated, logout, setIsAuthenticated, user, setUser }}
+      value={{
+        isAuthenticated,
+        logout,
+        setIsAuthenticated,
+        user,
+        setUser,
+        fetchUserProfile,
+      }}
     >
       {children}
     </AuthContext.Provider>
