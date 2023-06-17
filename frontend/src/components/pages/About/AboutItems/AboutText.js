@@ -2,25 +2,21 @@ import React from "react";
 
 import Container from "react-bootstrap/Container";
 
+import { useTranslation } from "react-i18next";
+import i18next from "i18next";
+
 const AboutText = () => {
+  const { t } = useTranslation();
   const textStyle = {
     textAlign: "center",
     marginLeft: "20%",
     marginRight: "20%",
+    marginBottom: "10%",
   };
 
   return (
     <Container fluid>
-      <p style={textStyle}>
-        Sportify is a modern online platform that connects sports enthusiasts
-        with sports facilities. Whether you're looking to rent a field, pitch,
-        court, ring, or rink, Sportify makes it easy to find and book the
-        perfect venue for your sports event. With user accounts, you can manage
-        your bookings, invite others to your events, and get answers to your
-        questions about the facilities. Facility owners can also create
-        accounts, register their venues, and provide helpful information to
-        potential customers.
-      </p>
+      <p style={textStyle}>{t("about_text")}</p>
     </Container>
   );
 };
