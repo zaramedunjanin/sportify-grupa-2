@@ -1,6 +1,6 @@
 import axios from "../HttpService/HttpService";
 
-const addVenue = async (venue) => {
+export const addVenue = async (venue) => {
   try {
     const response = await axios.post("venue/company/add", {
       params: venue,
@@ -11,7 +11,7 @@ const addVenue = async (venue) => {
   }
 };
 
-const updateVenue = async (venue) => {
+export const updateVenue = async (venue) => {
   try {
     const response = await axios.get("venue/company/update", {
       params: venue,
@@ -22,16 +22,13 @@ const updateVenue = async (venue) => {
   }
 };
 
-const deleteVenue = async (venue) => {
-    try {
-      const response = await axios.get("venue/company/delete", {
-        params: venue,
-      });
-      return response;
-    } catch (error) {
-      throw new Error("Failed to fetch venues");
-    }
-  };
-
-
-export default updateVenue;
+export const deleteVenue = async (venue) => {
+  try {
+    const response = await axios.delete("venue/company/delete", {
+      params: {id: venue.id},
+    });
+    return response;
+  } catch (error) {
+    throw new Error("Failed to fetch venues");
+  }
+};

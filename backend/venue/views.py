@@ -9,6 +9,7 @@ from .serializers import VenueSerializer
 from .models import Venue
 from django.db.models import Prefetch
 from rest_framework import status
+from rest_framework.permissions import IsAuthenticated
 
 from .models import Venue
 @api_view(['GET'])
@@ -56,8 +57,9 @@ def getVenues(request):
 
 # returns list of venues owned by a company
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def getCompanyVenues(request):
-    company_id = request.GET.get('company_id', None)
+    company_id = request.user.id
 
     if company_id == None:
       return Response(status=status.HTTP_404_NOT_FOUND)
@@ -95,12 +97,22 @@ def update_venue(request):
 
 # deletes venue
 @api_view(['DELETE'])
-def delete_venue(request, pk):
+@permission_classes([IsAuthenticated])
+def delete_venue(request):
+    print("Delete")
     try:
-        venue = Venue.objects.get(pk=pk)
+        venue_id = request.GET.get('id', None)
+        print(venue_id)
+        if venue_id == None:
+          raise Venue.DoesNotExist
+        venue = Venue.objects.get(pk=venue_id)
+        print(venue.company_id)
+        if(venue.company_id != request.user.id):
+          raise Venue.DoesNotExist
+        if request.method == 'DELETE':
+          venue.delete()
+          return Response({'message': 'Venue deleted successfully.'}, status=status.HTTP_204_NO_CONTENT)
     except Venue.DoesNotExist:
         return Response({'message': 'Venue does not exist.'}, status=status.HTTP_404_NOT_FOUND)
 
-    if request.method == 'DELETE':
-        venue.delete()
-        return Response({'message': 'Venue deleted successfully.'}, status=status.HTTP_204_NO_CONTENT)
+    

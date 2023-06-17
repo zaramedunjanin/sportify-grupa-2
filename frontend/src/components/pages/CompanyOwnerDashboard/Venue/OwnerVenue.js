@@ -1,53 +1,56 @@
 import Card from "./Card/Card";
 import MainButton from "../../../atoms/Buttons/MainButton/MainButton";
 import VenueModal from "./Modal/VenueModal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DeleteModal from "../../../organisms/Modal/DeleteModal/DeleteModal";
+import { getCompanyVenues } from "../../../../services/Venue/Query";
+import { deleteVenue } from "../../../../services/Venue/Mutator";
 
 const OwnerVenue = () => {
-  const result = [
-    {
-      id: 0,
-      venue_name: "venue 1",
-      address: "address 1",
-      opening_time: "08:00",
-      closing_time: "21:00",
-      price_per_hour: "25",
-    },
-    {
-      id: 1,
-      venue_name: "venue 2",
-      address: "address 1",
-      opening_time: "08:00",
-      closing_time: "21:00",
-      price_per_hour: "25",
-    },
-    {
-      id: 2,
-      venue_name: "venue 3",
-      address: "address 1",
-      opening_time: "08:00",
-      closing_time: "21:00",
-      price_per_hour: "25",
-    },
-    {
-      id: 3,
-      venue_name: "venue 4",
-      address: "address 1",
-      opening_time: "08:00",
-      closing_time: "21:00",
-      price_per_hour: "25",
-    },
-    {
-      id: 4,
-      venue_name: "venue 5",
-      address: "address 1",
-      opening_time: "08:00",
-      closing_time: "21:00",
-      price_per_hour: "25",
-    },
-  ];
+  // const result = [
+  //   {
+  //     id: 0,
+  //     venue_name: "venue 1",
+  //     address: "address 1",
+  //     opening_time: "08:00",
+  //     closing_time: "21:00",
+  //     price_per_hour: "25",
+  //   },
+  //   {
+  //     id: 1,
+  //     venue_name: "venue 2",
+  //     address: "address 1",
+  //     opening_time: "08:00",
+  //     closing_time: "21:00",
+  //     price_per_hour: "25",
+  //   },
+  //   {
+  //     id: 2,
+  //     venue_name: "venue 3",
+  //     address: "address 1",
+  //     opening_time: "08:00",
+  //     closing_time: "21:00",
+  //     price_per_hour: "25",
+  //   },
+  //   {
+  //     id: 3,
+  //     venue_name: "venue 4",
+  //     address: "address 1",
+  //     opening_time: "08:00",
+  //     closing_time: "21:00",
+  //     price_per_hour: "25",
+  //   },
+  //   {
+  //     id: 4,
+  //     venue_name: "venue 5",
+  //     address: "address 1",
+  //     opening_time: "08:00",
+  //     closing_time: "21:00",
+  //     price_per_hour: "25",
+  //   },
+  // ];
 
+  const [venues, setVenues] = useState([]);
   const [deleteId, setDeleteId] = useState(0);
   const [editId, setEditId] = useState(0);
   let [row, setRow] = useState([]);
@@ -59,26 +62,31 @@ const OwnerVenue = () => {
   const [editShow, setEditShow] = useState(false);
 
   const getSelectedVenue = (venue_id) => {
-    let wantedVenue = result.find((v) => v.id === venue_id);
+    let wantedVenue = venues.find((v) => v.id === venue_id);
     console.log("wanted", wantedVenue);
     return wantedVenue;
   };
 
   const handleDelete = async () => {
     setDeleteShow(false);
-    // await deleteData(row.id, page);
-    // await fetchData();
+    console.log(row);
+    await deleteVenue(row);
+    await fetchData();
   };
-  const handleDecline = async () => {
-    setDeclineShow(false);
-    // await declineCompany(row, page);
-    // await fetchData();
+
+  const fetchData = async () => {
+    try {
+      const response = await getCompanyVenues();
+      setVenues(response.data);
+      console.log(response);
+    } catch (error) {
+      console.error("Failed to fetch data:", error);
+    }
   };
-  const handleAccept = async () => {
-    setAcceptShow(false);
-    // await acceptCompany(row, page);
-    // await fetchData();
-  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <>
@@ -87,7 +95,6 @@ const OwnerVenue = () => {
           type="submit"
           text="Add"
           style={{ width: "100px" }}
-          
           onClick={() => {
             setEditShow(true);
             //setRow(d);
@@ -96,9 +103,8 @@ const OwnerVenue = () => {
       </div>
       <div className="container mt-4 d-flex justify-content-center">
         <div className="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
-          {result &&
-            result.length !== 0 &&
-            result.map((venue) => {
+          {venues.length !== 0 &&
+            venues.map((venue) => {
               return (
                 <div className="col d-flex justify-content-center">
                   <Card
@@ -127,33 +133,17 @@ const OwnerVenue = () => {
           onClick: handleDelete,
           type: "Delete",
         })}
-        {...(declineShow === true && {
-          show: declineShow,
-          onHide: () => {
-            setDeclineShow(false);
-          },
-          onClick: handleDecline,
-          type: "Decline",
-        })}
-        {...(acceptShow === true && {
-          show: acceptShow,
-          onHide: () => {
-            setAcceptShow(false);
-          },
-          onClick: handleAccept,
-          type: "Accept",
-        })}
       />
 
       {/* <DeleteModal
         modalText="Delete venue?"
         venue={() => getSelectedVenue(editId)}
       /> */}
-      <VenueModal
+      {/* <VenueModal
         venue={() => getSelectedVenue(editId)}
         action={"edit"}
         editId={editId}
-      />
+      /> */}
       <VenueModal
         // page={"page"}
         // table={"page"}

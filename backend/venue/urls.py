@@ -6,5 +6,5 @@ urlpatterns = [
     path('company', views.getCompanyVenues, name='company'),
     path('company/update', views.update_venue, name='update'),
     path('company/add', views.getCompanyVenues, name='add'),
-    path('company/delete', views.getCompanyVenues, name='delete'),
+    path('company/delete', views.delete_venue, name='delete'),
 ]
