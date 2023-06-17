@@ -11,3 +11,14 @@ export const signup = async (userData) => {
     }
 };
 
+
+export const join = async (userData) => {
+    try {
+        const response = await axios.post(`${API_BASE_URL}/auth/signup`, userData);
+        return response.data;
+    } catch (error) {
+        throw error.response.data;
+    }
+};
+
+

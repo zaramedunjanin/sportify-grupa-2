@@ -15,6 +15,7 @@ import { SearchProvider } from "./context/SearchContext";
 import { CategoryProvider } from "./context/CategoryContext";
 import { AuthProvider } from "./context/AuthContext";
 import ContextWrapper from "./context/ContextWrapper";
+import BecomeAPartnerPage from "./components/pages/BecomeAPartner/BecomeAPartnerPage";
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
 
           <Route path="login" element={<LoginPage />} />
           <Route path="signup" element={<Signup />} />
+          <Route path="bap" element={<BecomeAPartnerPage/>}/>
 
           <Route path="administrator" element={<Admin />}>
             <Route path="tables" element={<RootTablePage />}>
