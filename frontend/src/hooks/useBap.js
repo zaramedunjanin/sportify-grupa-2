@@ -20,8 +20,9 @@ const useBap = () => {
   const [passwordError, setPasswordError] = useState("");
   const [company, setCompany] = useState("")
   const [companyError, setCompanyError] = useState();
+  const [joinMessage, setJoinMessage] = useState();
+  const [joinMessageError, setJoinMessageError] = useState();
   let isDisabled = false;
-  const navigate = useNavigate()
 
   const isValidEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -106,12 +107,16 @@ const useBap = () => {
         username: username,
         password: password,
         email: email,
-        company: company
+        company: company,
+        role: 3
       };
 
-      await join(userData);
-      navigate("/");
+      const response = await join(userData);
+      setJoinMessage("Successfully sent request to become a partner");
     } catch (error) {
+      if (error.response && error.response.data) {
+        setJoinMessageError(error.response.data.detail);
+      }
     }
   }
 };
@@ -152,6 +157,8 @@ const useBap = () => {
     company,
     setCompany,
     companyError,
+    joinMessage,
+    joinMessageError
   };
 };
 

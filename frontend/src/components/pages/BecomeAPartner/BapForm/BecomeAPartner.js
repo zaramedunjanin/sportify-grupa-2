@@ -44,7 +44,9 @@ const BecomeAPartnerForm = () => {
 
         company,
         setCompany,
-        companyError
+        companyError,
+        joinMessage,
+        joinMessageError
     } = useBap();
 
     return (
@@ -144,6 +146,12 @@ const BecomeAPartnerForm = () => {
                     />
                     {passwordError && (
                         <div className="text-danger small">{passwordError}</div>
+                    )}
+                    {joinMessageError && (
+                        <div className="text-danger small">{joinMessageError}</div>
+                    )}
+                    {joinMessage && (
+                        <div className="text-success small">{joinMessage}</div>
                     )}
                 </Col>
 
