@@ -31,7 +31,6 @@ const App = () => {
           <Route path="about" element={<About />} />
           <Route path="termsofuse" element={<TermsOfUse />} />{" "}
           <Route path="bap" element={<BecomeAPartnerPage />} />
-          <Route path="bap" element={<BecomeAPartnerPage />} />
           <Route path="administrator" element={<Admin />}>
             <Route path="tables" element={<RootTablePage />}>
               <Route path="users" element={<TablePage />} />
