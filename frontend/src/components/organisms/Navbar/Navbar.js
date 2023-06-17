@@ -24,6 +24,7 @@ import uk_flag from "../../../assets/images/uk_flag.png";
 import bhs_flag from "../../../assets/images/bhs_flag.png";
 
 import { AuthContext } from "../../../context/AuthContext";
+import TranslationComponent from "../../pages/TranslationComponent/TranslationComponent";
 
 //The Navbar for the Main Page is default,
 // for the Search Page it is needed to pass the value "search", for the Admin Panel "admin" and for User Profiles "user" to the prop "variant"
@@ -98,44 +99,7 @@ const Navbar = ({ variant = "default", ...props }) => {
               : null}
           </Container>
 
-          <div className="dropdown">
-            <button
-              className="btn dropdown-toggle p-3"
-              type="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              <span class="material-symbols-outlined">translate</span>
-            </button>
-            <ul className="dropdown-menu">
-              {languages.map(({ code, name, country_code }) => (
-                <li key={country_code}>
-                  <button
-                    className="dropdown-item"
-                    onClick={() => i18next.changeLanguage(code)}
-                  >
-                    <span className={`mx-2 ${styles.flagIcon}`}>
-                      {country_code === "en" && (
-                        <img
-                          src={uk_flag}
-                          alt="UK Flag"
-                          className="flag-icon"
-                        />
-                      )}
-                      {country_code === "bhs" && (
-                        <img
-                          src={bhs_flag}
-                          alt="BHS Flag"
-                          className="flag-icon"
-                        />
-                      )}
-                    </span>
-                    {name}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <TranslationComponent />
           {isAuthenticated === true ? (
             <ProfileDropdown />
           ) : (

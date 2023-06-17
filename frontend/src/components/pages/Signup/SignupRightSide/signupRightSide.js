@@ -21,7 +21,9 @@ const SignupRightSide = () => {
           <Logo />
         </Col>
         <Col xs={6}>
-          <TranslationComponent />
+          <div className="dropdown_container_2 text-end">
+            <TranslationComponent />
+          </div>
         </Col>
       </Row>
       <Row className="p-0">
