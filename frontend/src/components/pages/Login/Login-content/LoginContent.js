@@ -33,7 +33,7 @@ const LoginContent = () => {
           <Col sm={5}>
             <div className="dropdown_container">
               <Navbar />
-              <div>
+              <div className="dropdown_container_1">
                 <TranslationComponent />
               </div>
             </div>

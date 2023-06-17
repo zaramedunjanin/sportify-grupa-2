@@ -17,13 +17,15 @@ const BapRightSide = () => {
           <Logo />
         </Col>
         <Col xs={6}>
-          <TranslationComponent />
+          <div className="dropdown_container_4 text-end">
+            <TranslationComponent />
+          </div>
         </Col>
       </Row>
       <Row className="p-0">
         <Col className="text_in_the_center">
-          <h3 className="h3_center">Become a partner</h3>
-          <p className="p_center">Expand your reach, connect with new customers, and grow your business</p>
+          <h3 className="h3_center">{t("become_a_partner_heading")}</h3>
+          <p className="p_center">{t("become_a_partner_paragraf")}</p>
         </Col>
       </Row>
     </Container>
