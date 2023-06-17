@@ -11,6 +11,7 @@ import RootTablePage from "./components/pages/Admin/AdminPages/RootTablePage";
 import Venue from "./components/pages/Venue/Venue";
 import UserDashboardPage from "./components/pages/UserDashboard/UserDashboardPage";
 import UserData from "./components/pages/UserDashboard/UserData/UserData";
+import About from "./components/pages/About/About";
 import { SearchProvider } from "./context/SearchContext";
 import { CategoryProvider } from "./context/CategoryContext";
 import { AuthProvider } from "./context/AuthContext";
@@ -27,8 +28,8 @@ const App = () => {
 
           <Route path="login" element={<LoginPage />} />
           <Route path="signup" element={<Signup />} />
-          <Route path="bap" element={<BecomeAPartnerPage/>}/>
-
+          <Route path="bap" element={<BecomeAPartnerPage />} />
+          <Route path="about" element={<About />} />
           <Route path="administrator" element={<Admin />}>
             <Route path="tables" element={<RootTablePage />}>
               <Route path="users" element={<TablePage />} />

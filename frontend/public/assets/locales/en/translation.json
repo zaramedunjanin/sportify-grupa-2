@@ -7,7 +7,7 @@
   "venue": "Get More Bookings for Your Venue Today !",
   "text": "Become a partner",
   "info": "Info",
-  "about": "About",
+  "about": "About Us",
   "partner": "Become a partner",
   "faq": "FAQ",
   "links": "Important Links",
@@ -134,5 +134,6 @@
   "low_to_hight": "Low to high price",
   "high_to_low": "High to low price",
   "a_to_z": "Alphabetical: A to Z",
-  "z_to_a": "Alphabetical: Z to A"
+  "z_to_a": "Alphabetical: Z to A",
+  "about_text": "Sportify is a modern online platform that connects sports enthusiasts with sports facilities. Whether you're looking to rent a field, pitch, court, ring, or rink, Sportify makes it easy to find and book the perfect venue for your sports event. With user accounts, you can manage your bookings, invite others to your events, and get answers to your questions about the facilities. Facility owners can also create accounts, register their venues, and provide helpful information to potential customers."
   }

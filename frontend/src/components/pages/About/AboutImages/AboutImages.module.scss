@@ -1,0 +1,23 @@
+
+.button_image {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 100%;
+}
+
+.center_row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.center_paragraf {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+  margin-top: 5%;
+}
