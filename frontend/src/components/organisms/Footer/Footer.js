@@ -45,7 +45,7 @@ const Footer = () => {
               </li>
               <li className="nav-item mb-2">
                 <a
-                  href="#"
+                  href="/bap"
                   className="p-0  text-decoration-none text-reset footer-links"
                 >
                   {t("partner")}
