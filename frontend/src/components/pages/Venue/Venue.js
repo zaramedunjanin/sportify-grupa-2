@@ -26,7 +26,6 @@ import QnAList from "./QnAList";
 import { AuthContext } from "../../../context/AuthContext";
 import RatingStars from "./RatingStars/RatingStars";
 import { useTranslation } from "react-i18next";
-import Button from "react-bootstrap/Button";
 
 const Venue = () => {
     let { id } = useParams();
@@ -108,7 +107,7 @@ const Venue = () => {
                                 <Col xs={7} className={"align-items-center my-1"}>
                                     <h2 className={`${styles.title} ms-2`}>{venue.venue_name}</h2>
                                 </Col>
-                                <Col className={"text-center"}>
+                                <Col className={"text-end"}>
                                     <MainButton onClick={handleShow} text={t("schedule_now")} />
                                 </Col>
                             </Row>
@@ -209,10 +208,9 @@ const Venue = () => {
                                             <div className={styles.button_wrapper}>
                                                 <div>{ status && status.success? status.success :  ""}</div>
 
-                                                <Button
+                                                <MainButton
                                                     type="submit"
                                                     text="Send"
-                                                    className={`${styles.ask_button} ${styles.smaller_button}`}
                                                 />
                                             </div>
                                         </Form>

@@ -53,11 +53,9 @@ const App = () => {
             <Route
                 path="administrator"
                 element={
-                  <PrivateRoute expectedRoles={[1]}>
                     <Admin />
-                  </PrivateRoute>
                 }
-            />
+            >
             <Route path="" element={<Navigate to="tables/users" replace />} />
             <Route path="tables" element={<RootTablePage />}>
               <Route path="users" element={<TablePage />} />
@@ -68,8 +66,14 @@ const App = () => {
               <Route path="questions" element={<TablePage />} />
               <Route path="ratings" element={<TablePage />} />
             </Route>
+            </Route>
+
             <Route path="verification" element={<TablePage />} />
-            <Route path="company" element={<CompanyOwnerDashboard />}>
+            <Route path="company" element={
+              <PrivateRoute expectedRoles={[3]}>
+                <CompanyOwnerDashboard />
+              </PrivateRoute>
+            }>
               <Route path="" element={<OwnerVenue />} />
               <Route path="venues" element={<OwnerVenue />} />
               <Route path="bookings" element={<Booking />} />

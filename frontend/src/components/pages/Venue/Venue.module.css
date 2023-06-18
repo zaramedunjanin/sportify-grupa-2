@@ -32,11 +32,11 @@
 .card_1 {
   background-color: white;
   border-radius: 50px;
-  width: 80%;
+  width: 60%;
   max-height: 15rem;
   padding: 1%;
-  border: 2px solid #79e39c;
-  margin: 2% 10% 2% 10% !important;
+  border: 1px solid #79e39c;
+  margin: 2% 20% 2% 20% !important;
 }
 
 #custom {
