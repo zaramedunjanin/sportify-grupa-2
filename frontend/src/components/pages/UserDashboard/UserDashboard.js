@@ -6,9 +6,6 @@ import Col from "react-bootstrap/Col";
 import styles from "./UserDashboard.module.css";
 import { Image } from "react-bootstrap";
 import { AuthContext } from "../../../context/AuthContext";
-import styles from "./UserDashboard.module.css";
-import { Image } from "react-bootstrap";
-import { AuthContext } from "../../../context/AuthContext";
 import UserData from "./UserData/UserData";
 import useEffectTitle from "../../../hooks/useEffectTitle";
 

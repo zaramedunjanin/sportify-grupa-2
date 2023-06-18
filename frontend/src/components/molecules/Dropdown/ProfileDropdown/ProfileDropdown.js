@@ -19,11 +19,7 @@ const ProfileDropdown = ({
 }) => {
   const navigate = useNavigate();
   const { t } = useTranslation();
-<<<<<<< HEAD
-  const { logout, isAuthenticated, user } = useContext(AuthContext);
-=======
   const { logout, isAuthenticated, user, fetchUserProfile } = useContext(AuthContext);
->>>>>>> 2268fe628d84b9689fc5dd0473b405214ab472ba
 
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -75,11 +71,8 @@ const ProfileDropdown = ({
         </Dropdown.Item>
       </DropdownButton>
       {modalOpen && (
-<<<<<<< HEAD
-        <UserData show={modalOpen} onHide={handleCloseModal} edit={true} />
-=======
+
         <UserData sports = {sports} data ={user} show={modalOpen} onHide={handleCloseModal} edit={true} />
->>>>>>> 2268fe628d84b9689fc5dd0473b405214ab472ba
       )}
     </div>
   );

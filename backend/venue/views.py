@@ -155,14 +155,11 @@ def getVenues(request):
     serializer = VenueSerializer(queryset, many=True)
     return Response(serializer.data)
 
-<<<<<<< HEAD
-=======
 # returns list of venues owned by a company
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def getCompanyVenues(request):
     company_id = request.user.id
-
     if company_id == None:
       return Response(status=status.HTTP_404_NOT_FOUND)
     queryset = Venue.objects_with_deleted.prefetch_related('sport').filter(company=company_id).filter(deleted_at__isnull = True)
@@ -214,5 +211,3 @@ def delete_venue(request):
     except Venue.DoesNotExist:
         return Response({'message': 'Venue does not exist.'}, status=status.HTTP_404_NOT_FOUND)
 
-    
->>>>>>> 2268fe628d84b9689fc5dd0473b405214ab472ba

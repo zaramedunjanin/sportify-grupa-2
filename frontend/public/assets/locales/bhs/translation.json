@@ -135,9 +135,6 @@
   "low_to_hight": "Od najmanje do najveće cijene",
   "high_to_low": "Od najveće do najmanje cijene",
   "a_to_z": "Abecedno: od A do Ž",
-<<<<<<< HEAD
-  "z_to_a": "Abecedno: od Ž do A"
-=======
   "z_to_a": "Abecedno: od Ž do A",
   "empty_table_user_reservations": "Trenutno nemate rezervacija.",
   "about_text": "Sportify je moderna online platforma koja povezuje ljubitelje sporta sa sportskim objektima. Bez obzira tražite li iznajmljivanje terena, igrališta, dvorane, ringa ili klizališta, Sportify vam olakšava pronalazak i rezervaciju savršenog prostora za vaš sportski događaj. Sa korisničkim računom, možete upravljati svojim rezervacijama, pozvati druge na vaše događaje i dobiti odgovore na pitanja o objektima. Vlasnici objekata također mogu kreirati račune, registrirati svoje objekte i pružiti korisne informacije potencijalnim klijentima.",
@@ -212,16 +209,9 @@
   "answer_5": "Prijavite se na svoj Sportify korisnički račun na veb stranici ili mobilnoj aplikaciji. Pronađite detalje objekta za koji imate pitanja ili nedoumice. To može biti stranica objekta ili rezervacija koju ste već napravili. Potražite kontakt informacije koje je vlasnik objekta pružio. To može uključivati telefonski broj, e-mail adresu ili kontakt formu. Ako je dostupan telefonski broj, možete direktno nazvati vlasnika objekta kako biste razgovarali o vašim pitanjima ili nedoumicama. Ako je dostupna e-mail adresa, možete poslati e-mail u kojem objašnjavate svoja pitanja ili probleme. Alternativno, ako postoji kontakt forma, popunite potrebne podatke i pošaljite poruku putem forme. Jasno i sažeto objasnite svoja pitanja ili nedoumice u komunikaciji, pružajući sve relevantne detalje kao što su broj rezervacije ili specifični datumi/vremena. Budite strpljivi i pričekajte neko vrijeme da vlasnik objekta odgovori na vaš upit. Obratiće vam se sa potrebnim informacijama ili pomoći.",
   "question_6": "Postoji li ograničenje kako unaprijed mogu rezervirati mjesto?",
   "answer_6": "Pravila objekta: Svaki objekat može imati vlastita pravila u vezi s vremenskim okvirom za unaprijed rezervacije. Neki objekti mogu dozvoljavati rezervacije do godinu dana unaprijed, dok drugi mogu imati kraće vremenske okvire, poput nekoliko sedmica ili mjeseci. Popularni objekti: Popularni objekti ili oni koji su visoko traženi mogu imati stroža pravila rezervacije. Oni mogu zahtijevati da se rezervacije naprave mnogo unaprijed zbog ograničene dostupnosti, posebno tokom vrhunskih sezona ili za popularne sportske događaje. Posebni događaji: Ako želite rezervisati objekat za poseban događaj, kao što je turnir ili veliki sportski skup, objekat može imati posebne smjernice o tome kada se rezervacije mogu napraviti. Mogu dati prioritet ranijim rezervacijama radi osiguranja pravilnog planiranja i organizacije. Ograničenja platforme: Ako koristite Sportify platformu ili sličnu online platformu za rezervaciju, mogu postojati ograničenja u vezi s vremenskim okvirom rezervacije koja su nametnuta od strane same platforme. Ta ograničenja mogu varirati, stoga je važno provjeriti specifične uvjete i odredbe platforme.",
-<<<<<<< HEAD
-  "frequently_asked_questions": "Često postavljena pitanja"
->>>>>>> a5b80097c2717bdbc90a388a8c9888f8d9aa84a4
-=======
+
   "frequently_asked_questions": "Često postavljena pitanja",
   "top_rated_venues": "Najbolje ocjenjeni prostori",
-<<<<<<< HEAD
-  "no_venues": "Nema mjesta"
->>>>>>> 779b65017118105214beb3fe35c63f3e94bc6ed7
-=======
   "no_venues": "Nema mjesta",
   "schedule_1": "Rezerviši",
   "rate": "Ocijeni",
@@ -235,5 +225,4 @@
   "noa": "Broj prisutnih",
   "max_n_people": "Maksimalni broj ljudi koji prisustvuju događaju",
   "n_of_people": "Broj ljudi koji su potvrdili svoje prisustvo"
->>>>>>> 2268fe628d84b9689fc5dd0473b405214ab472ba
 }

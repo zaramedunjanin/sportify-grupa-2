@@ -139,7 +139,6 @@ const SignUpForm = () => {
         <Row style={{ paddingRight: "0" }}>
           <Col className="centerContainer mt-4">
             <MainButton
-              className="form-button"
               text={t("sign_up")}
               onClick={handleSubmit}
               disabled={isDisabled}

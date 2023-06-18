@@ -14,16 +14,6 @@ from venue.serializers import *
 from django.shortcuts import render
 from .models import Reservation
 from .serializers import ReservationSerializer
-<<<<<<< HEAD
-# Create your views here.
-
-@api_view(['GET'])
-def getUserReservations(request, user_id):
-    reservations = Reservation.objects.filter(user = user_id).select_related('sport')
-    serializer = ReservationSerializer(reservations, context={'request': request}, many=True)
-    return Response(serializer.data)
-
-=======
 import json
 from django.core import serializers
 from django.forms import model_to_dict
@@ -38,6 +28,12 @@ from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 # Create your views here.
 
+@api_view(['GET'])
+def getUserReservations(request, user_id):
+    reservations = Reservation.objects.filter(user = user_id).select_related('sport').order_by('start_time')
+    serializer = ReservationSerializer(reservations, context={'request': request}, many=True)
+    return Response(serializer.data)
+
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
@@ -47,11 +43,6 @@ def getAllCompanyBookings(request):
     serializer = ReservationSerializer(reservations, many=True)
     return Response(serializer.data)
 
-@api_view(['GET'])
-def getUserReservations(request, user_id):
-    reservations = Reservation.objects.filter(user = user_id).select_related('sport').order_by('start_time')
-    serializer = ReservationSerializer(reservations, context={'request': request}, many=True)
-    return Response(serializer.data)
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
@@ -92,4 +83,3 @@ def rejectBooking(request):
    reservation.approved = False
    reservation.save()
    return Response(status=status.HTTP_204_NO_CONTENT)
->>>>>>> 2268fe628d84b9689fc5dd0473b405214ab472ba
