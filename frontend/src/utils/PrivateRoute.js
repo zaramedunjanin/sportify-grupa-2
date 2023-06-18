@@ -3,11 +3,13 @@ import { Navigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 
 
-const PrivateRoute = ({ children , ...rest }) => {
+const PrivateRoute = ({ children, expectedRoles, ...rest }) => {
     const { isAuthenticated, user } = useContext(AuthContext);
-    const isAdmin = user.role === 'admin';
+    const userRoles = user.role; // Assuming user roles are stored in an array
 
-    if (!isAdmin) {
+    const isAuthorized = expectedRoles.some(role => userRoles.includes(role));
+
+    if (!isAuthenticated || !isAuthorized) {
         return <Navigate to="/login" replace />;
     }
 

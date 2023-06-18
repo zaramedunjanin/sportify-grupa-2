@@ -40,7 +40,7 @@ const App = () => {
             <Route path="/userdashboard" element={<UserDashboardPage />} />
             <Route path="/userdata" element={<UserData />} />
             <Route path="/search" element={<SearchResults />} />
-            <Route path="administrator" element={<PrivateRoute component={Admin} />} />
+            <Route path="administrator" element={<PrivateRoute expectedRoles={['admin']}><Admin /></PrivateRoute>} />
             <Route path="tables" element={<RootTablePage />}>
               <Route path="users" element={<TablePage />} />
               <Route path="venues" element={<TablePage />} />
