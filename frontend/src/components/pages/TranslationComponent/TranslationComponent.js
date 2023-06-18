@@ -6,6 +6,7 @@ import i18next from "i18next";
 import styles from "./TranslationComponent.module.scss";
 import uk_flag from "../../../assets/images/uk_flag.png";
 import bhs_flag from "../../../assets/images/bhs_flag.png";
+import ger_flag from "../../../assets/images/ger_flag.png";
 
 const TranslationComponent = () => {
   const { t } = useTranslation();
@@ -19,6 +20,11 @@ const TranslationComponent = () => {
       code: "bhs",
       name: t("name_1"),
       country_code: "bhs",
+    },
+    {
+      code: "de",
+      name: t("name_5"),
+      country_code: "de",
     },
   ];
   return (
@@ -44,6 +50,9 @@ const TranslationComponent = () => {
                 )}
                 {country_code === "bhs" && (
                   <img src={bhs_flag} alt="BHS Flag" className="flag-icon" />
+                )}
+                {country_code === "de" && (
+                  <img src={ger_flag} alt="Ger Flag" className="flag-icon" />
                 )}
               </span>
               {name}
