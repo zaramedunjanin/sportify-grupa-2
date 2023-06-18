@@ -28,6 +28,7 @@
   "swimming": "Plivanje",
   "name": "Engleski",
   "name_1": "Bosanski",
+  "name_5": "Njemački",
   "first_name": "Ime",
   "last_name": "Prezime",
   "city": "Grad",
@@ -195,5 +196,18 @@
   "contact_us_address": "Adresa: Zmaja od Bosne 33-35, Sarajevo 71000",
   "contact_us_hours": "Radno vrijeme",
   "pon_fri": "Ponedjeljak - Petak: 09:00 - 18:00",
-  "sat_san": "Subota - Nedjelja: Zatvoreno"
+  "sat_san": "Subota - Nedjelja: Zatvoreno",
+  "question_1": "Kako da kreiram nalog na Sportify?",
+  "answer_1": "Kliknite na dugme 'Registracija' (u gornjem desnom uglu ekrana) koje će vas odvesti na stranicu za registraciju. Tamo ćete morati popuniti sva potrebna polja i kliknuti na 'Registracija'. Automatski ćete biti prijavljeni na svoj račun.",
+  "question_2": "Šta mi radimo?",
+  "answer_2": "Pomažemo vam da pronađete sportske događaje koji se dešavaju u vašem području u kojima možete učestvovati, izvršiti rezervacije na lokalnim mjestima ili registrirati vlastita mjesta.",
+  "question_3": "Kako da rezervišem?",
+  "answer_3": "Posjetite Sportify web stranicu ili otvorite mobilnu aplikaciju.Ako već nemate, kreirajte korisnički račun tako što ćete se prijaviti sa svojom e-mail adresom i postaviti lozinku.Nakon prijave, bićete preusmjereni na početnu stranicu ili kontrolnu tablu.Na početnoj stranici ili u navigacionom meniju potražite opciju 'Pronađi objekte' ili 'Pretraži objekte' i kliknite na nju.Unesite željenu lokaciju ili pregledajte dostupne objekte u vašem području. Koristite filtere za pretragu da biste suzili opcije na osnovu vrste sportskog objekta, datuma, vremena, sadržaja ili drugih preferencija.Pregledajte navedene objekte i odaberite onaj koji odgovara vašim potrebama klikom na njega.Biće vam prikazane detaljne informacije o objektu, uključujući njegove sadržaje, dostupnost, cijenu i dodatne mogućnosti. Kliknite na dugme 'Rezerviši' ili 'Rezerviši sad' da biste nastavili sa rezervacijom. Potvrdite detalje rezervacije, uključujući datum, vrijeme i eventualne troškove ili naknade. Kada rezervacija bude potvrđena, dobićete potvrdnu e-mail poruku ili obavijest sa detaljima vaše rezervacije, uključujući adresu objekta, referentni broj rezervacije i sve druge relevantne informacije.",
+  "question_4": "Mogu li promijeniti svoju rezervaciju nakon što je potvrđena?",
+  "answer_4": "Trenutno nije moguće promijeniti vašu rezervaciju.",
+  "question_5": "Kako mogu kontaktirati vlasnika objekta ako imam pitanja ili nedoumica?",
+  "answer_5": "Prijavite se na svoj Sportify korisnički račun na veb stranici ili mobilnoj aplikaciji. Pronađite detalje objekta za koji imate pitanja ili nedoumice. To može biti stranica objekta ili rezervacija koju ste već napravili. Potražite kontakt informacije koje je vlasnik objekta pružio. To može uključivati telefonski broj, e-mail adresu ili kontakt formu. Ako je dostupan telefonski broj, možete direktno nazvati vlasnika objekta kako biste razgovarali o vašim pitanjima ili nedoumicama. Ako je dostupna e-mail adresa, možete poslati e-mail u kojem objašnjavate svoja pitanja ili probleme. Alternativno, ako postoji kontakt forma, popunite potrebne podatke i pošaljite poruku putem forme. Jasno i sažeto objasnite svoja pitanja ili nedoumice u komunikaciji, pružajući sve relevantne detalje kao što su broj rezervacije ili specifični datumi/vremena. Budite strpljivi i pričekajte neko vrijeme da vlasnik objekta odgovori na vaš upit. Obratiće vam se sa potrebnim informacijama ili pomoći.",
+  "question_6": "Postoji li ograničenje kako unaprijed mogu rezervirati mjesto?",
+  "answer_6": "Pravila objekta: Svaki objekat može imati vlastita pravila u vezi s vremenskim okvirom za unaprijed rezervacije. Neki objekti mogu dozvoljavati rezervacije do godinu dana unaprijed, dok drugi mogu imati kraće vremenske okvire, poput nekoliko sedmica ili mjeseci. Popularni objekti: Popularni objekti ili oni koji su visoko traženi mogu imati stroža pravila rezervacije. Oni mogu zahtijevati da se rezervacije naprave mnogo unaprijed zbog ograničene dostupnosti, posebno tokom vrhunskih sezona ili za popularne sportske događaje. Posebni događaji: Ako želite rezervisati objekat za poseban događaj, kao što je turnir ili veliki sportski skup, objekat može imati posebne smjernice o tome kada se rezervacije mogu napraviti. Mogu dati prioritet ranijim rezervacijama radi osiguranja pravilnog planiranja i organizacije. Ograničenja platforme: Ako koristite Sportify platformu ili sličnu online platformu za rezervaciju, mogu postojati ograničenja u vezi s vremenskim okvirom rezervacije koja su nametnuta od strane same platforme. Ta ograničenja mogu varirati, stoga je važno provjeriti specifične uvjete i odredbe platforme.",
+  "frequently_asked_questions": "Često postavljena pitanja"
 }

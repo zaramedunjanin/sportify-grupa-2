@@ -31,7 +31,7 @@ const ProfileDropdown = ({
     setModalOpen(false);
   };
 
-  const [sports, setSports] = useState("");
+  const [sports, setSports] = useState({});
 
   useEffect(()=>{
     const fetchSports = async () => {

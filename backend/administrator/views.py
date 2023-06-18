@@ -1,4 +1,4 @@
-from django.db.models import Prefetch
+from django.db.models import Prefetch, Avg
 from django.http import HttpResponse
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
@@ -105,6 +105,17 @@ def deleteSport(request, id):
 def getVenueList(request):
     if request.method == 'GET':
         data = Venue.objects.all().order_by('id')
+
+        serializer = VenueSerializer(data, context={'request': request}, many=True)
+
+        return Response(serializer.data)
+
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET', 'POST'])
+def getTop3VenueList(request):
+    if request.method == 'GET':
+        data = Venue.objects.annotate(avg_rating=Avg('rating__rating')).order_by('-avg_rating')[:3]
 
         serializer = VenueSerializer(data, context={'request': request}, many=True)
 

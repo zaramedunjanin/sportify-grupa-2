@@ -42,6 +42,11 @@ const UserData = ({
   });
 
   const updateInfo = async (values) => {
+    const newArray = []
+    values.sport.map((option) => {
+      newArray.push(option.value)
+    });
+    values["sport"] = newArray
     await handleSubmit(values, (page = "users"), (add = false), (edit = true));
     setTimeout(() => {
       fetchUserProfile();
@@ -128,11 +133,11 @@ const UserData = ({
                 name={"sport"}
                 label={t("sport")}
                 type={"select"}
-                component={CustomSelectCheckBox}
+                defaultValues = {data.sport}
+                component={SelectCheckBox}
                 options={sports}
                 isMulti={true}
               />
-              <SelectCheckBox />
             </Modal.Body>
             <Modal.Footer>
               <CustomButton

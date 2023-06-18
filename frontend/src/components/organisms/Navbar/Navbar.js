@@ -43,6 +43,11 @@ const Navbar = ({ variant = "default", ...props }) => {
       name: t("name_1"),
       country_code: "bhs",
     },
+    {
+      code: "ger",
+      name: t("name_5"),
+      country_code: "ger",
+    },
   ];
 
   let backgroundColor;

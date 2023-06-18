@@ -24,6 +24,7 @@ def getUserFromDatabase(request):
 @api_view(['GET'])
 def getUnpackedToken(request):
     user = request.user
+
     sports = user.sport.all()
     sport = ""
     sport_id = ""
