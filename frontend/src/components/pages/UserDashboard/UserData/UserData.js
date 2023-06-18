@@ -11,12 +11,22 @@ import CustomImage from "../../Admin/AdminComponents/AdminModals/CustomFormCompo
 import useAdminDataUpload from "../../../../hooks/useAdminDataUpload";
 import { useTranslation } from "react-i18next";
 import CustomSelectCheckBox from "../../Admin/AdminComponents/AdminModals/CustomFormComponents/CustomSelectCheckBox";
-import {getDataList} from "../../../../services/AdminService/useAdminFetcher";
-import {isElementType} from "@testing-library/user-event/dist/utils";
-import {parse} from "@fortawesome/fontawesome-svg-core";
-import {AuthContext} from "../../../../context/AuthContext";
+import { getDataList } from "../../../../services/AdminService/useAdminFetcher";
+import { isElementType } from "@testing-library/user-event/dist/utils";
+import { parse } from "@fortawesome/fontawesome-svg-core";
+import { AuthContext } from "../../../../context/AuthContext";
+import { SelectCheckBox } from "../../SelectCheckBox/SelectCheckBox";
 
-const UserData = ({ columns, sports, page, table, row, add, edit, ...props }) => {
+const UserData = ({
+  columns,
+  sports,
+  page,
+  table,
+  row,
+  add,
+  edit,
+  ...props
+}) => {
   const { t } = useTranslation();
 
   const { user, fetchUserProfile } = useContext(AuthContext);
@@ -114,14 +124,15 @@ const UserData = ({ columns, sports, page, table, row, add, edit, ...props }) =>
                 ]}
               />
 
-                <Field
-                    name={"sport"}
-                    label={t("sport")}
-                    type = {"select"}
-                    component={CustomSelectCheckBox}
-                    options={sports}
-                    isMulti={true}
-                />
+              <Field
+                name={"sport"}
+                label={t("sport")}
+                type={"select"}
+                component={CustomSelectCheckBox}
+                options={sports}
+                isMulti={true}
+              />
+              <SelectCheckBox />
             </Modal.Body>
             <Modal.Footer>
               <CustomButton
