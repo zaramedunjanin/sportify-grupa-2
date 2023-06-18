@@ -6,6 +6,7 @@ import Categories from "./Categories/Categories";
 import Footer from "../../organisms/Footer/Footer";
 import TopVenues from "./TopVenues/TopVenues";
 import { getDataList } from "../../../services/AdminService/useAdminFetcher";
+
 const Home = () => {
   useEffectTitle("Home | Sportify");
   const [venues, setVenues] = useState("");
@@ -17,7 +18,6 @@ const Home = () => {
       console.error("Failed to fetch data:", error);
     }
   };
-
   useEffect(() => {
     fetchData();
   }, []);
