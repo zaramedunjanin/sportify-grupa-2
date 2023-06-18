@@ -1,16 +1,21 @@
-import React, { useContext } from 'react';
-import { Navigate } from 'react-router-dom';
-import { AuthContext } from '../context/AuthContext';
-
+import React, { useContext } from "react";
+import { Navigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 
 const PrivateRoute = ({ children, expectedRoles, ...rest }) => {
     const { isAuthenticated, user } = useContext(AuthContext);
-    const userRoles = user.role;
+    let isAuthorized = false;
+    if (user && user.role) {
+        isAuthorized = expectedRoles.includes(user.role);
+    }
 
-    const isAuthorized = expectedRoles.some(role => userRoles.includes(role));
+    if (!isAuthenticated) {
+        return <Navigate to="/login" replace />
 
-    if (!isAuthenticated || !isAuthorized) {
-        return <Navigate to="/login" replace />;
+    }
+
+    if (!isAuthorized){
+        return <Navigate to="/" replace />
     }
 
     return children;

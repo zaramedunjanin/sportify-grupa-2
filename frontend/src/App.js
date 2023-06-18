@@ -37,7 +37,7 @@ const App = () => {
             <Route path="about" element={<About />} />
             <Route path="contactus" element={<ContactUs />} />
             <Route path="/venue/:id" element={<Venue />} />
-            <Route path="/userdashboard" element={<PrivateRoute expectedRoles={[3, 2]}><UserDashboardPage /></PrivateRoute>} />
+            <Route path="/userdashboard" element={<PrivateRoute expectedRoles={[2, 3]}><UserDashboardPage /></PrivateRoute>} />
             <Route path="/userdata" element={<UserData />} />
             <Route path="/search" element={<SearchResults />} />
             <Route path="administrator" element={<PrivateRoute expectedRoles={[1]}><Admin /></PrivateRoute>} />
