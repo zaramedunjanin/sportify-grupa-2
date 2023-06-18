@@ -56,7 +56,10 @@ def getVenueList(request):
 @api_view(['GET'])
 def getRating(request, venue_id):
     average_rating = Rating.objects.filter(venue=venue_id).aggregate(avg_rating=Avg('rating'))
-    data = round(average_rating['avg_rating'],1)
+    if average_rating['avg_rating'] != None:
+        data = round(average_rating['avg_rating'],1)
+    else:
+        data = 0
     return Response(data)
 
 @api_view(['GET'])

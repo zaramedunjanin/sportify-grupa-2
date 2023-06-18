@@ -84,7 +84,7 @@ const Card = ({ venue, ...rest }) => {
           <div className="text-center pt-2">
             <MainButton
               onClick={() => navigate(`/venue/${venue.id}`)}
-              text={t("schedule")}
+              text={t("schedule_1")}
             ></MainButton>
           </div>
         </div>
