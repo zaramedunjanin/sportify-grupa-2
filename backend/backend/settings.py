@@ -161,6 +161,21 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+<<<<<<< HEAD
+=======
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'mujrgdvp',
+#         'USER': 'mujrgdvp',
+#         'PASSWORD': '7WlfTj9QoTTr92P3nuukuOM9nywrFCpT',
+#         'HOST': 'mouse.db.elephantsql.com',
+#         'PORT': '5432',
+#     }
+# }
+
+>>>>>>> a5b80097c2717bdbc90a388a8c9888f8d9aa84a4
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 

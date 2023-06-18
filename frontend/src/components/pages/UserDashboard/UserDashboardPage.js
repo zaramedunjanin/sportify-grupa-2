@@ -5,7 +5,6 @@ import Navbar from "../../organisms/Navbar/Navbar";
 import TablePage from "./UserDataPage/TablePage";
 import useEffectTitle from "../../../hooks/useEffectTitle";
 import Footer from "../../organisms/Footer/Footer";
-import {AuthContext} from "../../../context/AuthContext";
 
 const UserDashboardPage = () => {
     useEffectTitle(`Profile | Sportify`);
@@ -13,6 +12,7 @@ const UserDashboardPage = () => {
         backgroundColor: "whitesmoke",
         minHeight: "100vh"
     }
+
   return (
       <div style={userDashboardBgStyle} >
       <Navbar variant={"user"} />

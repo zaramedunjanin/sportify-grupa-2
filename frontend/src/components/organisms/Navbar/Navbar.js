@@ -24,6 +24,7 @@ import uk_flag from "../../../assets/images/uk_flag.png";
 import bhs_flag from "../../../assets/images/bhs_flag.png";
 
 import { AuthContext } from "../../../context/AuthContext";
+import TranslationComponent from "../../pages/TranslationComponent/TranslationComponent";
 
 //The Navbar for the Main Page is default,
 // for the Search Page it is needed to pass the value "search", for the Admin Panel "admin" and for User Profiles "user" to the prop "variant"
@@ -41,6 +42,11 @@ const Navbar = ({ variant = "default", ...props }) => {
       code: "bhs",
       name: t("name_1"),
       country_code: "bhs",
+    },
+    {
+      code: "ger",
+      name: t("name_5"),
+      country_code: "ger",
     },
   ];
 
@@ -78,63 +84,60 @@ const Navbar = ({ variant = "default", ...props }) => {
         ) : null}
         <NavbarBS.Collapse id="navbarScroll" className="justify-content-end">
           <Container className={"text-center"}>
-            {variant === "admin"
-              ? userAdminNavbarLinks.map((l, index) => {
-                  return (
-                    <Link to={l.url} className={styles.adminLinks} key={index}>
-                      {l.navbarText}
-                    </Link>
-                  );
-                })
-              : variant === "user"
-              ? userNavbarLinks.map(({ url, navbarText }, index) => {
-                  return (
-                    <Link to={url} className={styles.adminLinks} key={index}>
-                      {navbarText}
-                    </Link>
-                  );
-                })
-              : null}
+            {variant === "admin" ? (
+              <>
+                <Dropdown className={styles.adminLinks}>
+                  <Dropdown.Toggle
+                    className={styles.adminLinks_1}
+                    style={{ fontWeight: "bold" }}
+                  >
+                    {t("tables")}
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu>
+                    <Dropdown.Item as={Link} to="tables/users">
+                      {t("users")}
+                    </Dropdown.Item>
+                    <Dropdown.Item as={Link} to="tables/sports">
+                      {t("sports")}
+                    </Dropdown.Item>
+                    <Dropdown.Item as={Link} to="tables/venues">
+                      {t("venues")}
+                    </Dropdown.Item>
+                    <Dropdown.Item as={Link} to="tables/acceptedinvites">
+                      {t("accepted_invites")}
+                    </Dropdown.Item>
+                    <Dropdown.Item as={Link} to="tables/reservations">
+                      {t("reservations")}
+                    </Dropdown.Item>
+                    <Dropdown.Item as={Link} to="tables/questions">
+                      {t("questions")}
+                    </Dropdown.Item>
+                    <Dropdown.Item as={Link} to="tables/ratings">
+                      {t("ratings")}
+                    </Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+                <Link
+                  to={"/administrator/verification"}
+                  className={styles.adminLinks}
+                  style={{ fontWeight: "bold" }}
+                  key={1}
+                >
+                  {t("company_verification")}
+                </Link>
+              </>
+            ) : variant === "user" ? (
+              userNavbarLinks.map(({ url, navbarText }, index) => {
+                return (
+                  <Link to={url} className={styles.adminLinks} key={index}>
+                    {navbarText}
+                  </Link>
+                );
+              })
+            ) : null}
           </Container>
 
-          <div className="dropdown">
-            <button
-              className="btn dropdown-toggle p-3"
-              type="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              <span class="material-symbols-outlined">translate</span>
-            </button>
-            <ul className="dropdown-menu">
-              {languages.map(({ code, name, country_code }) => (
-                <li key={country_code}>
-                  <button
-                    className="dropdown-item"
-                    onClick={() => i18next.changeLanguage(code)}
-                  >
-                    <span className={`mx-2 ${styles.flagIcon}`}>
-                      {country_code === "en" && (
-                        <img
-                          src={uk_flag}
-                          alt="UK Flag"
-                          className="flag-icon"
-                        />
-                      )}
-                      {country_code === "bhs" && (
-                        <img
-                          src={bhs_flag}
-                          alt="BHS Flag"
-                          className="flag-icon"
-                        />
-                      )}
-                    </span>
-                    {name}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <TranslationComponent />
           {isAuthenticated === true ? (
             <ProfileDropdown />
           ) : (

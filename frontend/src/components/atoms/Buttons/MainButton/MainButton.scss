@@ -10,3 +10,11 @@
 .main-button:hover {
   background-color: #fdae45;
 }
+
+.main-button:disabled {
+  background-color: #dea963;
+}
+
+.main-button:disabled:hover {
+  background-color: #dea963;
+}

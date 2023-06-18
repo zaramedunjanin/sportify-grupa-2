@@ -15,6 +15,7 @@ from .serializers import SignupSerializer
 @api_view(['GET'])
 def getUser(request):
     user = request.user
+<<<<<<< HEAD
     sports = user.sport.all()
     sport = ""
     sport_id = ""
@@ -24,6 +25,11 @@ def getUser(request):
     sport = sport[:len(sport)-2]
     sport_id = sport_id[:len(sport_id) - 2]
     data = {'id': user.id, 'username': user.username, 'email': user.email, 'role': user.role, 'first_name': user.first_name, 'last_name': user.last_name, 'city': user.city,'phone_number': user.phone_number,'gender': user.gender,'profile_picture': user.profile_picture, 'sport': sport, 'sport_id': sport_id}
+=======
+    data = {'id': user.id,'username': user.username, 'email': user.email, 'role': user.role, 'first_name': user.first_name, 'last_name': user.last_name }
+    # users = User.objects.all()
+    # data = [{'username': user.username, 'email': user.email} for user in users]
+>>>>>>> a5b80097c2717bdbc90a388a8c9888f8d9aa84a4
     return Response(data)
 
 @api_view(['POST'])
