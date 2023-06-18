@@ -20,40 +20,40 @@ import BecomeAPartnerPage from "./components/pages/BecomeAPartner/BecomeAPartner
 import TermsOfUse from "./components/pages/TermsOfUse/TermsOfUse";
 import PrivacyPolicy from "./components/pages/PrivacyPolicy/PrivacyPolicy";
 import ContactUs from "./components/pages/ContactUs/ContactUs";
+import PrivateRoute from "./utils/PrivateRoute";
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <ContextWrapper>
-        <Routes>
-          <Route index element={<Home />} />
-          <Route path="faq" element={<FrequentlyAskedQuestions />} />
-          <Route path="login" element={<LoginPage />} />
-          <Route path="signup" element={<Signup />} />
-          <Route path="bap" element={<BecomeAPartnerPage />} />
-          <Route path="termsofuse" element={<TermsOfUse />} />
-          <Route path="privacypolicy" element={<PrivacyPolicy />} />
-          <Route path="about" element={<About />} />
-          <Route path="contactus" element={<ContactUs />} />
-          <Route path="administrator" element={<Admin />}>
-            <Route path="tables" element={<RootTablePage />}>
-              <Route path="users" element={<TablePage />} />
-              <Route path="venues" element={<TablePage />} />
-              <Route path="sports" element={<TablePage />} />
-              <Route path="reservations" element={<TablePage />} />
-              <Route path="acceptedinvites" element={<TablePage />} />
-              <Route path="questions" element={<TablePage />} />
-              <Route path="ratings" element={<TablePage />} />
-            </Route>
-            <Route path="verification" element={<TablePage />} />
-          </Route>
-          <Route path="/venue/:id" element={<Venue />} />
-          <Route path="/userdashboard" element={<UserDashboardPage />} />
-          <Route path="/userdata" element={<UserData />} />
-          <Route path="/search" element={<SearchResults />} />
-        </Routes>
-      </ContextWrapper>
-    </BrowserRouter>
+      <BrowserRouter>
+        <AuthProvider>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="faq" element={<FrequentlyAskedQuestions />} />
+            <Route path="login" element={<LoginPage />} />
+            <Route path="signup" element={<Signup />} />
+            <Route path="bap" element={<BecomeAPartnerPage />} />
+            <Route path="termsofuse" element={<TermsOfUse />} />
+            <Route path="privacypolicy" element={<PrivacyPolicy />} />
+            <Route path="about" element={<About />} />
+            <Route path="contactus" element={<ContactUs />} />
+            <PrivateRoute path="administrator" component={Admin}>
+              <Route path="tables" element={<RootTablePage />} />
+              <Route path="tables/users" element={<TablePage />} />
+              <Route path="tables/venues" element={<TablePage />} />
+              <Route path="tables/sports" element={<TablePage />} />
+              <Route path="tables/reservations" element={<TablePage />} />
+              <Route path="tables/acceptedinvites" element={<TablePage />} />
+              <Route path="tables/questions" element={<TablePage />} />
+              <Route path="tables/ratings" element={<TablePage />} />
+              <Route path="verification" element={<TablePage />} />
+            </PrivateRoute>
+            <Route path="/venue/:id" element={<Venue />} />
+            <Route path="/userdashboard" element={<UserDashboardPage />} />
+            <Route path="/userdata" element={<UserData />} />
+            <Route path="/search" element={<SearchResults />} />
+          </Routes>
+        </AuthProvider>
+      </BrowserRouter>
   );
 };
 
