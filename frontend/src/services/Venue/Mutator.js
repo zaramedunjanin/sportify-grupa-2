@@ -25,7 +25,7 @@ export const updateVenue = async (venue) => {
 export const deleteVenue = async (venue) => {
   try {
     const response = await axios.delete("venue/company/delete", {
-      params: {id: venue.id},
+      params: { id: venue.id },
     });
     return response;
   } catch (error) {

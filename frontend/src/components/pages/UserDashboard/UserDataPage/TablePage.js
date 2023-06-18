@@ -9,8 +9,8 @@ const TablePage = () => {
   const UserDatabase = useUserDatabase();
   return (
     <>
-        <UserDataHeader title={UserDatabase["userdashboard"].title} />
-        <UserDataTable databasecolumns={UserDatabase} />
+      <UserDataHeader title={UserDatabase["userdashboard"].title} />
+      <UserDataTable databasecolumns={UserDatabase} />
       <Outlet />
     </>
   );

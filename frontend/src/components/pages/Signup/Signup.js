@@ -9,7 +9,7 @@ import "../Signup/Signup.css";
 import useEffectTitle from "../../../hooks/useEffectTitle";
 
 const Signup = () => {
-  useEffectTitle("Signup | Sportify")
+  useEffectTitle("Signup | Sportify");
   return (
     <Container fluid>
       <div className="flexWrapReverse flexWidth">

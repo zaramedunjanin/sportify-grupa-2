@@ -13,7 +13,6 @@ const Logo = () => {
     height: "7rem",
   };
 
-
   return (
     <a onClick={() => navigate("/")}>
       <svg

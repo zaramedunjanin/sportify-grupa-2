@@ -15,7 +15,6 @@ const UserDashboard = () => {
   return (
     <Container>
       <Row className={`${styles.card}`}>
-
         <Col lg={"6"} className={`text-center`}>
           <Image className={styles.cover} src={user.profile_picture} />
         </Col>
@@ -38,21 +37,22 @@ const UserDashboard = () => {
               {user.email}
             </p>
             <p>
-              {user.gender === 'Female' && <span className="material-symbols-outlined">female</span>}
-              {user.gender === 'Male' && <span className="material-symbols-outlined">male</span>}
-              {user.gender === 'Other' && <span className="material-symbols-outlined">transgender</span>}
-              {" "}{user.gender}
+              {user.gender === "Female" && (
+                <span className="material-symbols-outlined">female</span>
+              )}
+              {user.gender === "Male" && (
+                <span className="material-symbols-outlined">male</span>
+              )}
+              {user.gender === "Other" && (
+                <span className="material-symbols-outlined">transgender</span>
+              )}{" "}
+              {user.gender}
             </p>
             <p>
               <span className="material-symbols-outlined">
                 sports_basketball
               </span>{" "}
-
-              {user.sport === ""?
-              "No Sports"
-                  :
-                  user.sport
-              }
+              {user.sport === "" ? "No Sports" : user.sport}
             </p>
           </Row>
         </Col>

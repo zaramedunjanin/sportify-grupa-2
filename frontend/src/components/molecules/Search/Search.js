@@ -36,26 +36,26 @@ const Search = () => {
 
   const { t } = useTranslation();
   return (
-      <Container fluid className={"search"}>
-        <Form className="d-flex search-form">
-          <div className={"input-container"}>
-            <input
-                className={"search-input"}
-                placeholder={t("placeholder")}
-                value={inputValue}
-                onChange={handleChange}
-                onKeyPress={handleKeyPress}
-            />
-            <button
-                className={"search-button"}
-                type={"button"}
-                onClick={handleSearchBtnClick}
-            >
-              <img src={basketball} className="search-img" />
-            </button>
-          </div>
-        </Form>
-      </Container>
+    <Container fluid className={"search"}>
+      <Form className="d-flex search-form">
+        <div className={"input-container"}>
+          <input
+            className={"search-input"}
+            placeholder={t("placeholder")}
+            value={inputValue}
+            onChange={handleChange}
+            onKeyPress={handleKeyPress}
+          />
+          <button
+            className={"search-button"}
+            type={"button"}
+            onClick={handleSearchBtnClick}
+          >
+            <img src={basketball} className="search-img" />
+          </button>
+        </div>
+      </Form>
+    </Container>
   );
 };
 

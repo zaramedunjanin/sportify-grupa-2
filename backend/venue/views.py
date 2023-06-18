@@ -70,7 +70,6 @@ def getUserRating(request, user_id):
     serializer = RatingSerializer(rating, context={'request': request}, many=True)
     return Response(serializer.data)
 
-
 @api_view(['GET'])
 def getQuestions(request, venue_id):
     venue = getVenueById(venue_id=venue_id)

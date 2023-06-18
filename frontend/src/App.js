@@ -28,34 +28,33 @@ import { Navigate } from "react-router-dom";
 
 const App = () => {
   return (
-      <BrowserRouter>
-        <ContextWrapper>
-          <Routes>
-            <Route index element={<Home />} />
-            <Route path="faq" element={<FrequentlyAskedQuestions />} />
-            <Route path="login" element={<LoginPage />} />
-            <Route path="signup" element={<Signup />} />
-            <Route path="bap" element={<BecomeAPartnerPage />} />
-            <Route path="termsofuse" element={<TermsOfUse />} />
-            <Route path="privacypolicy" element={<PrivacyPolicy />} />
-            <Route path="about" element={<About />} />
-            <Route path="contactus" element={<ContactUs />} />
-            <Route path="/venue/:id" element={<Venue />} />
-            <Route
-                path="/userdashboard"
-                element={
-                  <PrivateRoute expectedRoles={[2, 3]}>
-                    <UserDashboardPage />
-                  </PrivateRoute>
-                }
-            />
-            <Route path="/search" element={<SearchResults />} />
-            <Route
-                path="administrator"
-                element={
-                    <Admin />
-                }
-            >
+    <BrowserRouter>
+      <ContextWrapper>
+        <Routes>
+          <Route index element={<Home />} />
+          <Route path="faq" element={<FrequentlyAskedQuestions />} />
+          <Route path="login" element={<LoginPage />} />
+          <Route path="signup" element={<Signup />} />
+          <Route path="bap" element={<BecomeAPartnerPage />} />
+          <Route path="termsofuse" element={<TermsOfUse />} />
+          <Route path="privacypolicy" element={<PrivacyPolicy />} />
+          <Route path="about" element={<About />} />
+          <Route path="contactus" element={<ContactUs />} />
+          <Route path="/venue/:id" element={<Venue />} />
+          <Route
+            path="/userdashboard"
+            element={
+              <PrivateRoute expectedRoles={[1,2,3]}>
+                <UserDashboardPage />
+              </PrivateRoute>
+            }
+          />
+          <Route path="/search" element={<SearchResults />} />
+          <Route path="administrator" element={
+            <PrivateRoute expectedRoles={[1,2,3]}>
+              <Admin />
+            </PrivateRoute>
+          }>
             <Route path="" element={<Navigate to="tables/users" replace />} />
             <Route path="tables" element={<RootTablePage />}>
               <Route path="users" element={<TablePage />} />
@@ -66,22 +65,35 @@ const App = () => {
               <Route path="questions" element={<TablePage />} />
               <Route path="ratings" element={<TablePage />} />
             </Route>
-            </Route>
+          </Route>
 
-            <Route path="verification" element={<TablePage />} />
-            <Route path="company" element={
-              <PrivateRoute expectedRoles={[3]}>
+          <Route path="verification" element={<TablePage />} />
+          <Route
+            path="company"
+            element={
+              <PrivateRoute expectedRoles={[1,2,3]}>
                 <CompanyOwnerDashboard />
               </PrivateRoute>
-            }>
-              <Route path="" element={<OwnerVenue />} />
-              <Route path="venues" element={<OwnerVenue />} />
-              <Route path="bookings" element={<Booking />} />
-            </Route>
-
-          </Routes>
-        </ContextWrapper>
-      </BrowserRouter>
+            }
+          >
+            <Route path="" element={
+              <PrivateRoute expectedRoles={[1,2,3]}>
+              <OwnerVenue />
+            </PrivateRoute>} />
+            <Route path="venues" element={
+              <PrivateRoute expectedRoles={[1,2,3]}>
+                <OwnerVenue />
+              </PrivateRoute>
+              } />
+            <Route path="bookings" element={
+              <PrivateRoute expectedRoles={[1,2,3]}>
+                <Booking />
+              </PrivateRoute>
+              } />
+          </Route>
+        </Routes>
+      </ContextWrapper>
+    </BrowserRouter>
   );
 };
 

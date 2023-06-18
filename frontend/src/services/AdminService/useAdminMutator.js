@@ -12,18 +12,16 @@ export const deleteData = async (id, page) => {
 };
 
 export const editData = (data, page) => {
-    axios
-        .put(`${baseURL}/tables/${page}/edit/${data.id}/`, data)
-        .catch((error) => {
-            console.log(error.response);
-        });
+  axios
+    .put(`${baseURL}/tables/${page}/edit/${data.id}/`, data)
+    .catch((error) => {
+      console.log(error.response);
+    });
 };
 export const addData = async (data, page) => {
-    axios
-        .post(`${baseURL}/tables/${page}/add/`, data)
-        .catch((error) => {
-            return error
-        });
+  axios.post(`${baseURL}/tables/${page}/add/`, data).catch((error) => {
+    return error;
+  });
 };
 
 export const declineCompany = async (data, page) => {

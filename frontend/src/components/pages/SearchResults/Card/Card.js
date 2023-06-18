@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import myImage from "./placeholder.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
@@ -10,6 +9,7 @@ import styles from "./Card.module.scss";
 import SportIcon from "../SportIcon/SportIcon";
 import MainButton from "../../../atoms/Buttons/MainButton/MainButton";
 import { useTranslation } from "react-i18next";
+import { Image } from "react-bootstrap";
 
 const Card = ({ venue, ...rest }) => {
   const { t } = useTranslation();
@@ -27,8 +27,9 @@ const Card = ({ venue, ...rest }) => {
         className={`${styles.card} ${styles.min_width_card} mb-5`}
         style={{ width: "17rem", fontSize: "12px" }}
       >
-         <img src={myImage} className="card-img-top" alt="..." /> 
-      
+        {venue.venue_picture !== "" && (
+          <Image fluid src={venue.venue_picture} />
+        )}
         <div className="card-body">
           <div className="row">
             <div className="col">
@@ -58,7 +59,7 @@ const Card = ({ venue, ...rest }) => {
                 <p>
                   {" "}
                   <FontAwesomeIcon icon={faStar} className="me-1" />
-                  {venue.avg_rating > 0 ? venue.avg_rating : "-"}
+                  {venue.avg_rating > 0 ? venue.avg_rating.toFixed(1) : "-"}
                 </p>
               </div>
               <div className="row fw-semibold" style={{ fontSize: "16px" }}>

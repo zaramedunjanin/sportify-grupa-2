@@ -1,4 +1,3 @@
-
 import React, { useContext, useEffect, useState } from "react";
 import { Field, Form, Formik } from "formik";
 import * as yup from "yup";
@@ -32,7 +31,7 @@ const UserData = ({
 }) => {
   const { t } = useTranslation();
 
-  const { user,isAuthenticated, fetchUserProfile } = useContext(AuthContext);
+  const { user, isAuthenticated, fetchUserProfile } = useContext(AuthContext);
   const data = user;
   const { file, percent, setFile, setPercent, handleChange, handleSubmit } =
     useAdminDataUpload();
@@ -45,11 +44,11 @@ const UserData = ({
   });
 
   const updateInfo = async (values) => {
-    const newArray = []
+    const newArray = [];
     values.sport.map((option) => {
-      newArray.push(option.value)
+      newArray.push(option.value);
     });
-    values["sport"] = newArray
+    values["sport"] = newArray;
     await handleSubmit(values, (page = "users"), (add = false), (edit = true));
     setTimeout(() => {
       fetchUserProfile();
@@ -67,27 +66,24 @@ const UserData = ({
     >
       <Modal.Header>
         <Modal.Title id="contained-modal-title-vcenter">
-            {t("edit")}
-
+          {t("edit")}
         </Modal.Title>
       </Modal.Header>
       <Formik
         validationSchema={validationSchema}
         validateOnChange={true}
-
-
         initialValues={{
-            id: data.id,
-            first_name: data.first_name,
-            last_name: data.last_name,
-            profile_picture: data.profile_picture,
-            phone_number: data.phone_number,
-            gender: data.gender,
-            city: data.city,
-            sport: data.sport,
+          id: data.id,
+          first_name: data.first_name,
+          last_name: data.last_name,
+          profile_picture: data.profile_picture,
+          phone_number: data.phone_number,
+          gender: data.gender,
+          city: data.city,
+          sport: data.sport,
         }}
-        onSubmit={async (values, actions)  => {
-            await updateInfo(values);
+        onSubmit={async (values, actions) => {
+          await updateInfo(values);
         }}
       >
         {({ values, errors }) => (
@@ -113,7 +109,6 @@ const UserData = ({
                 component={CustomInput}
               />
               <Field
-
                 name={"city"}
                 type={"text"}
                 label={t("city")}
@@ -141,7 +136,7 @@ const UserData = ({
                 name={"sport"}
                 label={t("sport")}
                 type={"select"}
-                defaultValues = {data.sport}
+                defaultValues={data.sport}
                 component={SelectCheckBox}
                 options={sports}
                 isMulti={true}

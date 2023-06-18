@@ -76,7 +76,7 @@ const VenueModal = ({
           return true;
         }
       }),
-      company: yup.number().required("Required"),
+    company: yup.number().required("Required"),
   });
 
   return (

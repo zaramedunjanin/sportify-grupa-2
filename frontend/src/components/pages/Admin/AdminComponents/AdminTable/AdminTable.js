@@ -133,7 +133,7 @@ const AdminTable = ({ page, ...props }) => {
                         title={"View All"}
                         className={styles.adminDropdown}
                       >
-                        { d[field].map((element, index) => {
+                        {d[field].map((element, index) => {
                           return (
                             <Dropdown.Item eventKey={index}>
                               {element}

@@ -120,7 +120,9 @@ const SignUpForm = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
           {emailError && <div className="text-danger small">{emailError}</div>}
-          {signupError && ( <div className="text-danger small">{signupError}</div>)}
+          {signupError && (
+            <div className="text-danger small">{signupError}</div>
+          )}
         </Col>
 
         <Col xs={12} className="mt-3 pt-1">

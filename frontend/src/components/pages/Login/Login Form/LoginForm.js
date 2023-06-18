@@ -46,11 +46,7 @@ const LoginForm = () => {
 
           {loginError && <div className="text-danger">{loginError}</div>}
         </Form.Group>
-        <Button
-          type="submit"
-          text={t("log_in")}
-          disabled={isDisabled}
-        />
+        <Button type="submit" text={t("log_in")} disabled={isDisabled} />
       </Form>
     </>
   );

@@ -14,15 +14,7 @@ import * as yup from "yup";
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";
 
-const VenueModal = ({
-  data,
-  columns,
-  row,
-  add,
-  edit,
-  page,
-  ...props
-}) => {
+const VenueModal = ({ data, columns, row, add, edit, page, ...props }) => {
   const { t } = useTranslation();
   const { file, percent, setFile, setPercent, handleChange, handleSubmit } =
     useAdminDataUpload();
@@ -75,7 +67,7 @@ const VenueModal = ({
           return true;
         }
       }),
-      company: yup.number().required("Required"),
+    company: yup.number().required("Required"),
   });
 
   return (
@@ -125,7 +117,7 @@ const VenueModal = ({
         })}
         onSubmit={(values, actions) => {
           handleSubmit(values, page, add, edit);
-          console.log("submit venue")
+          console.log("submit venue");
           props.onHide();
         }}
       >

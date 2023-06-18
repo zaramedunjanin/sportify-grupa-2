@@ -5,10 +5,10 @@ import useEffectTitle from "../../../hooks/useEffectTitle";
 
 const Admin = () => {
   useEffectTitle("Admin | Sportify");
-    const adminBgStyle = {
-        backgroundColor: "ghostwhite",
-        minHeight: "100vh"
-    }
+  const adminBgStyle = {
+    backgroundColor: "ghostwhite",
+    minHeight: "100vh",
+  };
   return (
     <div style={adminBgStyle}>
       <Navbar variant={"admin"} />
