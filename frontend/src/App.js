@@ -47,10 +47,12 @@ const App = () => {
           <Route path="/userdashboard" element={<UserDashboardPage />} />
           <Route path="/userdata" element={<UserData />} />
 
-            <Route path="company" element={<CompanyOwnerDashboard />}>
-              <Route path="venues" element={<OwnerVenue />} />
-              <Route path="bookings" element={<Booking />} />
-            </Route>
+          <Route path="company" element={<CompanyOwnerDashboard />}>
+          <Route path="" element={<OwnerVenue />} />
+            <Route path="venues" element={<OwnerVenue />} />
+            <Route path="bookings" element={<Booking />} />
+          </Route>
+
           <Route path="/search" element={<SearchResults />} />
         </Routes>
       </ContextWrapper>

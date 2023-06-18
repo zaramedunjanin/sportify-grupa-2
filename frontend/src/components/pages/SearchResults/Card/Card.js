@@ -25,7 +25,8 @@ const Card = ({ venue, ...rest }) => {
         className={`${styles.card} ${styles.min_width_card} mb-5`}
         style={{ width: "17rem", fontSize: "12px" }}
       >
-        <img src={myImage} className="card-img-top" alt="..." />
+         <img src={myImage} className="card-img-top" alt="..." /> 
+      
         <div className="card-body">
           <div className="row">
             <div className="col">
@@ -55,7 +56,7 @@ const Card = ({ venue, ...rest }) => {
                 <p>
                   {" "}
                   <FontAwesomeIcon icon={faStar} className="me-1" />
-                  {venue.avg_rating}
+                  {venue.avg_rating > 0 ? venue.avg_rating : "-"}
                 </p>
               </div>
               <div className="row fw-semibold" style={{ fontSize: "16px" }}>
