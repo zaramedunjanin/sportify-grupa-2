@@ -76,7 +76,7 @@ const VenueModal = ({
           return true;
         }
       }),
-    company_id: yup.number().required("Required"),
+      company: yup.number().required("Required"),
   });
 
   return (
@@ -107,7 +107,7 @@ const VenueModal = ({
             price_per_hour: data.price_per_hour,
             opening_time: data.opening_time,
             closing_time: data.closing_time,
-            company_id: data.company_id,
+            company: data.company,
           },
         })}
         {...(add === true && {
@@ -121,7 +121,7 @@ const VenueModal = ({
             price_per_hour: 0,
             opening_time: "",
             closing_time: "",
-            company_id: "",
+            company: "",
           },
         })}
         onSubmit={(values, actions) => {
@@ -188,7 +188,7 @@ const VenueModal = ({
               component={CustomInput}
             />
             <Field
-              name="company_id"
+              name="company"
               type={"number"}
               label={t("company_id")}
               component={CustomInput}

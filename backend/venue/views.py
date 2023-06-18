@@ -31,7 +31,7 @@ def getVenues(request):
     sortBy = request.GET.get('sortBy', None)
     sortType = request.GET.get('sortType', None)
 
-    queryset = Venue.objects_with_deleted.prefetch_related('sport').filter(venue_name__contains=searchText)
+    queryset = Venue.objects_with_deleted.prefetch_related('sport').filter(venue_name__contains=searchText).filter(deleted_at__isnull = True)
     
     if min_price:
       queryset = queryset.filter(price_per_hour__gte=min_price)
@@ -64,7 +64,7 @@ def getCompanyVenues(request):
     if company_id == None:
       return Response(status=status.HTTP_404_NOT_FOUND)
     print(company_id)
-    queryset = Venue.objects_with_deleted.prefetch_related('sport').filter(company=company_id)
+    queryset = Venue.objects_with_deleted.prefetch_related('sport').filter(company=company_id).filter(deleted_at__isnull = True)
     serializer = VenueSerializer(queryset, many=True)
     return Response(serializer.data)
 

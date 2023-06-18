@@ -20,6 +20,6 @@ export const getCompanyVenues = async () => {
     const response = await axios.get("venue/company");
     return response;
   } catch (error) {
-    throw new Error("Failed to fetch venues");
+    console.log("Failed to fetch venues");
   }
 };
