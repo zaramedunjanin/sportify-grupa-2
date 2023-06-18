@@ -13,7 +13,16 @@ from .serializers import SignupSerializer
 # Create your views here.
 @permission_classes([IsAuthenticated])
 @api_view(['GET'])
-def getUser(request):
+def getUserFromDatabase(request):
+    user = User.objects.prefetch_related('sport').filter(pk=request.user.id)
+    serializer = UserSerializer(users, context={'request': request}, many=True)
+    return Response(serializer.data)
+
+
+# Create your views here.
+@permission_classes([IsAuthenticated])
+@api_view(['GET'])
+def getUnpackedToken(request):
     user = request.user
     sports = user.sport.all()
     sport = ""
