@@ -7,48 +7,6 @@ import { getCompanyVenues } from "../../../../services/Venue/Query";
 import { deleteVenue } from "../../../../services/Venue/Mutator";
 
 const OwnerVenue = () => {
-  // const result = [
-  //   {
-  //     id: 0,
-  //     venue_name: "venue 1",
-  //     address: "address 1",
-  //     opening_time: "08:00",
-  //     closing_time: "21:00",
-  //     price_per_hour: "25",
-  //   },
-  //   {
-  //     id: 1,
-  //     venue_name: "venue 2",
-  //     address: "address 1",
-  //     opening_time: "08:00",
-  //     closing_time: "21:00",
-  //     price_per_hour: "25",
-  //   },
-  //   {
-  //     id: 2,
-  //     venue_name: "venue 3",
-  //     address: "address 1",
-  //     opening_time: "08:00",
-  //     closing_time: "21:00",
-  //     price_per_hour: "25",
-  //   },
-  //   {
-  //     id: 3,
-  //     venue_name: "venue 4",
-  //     address: "address 1",
-  //     opening_time: "08:00",
-  //     closing_time: "21:00",
-  //     price_per_hour: "25",
-  //   },
-  //   {
-  //     id: 4,
-  //     venue_name: "venue 5",
-  //     address: "address 1",
-  //     opening_time: "08:00",
-  //     closing_time: "21:00",
-  //     price_per_hour: "25",
-  //   },
-  // ];
 
   const [venues, setVenues] = useState([]);
   const [deleteId, setDeleteId] = useState(0);

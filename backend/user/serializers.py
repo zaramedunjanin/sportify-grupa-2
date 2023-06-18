@@ -7,7 +7,8 @@ class UserSerializer(serializers.ModelSerializer):
     sport = serializers.SlugRelatedField(many=True, read_only=True, slug_field='sport_name')
     class Meta:
         model = User
-        fields = '__all__'
+        # fields = '__all__'
+        exclude = ['password']
 
 class SportSerializer(serializers.ModelSerializer):
     class Meta:
