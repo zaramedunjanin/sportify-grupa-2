@@ -2,15 +2,11 @@
 import React, { useEffect, useState, useContext } from "react";
 
 
-import CustomButton from "../../atoms/Buttons/CustomButton";
-
 import {addData, editData} from "../../../services/AdminService/useAdminMutator";
 import {Field, Formik, Form} from "formik";
 import * as yup from "yup";
 import CustomInput from "../Admin/AdminComponents/AdminModals/CustomFormComponents/CustomInput";
 import CustomTextArea from "../Admin/AdminComponents/AdminModals/CustomFormComponents/CustomTextArea";
-
-
 
 import Navbar from "../../organisms/Navbar/Navbar";
 import Footer from "../../organisms/Footer/Footer";
@@ -30,6 +26,7 @@ import QnAList from "./QnAList";
 import { AuthContext } from "../../../context/AuthContext";
 import RatingStars from "./RatingStars/RatingStars";
 import { useTranslation } from "react-i18next";
+import Button from "react-bootstrap/Button";
 
 const Venue = () => {
     let { id } = useParams();
