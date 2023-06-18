@@ -18,6 +18,17 @@ def getVenue(request, venue_id):
     #venue = Venue.objects.get(pk=venue_id)
     #json_data = serializers.serialize('json', [venue])
     #return HttpResponse(json_data, content_type="text/json-comment-filtered")
+@api_view(['GET', 'POST'])
+def getVenueList(request):
+    if request.method == 'GET':
+        data = Venue.objects.all().order_by('id')
+
+        serializer = VenueSerializer(data, context={'request': request}, many=True)
+
+        return Response(serializer.data)
+
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 @api_view(['GET'])
 def getVenues(request):
