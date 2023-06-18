@@ -42,6 +42,17 @@ def getVenue(request, venue_id):
     serializer = VenueSerializer(venue, context={'request': request}, many=True)
     return Response(serializer.data)
 
+@api_view(['GET', 'POST'])
+def getVenueList(request):
+    if request.method == 'GET':
+        data = Venue.objects.all().order_by('id')
+
+        serializer = VenueSerializer(data, context={'request': request}, many=True)
+
+        return Response(serializer.data)
+
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 @api_view(['GET'])
 def getRating(request, venue_id):
     average_rating = Rating.objects.filter(venue=venue_id).aggregate(avg_rating=Avg('rating'))
@@ -92,10 +103,6 @@ def postReservation(request, venue_id):
         return Response({'message': 'Venue scheduled successfully'}, status=200)
 
     return Response({'error': 'Invalid request method'}, status=400)
-
-
-
-
 
 @api_view(['GET'])
 def getVenues(request):

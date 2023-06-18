@@ -13,6 +13,7 @@ urlpatterns = [
         path('tables/sports/add/', views.postSport),
 
         path('tables/venues/', views.getVenueList),
+        path('tables/venuestop3/', views.getTop3VenueList),
         path('tables/venues/delete/<int:id>/', views.deleteVenue),
         path('tables/venues/edit/<int:id>/', views.putVenue),
         path('tables/venues/add/', views.postVenue),
