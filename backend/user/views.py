@@ -14,7 +14,7 @@ from .serializers import SignupSerializer
 @permission_classes([IsAuthenticated])
 def getUser(request):
     user = request.user
-    data = {'username': user.username, 'email': user.email, 'role': user.role, 'first_name': user.first_name, 'last_name': user.last_name }
+    data = {'id': user.id,'username': user.username, 'email': user.email, 'role': user.role, 'first_name': user.first_name, 'last_name': user.last_name }
     # users = User.objects.all()
     # data = [{'username': user.username, 'email': user.email} for user in users]
     return Response(data)
