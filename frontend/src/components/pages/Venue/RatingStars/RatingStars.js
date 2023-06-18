@@ -3,23 +3,29 @@ import style from "./RatingStars.module.scss";
 import {Form, Formik} from "formik";
 import axios from "axios";
 import {baseURL} from "../../../../services/AdminService/adminService";
-const RatingStart = ({venue, user}) => {
-  const [newRating, setNewRating] = useState(0);
+const RatingStart = ({venue, user, oldRating, ...props}) => {
+    if(oldRating === "")
+        oldRating = 0;
+  const [newRating, setNewRating] = useState(oldRating);
   const [hover, setHover] = useState(0);
   return (
       <Formik
     initialValues= {{
-      rating: newRating,
-        user: venue,
-        venue: user,
+      rating: oldRating,
+        user: user,
+        venue: venue,
     }}
   onSubmit={(values, actions) => {
+      values["user"] = user
+      values["rating"] = newRating
       console.log(values)
           axios
-              .put(`${baseURL}/tables/rating/${values.id}/`, values)
+              .post(`${baseURL}/tables/ratings/add/`, values)
               .catch((error) => {
                   console.log(error.response);
               });
+      props.submitted();
+
   }}
 >
   {({ values, errors }) => (
@@ -29,11 +35,10 @@ const RatingStart = ({venue, user}) => {
         index += 1;
         return (
             <>
-
             <button
               type="button"
               key={index}
-              className={index <= (hover || newRating) ? style.on : style.off}
+              className={index <= (hover || newRating || oldRating) ? style.on : style.off}
               onClick={() => setNewRating(index)}
               onMouseEnter={() => setHover(index)}
               onMouseLeave={() => setHover(newRating)}

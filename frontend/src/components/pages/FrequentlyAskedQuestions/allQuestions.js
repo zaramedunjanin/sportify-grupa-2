@@ -2,11 +2,12 @@ const questionList = [
   {
     question: "How do I create an account on Sportify?",
     answer:
-      "This is the first item's accordion body. It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the .accordion-body, though the transition does limit overflow.",
+      "Click on the 'Sign Up' button(top right corner of your screen) which will lead you to the Sign Up page. There you will need to fill in all the required fields and click on 'Sign Up'. You will automatically be logged in to your account.",
   },
   {
     question: "What do we do?",
-    answer: "A2",
+    answer:
+      "We help you find occuring sports events in your area to participate in, make reservations at local venues or to register your own venues.",
   },
   {
     question: "How do I make a reservation for a venue?",

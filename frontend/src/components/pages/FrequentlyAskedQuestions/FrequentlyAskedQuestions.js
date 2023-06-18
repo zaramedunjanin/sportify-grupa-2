@@ -1,8 +1,13 @@
+import { useTranslation } from "react-i18next";
+import Footer from "../../organisms/Footer/Footer";
 import Navbar from "../../organisms/Navbar/Navbar";
-import questions from "./allQuestions";
+import questions from "./getAllQuestions";
 import "./FrequentlyAskedQuestions.css";
+import getAllQuestions from "./getAllQuestions";
 
 const FrequentlyAskedQuestions = () => {
+  const { t } = useTranslation();
+  const questions = getAllQuestions(t);
   return (
     <>
       <Navbar />
@@ -12,38 +17,13 @@ const FrequentlyAskedQuestions = () => {
             <div className="position-relative text-center bg-body">
               <div className="d-flex justify-content-end">
                 <nav className="navbar navbar-expand-lg bg-body-tertiary mb-3">
-                  <div className="container-fluid text-center">
-                    <div className="collapse navbar-collapse" id="navbarNav">
-                      <ul className="navbar-nav fw-medium me-2">
-                        <li className="nav-item nav-link-size">
-                          <a
-                            className="nav-link active"
-                            aria-current="page"
-                            href="/"
-                          >
-                            About us
-                          </a>
-                        </li>
-                        <li className="nav-item">
-                          <a className="nav-link active nav-link-size" href="/">
-                            Become a partner
-                          </a>
-                        </li>
-                        <li className="nav-item">
-                          <a
-                            className="nav-link active nav-link-size text-orange"
-                            href="/"
-                          >
-                            FAQ
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
+                  <div className="container-fluid text-center"></div>
                 </nav>
               </div>
               <div className="md-4 mx-md-5">
-                <h1 className="fw-semibold">Frequently Asked Questions</h1>
+                <h1 className="fw-semibold">
+                  {t("frequently_asked_questions")}
+                </h1>
                 <div
                   className="accordion accordion-flush mt-5"
                   id="accordionFlushExample"
@@ -75,9 +55,11 @@ const FrequentlyAskedQuestions = () => {
                   })}
                 </div>
               </div>
+              <br />
             </div>
           </div>
         </div>
+        <Footer />
       </>
     </>
   );

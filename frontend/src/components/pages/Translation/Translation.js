@@ -15,6 +15,11 @@ const languages = [
     name: "Bosnian",
     country_code: "bhs",
   },
+  {
+    code: "de",
+    name: "German",
+    country_code: "de",
+  },
 ];
 
 const Translation = () => {
@@ -29,6 +34,7 @@ const Translation = () => {
       >
         <Dropdown.Item eventKey="1">English</Dropdown.Item>
         <Dropdown.Item eventKey="3">Bosnian</Dropdown.Item>
+        <Dropdown.Item eventKey="2">German</Dropdown.Item>
       </DropdownButton>
     </div>
   );
