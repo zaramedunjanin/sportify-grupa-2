@@ -43,16 +43,13 @@
 
 .flagIcon img {
   width: 20px;
-  height: 20px; 
+  height: 20px;
 }
-
 
 .adminLinks_1 {
   background-color: transparent !important; /* Set the background color of the toggle button to transparent */ 
   font-weight: bold;
 }
-
-
 
 .dropdown-menu {
   background-color: #fff; /* Set the background color of the dropdown menu to white */
@@ -73,4 +70,7 @@
 
 .dropdown-menu {
   left: -10px; /* Adjust the value as per your needs */
+}
+.logo:hover {
+  cursor: pointer !important;
 }

@@ -1,13 +1,12 @@
 import useEffectTitle from "../../../hooks/useEffectTitle";
-
 import React, { useEffect, useState } from "react";
-
 import Navbar from "../../organisms/Navbar/Navbar";
 import Header from "../../organisms/Header/Header";
 import Categories from "./Categories/Categories";
 import Footer from "../../organisms/Footer/Footer";
 import TopVenues from "./TopVenues/TopVenues";
 import { getDataList } from "../../../services/AdminService/useAdminFetcher";
+
 const Home = () => {
   useEffectTitle("Home | Sportify");
   const [venues, setVenues] = useState("");
