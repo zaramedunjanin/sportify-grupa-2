@@ -103,8 +103,8 @@ const OwnerVenue = () => {
         editId={editId}
       /> */}
       <VenueModal
-        // page={"page"}
-        // table={"page"}
+        page={"venues"}
+        table={"page"}
         data={row}
         {...(addShow === true && {
           add: addShow,

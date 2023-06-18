@@ -20,6 +20,7 @@ const VenueModal = ({
   row,
   add,
   edit,
+  page,
   ...props
 }) => {
   const { t } = useTranslation();
@@ -123,7 +124,8 @@ const VenueModal = ({
           },
         })}
         onSubmit={(values, actions) => {
-          //handleSubmit(values, page, add, edit);
+          handleSubmit(values, page, add, edit);
+          console.log("submit venue")
           props.onHide();
         }}
       >

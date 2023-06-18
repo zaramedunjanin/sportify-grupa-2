@@ -55,7 +55,7 @@ const Card = ({ venue, ...rest }) => {
                 <p>
                   {" "}
                   <FontAwesomeIcon icon={faStar} className="me-1" />
-                  4.84{" "}
+                  {venue.avg_rating}
                 </p>
               </div>
               <div className="row fw-semibold" style={{ fontSize: "16px" }}>

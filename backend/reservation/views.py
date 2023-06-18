@@ -22,35 +22,43 @@ def getAllCompanyBookings(request):
     serializer = ReservationSerializer(reservations, many=True)
     return Response(serializer.data)
 
+
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def getBookingsByVenueId(request):
    venue_id = request.GET.get('venue_id', None)
-   print(venue_id)
+
    reservations = Reservation.objects.select_related('venue', 'user', 'sport').filter(approved=True, venue__company=request.user.id)
    serializer = ReservationSerializer(reservations, many=True)
+   
    return Response(serializer.data)
+
 
 @api_view(['PUT'])
 @permission_classes([IsAuthenticated])
 def acceptBooking(request):
    reservation_id = request.data.get('reservation_id', None)
+
    try:
       reservation = Reservation.objects.get(id=reservation_id)
    except Reservation.DoesNotExist:
       return Response(status=status.HTTP_404_NOT_FOUND)
+  
    reservation.approved = True
    reservation.save()
    return Response(status=status.HTTP_204_NO_CONTENT)
+
 
 @api_view(['PUT'])
 @permission_classes([IsAuthenticated])
 def rejectBooking(request):
    reservation_id = request.data.get('reservation_id', None)
+
    try:
       reservation = Reservation.objects.get(id=reservation_id)
    except Reservation.DoesNotExist:
       return Response(status=status.HTTP_404_NOT_FOUND)
+   
    reservation.approved = False
    reservation.save()
    return Response(status=status.HTTP_204_NO_CONTENT)

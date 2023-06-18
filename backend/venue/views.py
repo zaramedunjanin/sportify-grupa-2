@@ -6,10 +6,11 @@ from django.shortcuts import render, get_object_or_404
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from .serializers import VenueSerializer
-from .models import Venue
+from .models import Venue, Rating
 from django.db.models import Prefetch
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
+from django.db.models import Avg
 
 from .models import Venue
 @api_view(['GET'])
@@ -23,6 +24,11 @@ def getVenue(request, venue_id):
 
 @api_view(['GET'])
 def getVenues(request):
+    # venues_with_ratings = Venue.objects.annotate(avg_rating=Avg('rating__rating')).prefetch_related('rating_set')
+    # print(venues_with_ratings[0].avg_rating)
+    # serializer = VenueSerializer(venues_with_ratings, many=True)
+    # return Response(serializer.data)
+
     searchText = request.GET.get('searchText', '')
     min_price = request.GET.get('min_price', None)
     max_price = request.GET.get('max_price', None)
