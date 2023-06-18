@@ -11,9 +11,12 @@ import RootTablePage from "./components/pages/Admin/AdminPages/RootTablePage";
 import Venue from "./components/pages/Venue/Venue";
 import UserDashboardPage from "./components/pages/UserDashboard/UserDashboardPage";
 import UserData from "./components/pages/UserDashboard/UserData/UserData";
+import CompanyOwnerDashboard from "./components/pages/CompanyOwnerDashboard/CompanyOwnerDashboard";
+import OwnerVenue from "./components/pages/CompanyOwnerDashboard/Venue/OwnerVenue";
 import About from "./components/pages/About/About";
 import { SearchProvider } from "./context/SearchContext";
 import { CategoryProvider } from "./context/CategoryContext";
+import Booking from "./components/pages/CompanyOwnerDashboard/Booking/Booking";
 import { AuthProvider } from "./context/AuthContext";
 import ContextWrapper from "./context/ContextWrapper";
 import BecomeAPartnerPage from "./components/pages/BecomeAPartner/BecomeAPartnerPage";
@@ -67,6 +70,12 @@ const App = () => {
             <Route path="ratings" element={<TablePage />} />
           </Route>
           <Route path="verification" element={<TablePage />} />
+          <Route path="company" element={<CompanyOwnerDashboard />}>
+          <Route path="" element={<OwnerVenue />} />
+            <Route path="venues" element={<OwnerVenue />} />
+            <Route path="bookings" element={<Booking />} />
+          </Route>
+
         </Routes>
       </ContextWrapper>
     </BrowserRouter>

@@ -1,6 +1,6 @@
 import axios from "../HttpService/HttpService";
 
-const getAllVenues = async (filters, searchText) => {
+export const getAllVenues = async (filters, searchText) => {
   try {
     const options =
       (searchText && searchText.length) > 0
@@ -15,4 +15,11 @@ const getAllVenues = async (filters, searchText) => {
   }
 };
 
-export default getAllVenues;
+export const getCompanyVenues = async () => {
+  try {
+    const response = await axios.get("venue/company");
+    return response;
+  } catch (error) {
+    console.log("Failed to fetch venues");
+  }
+};

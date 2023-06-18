@@ -4,12 +4,12 @@ import CustomButton from "../../../../atoms/Buttons/CustomButton";
 import axios from "axios";
 import { baseURL } from "../../../../../services/AdminService/adminService";
 import { Field, Form, Formik } from "formik";
-import CustomSelect from "./CustomFormComponents/CustomSelect";
-import CustomInput from "./CustomFormComponents/CustomInput";
+import CustomSelect from "../../../Admin/AdminComponents/AdminModals/CustomFormComponents/CustomSelect";
+import CustomInput from "../../../Admin/AdminComponents/AdminModals/CustomFormComponents/CustomInput";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import storage from "../../../../../config/firebaseConfig";
 import useAdminDataUpload from "../../../../../hooks/useAdminDataUpload";
-import CustomImage from "./CustomFormComponents/CustomImage";
+import CustomImage from "../../../Admin/AdminComponents/AdminModals/CustomFormComponents/CustomImage";
 import * as yup from "yup";
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";
@@ -17,11 +17,10 @@ import i18next from "i18next";
 const VenueModal = ({
   data,
   columns,
-  page,
-  table,
   row,
   add,
   edit,
+  page,
   ...props
 }) => {
   const { t } = useTranslation();
@@ -126,6 +125,7 @@ const VenueModal = ({
         })}
         onSubmit={(values, actions) => {
           handleSubmit(values, page, add, edit);
+          console.log("submit venue")
           props.onHide();
         }}
       >

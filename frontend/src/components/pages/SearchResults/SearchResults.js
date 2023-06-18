@@ -1,6 +1,6 @@
 import Card from "./Card/Card";
 import Dropdown from "./FilterDropdown/Dropdown";
-import getAllVenues from "../../../services/Venue/Query";
+import {getAllVenues} from "../../../services/Venue/Query";
 import React, { useState, useEffect, useContext } from "react";
 import Navbar from "../../organisms/Navbar/Navbar";
 import styles from "./SearchResult.module.scss";
