@@ -29,11 +29,48 @@
   display: inline;
 }
 
+.card_1 {
+  background-color: white;
+  border-radius: 50px;
+  width: 60%;
+  max-height: 15rem;
+  padding: 1%;
+  border: 1px solid #79e39c;
+  margin: 2% 20% 2% 20% !important;
+}
+
+#custom {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.heading_1 {
+  margin-left: 8px;
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+.smaller_button {
+  padding: 3px 12px;
+  font-size: 14px;
+}
+
+.button_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  margin-bottom: 20px;
+}
+
 .success {
   color: green;
 }
 
-.ratingSpace{
+.ratingSpace {
   width: 100%;
   text-align: end;
 }

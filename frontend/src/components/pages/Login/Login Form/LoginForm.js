@@ -5,7 +5,6 @@ import "./LoginForm.scss";
 import useLoginForm from "../../../../hooks/useLogin";
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";
-
 const LoginForm = () => {
   const { t } = useTranslation();
   const {
@@ -47,12 +46,7 @@ const LoginForm = () => {
 
           {loginError && <div className="text-danger">{loginError}</div>}
         </Form.Group>
-        <Button
-          type="submit"
-          text={t("log_in")}
-          className="login-button"
-          disabled={isDisabled}
-        />
+        <Button type="submit" text={t("log_in")} disabled={isDisabled} />
       </Form>
     </>
   );

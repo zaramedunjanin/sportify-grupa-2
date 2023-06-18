@@ -6,7 +6,7 @@ import TermsOfUseContent from "./TermsOfUseItems/TermsOfUseContent";
 import useEffectTitle from "../../../hooks/useEffectTitle";
 
 const TermsOfUse = () => {
-    useEffectTitle("Terms of use | Sportify")
+  useEffectTitle("Terms of use | Sportify");
   return (
     <>
       <Navbar />

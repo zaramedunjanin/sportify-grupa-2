@@ -158,7 +158,6 @@ const BecomeAPartnerForm = () => {
         <Row style={{ paddingRight: "0" }}>
           <Col className="centerContainer mt-4">
             <MainButton
-              className="form-button"
               text={t("join")}
               onClick={handleSubmit}
               disabled={isDisabled}

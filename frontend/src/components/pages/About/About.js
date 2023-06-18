@@ -7,7 +7,7 @@ import { AboutImages } from "./AboutImages/AboutImages";
 import useEffectTitle from "../../../hooks/useEffectTitle";
 
 const About = () => {
-    useEffectTitle("About us | Sportify")
+  useEffectTitle("About us | Sportify");
   return (
     <>
       <Navbar />

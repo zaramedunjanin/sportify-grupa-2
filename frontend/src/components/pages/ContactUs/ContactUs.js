@@ -6,7 +6,7 @@ import ContactUsContent from "./ContactUsItems/ContactUsContent";
 import useEffectTitle from "../../../hooks/useEffectTitle";
 
 const ContactUs = () => {
-    useEffectTitle("Contact us | Sportify")
+  useEffectTitle("Contact us | Sportify");
   return (
     <>
       <Navbar />

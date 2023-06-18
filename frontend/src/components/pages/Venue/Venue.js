@@ -1,5 +1,14 @@
 import React, { useEffect, useState, useContext } from "react";
 
+import {
+  addData,
+  editData,
+} from "../../../services/AdminService/useAdminMutator";
+import { Field, Formik, Form } from "formik";
+import * as yup from "yup";
+import CustomInput from "../Admin/AdminComponents/AdminModals/CustomFormComponents/CustomInput";
+import CustomTextArea from "../Admin/AdminComponents/AdminModals/CustomFormComponents/CustomTextArea";
+
 import Navbar from "../../organisms/Navbar/Navbar";
 import Footer from "../../organisms/Footer/Footer";
 
@@ -17,7 +26,6 @@ import ScheduleNowModal from "./ScheduleNowModal";
 import QnAList from "./QnAList";
 import { AuthContext } from "../../../context/AuthContext";
 import RatingStars from "./RatingStars/RatingStars";
-import { baseURL } from "../../../services/AdminService/adminService";
 import { useTranslation } from "react-i18next";
 
 const Venue = () => {
@@ -37,7 +45,9 @@ const Venue = () => {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
+  const validationSchema = yup.object().shape({
+    text: yup.string().required("Required"),
+  });
   const { t } = useTranslation();
   async function fetchVenue() {
     const response = await axios.get(`${url}`);
@@ -75,7 +85,7 @@ const Venue = () => {
         });
     };
     fetchVenue();
-    // getUserRating();
+    getUserRating();
   }, [submitted]);
 
   useEffectTitle("Venue | Sportify");
@@ -98,7 +108,7 @@ const Venue = () => {
                 <Col xs={7} className={"align-items-center my-1"}>
                   <h2 className={`${styles.title} ms-2`}>{venue.venue_name}</h2>
                 </Col>
-                <Col className={"text-center"}>
+                <Col className={"text-end"}>
                   <MainButton onClick={handleShow} text={t("schedule_now")} />
                 </Col>
               </Row>
@@ -151,6 +161,65 @@ const Venue = () => {
             )}
           </Row>
         </Container>
+        <Row>
+          <Col md={12}>
+            <Row className={`${styles.card_1} justify-content-center`}>
+              <Col>
+                <Formik
+                  validationSchema={validationSchema}
+                  validateOnChange={true}
+                  initialValues={{
+                    user: "",
+                    venue: id,
+                    text: "",
+                    answer: "",
+                    pinned: false,
+                  }}
+                  onSubmit={async (values, actions) => {
+                    values["user"] = user.id;
+                    values["venue"] = parseInt(values["venue"]);
+
+                    const response = await addData(values, "questions");
+                    setTimeout(() => {
+                      if (response.status === 201) {
+                        actions.resetForm();
+                        actions.setStatus({
+                          success: "Message has been sent!",
+                        });
+                      } else if (response.status === 400) {
+                        actions.resetForm();
+
+                        actions.setStatus({
+                          success: "Message failed to send.",
+                        });
+                      }
+                    }, 2000);
+                  }}
+                >
+                  {({ values, errors, status, isSubmitting }) => (
+                    <Form>
+                      <p>{status}</p>
+                      <Field
+                        name={"text"}
+                        type={"textarea"}
+                        placeholder={"Write a Question"}
+                        label={`Send a Question`}
+                        component={CustomTextArea}
+                      />
+                      <div className={styles.button_wrapper}>
+                        <div>
+                          {status && status.success ? status.success : ""}
+                        </div>
+
+                        <MainButton type="submit" text="Send" />
+                      </div>
+                    </Form>
+                  )}
+                </Formik>
+              </Col>
+            </Row>
+          </Col>
+        </Row>
       </div>
       <Footer />
       <ScheduleNowModal

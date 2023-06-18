@@ -7,7 +7,7 @@ import getAllQuestions from "./getAllQuestions";
 import useEffectTitle from "../../../hooks/useEffectTitle";
 
 const FrequentlyAskedQuestions = () => {
-  useEffectTitle("FAQ | Sportify")
+  useEffectTitle("FAQ | Sportify");
   const { t } = useTranslation();
   const questions = getAllQuestions(t);
   return (

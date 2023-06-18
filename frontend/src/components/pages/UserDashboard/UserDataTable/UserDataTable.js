@@ -40,27 +40,26 @@ const UserDataTable = ({ page, ...props }) => {
   return (
     <Container className={styles.tableBackground}>
       {!data || data.length === 0 ? (
-      <div className={"text-center"}>
+        <div className={"text-center"}>
           {t("empty_table_user_reservations")}
-      </div>
+        </div>
       ) : (
-      <Table
-        responsive
-        className={`text-center align-middle ${styles.adminTable}`}
-      >
-        <thead>
-          <tr className={styles.adminTableHeader}>
-            {modelColumns.headers.map((elements, index) => (
-              <th key={`header${index}`}>{elements}</th>
-            ))}
-            <>
-              <th>{t("delete")}</th>
-            </>
-          </tr>
-        </thead>
-        <tbody className={styles.adminTableRows}>
-          {
-            data.map((d, index) => (
+        <Table
+          responsive
+          className={`text-center align-middle ${styles.adminTable}`}
+        >
+          <thead>
+            <tr className={styles.adminTableHeader}>
+              {modelColumns.headers.map((elements, index) => (
+                <th key={`header${index}`}>{elements}</th>
+              ))}
+              <>
+                <th>{t("delete")}</th>
+              </>
+            </tr>
+          </thead>
+          <tbody className={styles.adminTableRows}>
+            {data.map((d, index) => (
               <tr key={`row${index}`}>
                 {modelColumns.fields.map((field) => (
                   <td key={`${field}${index}`}>
@@ -123,10 +122,9 @@ const UserDataTable = ({ page, ...props }) => {
                   </td>
                 </>
               </tr>
-            )
-          )}
-        </tbody>
-      </Table>
+            ))}
+          </tbody>
+        </Table>
       )}
       <DeleteModal
         show={deleteShow}
@@ -136,7 +134,6 @@ const UserDataTable = ({ page, ...props }) => {
         onSubmit={handleDelete}
         type={"Delete"}
       />
-
     </Container>
   );
 };

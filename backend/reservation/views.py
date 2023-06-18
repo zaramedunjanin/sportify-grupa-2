@@ -28,6 +28,12 @@ from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 # Create your views here.
 
+@api_view(['GET'])
+def getUserReservations(request, user_id):
+    reservations = Reservation.objects.filter(user = user_id).select_related('sport').order_by('start_time')
+    serializer = ReservationSerializer(reservations, context={'request': request}, many=True)
+    return Response(serializer.data)
+
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
@@ -37,11 +43,6 @@ def getAllCompanyBookings(request):
     serializer = ReservationSerializer(reservations, many=True)
     return Response(serializer.data)
 
-@api_view(['GET'])
-def getUserReservations(request, user_id):
-    reservations = Reservation.objects.filter(user = user_id).select_related('sport').order_by('start_time')
-    serializer = ReservationSerializer(reservations, context={'request': request}, many=True)
-    return Response(serializer.data)
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])

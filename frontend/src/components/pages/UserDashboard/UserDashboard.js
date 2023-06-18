@@ -3,14 +3,11 @@ import React, { useContext } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-<<<<<<< HEAD
 import styles from "./UserDashboard.module.css";
 import { Image } from "react-bootstrap";
 import { AuthContext } from "../../../context/AuthContext";
-=======
 import UserData from "./UserData/UserData";
 import useEffectTitle from "../../../hooks/useEffectTitle";
->>>>>>> d203394fd4c1f925fae501e866e18d4ccd22c7a4
 
 const UserDashboard = () => {
   const { user } = useContext(AuthContext);
@@ -40,20 +37,22 @@ const UserDashboard = () => {
               {user.email}
             </p>
             <p>
-              {user.gender === 'Female' && <span className="material-symbols-outlined">female</span>}
-              {user.gender === 'Male' && <span className="material-symbols-outlined">male</span>}
-              {user.gender === 'Other' && <span className="material-symbols-outlined">transgender</span>}
-              {" "}{user.gender}
+              {user.gender === "Female" && (
+                <span className="material-symbols-outlined">female</span>
+              )}
+              {user.gender === "Male" && (
+                <span className="material-symbols-outlined">male</span>
+              )}
+              {user.gender === "Other" && (
+                <span className="material-symbols-outlined">transgender</span>
+              )}{" "}
+              {user.gender}
             </p>
             <p>
               <span className="material-symbols-outlined">
                 sports_basketball
               </span>{" "}
-              {user.sport === ""?
-              "No Sports"
-                  :
-                  user.sport
-              }
+              {user.sport === "" ? "No Sports" : user.sport}
             </p>
           </Row>
         </Col>

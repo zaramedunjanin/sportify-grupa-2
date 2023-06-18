@@ -8,13 +8,15 @@ import CustomButton from "../../../atoms/Buttons/CustomButton";
 import CustomSelect from "../../Admin/AdminComponents/AdminModals/CustomFormComponents/CustomSelect";
 import CustomInput from "../../Admin/AdminComponents/AdminModals/CustomFormComponents/CustomInput";
 import CustomImage from "../../Admin/AdminComponents/AdminModals/CustomFormComponents/CustomImage";
+import CustomCheckBox from "../../Admin/AdminComponents/AdminModals/CustomFormComponents/CustomCheckBox";
+import { AuthContext } from "../../../../context/AuthContext";
 import useAdminDataUpload from "../../../../hooks/useAdminDataUpload";
 import { useTranslation } from "react-i18next";
+
 import CustomSelectCheckBox from "../../Admin/AdminComponents/AdminModals/CustomFormComponents/CustomSelectCheckBox";
 import { getDataList } from "../../../../services/AdminService/useAdminFetcher";
 import { isElementType } from "@testing-library/user-event/dist/utils";
 import { parse } from "@fortawesome/fontawesome-svg-core";
-import { AuthContext } from "../../../../context/AuthContext";
 import { SelectCheckBox } from "../../SelectCheckBox/SelectCheckBox";
 
 const UserData = ({
@@ -29,7 +31,7 @@ const UserData = ({
 }) => {
   const { t } = useTranslation();
 
-  const { user, fetchUserProfile } = useContext(AuthContext);
+  const { user, isAuthenticated, fetchUserProfile } = useContext(AuthContext);
   const data = user;
   const { file, percent, setFile, setPercent, handleChange, handleSubmit } =
     useAdminDataUpload();
@@ -42,11 +44,11 @@ const UserData = ({
   });
 
   const updateInfo = async (values) => {
-    const newArray = []
+    const newArray = [];
     values.sport.map((option) => {
-      newArray.push(option.value)
+      newArray.push(option.value);
     });
-    values["sport"] = newArray
+    values["sport"] = newArray;
     await handleSubmit(values, (page = "users"), (add = false), (edit = true));
     setTimeout(() => {
       fetchUserProfile();
@@ -118,6 +120,7 @@ const UserData = ({
                 label={t("phone_number")}
                 component={CustomInput}
               />
+
               <Field
                 name={"gender"}
                 label={t("gender")}
@@ -133,7 +136,7 @@ const UserData = ({
                 name={"sport"}
                 label={t("sport")}
                 type={"select"}
-                defaultValues = {data.sport}
+                defaultValues={data.sport}
                 component={SelectCheckBox}
                 options={sports}
                 isMulti={true}
@@ -160,4 +163,5 @@ const UserData = ({
     </Modal>
   );
 };
+
 export default UserData;

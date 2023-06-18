@@ -1,4 +1,4 @@
-import React, {useState, useContext, useEffect} from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./ProfileDropdown.scss";
 import { Dropdown, DropdownButton } from "react-bootstrap";
 import profile from "../../../../assets/images/profile.jpg";
@@ -10,7 +10,7 @@ import i18next from "i18next";
 import UserData from "../../../pages/UserDashboard/UserData/UserData";
 
 import { AuthContext } from "../../../../context/AuthContext";
-import {getDataList} from "../../../../services/AdminService/useAdminFetcher";
+import { getDataList } from "../../../../services/AdminService/useAdminFetcher";
 
 const ProfileDropdown = ({
   profilePicture = profile,
@@ -19,7 +19,8 @@ const ProfileDropdown = ({
 }) => {
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const { logout, isAuthenticated, user, fetchUserProfile } = useContext(AuthContext);
+  const { logout, isAuthenticated, user, fetchUserProfile } =
+    useContext(AuthContext);
 
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -33,7 +34,7 @@ const ProfileDropdown = ({
 
   const [sports, setSports] = useState({});
 
-  useEffect(()=>{
+  useEffect(() => {
     const fetchSports = async () => {
       try {
         const response = await getDataList("sports");
@@ -60,18 +61,48 @@ const ProfileDropdown = ({
         }
         id="dropdown-menu-align-end profile-button"
       >
-        <Dropdown.Item onClick={() => navigate("/userdashboard")} eventKey="1">
-          {t("profile")}
-        </Dropdown.Item>
-        <Dropdown.Item eventKey="3" onClick={handleEditClick}>
-          {t("edit")}
-        </Dropdown.Item>
+        {user.role === 1 && (
+          <Dropdown.Item
+            onClick={() => navigate("/administrator/tables/users")}
+            eventKey="1"
+          >
+            {t("profile")}
+          </Dropdown.Item>
+        )}
+        {user.role === 2 && (
+          <Dropdown.Item
+            onClick={() => navigate("/userdashboard")}
+            eventKey="1"
+          >
+            {t("profile")}
+          </Dropdown.Item>
+        )}
+        {user.role === 3 && (
+          <Dropdown.Item
+            onClick={() => navigate("/company/venues")}
+            eventKey="1"
+          >
+            {t("profile")}
+          </Dropdown.Item>
+        )}
+        {user.role !== 1 && (
+          <Dropdown.Item eventKey="3" onClick={handleEditClick}>
+            {t("edit")}
+          </Dropdown.Item>
+        )}
+
         <Dropdown.Item onClick={() => logout()} eventKey="2">
           {t("log_out")}
         </Dropdown.Item>
       </DropdownButton>
       {modalOpen && (
-        <UserData sports = {sports} data ={user} show={modalOpen} onHide={handleCloseModal} edit={true} />
+        <UserData
+          sports={sports}
+          data={user}
+          show={modalOpen}
+          onHide={handleCloseModal}
+          edit={true}
+        />
       )}
     </div>
   );

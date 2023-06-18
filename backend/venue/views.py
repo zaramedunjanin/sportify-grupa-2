@@ -70,7 +70,6 @@ def getUserRating(request, user_id):
     serializer = RatingSerializer(rating, context={'request': request}, many=True)
     return Response(serializer.data)
 
-
 @api_view(['GET'])
 def getQuestions(request, venue_id):
     venue = getVenueById(venue_id=venue_id)
@@ -160,7 +159,6 @@ def getVenues(request):
 @permission_classes([IsAuthenticated])
 def getCompanyVenues(request):
     company_id = request.user.id
-
     if company_id == None:
       return Response(status=status.HTTP_404_NOT_FOUND)
     queryset = Venue.objects_with_deleted.prefetch_related('sport').filter(company=company_id).filter(deleted_at__isnull = True)
@@ -212,4 +210,3 @@ def delete_venue(request):
     except Venue.DoesNotExist:
         return Response({'message': 'Venue does not exist.'}, status=status.HTTP_404_NOT_FOUND)
 
-    

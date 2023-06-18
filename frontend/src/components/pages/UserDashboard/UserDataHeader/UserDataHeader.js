@@ -9,8 +9,6 @@ const UserDataHeader = ({ title }) => {
       <Container className={styles.headerTitle}>
         <h4>{title}</h4>
       </Container>
-
-
     </>
   );
 };

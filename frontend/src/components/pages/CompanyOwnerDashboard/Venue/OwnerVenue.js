@@ -7,7 +7,6 @@ import { getCompanyVenues } from "../../../../services/Venue/Query";
 import { deleteVenue } from "../../../../services/Venue/Mutator";
 
 const OwnerVenue = () => {
-
   const [venues, setVenues] = useState([]);
   const [deleteId, setDeleteId] = useState(0);
   const [editId, setEditId] = useState(0);
@@ -60,7 +59,7 @@ const OwnerVenue = () => {
         ></MainButton>
       </div>
       <div className="container mt-4 d-flex justify-content-center">
-          <div className="row row-cols-xl-auto row-cols-lg-2 row-cols-md-2 row-cols-sm-1 justify-content-center">
+        <div className="row row-cols-xl-auto row-cols-lg-2 row-cols-md-2 row-cols-sm-1 justify-content-center">
           {venues.length !== 0 &&
             venues.map((venue) => {
               return (

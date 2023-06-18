@@ -6,7 +6,7 @@ import PrivacyPolicyContent from "./PrivacyPolicyItems/PrivacyPolicyContent";
 import useEffectTitle from "../../../hooks/useEffectTitle";
 
 const PrivacyPolicy = () => {
-    useEffectTitle("Privacy police | Sportify")
+  useEffectTitle("Privacy police | Sportify");
   return (
     <>
       <Navbar />

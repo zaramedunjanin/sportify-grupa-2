@@ -3,7 +3,7 @@ import LoginContent from "./Login-content/LoginContent";
 import useEffectTitle from "../../../hooks/useEffectTitle";
 
 const LoginPage = () => {
-  useEffectTitle("Login | Sportify")
+  useEffectTitle("Login | Sportify");
   return <LoginContent />;
 };
 

@@ -1,7 +1,6 @@
 import FullCalendar from "@fullcalendar/react"; // must go before plugins
 import dayGridPlugin from "@fullcalendar/daygrid"; // a plugin!
 import timeGridPlugin from "@fullcalendar/timegrid";
-import "./Booking.css";
 import { useEffect, useState } from "react";
 import {
   getReservationsByCompany,

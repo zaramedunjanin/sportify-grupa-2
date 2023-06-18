@@ -4,7 +4,7 @@ import BecomeAParnter from "./BecomeAPartner";
 import useEffectTitle from "../../../hooks/useEffectTitle";
 
 const BecomeAPartnerPage = () => {
-  useEffectTitle("Become a partner | Sportify")
+  useEffectTitle("Become a partner | Sportify");
   return <BecomeAParnter />;
 };
 
