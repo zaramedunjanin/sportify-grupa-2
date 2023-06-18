@@ -4,8 +4,8 @@
   "translate": "Prevedi",
   "header_title": "Traži, Iznajmi, Igraj!",
   "placeholder": "Traži...",
-  "venue": "Ostvarite više rezervacija za svoje mjesto već danas!",
-  "text": "Postani partner",
+  "venues_1": "Ostvarite više rezervacija za svoje mjesto već danas!",
+  "texts_1": "Postani partner",
   "info": "Informacije",
   "about": "O nama",
   "partner": "Postani partner",
@@ -139,6 +139,7 @@
   "z_to_a": "Abecedno: od Ž do A"
 =======
   "z_to_a": "Abecedno: od Ž do A",
+  "empty_table_user_reservations": "Trenutno nemate rezervacija.",
   "about_text": "Sportify je moderna online platforma koja povezuje ljubitelje sporta sa sportskim objektima. Bez obzira tražite li iznajmljivanje terena, igrališta, dvorane, ringa ili klizališta, Sportify vam olakšava pronalazak i rezervaciju savršenog prostora za vaš sportski događaj. Sa korisničkim računom, možete upravljati svojim rezervacijama, pozvati druge na vaše događaje i dobiti odgovore na pitanja o objektima. Vlasnici objekata također mogu kreirati račune, registrirati svoje objekte i pružiti korisne informacije potencijalnim klijentima.",
   "terms_of_use": "Pravila korištenja",
   "terms_of_use_text": "Ovi Uvjeti korištenja reguliraju vaš pristup i korištenje web aplikacije Sportify Bosna, uključujući sve povezane web stranice, mobilne aplikacije, sadržaj i usluge. Pristupanjem ili korištenjem Sportifyja, slažete se da ćete biti vezani ovim Uslovima. Ako se ne slažete s ovim Uvjetima, ne smijete koristiti Sportify.",
@@ -217,6 +218,22 @@
 =======
   "frequently_asked_questions": "Često postavljena pitanja",
   "top_rated_venues": "Najbolje ocjenjeni prostori",
+<<<<<<< HEAD
   "no_venues": "Nema mjesta"
 >>>>>>> 779b65017118105214beb3fe35c63f3e94bc6ed7
+=======
+  "no_venues": "Nema mjesta",
+  "schedule_1": "Rezerviši",
+  "rate": "Ocijeni",
+  "schedule_now": "Rezerviši odmah",
+  "description": "Opis",
+  "schedule_an_appointment": "Zakažite svoj termin",
+  "choose_a_sport": "Izaberite sport",
+  "duration": "Trajanje",
+  "duration_of_your_event": "Trajanje vašeg događaja (sati)",
+  "nop": "Broj učesnika",
+  "noa": "Broj prisutnih",
+  "max_n_people": "Maksimalni broj ljudi koji prisustvuju događaju",
+  "n_of_people": "Broj ljudi koji su potvrdili svoje prisustvo"
+>>>>>>> 2268fe628d84b9689fc5dd0473b405214ab472ba
 }

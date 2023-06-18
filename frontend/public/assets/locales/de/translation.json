@@ -4,8 +4,8 @@
 "translate": "Übersetzen",
 "header_title": "Suchen, Mieten, Spielen!",
 "placeholder": "Suche...",
-"venue": "Erhalten Sie noch heute mehr Buchungen für Ihre Veranstaltungsorte!",
-"text": "Werden Sie Partner",
+"venues_1": "Erhalten Sie noch heute mehr Buchungen für Ihre Veranstaltungsorte!",
+"texts_1": "Werden Sie Partner",
 "info": "Informationen",
 "about": "Über uns",
 "partner": "Werden Sie Partner",
@@ -210,5 +210,16 @@
 "answer_6": "Einrichtungsregeln: Jede Einrichtung kann ihre eigenen Regeln hinsichtlich des Zeitrahmens für Vorreservierungen haben. Einige Objekte ermöglichen Reservierungen bis zu einem Jahr im Voraus, während andere kürzere Zeiträume haben können, wie ein paar Wochen oder Monate. Beliebte Objekte: Beliebte oder stark nachgefragte Objekte können strengere Reservierungsrichtlinien haben. Sie können Reservierungen lange im Voraus verlangen, aufgrund begrenzter Verfügbarkeit, insbesondere während der Hochsaison oder für beliebte Sportveranstaltungen. Besondere Veranstaltungen: Wenn Sie eine Einrichtung für eine besondere Veranstaltung wie ein Turnier oder ein großes Sportereignis reservieren möchten, kann die Einrichtung spezifische Richtlinien haben, wann Reservierungen vorgenommen werden können. Ich kann frühere Buchungen priorisieren, um eine ordnungsgemäße Planung und Organisation sicherzustellen. Plattformbeschränkungen: Wenn Sie die Sportify-Plattform oder eine ähnliche Online-Buchungsplattform verwenden, kann es Beschränkungen für den Buchungszeitraum geben, die von der Plattform selbst auferlegt werden. Diese Beschränkungen können variieren, daher ist es wichtig, die spezifischen Geschäftsbedingungen der Plattform zu überprüfen.",
 "frequently_asked_questions": "Häufig gestellte Fragen",
 "top_rated_venues": "Am besten bewertete Veranstaltungsorte",
-"no_venues": "Da ist kein Platz"
+"no_venues": "Da ist kein Platz",
+"schedule_1": "Eine Reservierung machen",
+"rate": "Bewerte es",
+"schedule_now": "Planen Sie jetzte",
+"description": "Beschreibung", 
+"schedule_an_appointment": "Wählen Sie eine Sportart",
+"duration": "Dauer",
+"duration_of_your_event": "Dauer Ihrer Veranstaltung (Stunden)",
+"nop": "Zahl der Teilnehmer",
+"noa": "Anzahl der Teilnehmer",
+"max_n_people": "Maximale Teilnehmerzahl der Veranstaltung",
+"n_of_people": "Die Anzahl der Personen, die ihre Teilnahme bestätigt haben"
 }

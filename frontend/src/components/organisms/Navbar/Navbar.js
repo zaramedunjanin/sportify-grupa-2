@@ -1,28 +1,20 @@
 import React, { useState, useContext } from "react";
-
 import Container from "react-bootstrap/Container";
 import NavbarBS from "react-bootstrap/Navbar";
 import { Dropdown, DropdownButton } from "react-bootstrap";
-
 import styles from "./Navbar.module.scss";
-
 import Button from "../../atoms/Buttons/MainButton/MainButton";
 import Search from "../../molecules/Search/Search";
 import ProfileDropdown from "../../molecules/Dropdown/ProfileDropdown/ProfileDropdown";
-
 import Logo from "./Logo";
 import { Link, useNavigate } from "react-router-dom";
 import adminLinks, {
   getAdminNavbarLinks,
 } from "./NavbarLinks/adminNavbarLinks";
+import companyNavbarLinks from "./NavbarLinks/companyNavbarLinks";
 import userLinks, { getUserNavbarLinks } from "./NavbarLinks/userNavbarLinks";
 import { Translation } from "react-i18next";
 import { useTranslation } from "react-i18next";
-import i18next from "i18next";
-
-import uk_flag from "../../../assets/images/uk_flag.png";
-import bhs_flag from "../../../assets/images/bhs_flag.png";
-
 import { AuthContext } from "../../../context/AuthContext";
 import TranslationComponent from "../../pages/TranslationComponent/TranslationComponent";
 
@@ -126,6 +118,14 @@ const Navbar = ({ variant = "default", ...props }) => {
                   {t("company_verification")}
                 </Link>
               </>
+            ) : variant === "company" ? (
+              companyNavbarLinks.map((l, index) => {
+                return (
+                  <Link to={l.url} className={styles.adminLinks} key={index}>
+                    {l.navbarText}
+                  </Link>
+                );
+              })
             ) : variant === "user" ? (
               userNavbarLinks.map(({ url, navbarText }, index) => {
                 return (

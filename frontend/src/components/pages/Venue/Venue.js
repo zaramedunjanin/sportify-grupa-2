@@ -1,6 +1,17 @@
 
 import React, { useEffect, useState, useContext } from "react";
 
+
+import CustomButton from "../../atoms/Buttons/CustomButton";
+
+import {addData, editData} from "../../../services/AdminService/useAdminMutator";
+import {Field, Formik, Form} from "formik";
+import * as yup from "yup";
+import CustomInput from "../Admin/AdminComponents/AdminModals/CustomFormComponents/CustomInput";
+import CustomTextArea from "../Admin/AdminComponents/AdminModals/CustomFormComponents/CustomTextArea";
+
+
+
 import Navbar from "../../organisms/Navbar/Navbar";
 import Footer from "../../organisms/Footer/Footer";
 
@@ -9,27 +20,16 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Image } from "react-bootstrap";
-import Button from "../../atoms/Buttons/MainButton/MainButton";
-
 import MainButton from "../../atoms/Buttons/MainButton/MainButton";
 import useEffectTitle from "../../../hooks/useEffectTitle";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import SportCategoryButton from "../../atoms/Buttons/SportCategoryButton/SportCategoryButton";
 import ScheduleNowModal from "./ScheduleNowModal";
-import CustomButton from "../../atoms/Buttons/CustomButton";
-
-import {addData, editData} from "../../../services/AdminService/useAdminMutator";
-import {Field, Formik, Form} from "formik";
-import * as yup from "yup";
-import CustomInput from "../Admin/AdminComponents/AdminModals/CustomFormComponents/CustomInput";
-import {useTranslation} from "react-i18next";
-import CustomTextArea from "../Admin/AdminComponents/AdminModals/CustomFormComponents/CustomTextArea";
-import {AuthContext} from "../../../context/AuthContext";
 import QnAList from "./QnAList";
+import { AuthContext } from "../../../context/AuthContext";
 import RatingStars from "./RatingStars/RatingStars";
-import {baseURL} from "../../../services/AdminService/adminService";
-
+import { useTranslation } from "react-i18next";
 
 const Venue = () => {
     let { id } = useParams();
@@ -38,8 +38,8 @@ const Venue = () => {
     const [venue, setVenue] = useState({});
     const [sports, setSports] = useState([]);
     const [rating, setRating] = useState("");
-    const [questionList, setQuestionList] = useState([])
-    const {user} = useContext(AuthContext)
+    const [questionList, setQuestionList] = useState([]);
+    const { user } = useContext(AuthContext);
     const navigate = useNavigate();
     const [userRating, setUserRating] = useState(0);
     const [submitted, setSubmitted] = useState(false);
@@ -48,10 +48,10 @@ const Venue = () => {
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-
     const validationSchema = yup.object().shape({
         text: yup.string().required("Required"),
     });
+    const { t } = useTranslation();
     async function fetchVenue() {
         const response = await axios.get(`${url}`);
 
@@ -75,24 +75,23 @@ const Venue = () => {
         else setRating(`${r.data}`);
 
         const q = await axios.get(`${url}/getquestions`);
-        setQuestionList(q.data)
+        setQuestionList(q.data);
     }
 
     useEffect(() => {
-        const getUserRating = async () =>{
+        const getUserRating = async () => {
             await axios
                 .get(`http://127.0.0.1:8000/venue/user/${user.id}/rating/`)
-                .then((res)=>setUserRating(res.data[0].rating))
+                .then((res) => setUserRating(res.data[0].rating))
                 .catch((e) => {
                     console.error(e);
                 });
-        }
+        };
         fetchVenue();
-        getUserRating()
-
+        getUserRating();
     }, [submitted]);
 
-    useEffectTitle("Venue | Sportify")
+    useEffectTitle("Venue | Sportify");
 
     return (
         <>
@@ -101,13 +100,19 @@ const Venue = () => {
                 <Container>
                     <Row>
                         <Col className={`${styles.card} my-2`}>
-                            {venue.venue_picture !== '' && <Image className={styles.cover} fluid src={venue.venue_picture}/>}
+                            {venue.venue_picture !== "" && (
+                                <Image
+                                    className={styles.cover}
+                                    fluid
+                                    src={venue.venue_picture}
+                                />
+                            )}
                             <Row className={"justify-content-between align-items-center"}>
                                 <Col xs={7} className={"align-items-center my-1"}>
                                     <h2 className={`${styles.title} ms-2`}>{venue.venue_name}</h2>
                                 </Col>
                                 <Col className={"text-center"}>
-                                    <MainButton text={"Schedule Now"} onClick={handleShow} />
+                                    <MainButton onClick={handleShow} text={t("schedule_now")} />
                                 </Col>
                             </Row>
 
@@ -116,40 +121,47 @@ const Venue = () => {
                             })}
 
                             <Row>
-                                <h5 className = {`d-flex`}>
+                                <h5 className={`d-flex`}>
                                     <span className="material-symbols-outlined ms-2">grade</span>{" "}
                                     {rating}
-                                    <div className = {styles.ratingSpace}>
-                                        <RatingStars submitted = {()=>setSubmitted(true)} oldRating={userRating} venue = {parseInt(id)} user = {user.id}/>
+                                    <div className={styles.ratingSpace}>
+                                        <RatingStars
+                                            submitted={() => setSubmitted(true)}
+                                            oldRating={userRating}
+                                            venue={parseInt(id)}
+                                            user={user.id}
+                                        />
                                     </div>
                                 </h5>
                                 <h5>
-                  <span className="material-symbols-outlined ms-2">
-                    location_on
-                  </span>{" "}
+          <span className="material-symbols-outlined ms-2">
+            location_on
+          </span>{" "}
                                     {venue.address}
                                 </h5>
                                 <h5>
-                  <span className="material-symbols-outlined ms-2">
-                    schedule
-                  </span>{" "}
+          <span className="material-symbols-outlined ms-2">
+            schedule
+          </span>{" "}
                                     {venue.opening_time} - {venue.closing_time}
                                 </h5>
                                 <h5>
-                  <span className="material-symbols-outlined ms-2">
-                    payments
-                  </span>{" "}
+          <span className="material-symbols-outlined ms-2">
+            payments
+          </span>{" "}
                                     {venue.price_per_hour} KM/h
                                 </h5>
                             </Row>
                             <Row className={"mt-1"}>
-                                <h4>Description</h4>
+                                <h4>{t("description")}</h4>
                                 <p>{venue.description}</p>
                             </Row>
                         </Col>
                     </Row>
                     <Row className={"my-2"}>
-                        {questionList.length !== 0 && <QnAList questionList={questionList}/>}
+                        {questionList.length !== 0 && (
+                            <QnAList questionList={questionList} />
+                        )}
                     </Row>
                 </Container>
                 <Row>
@@ -227,4 +239,3 @@ const Venue = () => {
 };
 
 export default Venue;
-

@@ -146,11 +146,25 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 #         'ENGINE': 'django.db.backends.postgresql_psycopg2',
 #         'NAME': 'mujrgdvp',
 #         'USER': 'mujrgdvp',
+<<<<<<< HEAD
 #         'PASSWORD': '7WlfTj9QoTTr92P3nuukuOM9nywrFCpT',
+=======
+#         'PASSWORD': '7WlfTj9QoTTr92P3nuukuOM9nywrFCpT', 
+>>>>>>> 2268fe628d84b9689fc5dd0473b405214ab472ba
 #         'HOST': 'mouse.db.elephantsql.com',
 #         'PORT': '5432',
 #     }
 # }
+<<<<<<< HEAD
+=======
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+>>>>>>> 2268fe628d84b9689fc5dd0473b405214ab472ba
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -161,6 +175,7 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 
@@ -176,6 +191,8 @@ DATABASES = {
 # }
 
 >>>>>>> a5b80097c2717bdbc90a388a8c9888f8d9aa84a4
+=======
+>>>>>>> 2268fe628d84b9689fc5dd0473b405214ab472ba
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 

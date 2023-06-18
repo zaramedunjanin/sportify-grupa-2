@@ -13,9 +13,24 @@ from .serializers import SignupSerializer
 # Create your views here.
 @permission_classes([IsAuthenticated])
 @api_view(['GET'])
+<<<<<<< HEAD
 def getUser(request):
     user = request.user
 <<<<<<< HEAD
+=======
+def getUserFromDatabase(request):
+    user = User.objects.prefetch_related('sport').filter(pk=request.user.id)
+    serializer = UserSerializer(users, context={'request': request}, many=True)
+    return Response(serializer.data)
+
+
+# Create your views here.
+@permission_classes([IsAuthenticated])
+@api_view(['GET'])
+def getUnpackedToken(request):
+    user = request.user
+
+>>>>>>> 2268fe628d84b9689fc5dd0473b405214ab472ba
     sports = user.sport.all()
     sport = ""
     sport_id = ""
@@ -25,11 +40,14 @@ def getUser(request):
     sport = sport[:len(sport)-2]
     sport_id = sport_id[:len(sport_id) - 2]
     data = {'id': user.id, 'username': user.username, 'email': user.email, 'role': user.role, 'first_name': user.first_name, 'last_name': user.last_name, 'city': user.city,'phone_number': user.phone_number,'gender': user.gender,'profile_picture': user.profile_picture, 'sport': sport, 'sport_id': sport_id}
+<<<<<<< HEAD
 =======
     data = {'id': user.id,'username': user.username, 'email': user.email, 'role': user.role, 'first_name': user.first_name, 'last_name': user.last_name }
     # users = User.objects.all()
     # data = [{'username': user.username, 'email': user.email} for user in users]
 >>>>>>> a5b80097c2717bdbc90a388a8c9888f8d9aa84a4
+=======
+>>>>>>> 2268fe628d84b9689fc5dd0473b405214ab472ba
     return Response(data)
 
 @api_view(['POST'])

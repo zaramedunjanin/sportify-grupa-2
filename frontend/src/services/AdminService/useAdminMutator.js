@@ -29,7 +29,7 @@ export const addData = async (data, page) => {
 export const declineCompany = async (data, page) => {
   data.verified = false;
   axios
-    .put(`${baseURL}/tables/${page}/update/${data.id}/`, data)
+    .put(`${baseURL}/tables/${page}/edit/${data.id}/`, data)
     .then((response) => {})
     .catch((e) => {
       console.error(e);
@@ -39,7 +39,7 @@ export const declineCompany = async (data, page) => {
 export const acceptCompany = async (data, page) => {
   data.verified = true;
   axios
-    .put(`${baseURL}/tables/${page}/update/${data.id}/`, data)
+    .put(`${baseURL}/tables/${page}/edit/${data.id}/`, data)
     .then((response) => {})
     .catch((e) => {
       console.error(e);

@@ -2,15 +2,16 @@ import React from "react";
 
 import "./MainButton.scss";
 
-const MainButton = (props) => {
+const MainButton = ({ onClick, type, disabled, text, ...props }) => {
   return (
     <button
-      onClick={props.onClick}
-      type={props.type}
-      disabled={props.disabled}
+      onClick={onClick}
+      type={type}
+      disabled={disabled}
       className="background-orange main-button"
+      {...props}
     >
-      {props.text}
+      {text}
     </button>
   );
 };
