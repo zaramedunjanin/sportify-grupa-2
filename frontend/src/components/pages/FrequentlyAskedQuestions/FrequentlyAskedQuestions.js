@@ -1,9 +1,13 @@
+import { useTranslation } from "react-i18next";
 import Footer from "../../organisms/Footer/Footer";
 import Navbar from "../../organisms/Navbar/Navbar";
-import questions from "./allQuestions";
+import questions from "./getAllQuestions";
 import "./FrequentlyAskedQuestions.css";
+import getAllQuestions from "./getAllQuestions";
 
 const FrequentlyAskedQuestions = () => {
+  const { t } = useTranslation();
+  const questions = getAllQuestions(t);
   return (
     <>
       <Navbar />
@@ -17,7 +21,9 @@ const FrequentlyAskedQuestions = () => {
                 </nav>
               </div>
               <div className="md-4 mx-md-5">
-                <h1 className="fw-semibold">Frequently Asked Questions</h1>
+                <h1 className="fw-semibold">
+                  {t("frequently_asked_questions")}
+                </h1>
                 <div
                   className="accordion accordion-flush mt-5"
                   id="accordionFlushExample"
