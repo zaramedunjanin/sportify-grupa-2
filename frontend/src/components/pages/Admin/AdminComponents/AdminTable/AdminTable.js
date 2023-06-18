@@ -65,315 +65,315 @@ const AdminTable = ({ page, ...props }) => {
   };
 
   return (
-      <Container className={styles.tableBackground}>
-        {page !== "verification" && (
-            <Container className={"text-end"}>
-              <button
-                  key={`add`}
-                  onClick={() => {
-                    setAddShow(true);
-                  }}
-                  className={"bg-transparent border-0"}
-              >
-                <span className="material-symbols-outlined">library_add</span>
-              </button>
-            </Container>
-        )}
-        <Table
-            responsive
-            className={`text-center align-middle ${styles.adminTable}`}
-        >
-          <thead>
+    <Container className={styles.tableBackground}>
+      {page !== "verification" && (
+        <Container className={"text-end"}>
+          <button
+            key={`add`}
+            onClick={() => {
+              setAddShow(true);
+            }}
+            className={"bg-transparent border-0"}
+          >
+            <span className="material-symbols-outlined">library_add</span>
+          </button>
+        </Container>
+      )}
+      <Table
+        responsive
+        className={`text-center align-middle ${styles.adminTable}`}
+      >
+        <thead>
           <tr className={styles.adminTableHeader}>
             {modelColumns.headers.map((elements, index) => (
-                <th key={`header${index}`}>{elements}</th>
+              <th key={`header${index}`}>{elements}</th>
             ))}
             {page === "verification" ? (
-                <>
-                  <th>{t("accept")}</th>
-                  <th>{t("decline")}</th>
-                </>
+              <>
+                <th>{t("accept")}</th>
+                <th>{t("decline")}</th>
+              </>
             ) : (
-                <>
-                  <th>{t("edit")}</th>
-                  <th>{t("delete")}</th>
-                </>
+              <>
+                <th>{t("edit")}</th>
+                <th>{t("delete")}</th>
+              </>
             )}
           </tr>
-          </thead>
-          <tbody className={styles.adminTableRows}>
+        </thead>
+        <tbody className={styles.adminTableRows}>
           {!data || data.length === 0 ? (
-              <tr>
-                <td colSpan={modelColumns.headers.length + 2} align="center">
-                  {t("table")}
-                </td>
-              </tr>
+            <tr>
+              <td colSpan={modelColumns.headers.length + 2} align="center">
+                {t("table")}
+              </td>
+            </tr>
           ) : (
-              data.map((d, index) => (
-                  <tr key={`row${index}`}>
-                    {modelColumns.fields.map((field) => (
-                        <td key={`${field}${index}`}>
-                          {d[field] === null || d[field] === "" ? (
-                              "Empty"
-                          ) : d[field] === true ? (
-                              field
-                          ) : d[field] === false ? (
-                              "Not " + field
-                          ) : field === "role" ? (
-                              d[field] === 1 ? (
-                                  "Admin"
-                              ) : d[field] === 2 ? (
-                                  "User"
-                              ) : (
-                                  d[field] === 3 && "User"
-                              )
-                          ) : typeof d[field] === "object" ? (
-                              <DropdownButton
-                                  variant="bg-none"
-                                  title={"View All"}
-                                  className={styles.adminDropdown}
-                              >
-                                {d[field].map((element, index) => {
-                                  return (
-                                      <Dropdown.Item eventKey={index}>
-                                        {element}
-                                      </Dropdown.Item>
-                                  );
-                                })}
-                              </DropdownButton>
-                          ) : field.toString().includes("picture") ? (
-                              <img
-                                  className={styles.tableImage}
-                                  src={d[field]}
-                                  alt={"Image"}
-                              />
-                          ) : (
-                              d[field]
-                          )}
-                        </td>
-                    ))}
-                    {page === "verification" ? (
-                        <>
-                          <td>
-                            <button
-                                key={`accept${index}`}
-                                onClick={() => {
-                                  setAcceptShow(true);
-                                  setRow(d);
-                                }}
-                                className={"bg-transparent border-0"}
-                            >
+            data.map((d, index) => (
+              <tr key={`row${index}`}>
+                {modelColumns.fields.map((field) => (
+                  <td key={`${field}${index}`}>
+                    {d[field] === null || d[field] === "" ? (
+                      "Empty"
+                    ) : d[field] === true ? (
+                      field
+                    ) : d[field] === false ? (
+                      "Not " + field
+                    ) : field === "role" ? (
+                      d[field] === 1 ? (
+                        "Admin"
+                      ) : d[field] === 2 ? (
+                        "User"
+                      ) : (
+                        d[field] === 3 && "User"
+                      )
+                    ) : typeof d[field] === "object" ? (
+                      <DropdownButton
+                        variant="bg-none"
+                        title={"View All"}
+                        className={styles.adminDropdown}
+                      >
+                        {d[field].map((element, index) => {
+                          return (
+                            <Dropdown.Item eventKey={index}>
+                              {element}
+                            </Dropdown.Item>
+                          );
+                        })}
+                      </DropdownButton>
+                    ) : field.toString().includes("picture") ? (
+                      <img
+                        className={styles.tableImage}
+                        src={d[field]}
+                        alt={"Image"}
+                      />
+                    ) : (
+                      d[field]
+                    )}
+                  </td>
+                ))}
+                {page === "verification" ? (
+                  <>
+                    <td>
+                      <button
+                        key={`accept${index}`}
+                        onClick={() => {
+                          setAcceptShow(true);
+                          setRow(d);
+                        }}
+                        className={"bg-transparent border-0"}
+                      >
                         <span
-                            className={`material-symbols-outlined ${styles.iconBlue}`}
+                          className={`material-symbols-outlined ${styles.iconBlue}`}
                         >
                           done
                         </span>
-                            </button>
-                          </td>
-                          <td>
-                            <button
-                                key={`decline${index}`}
-                                onClick={() => {
-                                  setRow(d);
-                                  setDeclineShow(true);
-                                }}
-                                className={"bg-transparent border-0"}
-                            >
+                      </button>
+                    </td>
+                    <td>
+                      <button
+                        key={`decline${index}`}
+                        onClick={() => {
+                          setRow(d);
+                          setDeclineShow(true);
+                        }}
+                        className={"bg-transparent border-0"}
+                      >
                         <span
-                            className={`material-symbols-outlined ${styles.iconRed}`}
+                          className={`material-symbols-outlined ${styles.iconRed}`}
                         >
                           close
                         </span>
-                            </button>
-                          </td>
-                        </>
-                    ) : (
-                        <>
-                          <td>
-                            <button
-                                key={`edit${index}`}
-                                onClick={() => {
-                                  setEditShow(true);
-                                  setRow(d);
-                                }}
-                                className={"bg-transparent border-0"}
-                            >
+                      </button>
+                    </td>
+                  </>
+                ) : (
+                  <>
+                    <td>
+                      <button
+                        key={`edit${index}`}
+                        onClick={() => {
+                          setEditShow(true);
+                          setRow(d);
+                        }}
+                        className={"bg-transparent border-0"}
+                      >
                         <span
-                            className={`material-symbols-outlined ${styles.iconBlue}`}
+                          className={`material-symbols-outlined ${styles.iconBlue}`}
                         >
                           edit_square
                         </span>
-                            </button>
-                          </td>
-                          <td>
-                            <button
-                                key={`delete${index}`}
-                                onClick={() => {
-                                  setRow(d);
-                                  setDeleteShow(true);
-                                }}
-                                className={"bg-transparent border-0"}
-                            >
+                      </button>
+                    </td>
+                    <td>
+                      <button
+                        key={`delete${index}`}
+                        onClick={() => {
+                          setRow(d);
+                          setDeleteShow(true);
+                        }}
+                        className={"bg-transparent border-0"}
+                      >
                         <span
-                            className={`material-symbols-outlined ${styles.iconRed}`}
+                          className={`material-symbols-outlined ${styles.iconRed}`}
                         >
                           delete
                         </span>
-                            </button>
-                          </td>
-                        </>
-                    )}
-                  </tr>
-              ))
+                      </button>
+                    </td>
+                  </>
+                )}
+              </tr>
+            ))
           )}
-          </tbody>
-        </Table>
-        <DeleteModal
-            {...(deleteShow === true && {
-              show: deleteShow,
-              onHide: () => {
-                setDeleteShow(false);
-              },
-              onSubmit: handleDelete,
-              type: "Delete",
-            })}
-            {...(declineShow === true && {
-              show: declineShow,
-              onHide: () => {
-                setDeclineShow(false);
-              },
-              onSubmit: handleDecline,
-              type: "Decline",
-            })}
-            {...(acceptShow === true && {
-              show: acceptShow,
-              onHide: () => {
-                setAcceptShow(false);
-              },
-              onSubmit: handleAccept,
-              type: "Accept",
-            })}
+        </tbody>
+      </Table>
+      <DeleteModal
+        {...(deleteShow === true && {
+          show: deleteShow,
+          onHide: () => {
+            setDeleteShow(false);
+          },
+          onSubmit: handleDelete,
+          type: "Delete",
+        })}
+        {...(declineShow === true && {
+          show: declineShow,
+          onHide: () => {
+            setDeclineShow(false);
+          },
+          onSubmit: handleDecline,
+          type: "Decline",
+        })}
+        {...(acceptShow === true && {
+          show: acceptShow,
+          onHide: () => {
+            setAcceptShow(false);
+          },
+          onSubmit: handleAccept,
+          type: "Accept",
+        })}
+      />
+      {page === "users" && (
+        <UserModal
+          page={page}
+          table={page}
+          data={row}
+          {...(addShow === true && {
+            add: addShow,
+            show: addShow,
+            onHide: () => setAddShow(false),
+          })}
+          {...(editShow === true && {
+            edit: editShow,
+            show: editShow,
+            onHide: () => setEditShow(false),
+          })}
         />
-        {page === "users" && (
-            <UserModal
-                page={page}
-                table={page}
-                data={row}
-                {...(addShow === true && {
-                  add: addShow,
-                  show: addShow,
-                  onHide: () => setAddShow(false),
-                })}
-                {...(editShow === true && {
-                  edit: editShow,
-                  show: editShow,
-                  onHide: () => setEditShow(false),
-                })}
-            />
-        )}
-        {page === "venues" && (
-            <VenueModal
-                page={page}
-                table={page}
-                data={row}
-                {...(addShow === true && {
-                  add: addShow,
-                  show: addShow,
-                  onHide: () => setAddShow(false),
-                })}
-                {...(editShow === true && {
-                  edit: editShow,
-                  show: editShow,
-                  onHide: () => setEditShow(false),
-                })}
-            />
-        )}
-        {page === "sports" && (
-            <SportEditModal
-                page={page}
-                table={page}
-                data={row}
-                {...(addShow === true && {
-                  add: addShow,
-                  show: addShow,
-                  onHide: () => setAddShow(false),
-                })}
-                {...(editShow === true && {
-                  edit: editShow,
-                  show: editShow,
-                  onHide: () => setEditShow(false),
-                })}
-            />
-        )}
-        {page === "reservations" && (
-            <ReservationEditModal
-                page={page}
-                table={page}
-                data={row}
-                {...(addShow === true && {
-                  add: addShow,
-                  show: addShow,
-                  onHide: () => setAddShow(false),
-                })}
-                {...(editShow === true && {
-                  edit: editShow,
-                  show: editShow,
-                  onHide: () => setEditShow(false),
-                })}
-            />
-        )}
-        {page === "questions" && (
-            <QuestionEditModal
-                page={page}
-                table={page}
-                data={row}
-                {...(addShow === true && {
-                  add: addShow,
-                  show: addShow,
-                  onHide: () => setAddShow(false),
-                })}
-                {...(editShow === true && {
-                  edit: editShow,
-                  show: editShow,
-                  onHide: () => setEditShow(false),
-                })}
-            />
-        )}
-        {page === "acceptedinvites" && (
-            <InviteEditModal
-                page={page}
-                table={page}
-                data={row}
-                {...(addShow === true && {
-                  add: addShow,
-                  show: addShow,
-                  onHide: () => setAddShow(false),
-                })}
-                {...(editShow === true && {
-                  edit: editShow,
-                  show: editShow,
-                  onHide: () => setEditShow(false),
-                })}
-            />
-        )}
-        {page === "ratings" && (
-            <RatingEditModal
-                page={page}
-                table={page}
-                data={row}
-                {...(addShow === true && {
-                  add: addShow,
-                  show: addShow,
-                  onHide: () => setAddShow(false),
-                })}
-                {...(editShow === true && {
-                  edit: editShow,
-                  show: editShow,
-                  onHide: () => setEditShow(false),
-                })}
-            />
-        )}
-      </Container>
+      )}
+      {page === "venues" && (
+        <VenueModal
+          page={page}
+          table={page}
+          data={row}
+          {...(addShow === true && {
+            add: addShow,
+            show: addShow,
+            onHide: () => setAddShow(false),
+          })}
+          {...(editShow === true && {
+            edit: editShow,
+            show: editShow,
+            onHide: () => setEditShow(false),
+          })}
+        />
+      )}
+      {page === "sports" && (
+        <SportEditModal
+          page={page}
+          table={page}
+          data={row}
+          {...(addShow === true && {
+            add: addShow,
+            show: addShow,
+            onHide: () => setAddShow(false),
+          })}
+          {...(editShow === true && {
+            edit: editShow,
+            show: editShow,
+            onHide: () => setEditShow(false),
+          })}
+        />
+      )}
+      {page === "reservations" && (
+        <ReservationEditModal
+          page={page}
+          table={page}
+          data={row}
+          {...(addShow === true && {
+            add: addShow,
+            show: addShow,
+            onHide: () => setAddShow(false),
+          })}
+          {...(editShow === true && {
+            edit: editShow,
+            show: editShow,
+            onHide: () => setEditShow(false),
+          })}
+        />
+      )}
+      {page === "questions" && (
+        <QuestionEditModal
+          page={page}
+          table={page}
+          data={row}
+          {...(addShow === true && {
+            add: addShow,
+            show: addShow,
+            onHide: () => setAddShow(false),
+          })}
+          {...(editShow === true && {
+            edit: editShow,
+            show: editShow,
+            onHide: () => setEditShow(false),
+          })}
+        />
+      )}
+      {page === "acceptedinvites" && (
+        <InviteEditModal
+          page={page}
+          table={page}
+          data={row}
+          {...(addShow === true && {
+            add: addShow,
+            show: addShow,
+            onHide: () => setAddShow(false),
+          })}
+          {...(editShow === true && {
+            edit: editShow,
+            show: editShow,
+            onHide: () => setEditShow(false),
+          })}
+        />
+      )}
+      {page === "ratings" && (
+        <RatingEditModal
+          page={page}
+          table={page}
+          data={row}
+          {...(addShow === true && {
+            add: addShow,
+            show: addShow,
+            onHide: () => setAddShow(false),
+          })}
+          {...(editShow === true && {
+            edit: editShow,
+            show: editShow,
+            onHide: () => setEditShow(false),
+          })}
+        />
+      )}
+    </Container>
   );
 };
 
