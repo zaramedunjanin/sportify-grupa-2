@@ -1,6 +1,9 @@
 import React from "react";
+import { useNavigate } from "react-router";
+import styles from "./Navbar.module.scss";
 
 const Logo = () => {
+  const navigate = useNavigate();
   const maskStyle = {
     maskType: "luminance",
   };
@@ -10,10 +13,12 @@ const Logo = () => {
     height: "7rem",
   };
 
+
   return (
-    <a href="/">
+    <a onClick={() => navigate("/")}>
       <svg
         style={svgStyle}
+        className={styles.logo}
         viewBox="0 0 627 154"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
