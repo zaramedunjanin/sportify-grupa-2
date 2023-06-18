@@ -77,6 +77,8 @@ const Venue = () => {
 
     }, [submitted]);
 
+    useEffectTitle("Venue | Sportify")
+
     return (
         <>
             <Navbar />
