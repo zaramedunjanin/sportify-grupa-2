@@ -62,6 +62,8 @@ const Venue = () => {
         fetchVenue();
     }, []);
 
+    useEffectTitle("Venue | Sportify")
+
     return (
         <>
             <Navbar />

@@ -8,6 +8,7 @@ import styles from "./SearchResult.module.scss";
 import { SearchContext } from "../../../context/SearchContext";
 import { CategoryContext } from "../../../context/CategoryContext";
 import Footer from "../../organisms/Footer/Footer";
+import useEffectTitle from "../../../hooks/useEffectTitle";
 
 const SearchResults = () => {
   const [result, setResult] = useState([]);
