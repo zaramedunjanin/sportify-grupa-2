@@ -9,8 +9,10 @@ import { faTag } from "@fortawesome/free-solid-svg-icons";
 import styles from "./Card.module.scss";
 import SportIcon from "../SportIcon/SportIcon";
 import MainButton from "../../../atoms/Buttons/MainButton/MainButton";
+import { useTranslation } from "react-i18next";
 
 const Card = ({ venue, ...rest }) => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   const formatTime = (timeString) => {
@@ -82,7 +84,7 @@ const Card = ({ venue, ...rest }) => {
           <div className="text-center pt-2">
             <MainButton
               onClick={() => navigate(`/venue/${venue.id}`)}
-              text={"Schedule"}
+              text={t("schedule")}
             ></MainButton>
           </div>
         </div>
