@@ -8,6 +8,7 @@ import { faFutbol } from "@fortawesome/free-solid-svg-icons";
 import { faBasketball } from "@fortawesome/free-solid-svg-icons";
 import { faVolleyball } from "@fortawesome/free-solid-svg-icons";
 import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
+import SportIcon from "../../../SearchResults/SportIcon/SportIcon";
 
 import "./Card.css";
 import { useState } from "react";
@@ -65,9 +66,9 @@ const Card = ({ venue, setDeleteId, setEditId, ...rest }) => {
                   style={{ marginLeft: "0px !important" }}
                 >
                   {venue.venue_name}
-                  <FontAwesomeIcon icon={faFutbol} className="me-1 ms-1" />
-                  <FontAwesomeIcon icon={faBasketball} className="me-1" />
-                  <FontAwesomeIcon icon={faVolleyball} className="me-1" />
+                  {venue.sport.map((sp) => {
+                    return <SportIcon sport_name={sp}></SportIcon>;
+                  })}
                 </p>
               </div>
             </div>
@@ -85,7 +86,7 @@ const Card = ({ venue, setDeleteId, setEditId, ...rest }) => {
                 <p>
                   {" "}
                   <FontAwesomeIcon icon={faStar} className="me-1" />
-                  4.84{" "}
+                  {venue.avg_rating > 0 ? venue.avg_rating : "-"}
                 </p>
               </div>
               <div className="row fw-semibold" style={{ fontSize: "16px" }}>

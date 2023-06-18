@@ -60,7 +60,7 @@ const OwnerVenue = () => {
         ></MainButton>
       </div>
       <div className="container mt-4 d-flex justify-content-center">
-        <div className="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
+          <div className="row row-cols-xl-auto row-cols-lg-2 row-cols-md-2 row-cols-sm-1 justify-content-center">
           {venues.length !== 0 &&
             venues.map((venue) => {
               return (
