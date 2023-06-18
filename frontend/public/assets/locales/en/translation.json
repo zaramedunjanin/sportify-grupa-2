@@ -214,5 +214,13 @@
   "schedule_1": "Schedule",
   "rate": "Rate",
   "schedule_now": "Schedule Now",
-  "description": "Description"
+  "description": "Description",
+  "schedule_an_appointment": "Schedule An Appointment",
+  "choose_a_sport": "Choose a sport",
+  "duration": "Duration",
+  "duration_of_your_event": "Duration of your event (hours)",
+  "nop": "Number of participants",
+  "noa": "Number of Attendees",
+  "max_n_people": "Maximum number of people attending the event",
+  "n_of_people": "Number of people that have confirmed their attendence"
 }

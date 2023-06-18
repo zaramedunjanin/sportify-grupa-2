@@ -214,5 +214,12 @@
 "schedule_1": "Eine Reservierung machen",
 "rate": "Bewerte es",
 "schedule_now": "Planen Sie jetzte",
-"description": "Beschreibung"
+"description": "Beschreibung", 
+"schedule_an_appointment": "Wählen Sie eine Sportart",
+"duration": "Dauer",
+"duration_of_your_event": "Dauer Ihrer Veranstaltung (Stunden)",
+"nop": "Zahl der Teilnehmer",
+"noa": "Anzahl der Teilnehmer",
+"max_n_people": "Maximale Teilnehmerzahl der Veranstaltung",
+"n_of_people": "Die Anzahl der Personen, die ihre Teilnahme bestätigt haben"
 }
