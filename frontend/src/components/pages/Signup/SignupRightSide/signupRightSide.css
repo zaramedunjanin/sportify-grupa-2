@@ -14,10 +14,6 @@
   text-align: center;
 }
 
-.centerButton {
-  margin-left: 43%;
-}
-
 .text_in_the_center {
   display: flex;
   justify-content: center;
@@ -25,8 +21,6 @@
   flex-direction: column;
 }
 
-.translate-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.dropdown_container_2 {
+  margin-top: 12%;
 }
