@@ -40,18 +40,17 @@ const App = () => {
             <Route path="/userdashboard" element={<UserDashboardPage />} />
             <Route path="/userdata" element={<UserData />} />
             <Route path="/search" element={<SearchResults />} />
-            <PrivateRoute path="administrator" element={<Admin />}>
-              <Route path="tables" element={<RootTablePage />}>
-                <Route path="users" element={<TablePage />} />
-                <Route path="venues" element={<TablePage />} />
-                <Route path="sports" element={<TablePage />} />
-                <Route path="reservations" element={<TablePage />} />
-                <Route path="acceptedinvites" element={<TablePage />} />
-                <Route path="questions" element={<TablePage />} />
-                <Route path="ratings" element={<TablePage />} />
-              </Route>
-              <Route path="verification" element={<TablePage />} />
-            </PrivateRoute>
+            <Route path="administrator" element={<PrivateRoute component={Admin} />} />
+            <Route path="tables" element={<RootTablePage />}>
+              <Route path="users" element={<TablePage />} />
+              <Route path="venues" element={<TablePage />} />
+              <Route path="sports" element={<TablePage />} />
+              <Route path="reservations" element={<TablePage />} />
+              <Route path="acceptedinvites" element={<TablePage />} />
+              <Route path="questions" element={<TablePage />} />
+              <Route path="ratings" element={<TablePage />} />
+            </Route>
+            <Route path="verification" element={<TablePage />} />
           </Routes>
         </ContextWrapper>
       </BrowserRouter>

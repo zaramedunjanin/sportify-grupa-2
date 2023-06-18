@@ -1,21 +1,17 @@
 import React, { useContext } from 'react';
-import { Route, Navigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 
-const PrivateRoute = ({ component: Component, ...rest }) => {
+
+const PrivateRoute = ({ children , ...rest }) => {
     const { isAuthenticated, user } = useContext(AuthContext);
     const isAdmin = user.role === 'admin';
 
-    return (
-        <Route
-            {...rest}
-            element={isAuthenticated && isAdmin ? (
-                <Component />
-            ) : (
-                <Navigate to="/login" replace />
-            )}
-        />
-    );
+    if (!isAdmin) {
+        return <Navigate to="/login" replace />;
+    }
+
+    return children;
 };
 
 export default PrivateRoute;
