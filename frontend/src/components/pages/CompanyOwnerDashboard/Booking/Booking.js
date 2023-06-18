@@ -53,7 +53,6 @@ const Booking = () => {
       for (const data of response.data) {
         const startDate = new Date(data.start_time);
         const endDate = new Date(data.end_time);
-        console.log(endDate);
         const dateObject = {
           title: data.user.first_name + " " + data.user.last_name,
           //date: createdAt.toISOString().toString(), // Extracting the date part
@@ -63,7 +62,6 @@ const Booking = () => {
         l.push(dateObject);
       }
       setEvents(l);
-      console.log(l);
     } catch (error) {
       console.error("Failed to fetch data:", error);
     }
@@ -72,7 +70,7 @@ const Booking = () => {
   const handleAccept = async (reservation) => {
     try {
       const response = await acceptReservation(reservation.id);
-      setReservations(response.data);
+      await fetchData();
     } catch (error) {
       console.error("Failed to fetch data:", error);
     }
@@ -81,7 +79,7 @@ const Booking = () => {
   const handleReject = async (reservation) => {
     try {
       const response = await rejectReservation(reservation.id);
-      setReservations(response.data);
+      await fetchData();
     } catch (error) {
       console.error("Failed to fetch data:", error);
     }
@@ -89,8 +87,13 @@ const Booking = () => {
 
   function formatTimestamp1(timestamp) {
     const date = new Date(timestamp);
-    const options = { day: 'numeric', month: 'short', hour: 'numeric', minute: 'numeric' };
-    return date.toLocaleString('en-US', options);
+    const options = {
+      day: "numeric",
+      month: "short",
+      hour: "numeric",
+      minute: "numeric",
+    };
+    return date.toLocaleString("en-US", options);
   }
 
   useEffect(() => {
@@ -126,8 +129,12 @@ const Booking = () => {
                   aria-current="true"
                 >
                   <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1" onClick={() => handleReservationClick(reservation)}>
-                      {formatTimestamp1(reservation.start_time)} - {formatTimestamp1(reservation.end_time)}
+                    <h5
+                      class="mb-1"
+                      onClick={() => handleReservationClick(reservation)}
+                    >
+                      {formatTimestamp1(reservation.start_time)} -{" "}
+                      {formatTimestamp1(reservation.end_time)}
                     </h5>
                     <small>{formatTimestamp(reservation.created_at)}</small>
                     <div class="dropdown position-absolute top-0 end-0">
