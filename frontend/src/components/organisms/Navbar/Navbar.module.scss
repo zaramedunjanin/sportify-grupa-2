@@ -12,21 +12,16 @@
   margin: 1rem;
   color: white;
   text-decoration: none;
-  font-weight: bold;
+
 }
 
 .navSearch {
   width: 100%;
 }
 
-.adminLinks:hover,
-.adminLinks:active:focus {
-  color: #ffc700;
-}
-
 @media only screen and (max-width: 991px) {
   .adminLinks {
-    display: block;
+    
   }
   .navButtons {
     padding: 1rem;
@@ -51,7 +46,31 @@
   height: 20px;
 }
 
+.adminLinks_1 {
+  background-color: transparent !important; /* Set the background color of the toggle button to transparent */ 
+  font-weight: bold;
+}
 
+.dropdown-menu {
+  background-color: #fff; /* Set the background color of the dropdown menu to white */
+  font-weight: bold;
+}
+
+.dropdown-menu a {
+  background-color: transparent; /* Set the background color of the dropdown items to transparent */
+  font-weight: bold;
+}
+
+.dropdown-menu .dropdown-item.active,
+.dropdown-menu .dropdown-item.active:hover,
+.dropdown-menu .dropdown-item.active:focus {
+  background-color: transparent;
+  color: #ffc700;
+}
+
+.dropdown-menu {
+  left: -10px; /* Adjust the value as per your needs */
+}
 .logo:hover {
   cursor: pointer !important;
 }

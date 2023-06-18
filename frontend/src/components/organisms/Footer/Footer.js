@@ -68,7 +68,7 @@ const Footer = () => {
             <ul className="nav flex-column text-center">
               <li className="nav-item mb-2">
                 <a
-                  href="#"
+                  href="/signup"
                   className="p-0  text-decoration-none text-reset footer-links"
                 >
                   {t("sign_up")}
@@ -76,7 +76,7 @@ const Footer = () => {
               </li>
               <li className="nav-item mb-2">
                 <a
-                  href="#"
+                  href="/contactus"
                   className="p-0  text-decoration-none text-reset footer-links"
                 >
                   {t("contact")}

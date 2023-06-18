@@ -19,6 +19,8 @@ import ContextWrapper from "./context/ContextWrapper";
 import BecomeAPartnerPage from "./components/pages/BecomeAPartner/BecomeAPartnerPage";
 import TermsOfUse from "./components/pages/TermsOfUse/TermsOfUse";
 import PrivacyPolicy from "./components/pages/PrivacyPolicy/PrivacyPolicy";
+import ContactUs from "./components/pages/ContactUs/ContactUs";
+import PrivateRoute from "./utils/PrivateRoute";
 import { Navigate } from "react-router-dom";
 
 const App = () => {
@@ -34,23 +36,37 @@ const App = () => {
           <Route path="termsofuse" element={<TermsOfUse />} />
           <Route path="privacypolicy" element={<PrivacyPolicy />} />
           <Route path="about" element={<About />} />
-          <Route path="administrator" element={<Admin />}>
-            <Route path="" element={<Navigate to="tables/users" replace />} />
-            <Route path="tables" element={<RootTablePage />}>
-              <Route path="users" element={<TablePage />} />
-              <Route path="venues" element={<TablePage />} />
-              <Route path="sports" element={<TablePage />} />
-              <Route path="reservations" element={<TablePage />} />
-              <Route path="acceptedinvites" element={<TablePage />} />
-              <Route path="questions" element={<TablePage />} />
-              <Route path="ratings" element={<TablePage />} />
-            </Route>
-            <Route path="verification" element={<TablePage />} />
-          </Route>
+          <Route path="contactus" element={<ContactUs />} />
           <Route path="/venue/:id" element={<Venue />} />
-          <Route path="/userdashboard" element={<UserDashboardPage />} />
+          <Route
+            path="/userdashboard"
+            element={
+              <PrivateRoute expectedRoles={[2, 3]}>
+                <UserDashboardPage />
+              </PrivateRoute>
+            }
+          />
           <Route path="/userdata" element={<UserData />} />
           <Route path="/search" element={<SearchResults />} />
+          <Route
+            path="administrator"
+            element={
+              <PrivateRoute expectedRoles={[1]}>
+                <Admin />
+              </PrivateRoute>
+            }
+          />
+          <Route path="" element={<Navigate to="tables/users" replace />} />
+          <Route path="tables" element={<RootTablePage />}>
+            <Route path="users" element={<TablePage />} />
+            <Route path="venues" element={<TablePage />} />
+            <Route path="sports" element={<TablePage />} />
+            <Route path="reservations" element={<TablePage />} />
+            <Route path="acceptedinvites" element={<TablePage />} />
+            <Route path="questions" element={<TablePage />} />
+            <Route path="ratings" element={<TablePage />} />
+          </Route>
+          <Route path="verification" element={<TablePage />} />
         </Routes>
       </ContextWrapper>
     </BrowserRouter>

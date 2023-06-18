@@ -43,6 +43,11 @@ const Navbar = ({ variant = "default", ...props }) => {
       name: t("name_1"),
       country_code: "bhs",
     },
+    {
+      code: "ger",
+      name: t("name_5"),
+      country_code: "ger",
+    },
   ];
 
   let backgroundColor;
@@ -80,23 +85,57 @@ const Navbar = ({ variant = "default", ...props }) => {
         ) : null}
         <NavbarBS.Collapse id="navbarScroll" className="justify-content-end">
           <Container className={"text-center"}>
-            {variant === "admin"
-              ? userAdminNavbarLinks.map((l, index) => {
-                  return (
-                    <Link to={l.url} className={styles.adminLinks} key={index}>
-                      {l.navbarText}
-                    </Link>
-                  );
-                })
-              : variant === "user"
-              ? userNavbarLinks.map(({ url, navbarText }, index) => {
-                  return (
-                    <Link to={url} className={styles.adminLinks} key={index}>
-                      {navbarText}
-                    </Link>
-                  );
-                })
-              : null}
+            {variant === "admin" ? (
+              <>
+                <Dropdown className={styles.adminLinks}>
+                  <Dropdown.Toggle
+                    className={styles.adminLinks_1}
+                    style={{ fontWeight: "bold" }}
+                  >
+                    {t("tables")}
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu>
+                    <Dropdown.Item as={Link} to="tables/users">
+                      {t("users")}
+                    </Dropdown.Item>
+                    <Dropdown.Item as={Link} to="tables/sports">
+                      {t("sports")}
+                    </Dropdown.Item>
+                    <Dropdown.Item as={Link} to="tables/venues">
+                      {t("venues")}
+                    </Dropdown.Item>
+                    <Dropdown.Item as={Link} to="tables/acceptedinvites">
+                      {t("accepted_invites")}
+                    </Dropdown.Item>
+                    <Dropdown.Item as={Link} to="tables/reservations">
+                      {t("reservations")}
+                    </Dropdown.Item>
+                    <Dropdown.Item as={Link} to="tables/questions">
+                      {t("questions")}
+                    </Dropdown.Item>
+                    <Dropdown.Item as={Link} to="tables/ratings">
+                      {t("ratings")}
+                    </Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+                <Link
+                  to={"/administrator/verification"}
+                  className={styles.adminLinks}
+                  style={{ fontWeight: "bold" }}
+                  key={1}
+                >
+                  {t("company_verification")}
+                </Link>
+              </>
+            ) : variant === "user" ? (
+              userNavbarLinks.map(({ url, navbarText }, index) => {
+                return (
+                  <Link to={url} className={styles.adminLinks} key={index}>
+                    {navbarText}
+                  </Link>
+                );
+              })
+            ) : null}
           </Container>
 
           <TranslationComponent />
