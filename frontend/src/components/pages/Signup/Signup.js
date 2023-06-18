@@ -6,8 +6,10 @@ import SignUpForm from "./SignupForm/signUpForm";
 import SignupRightSide from "./SignupRightSide/signupRightSide";
 
 import "../Signup/Signup.css";
+import useEffectTitle from "../../../hooks/useEffectTitle";
 
 const Signup = () => {
+  useEffectTitle("Signup | Sportify")
   return (
     <Container fluid>
       <div className="flexWrapReverse flexWidth">

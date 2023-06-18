@@ -3,9 +3,14 @@ import React, { useContext } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+<<<<<<< HEAD
 import styles from "./UserDashboard.module.css";
 import { Image } from "react-bootstrap";
 import { AuthContext } from "../../../context/AuthContext";
+=======
+import UserData from "./UserData/UserData";
+import useEffectTitle from "../../../hooks/useEffectTitle";
+>>>>>>> d203394fd4c1f925fae501e866e18d4ccd22c7a4
 
 const UserDashboard = () => {
   const { user } = useContext(AuthContext);

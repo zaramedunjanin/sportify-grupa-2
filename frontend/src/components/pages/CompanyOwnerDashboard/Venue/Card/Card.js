@@ -1,40 +1,68 @@
-import { useNavigate } from "react-router-dom";
 import myImage from "./placeholder.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { faClock } from "@fortawesome/free-solid-svg-icons";
 import { faTag } from "@fortawesome/free-solid-svg-icons";
+import { faFutbol } from "@fortawesome/free-solid-svg-icons";
+import { faBasketball } from "@fortawesome/free-solid-svg-icons";
+import { faVolleyball } from "@fortawesome/free-solid-svg-icons";
+import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
+import SportIcon from "../../../SearchResults/SportIcon/SportIcon";
 
-import styles from "./Card.module.scss";
-import SportIcon from "../SportIcon/SportIcon";
-import MainButton from "../../../atoms/Buttons/MainButton/MainButton";
-import { useTranslation } from "react-i18next";
+import "./Card.css";
+import { useState } from "react";
 
-const Card = ({ venue, ...rest }) => {
-  const { t } = useTranslation();
-  const navigate = useNavigate();
-
+const Card = ({ venue, setDeleteId, setEditId, ...rest }) => {
   const formatTime = (timeString) => {
     const [hours, minutes] = timeString.split(":");
     const parsedTime = `${hours}:${minutes}`;
 
     return parsedTime;
   };
+
   return (
     <>
       <div
-        className={`${styles.card} ${styles.min_width_card} mb-5`}
+        className="card min-width-card mb-5"
         style={{ width: "17rem", fontSize: "12px" }}
       >
-         <img src={myImage} className="card-img-top" alt="..." /> 
-      
+        <img src={myImage} className="card-img-top" alt="..." />
         <div className="card-body">
           <div className="row">
             <div className="col">
+              <div className="dropdown">
+                <button
+                  className="btn btn-light btn-lg card-options "
+                  type="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <FontAwesomeIcon icon={faEllipsis} className="me-1 ms-1" />
+                </button>
+                <ul className="dropdown-menu dropdown-menu-end dropdown-menu-lg-end shadow p-2">
+                  <li className="edit">
+                    <a
+                      className="dropdown-item"
+                      onClick={() => setEditId(venue.id)}
+                    >
+                      Edit
+                    </a>
+                  </li>
+                  <li className="delete">
+                    <a
+                      className="dropdown-item"
+                      onClick={() => setDeleteId(venue.id)}
+                    >
+                      Delete
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
               <div className="row fw-bolder fs-6">
                 <p
-                  className={`${styles.card_title}`}
+                  className="card-title"
                   style={{ marginLeft: "0px !important" }}
                 >
                   {venue.venue_name}
@@ -81,12 +109,6 @@ const Card = ({ venue, ...rest }) => {
                 </p>
               </div>
             </div>
-          </div>
-          <div className="text-center pt-2">
-            <MainButton
-              onClick={() => navigate(`/venue/${venue.id}`)}
-              text={t("schedule_1")}
-            ></MainButton>
           </div>
         </div>
       </div>

@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 import useEffectTitle from "../../../hooks/useEffectTitle";
 
 const Admin = () => {
-  useEffectTitle(`Admin | Sportify`);
+  useEffectTitle("Admin | Sportify");
     const adminBgStyle = {
         backgroundColor: "ghostwhite",
         minHeight: "100vh"

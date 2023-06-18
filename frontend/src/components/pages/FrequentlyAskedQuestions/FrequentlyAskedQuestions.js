@@ -4,8 +4,10 @@ import Navbar from "../../organisms/Navbar/Navbar";
 import questions from "./getAllQuestions";
 import "./FrequentlyAskedQuestions.css";
 import getAllQuestions from "./getAllQuestions";
+import useEffectTitle from "../../../hooks/useEffectTitle";
 
 const FrequentlyAskedQuestions = () => {
+  useEffectTitle("FAQ | Sportify")
   const { t } = useTranslation();
   const questions = getAllQuestions(t);
   return (
