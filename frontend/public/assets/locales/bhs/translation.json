@@ -214,5 +214,13 @@
   "schedule_1": "Rezerviši",
   "rate": "Ocijeni",
   "schedule_now": "Rezerviši odmah",
-  "description": "Opis"
+  "description": "Opis",
+  "schedule_an_appointment": "Zakažite svoj termin",
+  "choose_a_sport": "Izaberite sport",
+  "duration": "Trajanje",
+  "duration_of_your_event": "Trajanje vašeg događaja (sati)",
+  "nop": "Broj učesnika",
+  "noa": "Broj prisutnih",
+  "max_n_people": "Maksimalni broj ljudi koji prisustvuju događaju",
+  "n_of_people": "Broj ljudi koji su potvrdili svoje prisustvo"
 }
