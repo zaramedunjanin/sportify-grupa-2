@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 
 import Navbar from "../../organisms/Navbar/Navbar";
 import Footer from "../../organisms/Footer/Footer";
@@ -11,13 +11,17 @@ import { Image } from "react-bootstrap";
 
 import slika from "../../../assets/images/pitch.jpg";
 import MainButton from "../../atoms/Buttons/MainButton/MainButton";
+import RatingStars from "./RatingStars/RatingStars";
 import useEffectTitle from "../../../hooks/useEffectTitle";
 import axios from "axios";
 import { redirect, useNavigate, useParams } from "react-router-dom";
+import {AuthContext} from "../../../context/AuthContext";
+
 const Venue = () => {
-  let { id } = useParams();
+  let { id } = 8;
   const url = `http://127.0.0.1:8000/venue/${id}`;
   console.log(id, url);
+  const { user } = useContext(AuthContext);
 
   const [venue, setVenue] = useState({});
   const navigate = useNavigate();
@@ -59,12 +63,15 @@ const Venue = () => {
                 <Col className={"text-center"}>
                   <MainButton text={"Schedule Now"} />
                 </Col>
+
               </Row>
               <Row>{/* Sports */}</Row>
               <Row>
-                <h5>
+                <h5 className = {"d-flex"}>
                   <span className="material-symbols-outlined ms-2">grade</span>{" "}
                   4.6
+                  <RatingStars venue = {id} user = {user.id}/>
+
                 </h5>
                 <h5>
                   <span className="material-symbols-outlined ms-2">
