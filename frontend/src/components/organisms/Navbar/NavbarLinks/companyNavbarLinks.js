@@ -6,11 +6,7 @@ const companyNavbarLinks = [
   {
     url: "/Company/Bookings",
     navbarText: "Bookings",
-  },
-  {
-    url: "/Company/Analytics",
-    navbarText: "Analytics",
-  },
+  }
 ];
 
 export default companyNavbarLinks;
