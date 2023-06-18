@@ -104,12 +104,6 @@ const UserData = ({ columns, sports, page, table, row, add, edit, ...props }) =>
                 component={CustomInput}
               />
               <Field
-                name={"phone_number"}
-                type={"text"}
-                label={t("phone_number")}
-                component={CustomInput}
-              />
-              <Field
                 name={"gender"}
                 label={t("gender")}
                 component={CustomSelect}

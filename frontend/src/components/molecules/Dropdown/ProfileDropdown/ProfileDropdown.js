@@ -19,7 +19,7 @@ const ProfileDropdown = ({
 }) => {
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const { logout, isAuthenticated, user } = useContext(AuthContext);
+  const { logout, isAuthenticated, user, fetchUserProfile } = useContext(AuthContext);
 
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -42,6 +42,7 @@ const ProfileDropdown = ({
         console.error("Failed to fetch data:", error);
       }
     };
+
     fetchSports();
   }, []);
 

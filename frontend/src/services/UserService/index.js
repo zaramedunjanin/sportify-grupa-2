@@ -12,6 +12,7 @@ export const signup = async (userData) => {
   }
 };
 
+
 export const getUserReservations = async (id) => {
     const response = await axios
         .get(`${API_BASE_URL}/reservation/${id}/`)
@@ -19,6 +20,15 @@ export const getUserReservations = async (id) => {
             console.error(e);
         });
     return response.data
+};
+
+export const join = async (userData) => {
+    try {
+        const response = await axios.post(`${API_BASE_URL}/auth/signup`, userData);
+        return response.data;
+    } catch (error) {
+        throw error.response.data;
+    }
 };
 
 
