@@ -188,6 +188,13 @@
   "become_a_partner_heading": "Become a partner !",
   "become_a_partner_paragraf": "Expand your reach, connect with new customers, and grow your business.",
   "company": "Company",
-  "join": "Join"
+  "join": "Join",
+  "contact_us_text": "If you have any questions or need assistance, please feel free to reach out to us.",
+  "contact_us_email": "Email: support@sportify.com",
+  "contact_us_phone": "Phone number: +387 33 070 070",
+  "contact_us_address": "Address: Zmaja od Bosne 33-35, Sarajevo 71000",
+  "contact_us_hours": "Business hours",
+  "pon_fri": "Monday - Friday: 9:00 AM - 6:00 PM",
+  "sat_san": "Saturday - Sunday: Closed"
   
 }
