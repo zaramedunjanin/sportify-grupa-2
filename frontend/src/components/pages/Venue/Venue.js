@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 
 import Navbar from "../../organisms/Navbar/Navbar";
 import Footer from "../../organisms/Footer/Footer";
@@ -15,6 +15,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import SportCategoryButton from "../../atoms/Buttons/SportCategoryButton/SportCategoryButton";
 import ScheduleNowModal from "./ScheduleNowModal";
 import QnAList from "./QnAList";
+import {AuthContext} from "../../../context/AuthContext";
+import RatingStars from "./RatingStars/RatingStars";
+import {baseURL} from "../../../services/AdminService/adminService";
 
 const Venue = () => {
     let { id } = useParams();
@@ -24,8 +27,10 @@ const Venue = () => {
     const [sports, setSports] = useState([]);
     const [rating, setRating] = useState("");
     const [questionList, setQuestionList] = useState([])
-
+    const {user} = useContext(AuthContext)
     const navigate = useNavigate();
+    const [userRating, setUserRating] = useState(0);
+    const [submitted, setSubmitted] = useState(false);
 
     const [show, setShow] = useState(false);
 
@@ -59,8 +64,18 @@ const Venue = () => {
     }
 
     useEffect(() => {
+        const getUserRating = async () =>{
+             await axios
+                .get(`http://127.0.0.1:8000/venue/user/${user.id}/rating/`)
+                .then((res)=>setUserRating(res.data[0].rating))
+                .catch((e) => {
+                    console.error(e);
+                });
+        }
         fetchVenue();
-    }, []);
+        getUserRating()
+
+    }, [submitted]);
 
     useEffectTitle("Venue | Sportify")
 
@@ -86,9 +101,12 @@ const Venue = () => {
                             })}
 
                             <Row>
-                                <h5>
+                                <h5 className = {`d-flex`}>
                                     <span className="material-symbols-outlined ms-2">grade</span>{" "}
                                     {rating}
+                                    <div className = {styles.ratingSpace}>
+                                        <RatingStars submitted = {()=>setSubmitted(true)} oldRating={userRating} venue = {parseInt(id)} user = {user.id}/>
+                                    </div>
                                 </h5>
                                 <h5>
                   <span className="material-symbols-outlined ms-2">
@@ -132,3 +150,4 @@ const Venue = () => {
 };
 
 export default Venue;
+

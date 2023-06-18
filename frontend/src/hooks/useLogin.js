@@ -48,7 +48,7 @@ const useLoginForm = () => {
         .then((response) => {
           setIsAuthenticated(true);
           localStorage.setItem("token", response.data.access);
-          navigate("/");
+          window.location.href = "/";
         })
         .catch((error) => {
           if (error.response && error.response.data) {
