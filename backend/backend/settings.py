@@ -144,10 +144,10 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'sportifydb',
-#         'USER': 'sportify',
-#         'PASSWORD': 'sportify',
-#         'HOST': 'localhost',
+#         'NAME': 'mujrgdvp',
+#         'USER': 'mujrgdvp',
+#         'PASSWORD': '7WlfTj9QoTTr92P3nuukuOM9nywrFCpT', 
+#         'HOST': 'mouse.db.elephantsql.com',
 #         'PORT': '5432',
 #     }
 # }
@@ -197,6 +197,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 
 # sendgrid email settings
 SENDGRID_API_KEY = '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'

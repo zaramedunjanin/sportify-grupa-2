@@ -234,7 +234,7 @@ const AdminTable = ({ page, ...props }) => {
           onHide: () => {
             setDeleteShow(false);
           },
-          onClick: handleDelete,
+          onSubmit: handleDelete,
           type: "Delete",
         })}
         {...(declineShow === true && {
@@ -242,7 +242,7 @@ const AdminTable = ({ page, ...props }) => {
           onHide: () => {
             setDeclineShow(false);
           },
-          onClick: handleDecline,
+          onSubmit: handleDecline,
           type: "Decline",
         })}
         {...(acceptShow === true && {
@@ -250,7 +250,7 @@ const AdminTable = ({ page, ...props }) => {
           onHide: () => {
             setAcceptShow(false);
           },
-          onClick: handleAccept,
+          onSubmit: handleAccept,
           type: "Accept",
         })}
       />
