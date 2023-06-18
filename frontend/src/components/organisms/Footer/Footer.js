@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import Container from "react-bootstrap/esm/Container";
 import Button from "../../atoms/Buttons/MainButton/MainButton";
 import Row from "react-bootstrap/Row";
@@ -9,6 +10,7 @@ import "./Footer.css";
 
 const Footer = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   return (
     <Fragment>
       <Container
@@ -25,7 +27,7 @@ const Footer = () => {
             <div className="text-white">{t("venue")}</div>
           </Col>
           <Col xs={12} lg={3} className="mt-auto mb-lg-auto mb-sm-0">
-            <Button text={t("text")}></Button>
+            <Button text={t("text")} onClick={() => navigate("/bap")}></Button>
           </Col>
         </Row>
       </Container>
@@ -45,7 +47,7 @@ const Footer = () => {
               </li>
               <li className="nav-item mb-2">
                 <a
-                  href="#"
+                  href="/bap"
                   className="p-0  text-decoration-none text-reset footer-links"
                 >
                   {t("partner")}
@@ -74,7 +76,7 @@ const Footer = () => {
               </li>
               <li className="nav-item mb-2">
                 <a
-                  href="#"
+                  href="/contactus"
                   className="p-0  text-decoration-none text-reset footer-links"
                 >
                   {t("contact")}

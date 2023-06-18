@@ -16,8 +16,10 @@ import { SearchProvider } from "./context/SearchContext";
 import { CategoryProvider } from "./context/CategoryContext";
 import { AuthProvider } from "./context/AuthContext";
 import ContextWrapper from "./context/ContextWrapper";
+import BecomeAPartnerPage from "./components/pages/BecomeAPartner/BecomeAPartnerPage";
 import TermsOfUse from "./components/pages/TermsOfUse/TermsOfUse";
 import PrivacyPolicy from "./components/pages/PrivacyPolicy/PrivacyPolicy";
+import ContactUs from "./components/pages/ContactUs/ContactUs";
 
 const App = () => {
   return (
@@ -26,12 +28,13 @@ const App = () => {
         <Routes>
           <Route index element={<Home />} />
           <Route path="faq" element={<FrequentlyAskedQuestions />} />
-
           <Route path="login" element={<LoginPage />} />
           <Route path="signup" element={<Signup />} />
-          <Route path="about" element={<About />} />
+          <Route path="bap" element={<BecomeAPartnerPage />} />
           <Route path="termsofuse" element={<TermsOfUse />} />
           <Route path="privacypolicy" element={<PrivacyPolicy />} />
+          <Route path="about" element={<About />} />
+          <Route path="contactus" element={<ContactUs />} />
           <Route path="administrator" element={<Admin />}>
             <Route path="tables" element={<RootTablePage />}>
               <Route path="users" element={<TablePage />} />
@@ -44,7 +47,6 @@ const App = () => {
             </Route>
             <Route path="verification" element={<TablePage />} />
           </Route>
-
           <Route path="/venue/:id" element={<Venue />} />
           <Route path="/userdashboard" element={<UserDashboardPage />} />
           <Route path="/userdata" element={<UserData />} />
