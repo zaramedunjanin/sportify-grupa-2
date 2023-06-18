@@ -19,6 +19,7 @@ import ContextWrapper from "./context/ContextWrapper";
 import BecomeAPartnerPage from "./components/pages/BecomeAPartner/BecomeAPartnerPage";
 import TermsOfUse from "./components/pages/TermsOfUse/TermsOfUse";
 import PrivacyPolicy from "./components/pages/PrivacyPolicy/PrivacyPolicy";
+import { Navigate } from "react-router-dom";
 
 const App = () => {
   return (
@@ -34,6 +35,7 @@ const App = () => {
           <Route path="privacypolicy" element={<PrivacyPolicy />} />
           <Route path="about" element={<About />} />
           <Route path="administrator" element={<Admin />}>
+            <Route path="" element={<Navigate to="tables/users" replace />} />
             <Route path="tables" element={<RootTablePage />}>
               <Route path="users" element={<TablePage />} />
               <Route path="venues" element={<TablePage />} />
