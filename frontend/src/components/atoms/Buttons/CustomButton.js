@@ -11,8 +11,8 @@ const CustomButton = ({
 
   switch (variant) {
     case "success":
-      backgroundColor = "green";
-      hoverBackgroundColor = "darkgreen";
+      backgroundColor = "#2bbd5b";
+      hoverBackgroundColor = "#58c762";
       break;
     case "error":
       backgroundColor = "red";

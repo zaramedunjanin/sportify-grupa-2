@@ -18,7 +18,7 @@ from .serializers import ReservationSerializer
 
 @api_view(['GET'])
 def getUserReservations(request, user_id):
-    reservations = Reservation.objects.filter(user = user_id).select_related('sport')
+    reservations = Reservation.objects.filter(user = user_id).select_related('sport').order_by('start_time')
     serializer = ReservationSerializer(reservations, context={'request': request}, many=True)
     return Response(serializer.data)
 

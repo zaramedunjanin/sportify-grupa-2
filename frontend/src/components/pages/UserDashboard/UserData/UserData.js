@@ -8,19 +8,20 @@ import CustomButton from "../../../atoms/Buttons/CustomButton";
 import CustomSelect from "../../Admin/AdminComponents/AdminModals/CustomFormComponents/CustomSelect";
 import CustomInput from "../../Admin/AdminComponents/AdminModals/CustomFormComponents/CustomInput";
 import CustomImage from "../../Admin/AdminComponents/AdminModals/CustomFormComponents/CustomImage";
-import CustomCheckBox from "../../Admin/AdminComponents/AdminModals/CustomFormComponents/CustomCheckBox";
-import { AuthContext } from "../../../../context/AuthContext";
 import useAdminDataUpload from "../../../../hooks/useAdminDataUpload";
 import { useTranslation } from "react-i18next";
+import CustomSelectCheckBox from "../../Admin/AdminComponents/AdminModals/CustomFormComponents/CustomSelectCheckBox";
+import {getDataList} from "../../../../services/AdminService/useAdminFetcher";
+import {isElementType} from "@testing-library/user-event/dist/utils";
+import {parse} from "@fortawesome/fontawesome-svg-core";
 
-const UserModal = ({ columns, page, table, row, add, edit, ...props }) => {
+const UserData = ({ columns, sports, data, page, table, row, add, edit, ...props }) => {
   const { t } = useTranslation();
-  const { logout, isAuthenticated, user } = useContext(AuthContext);
-  const data = user;
   const { file, percent, setFile, setPercent, handleChange, handleSubmit } =
     useAdminDataUpload();
 
 
+console.log(sports)
   const validationSchema = yup.object().shape({
     first_name: yup.string().required("Required").max(50),
     last_name: yup.string().required("Required").max(50),
@@ -57,7 +58,15 @@ const UserModal = ({ columns, page, table, row, add, edit, ...props }) => {
 
           }}
         onSubmit={async (values, actions)  => {
-         await handleSubmit(values, (page = "users"), add = false, edit = true);
+            if(values.sport !== "") {
+                values.sport.map((element, index) => {
+                    return (
+                        values["sport"][index] = parseInt(element)
+
+                    )
+                })
+            }
+            await handleSubmit(values, (page = "users"), add = false, edit = true);
           props.onHide();
         }}
       >
@@ -95,12 +104,7 @@ const UserModal = ({ columns, page, table, row, add, edit, ...props }) => {
                 label={t("phone_number")}
                 component={CustomInput}
               />
-                <Field
-                    name={"phone_number"}
-                    type={"text"}
-                    label={t("phone_number")}
-                    component={CustomInput}
-                />
+
               <Field
                 name={"gender"}
                 label={t("gender")}
@@ -111,7 +115,14 @@ const UserModal = ({ columns, page, table, row, add, edit, ...props }) => {
                   { value: "Male", label: t("male") },
                 ]}
               />
-
+                <Field
+                    name={"sport"}
+                    label={t("sport")}
+                    type = {"select"}
+                    component={CustomSelectCheckBox}
+                    options={sports}
+                    isMulti={true}
+                />
             </Modal.Body>
             <Modal.Footer>
               <CustomButton
@@ -134,4 +145,4 @@ const UserModal = ({ columns, page, table, row, add, edit, ...props }) => {
     </Modal>
   );
 };
-export default UserModal;
+export default UserData;

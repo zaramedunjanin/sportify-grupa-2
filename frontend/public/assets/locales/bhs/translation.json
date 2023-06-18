@@ -134,5 +134,6 @@
   "low_to_hight": "Od najmanje do najveće cijene",
   "high_to_low": "Od najveće do najmanje cijene",
   "a_to_z": "Abecedno: od A do Ž",
-  "z_to_a": "Abecedno: od Ž do A"
+  "z_to_a": "Abecedno: od Ž do A",
+  "empty_table_user_reservations": "Trenutno nemate rezervacija."
 }

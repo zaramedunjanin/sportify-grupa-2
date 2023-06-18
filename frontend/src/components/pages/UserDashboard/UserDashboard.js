@@ -16,10 +16,10 @@ const UserDashboard = () => {
   return (
     <Container>
       <Row className={`${styles.card}`}>
-        <Col md={"6"} className={`text-center`}>
+        <Col lg={"6"} className={`text-center`}>
           <Image className={styles.cover} src={user.profile_picture} />
         </Col>
-        <Col md={"6"}>
+        <Col lg={"6"}>
           <Row>
             <p>
               <span className="material-symbols-outlined">person</span>{" "}
@@ -47,7 +47,11 @@ const UserDashboard = () => {
               <span className="material-symbols-outlined">
                 sports_basketball
               </span>{" "}
-              {user.sport}
+              {user.sport === ""?
+              "No Sports"
+                  :
+                  user.sport
+              }
             </p>
           </Row>
         </Col>

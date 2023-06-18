@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, {useState, useContext, useEffect} from "react";
 import "./ProfileDropdown.scss";
 import { Dropdown, DropdownButton } from "react-bootstrap";
 import profile from "../../../../assets/images/profile.jpg";
@@ -10,6 +10,7 @@ import i18next from "i18next";
 import UserData from "../../../pages/UserDashboard/UserData/UserData";
 
 import { AuthContext } from "../../../../context/AuthContext";
+import {getDataList} from "../../../../services/AdminService/useAdminFetcher";
 
 const ProfileDropdown = ({
   profilePicture = profile,
@@ -29,6 +30,20 @@ const ProfileDropdown = ({
   const handleCloseModal = () => {
     setModalOpen(false);
   };
+
+  const [sports, setSports] = useState("");
+
+  useEffect(()=>{
+    const fetchSports = async () => {
+      try {
+        const response = await getDataList("sports");
+        setSports(response);
+      } catch (error) {
+        console.error("Failed to fetch data:", error);
+      }
+    };
+    fetchSports();
+  }, []);
 
   return (
     <div>
@@ -55,7 +70,7 @@ const ProfileDropdown = ({
         </Dropdown.Item>
       </DropdownButton>
       {modalOpen && (
-        <UserData show={modalOpen} onHide={handleCloseModal} edit={true} />
+        <UserData sports = {sports} data ={user} show={modalOpen} onHide={handleCloseModal} edit={true} />
       )}
     </div>
   );

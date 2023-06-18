@@ -134,5 +134,7 @@
   "low_to_hight": "Low to high price",
   "high_to_low": "High to low price",
   "a_to_z": "Alphabetical: A to Z",
-  "z_to_a": "Alphabetical: Z to A"
-  }
+  "z_to_a": "Alphabetical: Z to A",
+  "empty_table_user_reservations": "You have no reservations."
+
+}
