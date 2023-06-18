@@ -10,7 +10,7 @@ const Home = () => {
     const [venues, setVenues] = useState("")
     const fetchData = async () => {
         try {
-            const response = await getDataList("venues");
+            const response = await getDataList("venuestop3");
             setVenues(response);
         } catch (error) {
             console.error("Failed to fetch data:", error);
