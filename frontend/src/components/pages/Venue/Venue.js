@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useContext, useEffect, useState} from "react";
 
 import Navbar from "../../organisms/Navbar/Navbar";
 import Footer from "../../organisms/Footer/Footer";
@@ -7,7 +7,6 @@ import styles from "./Venue.module.css";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Form from "react-bootstrap/Form";
 import { Image } from "react-bootstrap";
 import Button from "../../atoms/Buttons/MainButton/MainButton";
 
@@ -20,10 +19,19 @@ import SportCategoryButton from "../../atoms/Buttons/SportCategoryButton/SportCa
 import ScheduleNowModal from "./ScheduleNowModal";
 import CustomButton from "../../atoms/Buttons/CustomButton";
 
+import {addData, editData} from "../../../services/AdminService/useAdminMutator";
+import {Field, Formik, Form} from "formik";
+import * as yup from "yup";
+import CustomInput from "../Admin/AdminComponents/AdminModals/CustomFormComponents/CustomInput";
+import {useTranslation} from "react-i18next";
+import CustomTextArea from "../Admin/AdminComponents/AdminModals/CustomFormComponents/CustomTextArea";
+import {AuthContext} from "../../../context/AuthContext";
+
 const Venue = () => {
   let { id } = useParams();
   const url = `http://127.0.0.1:8000/venue/${id}`;
 
+  const [sent, setSent] = useState("");
   const [venue, setVenue] = useState({});
   const [sports, setSports] = useState([]);
   const [rating, setRating] = useState("");
@@ -62,6 +70,11 @@ const Venue = () => {
     fetchVenue();
   }, []);
 
+  const validationSchema = yup.object().shape({
+    text: yup.string().required("Required"),
+  });
+  const {user} = useContext(AuthContext)
+  const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
   return (
     <>
       <Navbar />
@@ -118,27 +131,60 @@ const Venue = () => {
             <Col md={12}>
               <Row className={`${styles.card_1} justify-content-center`}>
                 <Col>
-                  <p className={styles.heading_1}>Ask a question</p>
+                  <Formik
+                      validationSchema={validationSchema}
+                      validateOnChange={true}
+
+                        initialValues= {{
+                          user: "",
+                          venue: id,
+                          text: "",
+                          answer: "",
+                          pinned: false,
+                        }}
+                      onSubmit={async (values, actions) => {
+                        values["user"] = user.id;
+                        values["venue"] = parseInt(values["venue"])
+
+                        const response =  await addData(values, "questions");
+                        setTimeout(() => {
+                          if (response.status === 201) {
+                            actions.resetForm()
+                            actions.setStatus( {success: 'Message has been sent!'} )
+                          }
+                          else if (response.status === 400) {
+                            actions.resetForm()
+
+                            actions.setStatus( {success: 'Message failed to send.'} )
+
+                          }
+                        }, 2000);
+
+                      }}
+                  >
+                    {({ values, errors, status, isSubmitting }) => (
                   <Form>
-                    <Form.Group
-                      className="mb-3"
-                      controlId="exampleForm.ControlTextarea1"
-                    >
-                      <Form.Control
-                        as="textarea"
-                        rows={3}
-                        id={`${styles.custom} ${styles.full_width}`}
-                        style={{ resize: "none", height: "auto" }}
-                      />
-                    </Form.Group>
-                  </Form>
-                  <div className={styles.button_wrapper}>
-                    <Button
-                      type="submit"
-                      text="Send"
-                      className={`${styles.ask_button} ${styles.smaller_button}`}
+                    <p>{status}</p>
+                    <Field
+                        name={"text"}
+                        type={"textarea"}
+                        placeholder = {"Write a Question"}
+                        label = {`Send a Question`}
+                        component={CustomTextArea}
                     />
-                  </div>
+                    <div className={styles.button_wrapper}>
+                      <div>{ status && status.success? status.success :  ""}</div>
+
+                      <Button
+                          type="submit"
+                          text="Send"
+                          className={`${styles.ask_button} ${styles.smaller_button}`}
+                      />
+                    </div>
+                  </Form>
+                    )}
+                  </Formik>
+
                 </Col>
               </Row>
             </Col>
@@ -147,12 +193,6 @@ const Venue = () => {
       </div>
 
       <Footer />
-      <ScheduleNowModal
-        show={show}
-        handleClose={handleClose}
-        sports={sports}
-        url={url}
-      />
     </>
   );
 };

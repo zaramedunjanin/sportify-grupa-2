@@ -60,6 +60,8 @@
 }
 
 .button_wrapper {
-  text-align: right;
+  display: flex;
+  align-items: center;
+  justify-content: right;
   margin-bottom: 20px;
 }

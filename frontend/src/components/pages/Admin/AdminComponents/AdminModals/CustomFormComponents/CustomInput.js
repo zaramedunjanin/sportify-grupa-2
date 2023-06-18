@@ -5,7 +5,7 @@ const CustomInput = ({ options, form, label, ...props }) => {
   const [field, meta] = useField(props.field.name);
   let replace = props.field.name.replace("_", " ");
   let name = replace.charAt(0).toUpperCase() + replace.slice(1);
-  const errorText = meta.error && meta.touched ? meta.error : "";
+
   const styleError = {
     color: "red",
     display: "inline-block",

@@ -22,7 +22,7 @@ export const addData = async (data, page) => {
     axios
         .post(`${baseURL}/tables/${page}/add/`, data)
         .catch((error) => {
-            console.log(error.response);
+            return error
         });
 };
 

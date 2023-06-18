@@ -126,3 +126,4 @@ def getVenues(request):
     
     serializer = VenueSerializer(queryset, many=True)
     return Response(serializer.data)
+
