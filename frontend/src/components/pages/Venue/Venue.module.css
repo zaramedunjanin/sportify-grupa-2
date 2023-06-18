@@ -32,3 +32,8 @@
 .success {
   color: green;
 }
+
+.ratingSpace{
+  width: 100%;
+  text-align: end;
+}

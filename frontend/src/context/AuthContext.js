@@ -40,7 +40,7 @@ export const AuthProvider = ({ children }) => {
     // Logic to handle logout and set isAuthenticated to false
     localStorage.removeItem("token");
     setIsAuthenticated(false);
-    navigate("/");
+    window.location.href = "/";
   };
 
   return (
