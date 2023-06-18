@@ -1,3 +1,4 @@
+import Footer from "../../organisms/Footer/Footer";
 import Navbar from "../../organisms/Navbar/Navbar";
 import questions from "./allQuestions";
 import "./FrequentlyAskedQuestions.css";
@@ -12,34 +13,7 @@ const FrequentlyAskedQuestions = () => {
             <div className="position-relative text-center bg-body">
               <div className="d-flex justify-content-end">
                 <nav className="navbar navbar-expand-lg bg-body-tertiary mb-3">
-                  <div className="container-fluid text-center">
-                    <div className="collapse navbar-collapse" id="navbarNav">
-                      <ul className="navbar-nav fw-medium me-2">
-                        <li className="nav-item nav-link-size">
-                          <a
-                            className="nav-link active"
-                            aria-current="page"
-                            href="/"
-                          >
-                            About us
-                          </a>
-                        </li>
-                        <li className="nav-item">
-                          <a className="nav-link active nav-link-size" href="/">
-                            Become a partner
-                          </a>
-                        </li>
-                        <li className="nav-item">
-                          <a
-                            className="nav-link active nav-link-size text-orange"
-                            href="/"
-                          >
-                            FAQ
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
+                  <div className="container-fluid text-center"></div>
                 </nav>
               </div>
               <div className="md-4 mx-md-5">
@@ -75,9 +49,11 @@ const FrequentlyAskedQuestions = () => {
                   })}
                 </div>
               </div>
+              <br />
             </div>
           </div>
         </div>
+        <Footer />
       </>
     </>
   );
