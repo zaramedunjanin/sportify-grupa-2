@@ -4,8 +4,8 @@
   "translate": "Prevedi",
   "header_title": "Traži, Iznajmi, Igraj!",
   "placeholder": "Traži...",
-  "venue": "Ostvarite više rezervacija za svoje mjesto već danas!",
-  "text": "Postani partner",
+  "venues_1": "Ostvarite više rezervacija za svoje mjesto već danas!",
+  "texts_1": "Postani partner",
   "info": "Informacije",
   "about": "O nama",
   "partner": "Postani partner",
@@ -210,5 +210,9 @@
   "answer_6": "Pravila objekta: Svaki objekat može imati vlastita pravila u vezi s vremenskim okvirom za unaprijed rezervacije. Neki objekti mogu dozvoljavati rezervacije do godinu dana unaprijed, dok drugi mogu imati kraće vremenske okvire, poput nekoliko sedmica ili mjeseci. Popularni objekti: Popularni objekti ili oni koji su visoko traženi mogu imati stroža pravila rezervacije. Oni mogu zahtijevati da se rezervacije naprave mnogo unaprijed zbog ograničene dostupnosti, posebno tokom vrhunskih sezona ili za popularne sportske događaje. Posebni događaji: Ako želite rezervisati objekat za poseban događaj, kao što je turnir ili veliki sportski skup, objekat može imati posebne smjernice o tome kada se rezervacije mogu napraviti. Mogu dati prioritet ranijim rezervacijama radi osiguranja pravilnog planiranja i organizacije. Ograničenja platforme: Ako koristite Sportify platformu ili sličnu online platformu za rezervaciju, mogu postojati ograničenja u vezi s vremenskim okvirom rezervacije koja su nametnuta od strane same platforme. Ta ograničenja mogu varirati, stoga je važno provjeriti specifične uvjete i odredbe platforme.",
   "frequently_asked_questions": "Često postavljena pitanja",
   "top_rated_venues": "Najbolje ocjenjeni prostori",
-  "no_venues": "Nema mjesta"
+  "no_venues": "Nema mjesta",
+  "schedule_1": "Rezerviši",
+  "rate": "Ocijeni",
+  "schedule_now": "Rezerviši odmah",
+  "description": "Opis"
 }
