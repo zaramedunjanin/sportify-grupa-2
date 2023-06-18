@@ -19,6 +19,7 @@ import ContextWrapper from "./context/ContextWrapper";
 import BecomeAPartnerPage from "./components/pages/BecomeAPartner/BecomeAPartnerPage";
 import TermsOfUse from "./components/pages/TermsOfUse/TermsOfUse";
 import PrivacyPolicy from "./components/pages/PrivacyPolicy/PrivacyPolicy";
+import ContactUs from "./components/pages/ContactUs/ContactUs";
 
 const App = () => {
   return (
@@ -33,6 +34,7 @@ const App = () => {
           <Route path="termsofuse" element={<TermsOfUse />} />
           <Route path="privacypolicy" element={<PrivacyPolicy />} />
           <Route path="about" element={<About />} />
+          <Route path="contactus" element={<ContactUs />} />
           <Route path="administrator" element={<Admin />}>
             <Route path="tables" element={<RootTablePage />}>
               <Route path="users" element={<TablePage />} />
