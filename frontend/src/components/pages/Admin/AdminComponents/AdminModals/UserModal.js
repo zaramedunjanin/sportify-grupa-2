@@ -89,7 +89,7 @@ const UserModal = ({
             username: "",
             password: "",
             company_name: "",
-            profile_picture: "",
+            profile_picture: data.profile_picture,
             email: "",
             phone_number: "",
             gender: "",

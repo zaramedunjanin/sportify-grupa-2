@@ -46,9 +46,12 @@ def putUser(request, id):
         user = User.objects.get(id=id)
     except User.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
-
     serializer = UserSerializer(user, partial=True, data=request.data, context={'request': request})
+    print(id)
     if serializer.is_valid():
+        user.sport.clear()
+        for sport_id in request.data["sport"]:
+            user.sport.add(Sport.objects.get(id = sport_id))
         serializer.save()
         return Response(status=status.HTTP_204_NO_CONTENT)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -332,7 +335,7 @@ def postRating(request):
 @api_view(['GET', 'POST'])
 def getCompanyList(request):
     if request.method == 'GET':
-        data = User.objects.filter(role=2, verified = "").all().order_by('id')
+        data = User.objects.filter(role=2, verified = "", deleted_at__isnull = True).all().order_by('id')
 
         serializer = UserSerializer(data, context={'request': request}, many=True)
 

@@ -6,7 +6,7 @@ import useEffectTitle from "../../../hooks/useEffectTitle";
 const Admin = () => {
   useEffectTitle("Admin | Sportify");
     const adminBgStyle = {
-        backgroundColor: "whitesmoke",
+        backgroundColor: "ghostwhite",
         minHeight: "100vh"
     }
   return (

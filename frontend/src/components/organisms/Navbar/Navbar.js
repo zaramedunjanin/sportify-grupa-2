@@ -58,7 +58,6 @@ const Navbar = ({ variant = "default", ...props }) => {
       backgroundColor = "background-green";
       break;
   }
-
   const { isAuthenticated, user } = useContext(AuthContext);
 
   // let isAuth = isAuthenticated;

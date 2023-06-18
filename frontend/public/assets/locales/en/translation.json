@@ -136,6 +136,7 @@
   "high_to_low": "High to low price",
   "a_to_z": "Alphabetical: A to Z",
   "z_to_a": "Alphabetical: Z to A",
+  "empty_table_user_reservations": "You have no reservations.",
   "about_text": "Sportify is a modern online platform that connects sports enthusiasts with sports facilities. Whether you're looking to rent a field, pitch, court, ring, or rink, Sportify makes it easy to find and book the perfect venue for your sports event. With user accounts, you can manage your bookings, invite others to your events, and get answers to your questions about the facilities. Facility owners can also create accounts, register their venues, and provide helpful information to potential customers.",
   "terms_of_use": "Terms Of Use",
   "terms_of_use_text": "These Terms of Use  govern your access to and use of the Sportify Bosna web application, including any related websites, mobile applications, content, and services. By accessing or using Sportify, you agree to be bound by these Terms. If you do not agree to these Terms, you must not use Sportify.",
@@ -195,6 +196,7 @@
   "contact_us_address": "Address: Zmaja od Bosne 33-35, Sarajevo 71000",
   "contact_us_hours": "Business hours",
   "pon_fri": "Monday - Friday: 9:00 AM - 6:00 PM",
+
   "sat_san": "Saturday - Sunday: Closed",
   "question_1": "How do I create an account on Sportify?",
   "answer_1": "Click on the 'Sign Up' button(top right corner of your screen) which will lead you to the Sign Up page. There you will need to fill in all the required fields and click on 'Sign Up'. You will automatically be logged in to your account.",
