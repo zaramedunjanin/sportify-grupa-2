@@ -5,6 +5,7 @@ import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { faClock } from "@fortawesome/free-solid-svg-icons";
 import { faTag } from "@fortawesome/free-solid-svg-icons";
+import { Image } from "react-bootstrap";
 
 import styles from "./Card.module.scss";
 import SportIcon from "../SportIcon/SportIcon";
@@ -27,8 +28,10 @@ const Card = ({ venue, ...rest }) => {
         className={`${styles.card} ${styles.min_width_card} mb-5`}
         style={{ width: "17rem", fontSize: "12px" }}
       >
-         <img src={myImage} className="card-img-top" alt="..." /> 
-      
+        {venue.venue_picture !== "" && (
+          <Image className={styles.cover} fluid src={venue.venue_picture} />
+        )}
+
         <div className="card-body">
           <div className="row">
             <div className="col">

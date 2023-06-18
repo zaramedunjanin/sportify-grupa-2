@@ -9,6 +9,7 @@ import { faBasketball } from "@fortawesome/free-solid-svg-icons";
 import { faVolleyball } from "@fortawesome/free-solid-svg-icons";
 import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
 import SportIcon from "../../../SearchResults/SportIcon/SportIcon";
+import { Image } from "react-bootstrap";
 
 import "./Card.css";
 import { useState } from "react";
@@ -27,7 +28,9 @@ const Card = ({ venue, setDeleteId, setEditId, ...rest }) => {
         className="card min-width-card mb-5"
         style={{ width: "17rem", fontSize: "12px" }}
       >
-        <img src={myImage} className="card-img-top" alt="..." />
+        {venue.venue_picture !== "" && (
+          <Image  fluid src={venue.venue_picture} />
+        )}
         <div className="card-body">
           <div className="row">
             <div className="col">
