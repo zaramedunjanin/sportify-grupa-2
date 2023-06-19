@@ -98,7 +98,7 @@ const VenueModal = ({ data, columns, row, add, edit, page, ...props }) => {
             price_per_hour: data.price_per_hour,
             opening_time: data.opening_time,
             closing_time: data.closing_time,
-            company: data.company,
+            company: props.user_id,
           },
         })}
         {...(add === true && {
@@ -112,7 +112,7 @@ const VenueModal = ({ data, columns, row, add, edit, page, ...props }) => {
             price_per_hour: 0,
             opening_time: "",
             closing_time: "",
-            company: "",
+            company: props.user_id,
           },
         })}
         onSubmit={(values, actions) => {
@@ -179,12 +179,7 @@ const VenueModal = ({ data, columns, row, add, edit, page, ...props }) => {
               label={t("closing_time")}
               component={CustomInput}
             />
-            <Field
-              name="company"
-              type={"number"}
-              label={t("company_id")}
-              component={CustomInput}
-            />
+
           </Modal.Body>
           <Modal.Footer>
             <CustomButton
@@ -197,7 +192,7 @@ const VenueModal = ({ data, columns, row, add, edit, page, ...props }) => {
             </CustomButton>
             <CustomButton
               text={t("save_changes")}
-              variant={"save"}
+              variant={"success"}
               type={"submit"}
             ></CustomButton>
           </Modal.Footer>

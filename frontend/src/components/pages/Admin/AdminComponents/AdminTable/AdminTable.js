@@ -125,7 +125,7 @@ const AdminTable = ({ page, ...props }) => {
                       ) : d[field] === 2 ? (
                         "User"
                       ) : (
-                        d[field] === 3 && "User"
+                        d[field] === 3 && "Company"
                       )
                     ) : typeof d[field] === "object" ? (
                       <DropdownButton

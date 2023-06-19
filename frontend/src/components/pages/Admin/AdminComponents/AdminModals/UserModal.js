@@ -144,12 +144,6 @@ const UserModal = ({
                 component={CustomInput}
               />
               <Field
-                name={"password"}
-                type={"password"}
-                label={t("password")}
-                component={CustomInput}
-              />
-              <Field
                 name={"city"}
                 type={"text"}
                 label={t("city")}

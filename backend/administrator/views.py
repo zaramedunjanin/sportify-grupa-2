@@ -335,7 +335,7 @@ def postRating(request):
 @api_view(['GET', 'POST'])
 def getCompanyList(request):
     if request.method == 'GET':
-        data = User.objects.filter(role=2, verified = "", deleted_at__isnull = True).all().order_by('id')
+        data = User.objects.filter(role=3, verified = "", company_name__isnull = False, deleted_at__isnull = True).all().order_by('id')
 
         serializer = UserSerializer(data, context={'request': request}, many=True)
 

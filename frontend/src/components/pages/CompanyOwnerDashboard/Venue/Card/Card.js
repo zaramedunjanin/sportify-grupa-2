@@ -1,4 +1,4 @@
-import myImage from "./placeholder.jpg";
+import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
@@ -10,25 +10,27 @@ import { faVolleyball } from "@fortawesome/free-solid-svg-icons";
 import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
 import SportIcon from "../../../SearchResults/SportIcon/SportIcon";
 
-import "./Card.css";
+import styles from "../../../SearchResults/Card/Card.module.scss";
 import { useState } from "react";
+import {Image} from "react-bootstrap";
 
 const Card = ({ venue, setDeleteId, setEditId, ...rest }) => {
   const formatTime = (timeString) => {
     const [hours, minutes] = timeString.split(":");
     const parsedTime = `${hours}:${minutes}`;
-
     return parsedTime;
   };
+  const navigate = useNavigate();
 
   return (
     <>
       <div
-        className="card min-width-card mb-5"
+          className={`${styles.card} ${styles.min_width_card} mb-5`}
         style={{ width: "17rem", fontSize: "12px" }}
       >
-        <img src={myImage} className="card-img-top" alt="..." />
-        <div className="card-body">
+        {venue.venue_picture !== "" && (
+            <Image onClick = {() => navigate(`/venue/${venue.id}`)} fluid src={venue.venue_picture} />
+        )}        <div className="card-body">
           <div className="row">
             <div className="col">
               <div className="dropdown">
@@ -64,6 +66,7 @@ const Card = ({ venue, setDeleteId, setEditId, ...rest }) => {
                 <p
                   className="card-title"
                   style={{ marginLeft: "0px !important" }}
+                  onClick = {() => navigate(`/venue/${venue.id}`)}
                 >
                   {venue.venue_name}
                   {venue.sport.map((sp) => {
@@ -86,7 +89,7 @@ const Card = ({ venue, setDeleteId, setEditId, ...rest }) => {
                 <p>
                   {" "}
                   <FontAwesomeIcon icon={faStar} className="me-1" />
-                  {venue.avg_rating > 0 ? venue.avg_rating : "-"}
+                  {venue.avg_rating > 0 ? venue.avg_rating.toFixed(1) : "-"}
                 </p>
               </div>
               <div className="row fw-semibold" style={{ fontSize: "16px" }}>

@@ -65,9 +65,10 @@ const App = () => {
               <Route path="questions" element={<TablePage />} />
               <Route path="ratings" element={<TablePage />} />
             </Route>
+            <Route path="verification" element={<TablePage />} />
+
           </Route>
 
-          <Route path="verification" element={<TablePage />} />
           <Route
             path="company"
             element={
