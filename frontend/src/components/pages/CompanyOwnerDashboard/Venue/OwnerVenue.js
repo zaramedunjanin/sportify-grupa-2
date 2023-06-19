@@ -1,12 +1,14 @@
 import Card from "./Card/Card";
 import MainButton from "../../../atoms/Buttons/MainButton/MainButton";
 import VenueModal from "./Modal/VenueModal";
-import { useEffect, useState } from "react";
+import {useContext, useEffect, useState} from "react";
 import DeleteModal from "../../../organisms/Modal/DeleteModal/DeleteModal";
 import { getCompanyVenues } from "../../../../services/Venue/Query";
 import { deleteVenue } from "../../../../services/Venue/Mutator";
+import {AuthContext} from "../../../../context/AuthContext";
 
 const OwnerVenue = () => {
+  const {user} = useContext(AuthContext)
   const [venues, setVenues] = useState([]);
   const [deleteId, setDeleteId] = useState(0);
   const [editId, setEditId] = useState(0);
@@ -43,7 +45,7 @@ const OwnerVenue = () => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [addShow, editShow]);
 
   return (
     <>
@@ -53,7 +55,7 @@ const OwnerVenue = () => {
           text="Add"
           style={{ width: "100px" }}
           onClick={() => {
-            setEditShow(true);
+            setAddShow(true);
             //setRow(d);
           }}
         ></MainButton>
@@ -87,7 +89,7 @@ const OwnerVenue = () => {
           onHide: () => {
             setDeleteShow(false);
           },
-          onClick: handleDelete,
+          onSubmit: handleDelete,
           type: "Delete",
         })}
       />
@@ -102,6 +104,7 @@ const OwnerVenue = () => {
         editId={editId}
       /> */}
       <VenueModal
+        user_id = {user.id}
         page={"venues"}
         table={"page"}
         data={row}

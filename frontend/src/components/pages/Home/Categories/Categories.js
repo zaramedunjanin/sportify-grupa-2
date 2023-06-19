@@ -14,8 +14,8 @@ const Categories = () => {
   const { updateCategory } = useContext(CategoryContext);
   const navigate = useNavigate();
 
-  const handleClick = () => {
-    updateCategory(1);
+  const handleClick = (id) => {
+    updateCategory(id);
     navigate("search");
   };
 
@@ -30,39 +30,42 @@ const Categories = () => {
           <Card
             icon={"sports_soccer"}
             text={t("football")}
-            onClick={handleClick}
+            onClick={()=>handleClick(1)}
           />
         </Col>
         <Col xs={6} md={4} lg={2}>
           <Card
             icon={"sports_tennis"}
             text={t("tennis")}
-            onClick={handleClick}
+            onClick={()=>handleClick(2)}
           />
         </Col>
         <Col xs={6} md={4} lg={2}>
           <Card
             icon={"sports_volleyball"}
             text={t("volleyball")}
-            onClick={handleClick}
+            onClick={()=>handleClick(3)}
           />
         </Col>
         <Col xs={6} md={4} lg={2}>
           <Card
             icon={"sports_basketball"}
             text={t("basketball")}
-            onClick={handleClick}
+            onClick={()=>handleClick(4)}
           />
         </Col>
         <Col xs={6} md={4} lg={2}>
           <Card
             icon={"ice_skating"}
             text={t("ice_skating")}
-            onClick={handleClick}
+            onClick={()=>handleClick(5)}
           />
         </Col>
         <Col xs={6} md={4} lg={2}>
-          <Card icon={"pool"} text={t("swimming")} onClick={handleClick} />
+          <Card
+              icon={"pool"}
+              text={t("swimming")}
+              onClick={()=>handleClick(6)} />
         </Col>
       </Row>
     </Container>
