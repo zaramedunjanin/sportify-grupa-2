@@ -78,7 +78,7 @@ const Venue = () => {
   useEffect(() => {
     const getUserRating = async () => {
       await axios
-        .get(`http://127.0.0.1:8000/venue/user/${user.id}/rating/`)
+        .get(`http://127.0.0.1:8000/venue/${parseInt(id)}/user/${parseInt(user.id)}/rating/`)
         .then((res) => setUserRating(res.data[0].rating))
         .catch((e) => {
           console.error(e);
@@ -86,10 +86,10 @@ const Venue = () => {
     };
     fetchVenue();
     getUserRating();
+    console.log(userRating)
   }, [submitted]);
 
   useEffectTitle("Venue | Sportify");
-
   return (
     <>
       <Navbar />
@@ -161,65 +161,53 @@ const Venue = () => {
             )}
           </Row>
         </Container>
-        <Row>
-          <Col md={12}>
-            <Row className={`${styles.card_1} justify-content-center`}>
-              <Col>
-                <Formik
-                  validationSchema={validationSchema}
-                  validateOnChange={true}
-                  initialValues={{
-                    user: "",
-                    venue: id,
-                    text: "",
-                    answer: "",
-                    pinned: false,
-                  }}
-                  onSubmit={async (values, actions) => {
-                    values["user"] = user.id;
-                    values["venue"] = parseInt(values["venue"]);
+        {user.role === 2 &&
+            <Row>
+              <Col md={12}>
+                <Row className={`${styles.card_1} justify-content-center`}>
+                  <Col>
+                    <Formik
+                        validationSchema={validationSchema}
+                        validateOnChange={true}
+                        initialValues={{
+                          user: "",
+                          venue: id,
+                          text: "",
+                          answer: "",
+                          pinned: false,
+                        }}
+                        onSubmit={async (values, actions) => {
+                          values["user"] = user.id;
+                          values["venue"] = parseInt(values["venue"]);
+                          await addData(values, "questions");
 
-                    const response = await addData(values, "questions");
-                    setTimeout(() => {
-                      if (response.status === 201) {
-                        actions.resetForm();
-                        actions.setStatus({
-                          success: "Message has been sent!",
-                        });
-                      } else if (response.status === 400) {
-                        actions.resetForm();
+                        }}
+                    >
+                      {({values, errors, status, isSubmitting}) => (
+                          <Form>
+                            <p>{status}</p>
+                            <Field
+                                name={"text"}
+                                type={"textarea"}
+                                placeholder={"Write a Question"}
+                                label={`Send a Question`}
+                                component={CustomTextArea}
+                            />
+                            <div className={styles.button_wrapper}>
+                              <div>
+                                {status && status.success ? status.success : ""}
+                              </div>
 
-                        actions.setStatus({
-                          success: "Message failed to send.",
-                        });
-                      }
-                    }, 2000);
-                  }}
-                >
-                  {({ values, errors, status, isSubmitting }) => (
-                    <Form>
-                      <p>{status}</p>
-                      <Field
-                        name={"text"}
-                        type={"textarea"}
-                        placeholder={"Write a Question"}
-                        label={`Send a Question`}
-                        component={CustomTextArea}
-                      />
-                      <div className={styles.button_wrapper}>
-                        <div>
-                          {status && status.success ? status.success : ""}
-                        </div>
-
-                        <MainButton type="submit" text="Send" />
-                      </div>
-                    </Form>
-                  )}
-                </Formik>
+                              <MainButton type="submit" text="Send"/>
+                            </div>
+                          </Form>
+                      )}
+                    </Formik>
+                  </Col>
+                </Row>
               </Col>
             </Row>
-          </Col>
-        </Row>
+        }
       </div>
       <Footer />
       <ScheduleNowModal

@@ -21,6 +21,8 @@ import TranslationComponent from "../../pages/TranslationComponent/TranslationCo
 //The Navbar for the Main Page is default,
 // for the Search Page it is needed to pass the value "search", for the Admin Panel "admin" and for User Profiles "user" to the prop "variant"
 const Navbar = ({ variant = "default", ...props }) => {
+  const url = window.location.href;
+  console.log(url)
   const { t } = useTranslation();
   const userNavbarLinks = getUserNavbarLinks(t);
   const userAdminNavbarLinks = getAdminNavbarLinks(t);
@@ -118,7 +120,7 @@ const Navbar = ({ variant = "default", ...props }) => {
                   {t("company_verification")}
                 </Link>
               </>
-            ) : variant === "company" ? (
+            ) : (variant === "company" || url === "http://localhost:3000/userdashboard") ? (
               companyNavbarLinks.map((l, index) => {
                 return (
                   <Link to={l.url} className={styles.adminLinks} key={index}>
@@ -126,15 +128,8 @@ const Navbar = ({ variant = "default", ...props }) => {
                   </Link>
                 );
               })
-            ) : variant === "user" ? (
-              userNavbarLinks.map(({ url, navbarText }, index) => {
-                return (
-                  <Link to={url} className={styles.adminLinks} key={index}>
-                    {navbarText}
-                  </Link>
-                );
-              })
-            ) : null}
+                )
+            : null}
           </Container>
 
           <TranslationComponent />

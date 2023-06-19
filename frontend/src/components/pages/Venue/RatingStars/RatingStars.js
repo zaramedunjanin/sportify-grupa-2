@@ -16,6 +16,7 @@ const RatingStart = ({ venue, user, oldRating, ...props }) => {
         user: user,
         venue: venue,
       }}
+
       onSubmit={(values, actions) => {
         values["user"] = user;
         values["rating"] = newRating;

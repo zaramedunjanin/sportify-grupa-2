@@ -29,6 +29,7 @@
   "name": "Engleski",
   "name_1": "Bosanski",
   "name_5": "Njemački",
+  "name_6": "Kineski",
   "first_name": "Ime",
   "last_name": "Prezime",
   "city": "Grad",
@@ -224,5 +225,14 @@
   "nop": "Broj učesnika",
   "noa": "Broj prisutnih",
   "max_n_people": "Maksimalni broj ljudi koji prisustvuju događaju",
-  "n_of_people": "Broj ljudi koji su potvrdili svoje prisustvo"
+  "n_of_people": "Broj ljudi koji su potvrdili svoje prisustvo",
+  "almir_handabaka": "Almir Handabaka",
+  "emir_babacic": "Emir Babačić",
+  "ena_isen": "Ena Isen",
+  "tarik_ajanovic": "Tarik Ajanović",
+  "zara_medunjanin": "Zara Medunjanin",
+  "accept": "Prihvati",
+  "reject": "Odbij",
+  "reservationist": "Rezervator",
+  "cancel": "Otkaži"
 }

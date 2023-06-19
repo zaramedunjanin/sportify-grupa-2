@@ -65,8 +65,8 @@ def getRating(request, venue_id):
     return Response(data)
 
 @api_view(['GET'])
-def getUserRating(request, user_id):
-    rating = Rating.objects.filter(user=user_id).order_by('-created_at')
+def getUserRating(request, user_id, venue_id):
+    rating = Rating.objects.filter(user=user_id, id = venue_id).order_by('-created_at')
     serializer = RatingSerializer(rating, context={'request': request}, many=True)
     return Response(serializer.data)
 

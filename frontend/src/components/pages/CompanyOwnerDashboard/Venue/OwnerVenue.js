@@ -6,9 +6,11 @@ import DeleteModal from "../../../organisms/Modal/DeleteModal/DeleteModal";
 import { getCompanyVenues } from "../../../../services/Venue/Query";
 import { deleteVenue } from "../../../../services/Venue/Mutator";
 import {AuthContext} from "../../../../context/AuthContext";
+import { useTranslation } from "react-i18next";
 
 const OwnerVenue = () => {
   const {user} = useContext(AuthContext)
+  const { t } = useTranslation();
   const [venues, setVenues] = useState([]);
   const [deleteId, setDeleteId] = useState(0);
   const [editId, setEditId] = useState(0);
@@ -52,7 +54,7 @@ const OwnerVenue = () => {
       <div className="container mt-4 d-flex justify-content-end">
         <MainButton
           type="submit"
-          text="Add"
+          text={t("add")}
           style={{ width: "100px" }}
           onClick={() => {
             setAddShow(true);

@@ -44,10 +44,14 @@ const UserData = ({
   });
 
   const updateInfo = async (values) => {
+    console.log(values)
     const newArray = [];
-    values.sport.map((option) => {
-      newArray.push(option.value);
-    });
+    if(values.sport){
+      values.sport.map((option) => {
+        newArray.push(option.value);
+      })
+    }
+
     values["sport"] = newArray;
     await handleSubmit(values, (page = "users"), (add = false), (edit = true));
     setTimeout(() => {

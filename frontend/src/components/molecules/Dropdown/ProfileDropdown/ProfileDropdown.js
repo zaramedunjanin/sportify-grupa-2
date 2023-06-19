@@ -69,17 +69,9 @@ const ProfileDropdown = ({
             {t("profile")}
           </Dropdown.Item>
         )}
-        {user.role === 2 && (
+        {(user.role === 2 || user.role === 3) && (
           <Dropdown.Item
             onClick={() => navigate("/userdashboard")}
-            eventKey="1"
-          >
-            {t("profile")}
-          </Dropdown.Item>
-        )}
-        {user.role === 3 && (
-          <Dropdown.Item
-            onClick={() => navigate("/company/venues")}
             eventKey="1"
           >
             {t("profile")}

@@ -106,7 +106,7 @@ const useBap = () => {
           username: username,
           password: password,
           email: email,
-          company: company,
+          company_name: company,
           role: 3,
         };
 
