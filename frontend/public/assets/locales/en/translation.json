@@ -29,6 +29,7 @@
   "name": "English",
   "name_1": "Bosnian",
   "name_5": "German",
+  "name_6": "Chinese",
   "first_name": "First name",
   "last_name": "Last name",
   "city": "City",
@@ -224,5 +225,14 @@
   "nop": "Number of participants",
   "noa": "Number of Attendees",
   "max_n_people": "Maximum number of people attending the event",
-  "n_of_people": "Number of people that have confirmed their attendence"
+  "n_of_people": "Number of people that have confirmed their attendence",
+  "almir_handabaka": "Almir Handabaka",
+  "emir_babacic": "Emir Babacic",
+  "ena_isen": "Ena Isen",
+  "tarik_ajanovic": "Tarik Ajanovic",
+  "zara_medunjanin": "Zara Medunjanin",
+  "accept": "Accept",
+  "reject": "Reject",
+  "reservationist": "Rezervationist",
+  "cancel": "Cancel"
 }

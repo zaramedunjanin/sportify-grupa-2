@@ -29,6 +29,7 @@
   "name": "Englisch",
   "name_1": "Bosnisch",
   "name_5": "Deutsch",
+  "name_6": "Chinesisch",
   "first_name": "Vorname",
   "last_name": "Nachname",
   "city": "Stadt",
@@ -221,5 +222,14 @@
   "nop": "Zahl der Teilnehmer",
   "noa": "Anzahl der Teilnehmer",
   "max_n_people": "Maximale Teilnehmerzahl der Veranstaltung",
-  "n_of_people": "Die Anzahl der Personen, die ihre Teilnahme bestätigt haben"
+  "n_of_people": "Die Anzahl der Personen, die ihre Teilnahme bestätigt haben",
+  "almir_handabaka": "Almir Handabaka",
+  "emir_babacic": "Emir Babacic",
+  "ena_isen": "Ena Isen",
+  "tarik_ajanovic": "Tarik Ajanovic",
+  "zara_medunjanin": "Zara Medunjanin",
+  "accept": "Akzeptieren",
+  "reject": "Ablehnen",
+  "reservationist": "Reservierungsspezialist",
+  "cancel": "Stornieren"
 }
