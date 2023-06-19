@@ -7,6 +7,7 @@ import styles from "./TranslationComponent.module.scss";
 import uk_flag from "../../../assets/images/uk_flag.png";
 import bhs_flag from "../../../assets/images/bhs_flag.png";
 import ger_flag from "../../../assets/images/ger_flag.png";
+import zh_flag from "../../../assets/images/zh_flag.png";
 
 const TranslationComponent = () => {
   const { t } = useTranslation();
@@ -25,6 +26,11 @@ const TranslationComponent = () => {
       code: "de",
       name: t("name_5"),
       country_code: "de",
+    },
+    {
+      code: "zh",
+      name: t("name_6"),
+      country_code: "zh",
     },
   ];
   return (
@@ -53,6 +59,9 @@ const TranslationComponent = () => {
                 )}
                 {country_code === "de" && (
                   <img src={ger_flag} alt="Ger Flag" className="flag-icon" />
+                )}
+                {country_code === "zh" && (
+                  <img src={zh_flag} alt="Ger Flag" className="flag-icon" />
                 )}
               </span>
               {name}

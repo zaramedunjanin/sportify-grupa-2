@@ -8,6 +8,7 @@ import {
   rejectReservation,
   acceptReservation,
 } from "../../../../services/Reservation/Query";
+import { useTranslation } from "react-i18next";
 
 function formatTimestamp(timestamp) {
   const currentDate = new Date();
@@ -35,6 +36,7 @@ function formatTimestamp(timestamp) {
 const Booking = () => {
   const [reservations, setReservations] = useState([]);
   const [events, setEvents] = useState([]);
+  const { t } = useTranslation();
 
   const fetchData = async () => {
     try {
@@ -158,7 +160,7 @@ const Booking = () => {
                             href="#"
                             onClick={() => handleAccept(reservation)}
                           >
-                            Accept
+                            {t("accept")}
                           </a>
                         </li>
                         <li>
@@ -167,7 +169,7 @@ const Booking = () => {
                             href="#"
                             onClick={() => handleReject(reservation)}
                           >
-                            Reject
+                            {t("reject")}
                           </a>
                         </li>
                       </ul>
@@ -181,13 +183,13 @@ const Booking = () => {
                   </div> */}
                   {/* <p class="mb-1">Some placeholder content in a paragraph.</p> */}
                   <p>
-                    Venue: <small>{reservation.venue.venue_name}</small>
+                    {t("venue")} <small>{reservation.venue.venue_name}</small>
                   </p>
                   <p>
-                    Sport: <small>{reservation.sport.sport_name}</small>
+                    {t("sport")} <small>{reservation.sport.sport_name}</small>
                   </p>
                   <p>
-                    Reservationist:{" "}
+                    {t("reservationist")}{" "}
                     <small>
                       {reservation.user.first_name} {reservation.user.last_name}
                     </small>

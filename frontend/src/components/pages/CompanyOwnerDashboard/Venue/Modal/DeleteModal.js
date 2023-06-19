@@ -1,4 +1,7 @@
+import { useTranslation } from "react-i18next";
+
 const DeleteModal = ({ modalText, venue, ...props }) => {
+  const { t } = useTranslation();
   return (
     <div
       class="modal fade"
@@ -22,10 +25,10 @@ const DeleteModal = ({ modalText, venue, ...props }) => {
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-light" data-bs-dismiss="modal">
-              Cancel
+              {t("cancel")}
             </button>
             <button type="button" class="btn btn-danger">
-              Delete
+              {t("delete")}
             </button>
           </div>
         </div>
